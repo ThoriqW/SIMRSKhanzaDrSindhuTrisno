@@ -35,6 +35,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import kepegawaian.DlgCariDokter;
+import digitalsignature.DlgViewPdf;
 
 /**
  *
@@ -49,7 +50,7 @@ public class DlgPasienMati extends javax.swing.JDialog {
     private PreparedStatement ps;
     private ResultSet rs;
     private DlgCariDokter dokter=new DlgCariDokter(null,false);
-    private String finger="";
+    private String finger="",FileName;
     
     /** Creates new form DlgPasienMati
      * @param parent
@@ -259,6 +260,7 @@ public class DlgPasienMati extends javax.swing.JDialog {
         MnCetakSuratMati = new javax.swing.JMenuItem();
         MnCetakSuratMati1 = new javax.swing.JMenuItem();
         MnAngkutJenazah = new javax.swing.JMenuItem();
+        MnDigitalTTE = new javax.swing.JMenuItem();
         internalFrame1 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbMati = new widget.Table();
@@ -350,6 +352,22 @@ public class DlgPasienMati extends javax.swing.JDialog {
             }
         });
         jPopupMenu1.add(MnAngkutJenazah);
+
+        MnDigitalTTE.setBackground(new java.awt.Color(255, 255, 254));
+        MnDigitalTTE.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnDigitalTTE.setForeground(new java.awt.Color(50, 50, 50));
+        MnDigitalTTE.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnDigitalTTE.setText("Sign Digital Signature");
+        MnDigitalTTE.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnDigitalTTE.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnDigitalTTE.setName("MnDigitalTTE"); // NOI18N
+        MnDigitalTTE.setPreferredSize(new java.awt.Dimension(250, 26));
+        MnDigitalTTE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnDigitalTTEActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnDigitalTTE);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -616,7 +634,7 @@ public class DlgPasienMati extends javax.swing.JDialog {
 
         DTPTgl.setEditable(false);
         DTPTgl.setForeground(new java.awt.Color(50, 70, 50));
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-08-2021" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-05-2024" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -1136,6 +1154,27 @@ private void MnCetakSuratMatiActionPerformed(java.awt.event.ActionEvent evt) {//
         }
     }//GEN-LAST:event_BtnDokterKeyPressed
 
+    private void MnDigitalTTEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnDigitalTTEActionPerformed
+        // TODO add your handling code here:
+        if(tbMati.getSelectedRow()>-1){
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            FileName=tbMati.getValueAt(tbMati.getSelectedRow(),0).toString().replaceAll("/","_")+".pdf";
+            DlgViewPdf berkas=new DlgViewPdf(null,true);
+            if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+tbMati.getValueAt(tbMati.getSelectedRow(),0).toString()+"'")>0){
+                berkas.tampilPdf(FileName,"berkastte/surat_kematian","007");
+                berkas.setButton(false);
+            }else{
+                createPdf(FileName);
+                berkas.tampilPdfLocal(FileName,"local","berkastte/surat_kematian",tbMati.getValueAt(tbMati.getSelectedRow(),0).toString(),"007");
+            }
+            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+            berkas.setLocationRelativeTo(internalFrame1);
+            berkas.setVisible(true);
+
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_MnDigitalTTEActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1170,6 +1209,7 @@ private void MnCetakSuratMatiActionPerformed(java.awt.event.ActionEvent evt) {//
     private javax.swing.JMenuItem MnAngkutJenazah;
     private javax.swing.JMenuItem MnCetakSuratMati;
     private javax.swing.JMenuItem MnCetakSuratMati1;
+    private javax.swing.JMenuItem MnDigitalTTE;
     private widget.TextBox NmDokter;
     private javax.swing.JPanel PanelInput;
     private widget.ScrollPane Scroll;
@@ -1315,5 +1355,30 @@ private void MnCetakSuratMatiActionPerformed(java.awt.event.ActionEvent evt) {//
             FormInput.setVisible(false);      
             ChkInput.setVisible(true);
         }
+    }
+    
+    void createPdf(String FileName){
+        if(TPasien.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu pasien...!!!");                
+        }else{
+            Map<String, Object> param = new HashMap<>(); 
+            param.put("namars",akses.getnamars());
+            param.put("alamatrs",akses.getalamatrs());
+            param.put("kotars",akses.getkabupatenrs());
+            param.put("propinsirs",akses.getpropinsirs());
+            param.put("kontakrs",akses.getkontakrs());
+            param.put("emailrs",akses.getemailrs());   
+            param.put("logo",Sequel.cariGambar("select setting.logo from setting"));
+            param.put("logobsre",Sequel.cariGambar("select setting.logo_bsre from setting"));
+            finger=Sequel.cariIsi("select sha1(sidikjari.sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",KdDokter.getText());
+            param.put("finger","Dikeluarkan di "+akses.getnamars()+", Kabupaten/Kota "+akses.getkabupatenrs()+"\nDitandatangani secara elektronik oleh "+NmDokter.getText()+"\nID "+(finger.equals("")?KdDokter.getText():finger)+"\n"+DTPTgl.getSelectedItem());  
+            Valid.MyReportPDFWithName1("rptSuratKematianTTE.jasper","report","tempfile",FileName,"::[ Data Surat Kontrol VClaim ]::",
+                  "select date_format(pasien_mati.tanggal,'%d-%m-%Y') as tanggal,pasien_mati.jam,pasien_mati.no_rkm_medis,pasien.nm_pasien, "+
+                  "pasien.jk,pasien.tmp_lahir,pasien.tgl_lahir,pasien.gol_darah,pasien.stts_nikah,pasien.umur,pasien.alamat, "+
+                  "pasien.agama,pasien_mati.keterangan,pasien_mati.temp_meninggal,pasien_mati.icd1,pasien_mati.icd2,"+
+                  "pasien_mati.icd3,pasien_mati.icd4,pasien_mati.kd_dokter,dokter.nm_dokter "+
+                  "from pasien_mati inner join pasien on pasien_mati.no_rkm_medis=pasien.no_rkm_medis "+
+                  "inner join dokter on pasien_mati.kd_dokter=dokter.kd_dokter where pasien_mati.no_rkm_medis='"+TNoRM.getText()+"' ",param);
+        }   
     }
 }
