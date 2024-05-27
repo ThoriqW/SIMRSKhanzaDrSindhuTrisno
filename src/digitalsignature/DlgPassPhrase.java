@@ -274,7 +274,7 @@ public class DlgPassPhrase extends javax.swing.JDialog {
 
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/tte.png"))); // NOI18N
         BtnSimpan.setMnemonic('S');
-        BtnSimpan.setText("TTD File");
+        BtnSimpan.setText("TTE File");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
         BtnSimpan.setPreferredSize(new java.awt.Dimension(150, 30));

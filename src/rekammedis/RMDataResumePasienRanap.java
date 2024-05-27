@@ -6,6 +6,7 @@
 package rekammedis;
 
 import fungsi.WarnaTable;
+import fungsi.WarnaTableTTE;
 import fungsi.batasInput;
 import fungsi.koneksiDB;
 import fungsi.sekuel;
@@ -44,7 +45,7 @@ public final class RMDataResumePasienRanap extends javax.swing.JDialog {
     private validasi Valid=new validasi();
     private PreparedStatement ps,ps2;
     private ResultSet rs,rs2;
-    private String FileName;
+    private String FileName, TTE;
     private int i=0;    
     private DlgCariDokter dokter=new DlgCariDokter(null,false);
     private RMCariKeluhan carikeluhan=new RMCariKeluhan(null,false);
@@ -67,7 +68,7 @@ public final class RMDataResumePasienRanap extends javax.swing.JDialog {
         initComponents();
         
         tabMode=new DefaultTableModel(null,new Object[]{
-            "No.Rawat","No.RM","Nama Pasien","Kode Dokter","Dokter Penanggung Jawab","Kode Pengirim","Dokter Pegirim",
+            "No.Rawat","No.RM","TTE","Nama Pasien","Kode Dokter","Dokter Penanggung Jawab","Kode Pengirim","Dokter Pegirim",
             "Kode Kamar","Kamar/Ruang/Bangsal","Tgl.Masuk","Jam Masuk","Tgl.Keluar","Jam Keluar","Diagnosa Awal Masuk","Alasan Masuk Dirawat",
             "Keluhan Utama Riwayat Penyakit","Pemeriksaan Fisik","Jalannya Penyakit Selama Perawatan","Pemeriksaan Penunjang Rad Terpenting",
             "Pemeriksaan Penunjang Lab Terpenting","Tindakan/Operasi Selama Perawatan","Obat-obatan Selama Perawatan","Diagnosa Utama",
@@ -85,28 +86,28 @@ public final class RMDataResumePasienRanap extends javax.swing.JDialog {
         tbObat.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbObat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 54; i++) {
+        for (i = 0; i < 55; i++) {
             TableColumn column = tbObat.getColumnModel().getColumn(i);
             if(i==0){
                 column.setPreferredWidth(105);
             }else if(i==1){
                 column.setPreferredWidth(75);
             }else if(i==2){
-                column.setPreferredWidth(150);
+                column.setPreferredWidth(75);
             }else if(i==3){
-                column.setPreferredWidth(80);
+                column.setPreferredWidth(150);
             }else if(i==4){
-                column.setPreferredWidth(150);
-            }else if(i==5){
                 column.setPreferredWidth(80);
+            }else if(i==5){
+                column.setPreferredWidth(150);
             }else if(i==6){
-                column.setPreferredWidth(150);
+                column.setPreferredWidth(80);
             }else if(i==7){
-                column.setPreferredWidth(70);
-            }else if(i==8){
                 column.setPreferredWidth(150);
+            }else if(i==8){
+                column.setPreferredWidth(70);
             }else if(i==9){
-                column.setPreferredWidth(65);
+                column.setPreferredWidth(150);
             }else if(i==10){
                 column.setPreferredWidth(65);
             }else if(i==11){
@@ -114,13 +115,13 @@ public final class RMDataResumePasienRanap extends javax.swing.JDialog {
             }else if(i==12){
                 column.setPreferredWidth(65);
             }else if(i==13){
-                column.setPreferredWidth(150);
+                column.setPreferredWidth(65);
             }else if(i==14){
                 column.setPreferredWidth(150);
             }else if(i==15){
-                column.setPreferredWidth(200);
+                column.setPreferredWidth(150);
             }else if(i==16){
-                column.setPreferredWidth(250);
+                column.setPreferredWidth(200);
             }else if(i==17){
                 column.setPreferredWidth(250);
             }else if(i==18){
@@ -132,71 +133,82 @@ public final class RMDataResumePasienRanap extends javax.swing.JDialog {
             }else if(i==21){
                 column.setPreferredWidth(250);
             }else if(i==22){
-                column.setPreferredWidth(150);
-            }else if(i==23){
-                column.setPreferredWidth(75);
-            }else if(i==24){
-                column.setPreferredWidth(150);
-            }else if(i==25){
-                column.setPreferredWidth(75);
-            }else if(i==26){
-                column.setPreferredWidth(150);
-            }else if(i==27){
-                column.setPreferredWidth(75);
-            }else if(i==28){
-                column.setPreferredWidth(150);
-            }else if(i==29){
-                column.setPreferredWidth(75);
-            }else if(i==30){
-                column.setPreferredWidth(150);
-            }else if(i==31){
-                column.setPreferredWidth(75);
-            }else if(i==32){
-                column.setPreferredWidth(150);
-            }else if(i==33){
-                column.setPreferredWidth(75);
-            }else if(i==34){
-                column.setPreferredWidth(150);
-            }else if(i==35){
-                column.setPreferredWidth(75);
-            }else if(i==36){
-                column.setPreferredWidth(150);
-            }else if(i==37){
-                column.setPreferredWidth(75);
-            }else if(i==38){
-                column.setPreferredWidth(150);
-            }else if(i==39){
-                column.setPreferredWidth(75);
-            }else if(i==40){
-                column.setPreferredWidth(150);
-            }else if(i==41){
                 column.setPreferredWidth(250);
+            }else if(i==23){
+                column.setPreferredWidth(150);
+            }else if(i==24){
+                column.setPreferredWidth(75);
+            }else if(i==25){
+                column.setPreferredWidth(150);
+            }else if(i==26){
+                column.setPreferredWidth(75);
+            }else if(i==27){
+                column.setPreferredWidth(150);
+            }else if(i==28){
+                column.setPreferredWidth(75);
+            }else if(i==29){
+                column.setPreferredWidth(150);
+            }else if(i==30){
+                column.setPreferredWidth(75);
+            }else if(i==31){
+                column.setPreferredWidth(150);
+            }else if(i==32){
+                column.setPreferredWidth(75);
+            }else if(i==33){
+                column.setPreferredWidth(150);
+            }else if(i==34){
+                column.setPreferredWidth(75);
+            }else if(i==35){
+                column.setPreferredWidth(150);
+            }else if(i==36){
+                column.setPreferredWidth(75);
+            }else if(i==37){
+                column.setPreferredWidth(150);
+            }else if(i==38){
+                column.setPreferredWidth(75);
+            }else if(i==39){
+                column.setPreferredWidth(150);
+            }else if(i==40){
+                column.setPreferredWidth(75);
+            }else if(i==41){
+                column.setPreferredWidth(150);
             }else if(i==42){
                 column.setPreferredWidth(250);
             }else if(i==43){
                 column.setPreferredWidth(250);
             }else if(i==44){
-                column.setPreferredWidth(90);
+                column.setPreferredWidth(250);
             }else if(i==45){
-                column.setPreferredWidth(120);
-            }else if(i==46){
-                column.setPreferredWidth(100);
-            }else if(i==47){
-                column.setPreferredWidth(120);
-            }else if(i==48){
                 column.setPreferredWidth(90);
-            }else if(i==49){
+            }else if(i==46){
                 column.setPreferredWidth(120);
+            }else if(i==47){
+                column.setPreferredWidth(100);
+            }else if(i==48){
+                column.setPreferredWidth(120);
+            }else if(i==49){
+                column.setPreferredWidth(90);
             }else if(i==50){
                 column.setPreferredWidth(120);
             }else if(i==51){
+                column.setPreferredWidth(120);
+            }else if(i==52){
                 column.setPreferredWidth(250);
             }else{
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
         }
-        tbObat.setDefaultRenderer(Object.class, new WarnaTable());
+        
+        try {
+            if(koneksiDB.AKTIFKANWARNARALAN().equals("yes")){
+                tbObat.setDefaultRenderer(Object.class, new WarnaTableTTE());
+            }else{
+                tbObat.setDefaultRenderer(Object.class, new WarnaTable());
+            }
+        } catch (Exception e) {
+            tbObat.setDefaultRenderer(Object.class, new WarnaTable());
+        }
 
         TNoRw.setDocument(new batasInput((byte)17).getKata(TNoRw));
         DiagnosaAwal.setDocument(new batasInput((int)70).getKata(DiagnosaAwal));
@@ -2822,8 +2834,15 @@ public final class RMDataResumePasienRanap extends javax.swing.JDialog {
                         }
                     }
                     
+                   
+                    if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+rs.getString("no_rawat")+"'")>0){
+                        TTE = "Sudah";
+                    }else{
+                        TTE = "Belum";
+                    }
+                
                     tabMode.addRow(new String[]{
-                        rs.getString("no_rawat"),rs.getString("no_rkm_medis"),rs.getString("nm_pasien"),rs.getString("kd_dokter"),rs.getString("nm_dokter"),
+                        rs.getString("no_rawat"),rs.getString("no_rkm_medis"),TTE,rs.getString("nm_pasien"),rs.getString("kd_dokter"),rs.getString("nm_dokter"),
                         rs.getString("kodepengirim"),rs.getString("pengirim"),kodekamar,namakamar,rs.getString("tgl_registrasi"),rs.getString("jam_reg"),tglkeluar,
                         jamkeluar,rs.getString("diagnosa_awal"),rs.getString("alasan"),rs.getString("keluhan_utama"),rs.getString("pemeriksaan_fisik"),
                         rs.getString("jalannya_penyakit"),rs.getString("pemeriksaan_penunjang"),rs.getString("hasil_laborat"),rs.getString("tindakan_dan_operasi"),
