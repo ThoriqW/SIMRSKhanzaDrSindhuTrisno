@@ -448,7 +448,7 @@
 					<font fontName="Tahoma" size="5" isBold="false" isItalic="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[Dokumen ini telah ditanda tangani secara elektronikmenggunakan sertifikat elektronik
+				<text><![CDATA[Dokumen ini telah ditanda tangani secara elektronik menggunakan sertifikat elektronik
 yang telah diterbitkan oleh Balai Sertifikasi Elektronik (BSrE), Badan Siber dan Sandi Negara]]></text>
 			</staticText>
 			<image scaleImage="FillFrame" onErrorType="Blank">

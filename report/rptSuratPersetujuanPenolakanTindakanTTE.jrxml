@@ -24,6 +24,7 @@
 	<parameter name="photo_penerima" class="java.lang.String"/>
 	<parameter name="photo_saksi" class="java.lang.String"/>
 	<parameter name="finger2" class="java.lang.String"/>
+	<parameter name="logobsre" class="java.io.InputStream"/>
 	<queryString>
 		<![CDATA[select persetujuan_penolakan_tindakan.no_pernyataan,reg_periksa.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,pasien.jk,pasien.tgl_lahir,
 				pasien.tmp_lahir,concat(pasien.alamat,', ',kelurahan.nm_kel,', ',kecamatan.nm_kec,', ',kabupaten.nm_kab,', ',propinsi.nm_prop) as alamat,
@@ -102,7 +103,7 @@
 	<detail>
 		<band height="968">
 			<rectangle>
-				<reportElement x="0" y="70" width="545" height="878" uuid="d53c4d18-b4a1-482f-8358-e4cc3378fee1"/>
+				<reportElement x="0" y="70" width="545" height="875" uuid="d53c4d18-b4a1-482f-8358-e4cc3378fee1"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
@@ -2081,6 +2082,21 @@
 				</textElement>
 				<text><![CDATA[#]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="48" y="949" width="208" height="14" uuid="6080a4c4-04e8-43c9-b4ec-ffe2956d9385">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left">
+					<font fontName="Tahoma" size="5" isBold="false" isItalic="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Dokumen ini telah ditanda tangani secara elektronik menggunakan sertifikat elektronik
+yang telah diterbitkan oleh Balai Sertifikasi Elektronik (BSrE), Badan Siber dan Sandi Negara]]></text>
+			</staticText>
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement x="-1" y="947" width="43" height="19" uuid="8f48d4c4-1274-4462-8189-0a33b2480eaa"/>
+				<imageExpression><![CDATA[$P{logobsre}]]></imageExpression>
+			</image>
 		</band>
 	</detail>
 	<columnFooter>
