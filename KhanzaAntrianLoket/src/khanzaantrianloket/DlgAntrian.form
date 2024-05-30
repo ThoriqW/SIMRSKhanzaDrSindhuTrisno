@@ -47,21 +47,14 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
           <SubComponents>
-            <Container class="usu.widget.glass.PanelGlass" name="paneliklan">
+            <Container class="javax.swing.JPanel" name="panelvideo">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="fa" green="ff" red="fa" type="rgb"/>
                 </Property>
-                <Property name="backgroundImage" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/picture/coba.gif&quot;))" type="code"/>
-                </Property>
-                <Property name="backgroundImageType" type="int" value="9"/>
+                <Property name="name" type="java.lang.String" value="panelvideo" noResource="true"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[200, 140]"/>
-                </Property>
-                <Property name="round" type="boolean" value="false"/>
-                <Property name="warna" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="fa" green="ff" red="fa" type="rgb"/>
+                  <Dimension value="[100, 100]"/>
                 </Property>
               </Properties>
               <Constraints>
@@ -70,9 +63,7 @@
                 </Constraint>
               </Constraints>
 
-              <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
-                <Property name="useNullLayout" type="boolean" value="true"/>
-              </Layout>
+              <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
             </Container>
             <Container class="javax.swing.JPanel" name="panelruntext">
               <Properties>
@@ -213,7 +204,7 @@
                 <Property name="text" type="java.lang.String" value="1"/>
                 <Property name="focusable" type="boolean" value="false"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new java.awt.Font(&quot;Tahoma&quot;, 1, 80)" type="code"/>
+                  <Connection code="new java.awt.Font(&quot;Tahoma&quot;, 1, 200)" type="code"/>
                 </Property>
                 <Property name="name" type="java.lang.String" value="labelLoket" noResource="true"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -224,6 +215,28 @@
           </SubComponents>
         </Container>
       </SubComponents>
+    </Container>
+    <Container class="usu.widget.glass.PanelGlass" name="paneliklan">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="fa" green="ff" red="fa" type="rgb"/>
+        </Property>
+        <Property name="backgroundImage" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/picture/coba.gif&quot;))" type="code"/>
+        </Property>
+        <Property name="backgroundImageType" type="int" value="9"/>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[200, 140]"/>
+        </Property>
+        <Property name="round" type="boolean" value="false"/>
+        <Property name="warna" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="fa" green="ff" red="fa" type="rgb"/>
+        </Property>
+      </Properties>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+        <Property name="useNullLayout" type="boolean" value="true"/>
+      </Layout>
     </Container>
   </NonVisualComponents>
   <Properties>
@@ -451,7 +464,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="widget.Button" name="BtnBatal2">
+            <Component class="widget.Button" name="BtnBatal3">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/picture/Cancel-2-16x16.png"/>
@@ -460,17 +473,41 @@
                 <Property name="text" type="java.lang.String" value="Stop"/>
                 <Property name="toolTipText" type="java.lang.String" value="Alt+8"/>
                 <Property name="iconTextGap" type="int" value="3"/>
-                <Property name="name" type="java.lang.String" value="BtnBatal2" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="BtnBatal3" noResource="true"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[100, 30]"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnBatal2ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnBatal3ActionPerformed"/>
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="20" y="100" width="-1" height="-1"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="widget.Button" name="startVideo">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/picture/camera.png"/>
+                </Property>
+                <Property name="mnemonic" type="int" value="56"/>
+                <Property name="text" type="java.lang.String" value="Start"/>
+                <Property name="toolTipText" type="java.lang.String" value="Alt+8"/>
+                <Property name="actionCommand" type="java.lang.String" value="playVideo"/>
+                <Property name="iconTextGap" type="int" value="3"/>
+                <Property name="name" type="java.lang.String" value="startVideo" noResource="true"/>
+                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[100, 30]"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="startVideoActionPerformed"/>
+              </Events>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="130" y="100" width="-1" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
