@@ -1704,7 +1704,7 @@ public final class BPJSCekSKDP extends javax.swing.JDialog {
 
         DTPLahir.setEditable(false);
         DTPLahir.setForeground(new java.awt.Color(50, 70, 50));
-        DTPLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-11-2023" }));
+        DTPLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-05-2024" }));
         DTPLahir.setDisplayFormat("dd-MM-yyyy");
         DTPLahir.setName("DTPLahir"); // NOI18N
         DTPLahir.setOpaque(false);
@@ -2105,7 +2105,7 @@ public final class BPJSCekSKDP extends javax.swing.JDialog {
         FormKelengkapanPasien.add(TNo);
         TNo.setBounds(107, 25, 180, 23);
 
-        DTPDaftar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-11-2023" }));
+        DTPDaftar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-05-2024" }));
         DTPDaftar.setDisplayFormat("dd-MM-yyyy");
         DTPDaftar.setName("DTPDaftar"); // NOI18N
         DTPDaftar.setOpaque(false);
@@ -2929,6 +2929,11 @@ public final class BPJSCekSKDP extends javax.swing.JDialog {
         KdPpkRujukan.setBackground(new java.awt.Color(245, 250, 240));
         KdPpkRujukan.setHighlighter(null);
         KdPpkRujukan.setName("KdPpkRujukan"); // NOI18N
+        KdPpkRujukan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                KdPpkRujukanActionPerformed(evt);
+            }
+        });
         FormKelengkapanSEP.add(KdPpkRujukan);
         KdPpkRujukan.setBounds(107, 115, 90, 23);
 
@@ -3003,6 +3008,11 @@ public final class BPJSCekSKDP extends javax.swing.JDialog {
         KdPoli.setBackground(new java.awt.Color(245, 250, 240));
         KdPoli.setHighlighter(null);
         KdPoli.setName("KdPoli"); // NOI18N
+        KdPoli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                KdPoliActionPerformed(evt);
+            }
+        });
         FormKelengkapanSEP.add(KdPoli);
         KdPoli.setBounds(107, 175, 90, 23);
 
@@ -3050,6 +3060,11 @@ public final class BPJSCekSKDP extends javax.swing.JDialog {
         KdDPJP.setBackground(new java.awt.Color(245, 250, 240));
         KdDPJP.setHighlighter(null);
         KdDPJP.setName("KdDPJP"); // NOI18N
+        KdDPJP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                KdDPJPActionPerformed(evt);
+            }
+        });
         FormKelengkapanSEP.add(KdDPJP);
         KdDPJP.setBounds(107, 205, 90, 23);
 
@@ -3099,7 +3114,7 @@ public final class BPJSCekSKDP extends javax.swing.JDialog {
         FormKelengkapanSEP.add(jLabel23);
         jLabel23.setBounds(295, 355, 54, 23);
 
-        TanggalSEP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-11-2023 15:15:14" }));
+        TanggalSEP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-05-2024 23:29:04" }));
         TanggalSEP.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TanggalSEP.setName("TanggalSEP"); // NOI18N
         TanggalSEP.setOpaque(false);
@@ -3118,7 +3133,7 @@ public final class BPJSCekSKDP extends javax.swing.JDialog {
         FormKelengkapanSEP.add(jLabel30);
         jLabel30.setBounds(341, 325, 50, 23);
 
-        TanggalRujuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-11-2023" }));
+        TanggalRujuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-05-2024" }));
         TanggalRujuk.setDisplayFormat("dd-MM-yyyy");
         TanggalRujuk.setName("TanggalRujuk"); // NOI18N
         TanggalRujuk.setOpaque(false);
@@ -3603,7 +3618,7 @@ public final class BPJSCekSKDP extends javax.swing.JDialog {
             }
         });
         FormKelengkapanSEP.add(LakaLantas);
-        LakaLantas.setBounds(589, 25, 107, 23);
+        LakaLantas.setBounds(589, 25, 108, 23);
 
         jLabel47.setText("Tgl.Kecelakaan :");
         jLabel47.setName("jLabel47"); // NOI18N
@@ -3612,7 +3627,7 @@ public final class BPJSCekSKDP extends javax.swing.JDialog {
         jLabel47.setBounds(724, 25, 90, 23);
 
         TanggalKKL.setForeground(new java.awt.Color(50, 70, 50));
-        TanggalKKL.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-11-2023" }));
+        TanggalKKL.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-05-2024" }));
         TanggalKKL.setDisplayFormat("dd-MM-yyyy");
         TanggalKKL.setEnabled(false);
         TanggalKKL.setName("TanggalKKL"); // NOI18N
@@ -5369,6 +5384,18 @@ public final class BPJSCekSKDP extends javax.swing.JDialog {
         historiPelayanan.setKartu(TNoPeserta.getText());
         historiPelayanan.setVisible(true);
     }//GEN-LAST:event_btnRiwayatActionPerformed
+
+    private void KdDPJPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KdDPJPActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_KdDPJPActionPerformed
+
+    private void KdPoliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KdPoliActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_KdPoliActionPerformed
+
+    private void KdPpkRujukanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KdPpkRujukanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_KdPpkRujukanActionPerformed
 
     /**
     * @param args the command line arguments

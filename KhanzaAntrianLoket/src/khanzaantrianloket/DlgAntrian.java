@@ -26,6 +26,10 @@ import java.sql.PreparedStatement;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
+import uk.co.caprica.vlcj.factory.MediaPlayerFactory;
+import uk.co.caprica.vlcj.player.base.MediaPlayer;
+import uk.co.caprica.vlcj.player.component.EmbeddedMediaPlayerComponent;
+import uk.co.caprica.vlcj.player.base.MediaPlayerEventAdapter;
 
 /**
  *
@@ -43,6 +47,9 @@ public class DlgAntrian extends javax.swing.JDialog implements ActionListener{
     private String[] urut={"","./suara/satu.mp3","./suara/dua.mp3","./suara/tiga.mp3","./suara/empat.mp3",
                        "./suara/lima.mp3","./suara/enam.mp3","./suara/tujuh.mp3","./suara/delapan.mp3",
                        "./suara/sembilan.mp3","./suara/sepuluh.mp3","./suara/sebelas.mp3"};
+    
+    // VLCJ components
+    private EmbeddedMediaPlayerComponent mediaPlayerComponent;
         
     /** Creates new form DlgBiling
      * @param parent
@@ -51,6 +58,10 @@ public class DlgAntrian extends javax.swing.JDialog implements ActionListener{
         super(parent, modal);
         initComponents();
         setIconImage(new ImageIcon(super.getClass().getResource("/picture/addressbook-edit24.png")).getImage());
+        
+        // Initialize VLCJ
+        mediaPlayerComponent = new EmbeddedMediaPlayerComponent();
+        panelvideo.add(mediaPlayerComponent, BorderLayout.CENTER); 
         
         this.setSize(350,400);
         try {
@@ -78,12 +89,13 @@ public class DlgAntrian extends javax.swing.JDialog implements ActionListener{
 
         DlgDisplay = new javax.swing.JDialog();
         internalFrame5 = new widget.InternalFrame();
-        paneliklan = new usu.widget.glass.PanelGlass();
+        panelvideo = new javax.swing.JPanel();
         panelruntext = new javax.swing.JPanel();
         labelruntext = new widget.Label();
         form1 = new widget.InternalFrame();
         labelantri1 = new widget.Label();
         labelLoket = new widget.Label();
+        paneliklan = new usu.widget.glass.PanelGlass();
         internalFrame1 = new widget.InternalFrame();
         panelisi1 = new widget.panelisi();
         BtnDisplay = new widget.Button();
@@ -95,7 +107,8 @@ public class DlgAntrian extends javax.swing.JDialog implements ActionListener{
         cmbloket = new widget.ComboBox();
         label2 = new widget.Label();
         Antrian = new widget.TextBox();
-        BtnBatal2 = new widget.Button();
+        BtnBatal3 = new widget.Button();
+        startVideo = new widget.Button();
 
         DlgDisplay.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         DlgDisplay.setModalExclusionType(java.awt.Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
@@ -108,14 +121,11 @@ public class DlgAntrian extends javax.swing.JDialog implements ActionListener{
         internalFrame5.setWarnaBawah(new java.awt.Color(250, 255, 250));
         internalFrame5.setLayout(new java.awt.BorderLayout());
 
-        paneliklan.setBackground(new java.awt.Color(250, 255, 250));
-        paneliklan.setBackgroundImage(new javax.swing.ImageIcon(getClass().getResource("/picture/coba.gif")));
-        paneliklan.setBackgroundImageType(usu.widget.constan.BackgroundConstan.BACKGROUND_IMAGE_STRECT);
-        paneliklan.setPreferredSize(new java.awt.Dimension(200, 140));
-        paneliklan.setRound(false);
-        paneliklan.setWarna(new java.awt.Color(250, 255, 250));
-        paneliklan.setLayout(null);
-        internalFrame5.add(paneliklan, java.awt.BorderLayout.CENTER);
+        panelvideo.setBackground(new java.awt.Color(250, 255, 250));
+        panelvideo.setName("panelvideo"); // NOI18N
+        panelvideo.setPreferredSize(new java.awt.Dimension(100, 100));
+        panelvideo.setLayout(new java.awt.BorderLayout());
+        internalFrame5.add(panelvideo, java.awt.BorderLayout.CENTER);
 
         panelruntext.setBackground(new java.awt.Color(250, 255, 250));
         panelruntext.setName("panelruntext"); // NOI18N
@@ -157,12 +167,20 @@ public class DlgAntrian extends javax.swing.JDialog implements ActionListener{
         labelLoket.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelLoket.setText("1");
         labelLoket.setFocusable(false);
-        labelLoket.setFont(new java.awt.Font("Tahoma", 1, 80));
+        labelLoket.setFont(new java.awt.Font("Tahoma", 1, 200));
         labelLoket.setName("labelLoket"); // NOI18N
         labelLoket.setPreferredSize(new java.awt.Dimension(150, 50));
         form1.add(labelLoket);
 
         DlgDisplay.getContentPane().add(form1, java.awt.BorderLayout.LINE_END);
+
+        paneliklan.setBackground(new java.awt.Color(250, 255, 250));
+        paneliklan.setBackgroundImage(new javax.swing.ImageIcon(getClass().getResource("/picture/coba.gif")));
+        paneliklan.setBackgroundImageType(usu.widget.constan.BackgroundConstan.BACKGROUND_IMAGE_STRECT);
+        paneliklan.setPreferredSize(new java.awt.Dimension(200, 140));
+        paneliklan.setRound(false);
+        paneliklan.setWarna(new java.awt.Color(250, 255, 250));
+        paneliklan.setLayout(null);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setModalExclusionType(java.awt.Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
@@ -178,7 +196,7 @@ public class DlgAntrian extends javax.swing.JDialog implements ActionListener{
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Antrian Registrasi Pasien ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 70, 40))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Antrian Registrasi Pasien ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(50, 70, 40))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -275,20 +293,36 @@ public class DlgAntrian extends javax.swing.JDialog implements ActionListener{
         panelisi5.add(Antrian);
         Antrian.setBounds(210, 12, 60, 24);
 
-        BtnBatal2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
-        BtnBatal2.setMnemonic('8');
-        BtnBatal2.setText("Stop");
-        BtnBatal2.setToolTipText("Alt+8");
-        BtnBatal2.setIconTextGap(3);
-        BtnBatal2.setName("BtnBatal2"); // NOI18N
-        BtnBatal2.setPreferredSize(new java.awt.Dimension(100, 30));
-        BtnBatal2.addActionListener(new java.awt.event.ActionListener() {
+        BtnBatal3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
+        BtnBatal3.setMnemonic('8');
+        BtnBatal3.setText("Stop");
+        BtnBatal3.setToolTipText("Alt+8");
+        BtnBatal3.setIconTextGap(3);
+        BtnBatal3.setName("BtnBatal3"); // NOI18N
+        BtnBatal3.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnBatal3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnBatal2ActionPerformed(evt);
+                BtnBatal3ActionPerformed(evt);
             }
         });
-        panelisi5.add(BtnBatal2);
-        BtnBatal2.setBounds(20, 100, 100, 30);
+        panelisi5.add(BtnBatal3);
+        BtnBatal3.setBounds(20, 100, 100, 30);
+
+        startVideo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/camera.png"))); // NOI18N
+        startVideo.setMnemonic('8');
+        startVideo.setText("Start");
+        startVideo.setToolTipText("Alt+8");
+        startVideo.setActionCommand("playVideo");
+        startVideo.setIconTextGap(3);
+        startVideo.setName("startVideo"); // NOI18N
+        startVideo.setPreferredSize(new java.awt.Dimension(100, 30));
+        startVideo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                startVideoActionPerformed(evt);
+            }
+        });
+        panelisi5.add(startVideo);
+        startVideo.setBounds(130, 100, 100, 30);
 
         internalFrame1.add(panelisi5, java.awt.BorderLayout.CENTER);
 
@@ -306,6 +340,26 @@ public class DlgAntrian extends javax.swing.JDialog implements ActionListener{
         DlgDisplay.setVisible(true);
     }//GEN-LAST:event_BtnDisplayActionPerformed
 
+
+    private void playVideo(String mediaPath) {
+        // Check if the media player component is not null
+        if (mediaPlayerComponent != null) {
+                System.out.println("Component isVisible: " + mediaPlayerComponent.isVisible());
+                System.out.println("Component isDisplayable: " + mediaPlayerComponent.isDisplayable());
+                System.out.println("Component isShowing: " + mediaPlayerComponent.isShowing());
+            // Ensure the video surface component is displayable
+            if (mediaPlayerComponent.isVisible() && mediaPlayerComponent.isDisplayable()) {
+                // Get the media player from the component and play the media
+                mediaPlayerComponent.mediaPlayer().media().play(mediaPath);
+                System.out.println("Playing Video");
+            } else {
+                System.err.println("Video surface component is not displayable or visible.");
+            }
+        } else {
+            System.err.println("Media player component is null. Make sure it's properly initialized.");
+        }
+    }
+    
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
         System.exit(0);
     }//GEN-LAST:event_BtnKeluarActionPerformed
@@ -357,29 +411,25 @@ public class DlgAntrian extends javax.swing.JDialog implements ActionListener{
         BtnDisplayActionPerformed(null);
     }//GEN-LAST:event_formWindowOpened
 
-    private void BtnBatal2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBatal2ActionPerformed
-        try {
-            pshapus=koneksi.prepareStatement("delete from antriloket");
-            try {
-                pshapus.executeUpdate();
-            } catch (Exception e) {
-                System.out.println("Notif : "+e);
-            } finally{
-                if(pshapus!=null){
-                    pshapus.close();
-                }
-            }
-        } catch (Exception e) {
-            System.out.println(e);
-        }  
-    }//GEN-LAST:event_BtnBatal2ActionPerformed
-
     private void cmbloketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbloketActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbloketActionPerformed
 
+    private void BtnBatal3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBatal3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnBatal3ActionPerformed
 
+    private void startVideoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startVideoActionPerformed
+        // TODO add your handling code here:
+        String mediaPath = "D:\\mobilejkn.mp4"; // Ganti dengan path video Anda
+        playVideo(mediaPath);
+        
+        // Menambahkan event listener untuk mendeteksi akhir pemutaran video
+        mediaPlayerComponent.mediaPlayer().controls().setRepeat(true);
 
+    }//GEN-LAST:event_startVideoActionPerformed
+
+    
     /**
     * @param args the command line arguments
     */
@@ -403,7 +453,7 @@ public class DlgAntrian extends javax.swing.JDialog implements ActionListener{
     private widget.TextBox Antrian;
     private widget.Button BtnAntri1;
     private widget.Button BtnBatal1;
-    private widget.Button BtnBatal2;
+    private widget.Button BtnBatal3;
     private widget.Button BtnDisplay;
     private widget.Button BtnKeluar;
     private javax.swing.JDialog DlgDisplay;
@@ -420,9 +470,14 @@ public class DlgAntrian extends javax.swing.JDialog implements ActionListener{
     private widget.panelisi panelisi1;
     private widget.panelisi panelisi5;
     private javax.swing.JPanel panelruntext;
+    private javax.swing.JPanel panelvideo;
+    private widget.Button startVideo;
     // End of variables declaration//GEN-END:variables
     
-    
+    /**
+     *
+     * @param e
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         paneliklan.repaint();
@@ -438,7 +493,7 @@ public class DlgAntrian extends javax.swing.JDialog implements ActionListener{
                 labelruntext.setText(rs.getString(1));
                 if(rs.getString(2).equals("Yes")){
                     Blob blob = rs.getBlob(3);
-                    paneliklan.setBackgroundImage(new javax.swing.ImageIcon(blob.getBytes(1, (int) (blob.length()))));                    
+                    paneliklan.setBackgroundImage(new javax.swing.ImageIcon(blob.getBytes(1, (int) (blob.length()))));                   
                 }
             }
         }catch(SQLException e){
@@ -451,7 +506,7 @@ public class DlgAntrian extends javax.swing.JDialog implements ActionListener{
             try {
                 music = new BackgroundMusic(urut[antrian]);
                 music.start();
-                Thread.sleep(1000);                
+                Thread.sleep(1000);
             } catch (InterruptedException ex) {
                 System.out.println(ex);
             }            
