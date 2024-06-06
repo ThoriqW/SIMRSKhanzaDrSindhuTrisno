@@ -782,7 +782,7 @@ yang telah diterbitkan oleh Balai Sertifikasi Elektronik (BSrE), Badan Siber dan
 				<imageExpression><![CDATA[$P{logobsre}]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement positionType="Float" x="3" y="35" width="207" height="52" uuid="f53b5e9e-59f4-4740-8268-0bf26a6655a1">
+				<reportElement positionType="Float" x="3" y="35" width="207" height="34" uuid="f53b5e9e-59f4-4740-8268-0bf26a6655a1">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">

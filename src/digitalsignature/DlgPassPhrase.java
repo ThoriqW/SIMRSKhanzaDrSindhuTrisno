@@ -204,6 +204,11 @@ public class DlgPassPhrase extends javax.swing.JDialog {
         txtPassPhrase.setToolTipText("Silahkan masukkan passphrase");
         txtPassPhrase.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtPassPhrase.setName("txtPassPhrase"); // NOI18N
+        txtPassPhrase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPassPhraseActionPerformed(evt);
+            }
+        });
         txtPassPhrase.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtPassPhraseKeyPressed(evt);
@@ -476,6 +481,10 @@ public class DlgPassPhrase extends javax.swing.JDialog {
     private void txtNikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNikActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNikActionPerformed
+
+    private void txtPassPhraseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPassPhraseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPassPhraseActionPerformed
 
     /**
     * @param args the command line arguments

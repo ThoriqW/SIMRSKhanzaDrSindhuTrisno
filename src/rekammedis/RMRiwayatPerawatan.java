@@ -2868,7 +2868,6 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                     "<td valign='top' width='79%'>"+ rsSep.getString(1) +"</td>"+
                                 "</tr>"
                             );
-                            System.out.println("afdsdfsdfdsfsdfsdfs");
                         }
                     }catch (Exception e) {
                             System.out.println("Status Lanjut : "+e);

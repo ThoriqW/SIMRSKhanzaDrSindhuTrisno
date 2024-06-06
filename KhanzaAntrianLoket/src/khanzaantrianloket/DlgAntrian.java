@@ -417,10 +417,25 @@ public class DlgAntrian extends javax.swing.JDialog implements ActionListener{
 
     private void BtnBatal3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBatal3ActionPerformed
         // TODO add your handling code here:
+        try {
+            pshapus=koneksi.prepareStatement("delete from antriloket");
+            try {
+                pshapus.executeUpdate();
+            } catch (Exception e) {
+                System.out.println("Notif : "+e);
+            } finally{
+                if(pshapus!=null){
+                    pshapus.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }//GEN-LAST:event_BtnBatal3ActionPerformed
 
     private void startVideoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startVideoActionPerformed
         // TODO add your handling code here:
+        mediaPlayerComponent.mediaPlayer().audio().setVolume(35);
         String mediaPath = "D:\\mobilejkn.mp4"; // Ganti dengan path video Anda
         playVideo(mediaPath);
         
