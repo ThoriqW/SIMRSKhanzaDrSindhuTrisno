@@ -989,6 +989,7 @@ import ziscsr.ZISPengeluaranPenerimaDankes;
 import ziscsr.ZISPenghasilanPenerimaDankes;
 import ziscsr.ZISTernakPenerimaDankes;
 import ziscsr.ZISUkuranRumahPenerimaDankes;
+import bridging.SatuSehatKirimDiet;
 
 
 /**
@@ -20821,7 +20822,20 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         form.setLocationRelativeTo(PanelUtama);
         form.setVisible(true);
         this.setCursor(Cursor.getDefaultCursor()); 
-    } 
+    }
+    
+    private void btnKirimDietSatuSehatActionPerformed(java.awt.event.ActionEvent evt) {
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        SatuSehatKirimDiet aplikasi=new SatuSehatKirimDiet(this,false);
+        aplikasi.isCek();
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }
+    
     /**
     * @param args the command line arguments
     */
@@ -21505,7 +21519,7 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             btnRekapPengajuanBiaya,btnPenilaianAwalMedisRalanKulitKelamin,btnHostToHostBankMandiri,btnPenilaianLevelKecemasanRanapAnak,btnPenilaianAwalMedisHemodialisa,
             btnPenilaianRisikoJatuhPsikiatri,btnPenilaianLanjutanSkriningFungsional,btnPenilaianAwalMedisRalanRehabMedik,btnTemplatePersetujuanPenolakanTindakan,
             btnPenilaianAwalMedisRalanIGDPsikiatri,btnBPJSReferensiSettingPPKApotek,btnBPJSReferensiObatApotek,btnPembayaranBankMandiri,btnBPJSMapingObatApotek,
-            btnPenilaianUlangNyeri,btnPenilaianTerapiWicara,btnPengkajianRestrain,btnBPJSKunjunganSEPApotek,btnBSRESignatureLog,btnBSREStatusDokumen;
+            btnPenilaianUlangNyeri,btnPenilaianTerapiWicara,btnPengkajianRestrain,btnBPJSKunjunganSEPApotek,btnBSRESignatureLog,btnBSREStatusDokumen,btnKirimDietSatuSehat;
     
     public void isWall(){
         try{            
@@ -21780,6 +21794,11 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             
             if(akses.getbsre_status_dokumen()==true){                          
                 Panelmenu.add(btnBSREStatusDokumen);
+                jmlmenu++;
+            }
+            
+            if(akses.getsatu_sehat_kirim_diet()==true){
+                Panelmenu.add(btnKirimDietSatuSehat);
                 jmlmenu++;
             }
         }else if(cmbMenu.getSelectedIndex()==1){ 
@@ -31408,6 +31427,11 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             Panelmenu.add(btnBSREStatusDokumen);
             jmlmenu++;
         }
+        
+        if(akses.getsatu_sehat_kirim_diet()==true){
+            Panelmenu.add(btnKirimDietSatuSehat);
+            jmlmenu++;
+        }
     }
     
     private void isCariIsi() {
@@ -38251,6 +38275,13 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
                 jmlmenu++;
             }
         }
+        
+        if(akses.getsatu_sehat_kirim_diet()==true){
+            if(btnKirimDietSatuSehat.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
+                Panelmenu.add(btnKirimDietSatuSehat);
+                jmlmenu++;
+            }                
+        }
     }
 
     private void initKhanza() {
@@ -42430,5 +42461,13 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         btnBSREStatusDokumen.setName("btnBSREStatusDokumen"); 
         btnBSREStatusDokumen.setPreferredSize(new java.awt.Dimension(200, 90));
         btnBSREStatusDokumen.addActionListener(this::btnBSREStatusDokumenActionPerformed);
+        
+        btnKirimDietSatuSehat = new widget.ButtonBig();
+        btnKirimDietSatuSehat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/satusehat.png")));
+        btnKirimDietSatuSehat.setText("Kirim Diet Satu Sehat");
+        btnKirimDietSatuSehat.setIconTextGap(0);
+        btnKirimDietSatuSehat.setName("btnKirimDietSatuSehat"); 
+        btnKirimDietSatuSehat.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnKirimDietSatuSehat.addActionListener(this::btnKirimDietSatuSehatActionPerformed);
     }
 }

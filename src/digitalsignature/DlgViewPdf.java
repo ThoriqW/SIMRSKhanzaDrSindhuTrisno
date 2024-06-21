@@ -12,58 +12,26 @@
 
 package digitalsignature;
 
-//import custom.*;
-//import fungsi.akses;
-//import simrskhanza.*;
 import fungsi.koneksiDB;
 import fungsi.sekuel;
 import fungsi.validasi;
-import java.awt.event.KeyEvent;
-import java.sql.Connection;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-//import javax.swing.JOptionPane;
-//import javax.swing.table.DefaultTableModel;
-//import inventory.DlgCariKonversi;
-//import inventory.DlgCariObat;
-//import inventory.DlgCariObat2;
-//import inventory.DlgCariObat3;
 import java.awt.Cursor;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.File;
-//import java.io.IOException;
+import java.io.IOException;
 import java.net.URL;
-//import java.net.http.HttpRequest;
-//import java.net.http.HttpResponse;
-//import java.nio.charset.StandardCharsets;
-//import java.nio.file.Files;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-//import java.util.logging.Level;
-//import java.util.logging.Logger;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
-//import static javax.swing.text.DefaultStyledDocument.ElementSpec.ContentType;
-//import org.apache.commons.io.FileUtils;
-//import org.apache.http.HttpVersion;
-//import org.apache.http.client.HttpClient;
-//import org.apache.http.client.methods.HttpPost;
-//import org.apache.http.entity.mime.MultipartEntity;
-//import org.apache.http.entity.mime.MultipartEntityBuilder;
-//import org.apache.http.entity.mime.content.ByteArrayBody;
-//import org.apache.http.entity.mime.content.ContentBody;
-//import org.apache.http.entity.mime.content.StringBody;
-//import org.apache.http.impl.client.CloseableHttpClient;
-//import org.apache.http.impl.client.DefaultHttpClient;
-//import org.apache.http.impl.client.HttpClients;
-//import org.apache.http.params.CoreProtocolPNames;
-//import org.apache.http.util.EntityUtils;
 import org.icepdf.ri.common.ComponentKeyBinding;
 import org.icepdf.ri.common.SwingController;
 import org.icepdf.ri.common.SwingViewBuilder;
-//import org.mozilla.javascript.tools.idswitch.FileBody;
-//import org.springframework.http.HttpEntity;
+import org.icepdf.ri.util.FontPropertiesManager;
 
 /**
  *
@@ -78,6 +46,7 @@ public class DlgViewPdf extends javax.swing.JDialog {
     private PreparedStatement ps;
     private ResultSet rs;
     DlgPassPhrase passphrase=new DlgPassPhrase(null,true);
+    private static final Logger LOGGER = Logger.getLogger(DlgViewPdf.class.getName());
 
     /** Creates new form DlgPemberianObat
      * @param parent
@@ -249,7 +218,7 @@ public class DlgViewPdf extends javax.swing.JDialog {
     private void BtnViewFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnViewFileActionPerformed
     if(Sequel.cariInteger("select count(nama_file) from berkas_tte where nama_file='"+txtNameFile.getText()+"'")>0){
        LocationFile="server"; 
-       setButton(false);
+       setButton(true);
        deleteFile();
     }else{
        setButton(true);
@@ -279,22 +248,28 @@ void viewpdf(String fileName,String fileLocation){
         }
 }
     void openpdf(String file){
-         try {
+        try {
             URL url =new URL("http://"+koneksiDB.HOSTHYBRIDWEB()+"/"+koneksiDB.HYBRIDWEB()+"/"+txtLokasiFile.getText()+"/"+file);
+            
             SwingController ctrl = new SwingController();
             SwingViewBuilder vb = new SwingViewBuilder(ctrl);
             JPanel s = vb.buildViewerPanel();
             ComponentKeyBinding.install(ctrl, s);
             ctrl.setToolBarVisible(false);
             ctrl.getDocumentViewController().setAnnotationCallback(
-            new org.icepdf.ri.common.MyAnnotationCallback(ctrl.getDocumentViewController())
+                new org.icepdf.ri.common.MyAnnotationCallback(ctrl.getDocumentViewController())
             );
-            ctrl.openDocument(url);
-//          dashboardview.add(s);
-            jScrollPane1.setViewportView(s); 
-        } catch (Exception e){
             
-        }
+            FontPropertiesManager.getInstance().loadOrReadSystemFonts();
+            
+            ctrl.openDocument(url);
+            jScrollPane1.setViewportView(s);
+            
+            } catch (java.io.IOException e) {
+                LOGGER.log(Level.SEVERE, "Error reading the PDF file or connecting to the URL", e);
+            } catch (Exception e) {
+                LOGGER.log(Level.SEVERE, "An unexpected error occurred", e);
+            }
 }
     private void BtnViewFileKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnViewFileKeyPressed
         if(evt.getKeyCode()==KeyEvent.VK_SPACE){

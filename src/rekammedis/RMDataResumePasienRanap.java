@@ -2595,7 +2595,6 @@ public final class RMDataResumePasienRanap extends javax.swing.JDialog {
             DlgViewPdf berkas=new DlgViewPdf(null,true);
             if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"'")>0){
                 berkas.tampilPdf(FileName,"berkastte/resume","001");
-                berkas.setButton(false);
             }else{
                 createPdf(FileName);
                 berkas.tampilPdfLocal(FileName,"local","berkastte/resume",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"001");
