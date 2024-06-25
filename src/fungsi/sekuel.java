@@ -2050,5 +2050,26 @@ public final class sekuel {
             outFile.close();
         }
     }
+   
+    public void hapusTTE(String table,String field1,String field2,String nilai_field1,String nilai_field2) {
+        try {
+            ps=connect.prepareStatement("delete from "+table+" where "+field1+"=? and "+field2+"=?");
+            try{       
+                ps.setString(1,nilai_field1);
+                ps.setString(2,nilai_field2);
+                ps.executeUpdate(); 
+             }catch(Exception e){
+                System.out.println("Notifikasi : "+e);
+                JOptionPane.showMessageDialog(null,"Maaf, data gagal dihapus. Kemungkinan data tersebut masih dipakai di table lain...!!!!");
+             }finally{
+                if(ps != null){
+                    ps.close();
+                }
+            }
+            JOptionPane.showMessageDialog(null,"Data Berhasil Dihapus");
+        } catch (Exception e) {
+            System.out.println("Notifikasi : "+e);
+        }
+    }
 
 }

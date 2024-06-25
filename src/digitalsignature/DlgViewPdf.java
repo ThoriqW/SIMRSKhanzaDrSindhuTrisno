@@ -31,7 +31,6 @@ import javax.swing.JPanel;
 import org.icepdf.ri.common.ComponentKeyBinding;
 import org.icepdf.ri.common.SwingController;
 import org.icepdf.ri.common.SwingViewBuilder;
-import org.icepdf.ri.util.FontPropertiesManager;
 
 /**
  *
@@ -47,6 +46,7 @@ public class DlgViewPdf extends javax.swing.JDialog {
     private ResultSet rs;
     DlgPassPhrase passphrase=new DlgPassPhrase(null,true);
     private static final Logger LOGGER = Logger.getLogger(DlgViewPdf.class.getName());
+    private SwingController controller;
 
     /** Creates new form DlgPemberianObat
      * @param parent
@@ -99,6 +99,7 @@ public class DlgViewPdf extends javax.swing.JDialog {
         BtnViewFile = new widget.Button();
         BtnSignTTE = new widget.Button();
         BtnKeluar = new widget.Button();
+        BtnHapusFile = new widget.Button();
         txtNameFile = new widget.TextBox();
         txtLokasiFile = new widget.TextBox();
         txtNoRawat = new widget.TextBox();
@@ -112,7 +113,7 @@ public class DlgViewPdf extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Dokumen Signature PDF ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Fira Sans", 0, 13), new java.awt.Color(70, 70, 70))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Dokumen Signature PDF ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(70, 70, 70))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -177,6 +178,24 @@ public class DlgViewPdf extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnKeluar);
 
+        BtnHapusFile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete-16x16.png"))); // NOI18N
+        BtnHapusFile.setMnemonic('S');
+        BtnHapusFile.setText("Hapus");
+        BtnHapusFile.setToolTipText("Alt+S");
+        BtnHapusFile.setName("BtnHapusFile"); // NOI18N
+        BtnHapusFile.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnHapusFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnHapusFileActionPerformed(evt);
+            }
+        });
+        BtnHapusFile.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnHapusFileKeyPressed(evt);
+            }
+        });
+        panelGlass8.add(BtnHapusFile);
+
         txtNameFile.setEditable(false);
         txtNameFile.setText("2022_01_09_000001.pdf");
         txtNameFile.setName("txtNameFile"); // NOI18N
@@ -222,31 +241,31 @@ public class DlgViewPdf extends javax.swing.JDialog {
        deleteFile();
     }else{
        setButton(true);
-       LocationFile="local"; 
+       LocationFile="local";
     }
     viewpdf(txtNameFile.getText(),LocationFile); 
 }//GEN-LAST:event_BtnViewFileActionPerformed
-void viewpdf(String fileName,String fileLocation){
-          try {
-                SwingController ctrl = new SwingController();
-                SwingViewBuilder vb = new SwingViewBuilder(ctrl);
-                JPanel s = vb.buildViewerPanel();
-                ComponentKeyBinding.install(ctrl, s);
-                ctrl.setToolBarVisible(false);
-                ctrl.getDocumentViewController().setAnnotationCallback(
-                new org.icepdf.ri.common.MyAnnotationCallback(ctrl.getDocumentViewController())
-                );
-                if(fileLocation.equals("local")){  
-                  ctrl.openDocument("tempfile/"+txtNameFile.getText());
-                }else{
-                 URL url =new URL("http://"+koneksiDB.HOSTHYBRIDWEB()+"/"+koneksiDB.HYBRIDWEB()+"/"+txtLokasiFile.getText()+"/"+txtNameFile.getText());
-                   ctrl.openDocument(url);
-                }
-              jScrollPane1.setViewportView(s); 
+    void viewpdf(String fileName,String fileLocation){
+        try {
+            SwingController ctrl = new SwingController();
+            SwingViewBuilder vb = new SwingViewBuilder(ctrl);
+            JPanel s = vb.buildViewerPanel();
+            ComponentKeyBinding.install(ctrl, s);
+            ctrl.setToolBarVisible(false);
+            ctrl.getDocumentViewController().setAnnotationCallback(
+            new org.icepdf.ri.common.MyAnnotationCallback(ctrl.getDocumentViewController())
+            );
+            if(fileLocation.equals("local")){  
+              ctrl.openDocument("tempfile/"+txtNameFile.getText());
+            }else{
+             URL url =new URL("http://"+koneksiDB.HOSTHYBRIDWEB()+"/"+koneksiDB.HYBRIDWEB()+"/"+txtLokasiFile.getText()+"/"+txtNameFile.getText());
+               ctrl.openDocument(url);
+            }
+            jScrollPane1.setViewportView(s); 
         }catch (Exception e){
             
         }
-}
+    }
     void openpdf(String file){
         try {
             URL url =new URL("http://"+koneksiDB.HOSTHYBRIDWEB()+"/"+koneksiDB.HYBRIDWEB()+"/"+txtLokasiFile.getText()+"/"+file);
@@ -258,19 +277,14 @@ void viewpdf(String fileName,String fileLocation){
             ctrl.setToolBarVisible(false);
             ctrl.getDocumentViewController().setAnnotationCallback(
                 new org.icepdf.ri.common.MyAnnotationCallback(ctrl.getDocumentViewController())
-            );
-            
-            FontPropertiesManager.getInstance().loadOrReadSystemFonts();
-            
+            );            
             ctrl.openDocument(url);
             jScrollPane1.setViewportView(s);
             
-            } catch (java.io.IOException e) {
-                LOGGER.log(Level.SEVERE, "Error reading the PDF file or connecting to the URL", e);
-            } catch (Exception e) {
-                LOGGER.log(Level.SEVERE, "An unexpected error occurred", e);
-            }
-}
+        } catch (Exception e) {
+            LOGGER.log(Level.SEVERE, "An unexpected error occurred", e);
+        }
+    }
     private void BtnViewFileKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnViewFileKeyPressed
         if(evt.getKeyCode()==KeyEvent.VK_SPACE){
             BtnViewFileActionPerformed(null);
@@ -281,6 +295,7 @@ void viewpdf(String fileName,String fileLocation){
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
         dispose();
+        deleteFile();
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
@@ -321,6 +336,19 @@ void viewpdf(String fileName,String fileLocation){
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNoRawatActionPerformed
 
+    private void BtnHapusFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusFileActionPerformed
+        // TODO add your handling code here:
+        if(txtNameFile.getText() != null && !txtNameFile.getText().isEmpty() && txtLokasiFile.getText() != null && !txtLokasiFile.getText().isEmpty()){
+            System.out.println(txtNameFile.getText());
+            Sequel.hapusTTE("berkas_tte", "nama_file", "lokasi_file", txtNameFile.getText(), txtLokasiFile.getText());
+            dispose();
+        }   
+    }//GEN-LAST:event_BtnHapusFileActionPerformed
+
+    private void BtnHapusFileKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnHapusFileKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnHapusFileKeyPressed
+
     /**
     * @param args the command line arguments
     */
@@ -338,6 +366,7 @@ void viewpdf(String fileName,String fileLocation){
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private widget.Button BtnHapusFile;
     private widget.Button BtnKeluar;
     private widget.Button BtnSignTTE;
     private widget.Button BtnViewFile;
@@ -353,10 +382,11 @@ public void isCek(){
     BtnViewFile.setEnabled(true);
 }
 
-public void tampilPdf(String namFile,String pathFile,String kodFile)
+public void tampilPdf(String namFile,String pathFile,String NoRawat,String kodFile)
 {
     txtNameFile.setText(namFile);
     txtLokasiFile.setText(pathFile);
+    txtNoRawat.setText(NoRawat);
     kodeFile = kodFile;
     tipeBerkas=Sequel.cariIsi("select nama from master_berkas_tte where master_berkas_tte.kode=?", kodeFile);
     openpdf(namFile);
@@ -381,7 +411,7 @@ public void setButton(Boolean BtnTTE)
 }
 
 void deleteFile(){
-       File file = new File("tempfile");      
+    File file = new File("tempfile");      
         String[] myFiles;    
         if (file.isDirectory()) {
             myFiles = file.list();

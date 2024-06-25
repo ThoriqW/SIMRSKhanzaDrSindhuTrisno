@@ -509,7 +509,7 @@ where resume_pasien.no_rawat= $P{norawat}]]>
 				<text><![CDATA[Jalannya penyakit selama perawatan :]]></text>
 			</staticText>
 			<textField textAdjust="StretchHeight">
-				<reportElement positionType="Float" x="343" y="780" width="182" height="16" uuid="61481e35-032b-4bda-8774-c5fa08d79a61"/>
+				<reportElement positionType="Float" x="343" y="777" width="182" height="16" uuid="61481e35-032b-4bda-8774-c5fa08d79a61"/>
 				<textElement textAlignment="Center">
 					<font fontName="Tahoma" size="8" isBold="false" isItalic="false" isUnderline="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -1236,7 +1236,7 @@ where resume_pasien.no_rawat= $P{norawat}]]>
 				<text><![CDATA[Obat-obatan waktu pulang/nasihat :]]></text>
 			</staticText>
 			<staticText>
-				<reportElement positionType="Float" x="374" y="730" width="120" height="39" uuid="69f6efc3-1d1e-4b96-994c-48c477212117">
+				<reportElement positionType="Float" x="374" y="730" width="120" height="40" uuid="69f6efc3-1d1e-4b96-994c-48c477212117">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">

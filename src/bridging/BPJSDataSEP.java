@@ -5552,7 +5552,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
             FileName=tbDataSEP.getValueAt(tbDataSEP.getSelectedRow(),1).toString().replaceAll("/","_")+".pdf";
             DlgViewPdf berkas=new DlgViewPdf(null,true);
             if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+tbDataSEP.getValueAt(tbDataSEP.getSelectedRow(),1).toString()+"'")>0){
-                berkas.tampilPdf(FileName,"berkastte/sep","003");
+                berkas.tampilPdf(FileName,"berkastte/sep",tbDataSEP.getValueAt(tbDataSEP.getSelectedRow(),1).toString(),"003");
                 berkas.setButton(false);
             }else{
                 createPdf(FileName);

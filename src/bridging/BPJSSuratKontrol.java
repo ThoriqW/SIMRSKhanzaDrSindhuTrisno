@@ -1308,7 +1308,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             FileName=tbObat.getValueAt(tbObat.getSelectedRow(),0).toString().replaceAll("/","_")+".pdf";
             DlgViewPdf berkas=new DlgViewPdf(null,true);
             if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"'")>0){
-                berkas.tampilPdf(FileName,"berkastte/surat_kontrol","005");
+                berkas.tampilPdf(FileName,"berkastte/surat_kontrol",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"005");
                 berkas.setButton(false);
             }else{
                 createPdf(FileName);

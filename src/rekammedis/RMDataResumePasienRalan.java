@@ -2038,7 +2038,7 @@ public final class RMDataResumePasienRalan extends javax.swing.JDialog {
             FileName=tbObat.getValueAt(tbObat.getSelectedRow(),1).toString().replaceAll("/","_")+".pdf";
             DlgViewPdf berkas=new DlgViewPdf(null,true);
             if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),1).toString()+"'")>0){
-                berkas.tampilPdf(FileName,"berkastte/resume_ralan","001");
+                berkas.tampilPdf(FileName,"berkastte/resume_ralan",tbObat.getValueAt(tbObat.getSelectedRow(),1).toString(),"001");
                 berkas.setButton(false);
             }else{
                 createPdf(FileName);

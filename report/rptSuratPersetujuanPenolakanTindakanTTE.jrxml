@@ -197,7 +197,7 @@
 				<text><![CDATA[Dokter]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="21" y="700" width="378" height="20" uuid="6b911e15-eefb-46ad-9dd6-5cef303f6db3">
+				<reportElement x="21" y="700" width="508" height="20" uuid="6b911e15-eefb-46ad-9dd6-5cef303f6db3">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Justified">
@@ -314,7 +314,7 @@
 				<textFieldExpression><![CDATA[$P{kotars}+", "+$F{tanggal}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="428" y="683" width="90" height="10" uuid="51f08870-37b2-4a71-b7ec-8f4d51db3bfd">
+				<reportElement x="30" y="833" width="90" height="10" uuid="51f08870-37b2-4a71-b7ec-8f4d51db3bfd">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center">
@@ -324,7 +324,7 @@
 				<text><![CDATA[Dokter]]></text>
 			</staticText>
 			<textField textAdjust="StretchHeight">
-				<reportElement x="401" y="757" width="139" height="10" uuid="e80ba4b4-8d20-4e8c-a9fc-cef5f690c121">
+				<reportElement x="6" y="931" width="139" height="10" uuid="e80ba4b4-8d20-4e8c-a9fc-cef5f690c121">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center">
@@ -1281,7 +1281,7 @@
 				<text><![CDATA[2.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="21" y="740" width="378" height="20" uuid="6e6934bd-2a92-4e5d-8215-05b78bfc6bbd">
+				<reportElement x="21" y="740" width="506" height="20" uuid="6e6934bd-2a92-4e5d-8215-05b78bfc6bbd">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Justified">
@@ -1326,32 +1326,6 @@
 					<pen lineWidth="0.5" lineStyle="Solid"/>
 				</graphicElement>
 			</line>
-			<componentElement>
-				<reportElement x="8" y="848" width="134" height="79" uuid="ea8bd3c0-8133-4db5-9f81-0899f7379813"/>
-				<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<jr:codeExpression><![CDATA[$P{finger2}]]></jr:codeExpression>
-				</jr:QRCode>
-			</componentElement>
-			<textField textAdjust="StretchHeight">
-				<reportElement x="6" y="931" width="135" height="10" uuid="31cd5bbc-73d2-4d31-8884-2d8bbac05d6e">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
-				<textElement textAlignment="Center">
-					<font fontName="Tahoma" size="8" isBold="false" isItalic="false" isUnderline="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{nama}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="8" y="833" width="135" height="10" uuid="6f60bbc3-aa9a-4282-971d-8b78ed6fbe12">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
-				<textElement textAlignment="Center">
-					<font fontName="Tahoma" size="8" isBold="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Saksi II Perawat / Petugas]]></text>
-			</staticText>
 			<line>
 				<reportElement x="0" y="476" width="545" height="1" uuid="89ab59e8-17ef-41a4-98dc-388a61a39b4b"/>
 				<graphicElement>
@@ -2073,7 +2047,7 @@
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement positionType="Float" x="409" y="699" width="129" height="50" uuid="5a2b4a3b-8cae-4c3c-9069-2c2900cc39ee">
+				<reportElement positionType="Float" x="11" y="848" width="129" height="72" uuid="5a2b4a3b-8cae-4c3c-9069-2c2900cc39ee">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
