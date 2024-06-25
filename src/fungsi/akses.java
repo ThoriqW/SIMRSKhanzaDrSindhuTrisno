@@ -216,7 +216,12 @@ public final class akses {
             penilaian_lanjutan_skrining_fungsional=false,penilaian_medis_ralan_rehab_medik=false,laporan_anestesi=false,template_persetujuan_penolakan_tindakan=false,
             penilaian_medis_ralan_gawat_darurat_psikiatri=false,bpjs_referensi_setting_apotek=false,bpjs_referensi_obat_apotek=false,bpjs_mapping_obat_apotek=false,
             pembayaran_bank_mandiri=false,penilaian_ulang_nyeri=false,penilaian_terapi_wicara=false,bpjs_obat_23hari_apotek=false,pengkajian_restrain=false,
-            bpjs_kunjungan_sep_apotek=false,bpjs_monitoring_klaim_apotek=false,bsre_management_log=false,buka_bsre_log=false,bsre_status_dokumen=false,buka_bsre_status_dokumen=false;
+            bpjs_kunjungan_sep_apotek=false,bpjs_monitoring_klaim_apotek=false,bsre_management_log=false,buka_bsre_log=false,bsre_status_dokumen=false,buka_bsre_status_dokumen=false,
+            bpjs_daftar_pelayanan_obat_apotek=false,penilaian_awal_medis_ralan_paru=false,catatan_keperawatan_ralan=false,catatan_persalinan=false,skor_aldrette_pasca_anestesi=false,
+            skor_steward_pasca_anestesi=false,skor_bromage_pasca_anestesi=false,penilaian_pre_induksi=false,hasil_usg_urologi=false,hasil_usg_gynecologi=false,hasil_pemeriksaan_ekg=false,
+            hapus_edit_sep_bpjs=false,satu_sehat_kirim_diet=false,satu_sehat_mapping_obat=false,dapur_ringkasan_pembelian=false,satu_sehat_kirim_medication=false,
+            satu_sehat_kirim_medicationrequest=false,penatalaksanaan_terapi_okupasi=false,satu_sehat_kirim_medicationdispense=false,hasil_usg_neonatus=false,hasil_endoskopi_faring_laring=false,
+            satu_sehat_mapping_radiologi=false;
     
     public static void setData(String user, String pass) {
         try {        
@@ -1231,6 +1236,28 @@ public final class akses {
                         akses.buka_bsre_log=true;
                         akses.bsre_status_dokumen=true;
                         akses.buka_bsre_status_dokumen=true;
+                        akses.bpjs_daftar_pelayanan_obat_apotek=true;
+                        akses.penilaian_awal_medis_ralan_paru=true;
+                        akses.catatan_keperawatan_ralan=true;
+                        akses.catatan_persalinan=true;
+                        akses.skor_aldrette_pasca_anestesi=true;
+                        akses.skor_steward_pasca_anestesi=true;
+                        akses.skor_bromage_pasca_anestesi=true;
+                        akses.penilaian_pre_induksi=true;
+                        akses.hasil_usg_urologi=true;
+                        akses.hasil_usg_gynecologi=true;
+                        akses.hasil_pemeriksaan_ekg=true;
+                        akses.hapus_edit_sep_bpjs=true;
+                        akses.satu_sehat_kirim_diet=true;
+                        akses.satu_sehat_mapping_obat=true;
+                        akses.dapur_ringkasan_pembelian=true;
+                        akses.satu_sehat_kirim_medication=true;
+                        akses.satu_sehat_kirim_medicationrequest=true;
+                        akses.penatalaksanaan_terapi_okupasi=true;
+                        akses.satu_sehat_kirim_medicationdispense=true;
+                        akses.hasil_usg_neonatus=true;
+                        akses.hasil_endoskopi_faring_laring=true;
+                        akses.satu_sehat_mapping_radiologi=true;
                     }else if(rs2.getRow()>=1){   
                         rs2.beforeFirst();
                         rs2.next();
@@ -2229,6 +2256,28 @@ public final class akses {
                         akses.buka_bsre_log=true;
                         akses.bsre_status_dokumen=true;
                         akses.buka_bsre_status_dokumen=true;
+                        akses.bpjs_daftar_pelayanan_obat_apotek=true;
+                        akses.penilaian_awal_medis_ralan_paru=true;
+                        akses.catatan_keperawatan_ralan=true;
+                        akses.catatan_persalinan=true;
+                        akses.skor_aldrette_pasca_anestesi=true;
+                        akses.skor_steward_pasca_anestesi=true;
+                        akses.skor_bromage_pasca_anestesi=true;
+                        akses.penilaian_pre_induksi=true;
+                        akses.hasil_usg_urologi=true;
+                        akses.hasil_usg_gynecologi=true;
+                        akses.hasil_pemeriksaan_ekg=true;
+                        akses.hapus_edit_sep_bpjs=true;
+                        akses.satu_sehat_kirim_diet=true;
+                        akses.satu_sehat_mapping_obat=true;
+                        akses.dapur_ringkasan_pembelian=true;
+                        akses.satu_sehat_kirim_medication=true;
+                        akses.satu_sehat_kirim_medicationrequest=true;
+                        akses.penatalaksanaan_terapi_okupasi=true;
+                        akses.satu_sehat_kirim_medicationdispense=true;
+                        akses.hasil_usg_neonatus=true;
+                        akses.hasil_endoskopi_faring_laring=true;
+                        akses.satu_sehat_mapping_radiologi=true;
                     }else if((rs.getRow()==0)&&(rs2.getRow()==0)){
                         akses.kode="";                  
                         akses.penyakit= false;
@@ -3225,6 +3274,28 @@ public final class akses {
                         akses.buka_bsre_log=true;
                         akses.bsre_status_dokumen=true;
                         akses.buka_bsre_status_dokumen=true;
+                        akses.bpjs_daftar_pelayanan_obat_apotek=false;
+                        akses.penilaian_awal_medis_ralan_paru=false;
+                        akses.catatan_keperawatan_ralan=false;
+                        akses.catatan_persalinan=false;
+                        akses.skor_aldrette_pasca_anestesi=false;
+                        akses.skor_steward_pasca_anestesi=false;
+                        akses.skor_bromage_pasca_anestesi=false;
+                        akses.penilaian_pre_induksi=false;
+                        akses.hasil_usg_urologi=false;
+                        akses.hasil_usg_gynecologi=false;
+                        akses.hasil_pemeriksaan_ekg=false;
+                        akses.hapus_edit_sep_bpjs=false;
+                        akses.satu_sehat_kirim_diet=false;
+                        akses.satu_sehat_mapping_obat=false;
+                        akses.dapur_ringkasan_pembelian=false;
+                        akses.satu_sehat_kirim_medication=false;
+                        akses.satu_sehat_kirim_medicationrequest=false;
+                        akses.penatalaksanaan_terapi_okupasi=false;
+                        akses.satu_sehat_kirim_medicationdispense=false;
+                        akses.hasil_usg_neonatus=false;
+                        akses.hasil_endoskopi_faring_laring=false;
+                        akses.satu_sehat_mapping_radiologi=false;
                     }
                 } catch (Exception e) {
                     System.out.println("Notifikasi : "+e);
@@ -4244,6 +4315,28 @@ public final class akses {
         akses.buka_bsre_log=false;
         akses.bsre_status_dokumen=false;
         akses.buka_bsre_status_dokumen=false;
+        akses.bpjs_daftar_pelayanan_obat_apotek=false;
+        akses.penilaian_awal_medis_ralan_paru=false;
+        akses.catatan_keperawatan_ralan=false;
+        akses.catatan_persalinan=false;
+        akses.skor_aldrette_pasca_anestesi=false;
+        akses.skor_steward_pasca_anestesi=false;
+        akses.skor_bromage_pasca_anestesi=false;
+        akses.penilaian_pre_induksi=false;
+        akses.hasil_usg_urologi=false;
+        akses.hasil_usg_gynecologi=false;
+        akses.hasil_pemeriksaan_ekg=false;
+        akses.hapus_edit_sep_bpjs=false;
+        akses.satu_sehat_kirim_diet=false;
+        akses.satu_sehat_mapping_obat=false;
+        akses.dapur_ringkasan_pembelian=false;
+        akses.satu_sehat_kirim_medication=false;
+        akses.satu_sehat_kirim_medicationrequest=false;
+        akses.penatalaksanaan_terapi_okupasi=false;
+        akses.satu_sehat_kirim_medicationdispense=false;
+        akses.hasil_usg_neonatus=false;
+        akses.hasil_endoskopi_faring_laring=false;
+        akses.satu_sehat_mapping_radiologi=false;
     }
     
     public static int getjml1() {return akses.jml1;}    
@@ -5279,4 +5372,26 @@ public final class akses {
     public static boolean getbuka_bsre_log() {return akses.buka_bsre_log;}
     public static boolean getbsre_status_dokumen() {return akses.bsre_status_dokumen;}
     public static boolean getbuka_bsre_status_dokuemen() {return akses.buka_bsre_status_dokumen;}
+    public static boolean getbpjs_daftar_pelayanan_obat_apotek(){return akses.bpjs_daftar_pelayanan_obat_apotek;}
+    public static boolean getpenilaian_awal_medis_ralan_paru(){return akses.penilaian_awal_medis_ralan_paru;}
+    public static boolean getcatatan_keperawatan_ralan(){return akses.catatan_keperawatan_ralan;}
+    public static boolean getcatatan_persalinan(){return akses.catatan_persalinan;}
+    public static boolean getskor_aldrette_pasca_anestesi(){return akses.skor_aldrette_pasca_anestesi;}
+    public static boolean getskor_steward_pasca_anestesi(){return akses.skor_steward_pasca_anestesi;}
+    public static boolean getskor_bromage_pasca_anestesi(){return akses.skor_bromage_pasca_anestesi;}
+    public static boolean getpenilaian_pre_induksi(){return akses.penilaian_pre_induksi;}
+    public static boolean gethasil_usg_urologi(){return akses.hasil_usg_urologi;}
+    public static boolean gethasil_usg_gynecologi(){return akses.hasil_usg_gynecologi;}
+    public static boolean gethasil_pemeriksaan_ekg(){return akses.hasil_pemeriksaan_ekg;}
+    public static boolean gethapus_edit_sep_bpjs(){return akses.hapus_edit_sep_bpjs;}
+    public static boolean getsatu_sehat_kirim_diet(){return akses.satu_sehat_kirim_diet;}
+    public static boolean getsatu_sehat_mapping_obat(){return akses.satu_sehat_mapping_obat;}
+    public static boolean getdapur_ringkasan_pembelian(){return akses.dapur_ringkasan_pembelian;}
+    public static boolean getsatu_sehat_kirim_medication(){return akses.satu_sehat_kirim_medication;}
+    public static boolean getsatu_sehat_kirim_medicationrequest(){return akses.satu_sehat_kirim_medicationrequest;}
+    public static boolean getpenatalaksanaan_terapi_okupasi(){return akses.penatalaksanaan_terapi_okupasi;}
+    public static boolean getsatu_sehat_kirim_medicationdispense(){return akses.satu_sehat_kirim_medicationdispense;}
+    public static boolean gethasil_usg_neonatus(){return akses.hasil_usg_neonatus;}
+    public static boolean gethasil_endoskopi_faring_laring(){return akses.hasil_endoskopi_faring_laring;}
+    public static boolean getsatu_sehat_mapping_radiologi(){return akses.satu_sehat_mapping_radiologi;}
 }   

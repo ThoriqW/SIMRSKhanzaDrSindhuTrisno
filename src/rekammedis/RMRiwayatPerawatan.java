@@ -2868,7 +2868,6 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                     "<td valign='top' width='79%'>"+ rsSep.getString(1) +"</td>"+
                                 "</tr>"
                             );
-                            System.out.println("afdsdfsdfdsfsdfsdfs");
                         }
                     }catch (Exception e) {
                             System.out.println("Status Lanjut : "+e);
@@ -5371,6 +5370,16 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                  teks.replaceAll("<head>","<head><link href=\"file.css\" rel=\"stylesheet\" type=\"text/css\" />").
                       replaceAll("<body>",
                                  "<body>"+
+                                         
+                                    "<div style='margin-bottom: 25px;'>"+
+                                        "<p style='margin: 0;'>DATASEMEN KESEHATAN WILAYAH 13.04.02 PALU</p>"+
+                                        "<u>RUMAH SAKIT TK. III.13.06.01 SINDHU TRISNO</u>"+
+                                    "</div>"+
+                                         
+                                    "<div style='margin-bottom: 25px; text-align: center;'>"+
+                                        "<p style='margin: 0;'>FORMULIR PERMINTAAN DAN BUKTI PELAYANAN (BPB)<br>BAGI PESERTA BPJS NON PBI/PBI</p>"+
+                                    "</div>"+
+                                    
                                     "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"+
                                        "<tr class='isi'>"+ 
                                          "<td valign='top' width='20%'>No.RM</td>"+

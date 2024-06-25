@@ -1161,7 +1161,7 @@ private void MnCetakSuratMatiActionPerformed(java.awt.event.ActionEvent evt) {//
             FileName=tbMati.getValueAt(tbMati.getSelectedRow(),0).toString().replaceAll("/","_")+".pdf";
             DlgViewPdf berkas=new DlgViewPdf(null,true);
             if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+tbMati.getValueAt(tbMati.getSelectedRow(),0).toString()+"'")>0){
-                berkas.tampilPdf(FileName,"berkastte/surat_kematian","007");
+                berkas.tampilPdf(FileName,"berkastte/surat_kematian",tbMati.getValueAt(tbMati.getSelectedRow(),0).toString(),"007");
                 berkas.setButton(false);
             }else{
                 createPdf(FileName);
