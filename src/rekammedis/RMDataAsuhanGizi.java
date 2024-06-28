@@ -11,7 +11,9 @@
 
 package rekammedis;
 
+import digitalsignature.DlgViewPdf;
 import fungsi.WarnaTable;
+import fungsi.WarnaTableTTE;
 import fungsi.batasInput;
 import fungsi.koneksiDB;
 import fungsi.sekuel;
@@ -49,7 +51,7 @@ public final class RMDataAsuhanGizi extends javax.swing.JDialog {
     private ResultSet rs;
     private int i=0,umur=0;    
     private DlgCariPetugas petugas=new DlgCariPetugas(null,false);
-    private String alergi_telur, alergi_susu_sapi, alergi_kacang, alergi_gluten, alergi_udang, alergi_ikan, alergi_hazelnut,sttsumur="";
+    private String alergi_telur, alergi_susu_sapi, alergi_kacang, alergi_gluten, alergi_udang, alergi_ikan, FileName, alergi_hazelnut, TTE, sttsumur="";
     
     /** Creates new form DlgRujuk
      * @param parent
@@ -59,7 +61,7 @@ public final class RMDataAsuhanGizi extends javax.swing.JDialog {
         initComponents();
         
         tabMode=new DefaultTableModel(null,new Object[]{
-            "No.Rawat","No.RM","Nama Pasien","J.K.","Tgl.Lahir","Tgl.Asuhan","BB(Kg)","TB(Cm)","IMT(Kg/Cm)","LiLA(Cm)","TL(Cm)",
+            "No.Rawat","No.RM","TTE","Nama Pasien","J.K.","Tgl.Lahir","Tgl.Asuhan","BB(Kg)","TB(Cm)","IMT(Kg/Cm)","LiLA(Cm)","TL(Cm)",
             "ULNA(Cm)","BB Ideal(Kg)","BB/U(%)","TB/U(%)","BB/TB(%)","LiLA/U(%)","Biokimia","Fisik/Klinis","Telur","Susu Sapi",
             "Kacang","Gluten","Udang","Ikan","Hazelnut","Pola Makan","Riwayat Personal","Diagnosis Gizi","Intervensi Gizi",
             "Monitoring & Evaluasi","NIP","Nama Petugas"
@@ -72,62 +74,62 @@ public final class RMDataAsuhanGizi extends javax.swing.JDialog {
         tbObat.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbObat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 33; i++) {
+        for (i = 0; i < 34; i++) {
             TableColumn column = tbObat.getColumnModel().getColumn(i);
             if(i==0){
                 column.setPreferredWidth(105);
             }else if(i==1){
                 column.setPreferredWidth(65);
             }else if(i==2){
-                column.setPreferredWidth(150);
-            }else if(i==3){
-                column.setPreferredWidth(25);
-            }else if(i==4){
                 column.setPreferredWidth(65);
+            }else if(i==3){
+                column.setPreferredWidth(150);
+            }else if(i==4){
+                column.setPreferredWidth(25);
             }else if(i==5){
                 column.setPreferredWidth(65);
             }else if(i==6){
-                column.setPreferredWidth(41);
-            }else if(i==7){
-                column.setPreferredWidth(44);
-            }else if(i==8){
                 column.setPreferredWidth(65);
+            }else if(i==7){
+                column.setPreferredWidth(41);
+            }else if(i==8){
+                column.setPreferredWidth(44);
             }else if(i==9){
-                column.setPreferredWidth(52);
+                column.setPreferredWidth(65);
             }else if(i==10){
-                column.setPreferredWidth(43);
+                column.setPreferredWidth(52);
             }else if(i==11){
-                column.setPreferredWidth(58);
+                column.setPreferredWidth(43);
             }else if(i==12){
-                column.setPreferredWidth(68);
+                column.setPreferredWidth(58);
             }else if(i==13){
-                column.setPreferredWidth(50);
+                column.setPreferredWidth(68);
             }else if(i==14){
                 column.setPreferredWidth(50);
             }else if(i==15){
-                column.setPreferredWidth(55);
+                column.setPreferredWidth(50);
             }else if(i==16){
-                column.setPreferredWidth(58);
+                column.setPreferredWidth(55);
             }else if(i==17){
-                column.setPreferredWidth(180);
+                column.setPreferredWidth(58);
             }else if(i==18){
                 column.setPreferredWidth(180);
             }else if(i==19){
-                column.setPreferredWidth(38);
+                column.setPreferredWidth(180);
             }else if(i==20){
-                column.setPreferredWidth(55);
+                column.setPreferredWidth(38);
             }else if(i==21){
-                column.setPreferredWidth(44);
+                column.setPreferredWidth(55);
             }else if(i==22){
-                column.setPreferredWidth(42);
+                column.setPreferredWidth(44);
             }else if(i==23){
                 column.setPreferredWidth(42);
             }else if(i==24){
-                column.setPreferredWidth(38);
+                column.setPreferredWidth(42);
             }else if(i==25){
-                column.setPreferredWidth(53);
+                column.setPreferredWidth(38);
             }else if(i==26){
-                column.setPreferredWidth(180);
+                column.setPreferredWidth(53);
             }else if(i==27){
                 column.setPreferredWidth(180);
             }else if(i==28){
@@ -137,12 +139,14 @@ public final class RMDataAsuhanGizi extends javax.swing.JDialog {
             }else if(i==30){
                 column.setPreferredWidth(180);
             }else if(i==31){
-                column.setPreferredWidth(80);
+                column.setPreferredWidth(180);
             }else if(i==32){
+                column.setPreferredWidth(80);
+            }else if(i==33){
                 column.setPreferredWidth(150);
             }
         }
-        tbObat.setDefaultRenderer(Object.class, new WarnaTable());
+        tbObat.setDefaultRenderer(Object.class, new WarnaTableTTE());
 
         TNoRw.setDocument(new batasInput((byte)17).getKata(TNoRw));
         BB.setDocument(new batasInput((byte)5).getKata(BB));
@@ -258,6 +262,7 @@ public final class RMDataAsuhanGizi extends javax.swing.JDialog {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
         MnAsuhanGizi = new javax.swing.JMenuItem();
+        MnDigitalTTE = new javax.swing.JMenuItem();
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
         buttonGroup3 = new javax.swing.ButtonGroup();
@@ -399,6 +404,22 @@ public final class RMDataAsuhanGizi extends javax.swing.JDialog {
             }
         });
         jPopupMenu1.add(MnAsuhanGizi);
+
+        MnDigitalTTE.setBackground(new java.awt.Color(255, 255, 254));
+        MnDigitalTTE.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnDigitalTTE.setForeground(new java.awt.Color(50, 50, 50));
+        MnDigitalTTE.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnDigitalTTE.setText("Sign Digital Signature");
+        MnDigitalTTE.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnDigitalTTE.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnDigitalTTE.setName("MnDigitalTTE"); // NOI18N
+        MnDigitalTTE.setPreferredSize(new java.awt.Dimension(250, 26));
+        MnDigitalTTE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnDigitalTTEActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnDigitalTTE);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -571,7 +592,7 @@ public final class RMDataAsuhanGizi extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-11-2022" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-04-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -585,7 +606,7 @@ public final class RMDataAsuhanGizi extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-11-2022" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-04-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1797,6 +1818,26 @@ public final class RMDataAsuhanGizi extends javax.swing.JDialog {
         Valid.pindah2(evt,RiwayatPersonal,IntervensiGizi);
     }//GEN-LAST:event_DiagnosisGiziKeyPressed
 
+    private void MnDigitalTTEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnDigitalTTEActionPerformed
+        // TODO add your handling code here:
+        if(tbObat.getSelectedRow()>-1){
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            FileName=tbObat.getValueAt(tbObat.getSelectedRow(),0).toString().replaceAll("/","_")+".pdf";
+            DlgViewPdf berkas=new DlgViewPdf(null,true);
+            if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"'")>0){
+                berkas.tampilPdf(FileName,"berkastte/asuhan_gizi",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"007");
+            }else{
+                createPdf(FileName);
+                berkas.tampilPdfLocal(FileName,"local","berkastte/asuhan_gizi",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"009");
+            }
+            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+            berkas.setLocationRelativeTo(internalFrame1);
+            berkas.setVisible(true);
+
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_MnDigitalTTEActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1851,6 +1892,7 @@ public final class RMDataAsuhanGizi extends javax.swing.JDialog {
     private widget.TextBox LiLA;
     private widget.TextBox LiLAPerU;
     private javax.swing.JMenuItem MnAsuhanGizi;
+    private javax.swing.JMenuItem MnDigitalTTE;
     private widget.TextArea Monitoring;
     private widget.TextBox NmPetugas;
     private javax.swing.JPanel PanelInput;
@@ -2009,8 +2051,13 @@ public final class RMDataAsuhanGizi extends javax.swing.JDialog {
                 }   
                 rs=ps.executeQuery();
                 while(rs.next()){
+                    if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+rs.getString("no_rawat")+"' and lokasi_file='berkastte/asuhan_gizi'")>0){
+                            TTE = "Sudah";
+                        }else{
+                            TTE = "Belum";
+                        }
                     tabMode.addRow(new String[]{
-                        rs.getString("no_rawat"),rs.getString("no_rkm_medis"),rs.getString("nm_pasien"),rs.getString("jk"),rs.getString("tgl_lahir"),
+                        rs.getString("no_rawat"),rs.getString("no_rkm_medis"),TTE,rs.getString("nm_pasien"),rs.getString("jk"),rs.getString("tgl_lahir"),
                         rs.getString("tanggal"),rs.getString("antropometri_bb"),rs.getString("antropometri_tb"),rs.getString("antropometri_imt"),
                         rs.getString("antropometri_lla"),rs.getString("antropometri_tl"),rs.getString("antropometri_ulna"),rs.getString("antropometri_bbideal"),
                         rs.getString("antropometri_bbperu"),rs.getString("antropometri_tbperu"),rs.getString("antropometri_bbpertb"),rs.getString("antropometri_llaperu"),
@@ -2296,6 +2343,33 @@ public final class RMDataAsuhanGizi extends javax.swing.JDialog {
             emptTeks();
         }else{
             JOptionPane.showMessageDialog(null,"Gagal menghapus..!!");
+        }
+    }
+    
+    void createPdf(String FileName){
+        if(tbObat.getSelectedRow()>-1){
+            Map<String, Object> param = new HashMap<>();    
+            param.put("namars",akses.getnamars());
+            param.put("alamatrs",akses.getalamatrs());
+            param.put("kotars",akses.getkabupatenrs());
+            param.put("propinsirs",akses.getpropinsirs());
+            param.put("kontakrs",akses.getkontakrs());
+            param.put("emailrs",akses.getemailrs());   
+            param.put("diagnosa",DiagnosaMasukRanap.getText());   
+            param.put("logo",Sequel.cariGambar("select setting.logo from setting"));
+            param.put("logobsre",Sequel.cariGambar("select setting.logo_bsre from setting"));
+            Valid.MyReportPDFWithName1("rptCetakAsuhanGiziTTE.jasper","report","tempfile",FileName,"::[ Laporan Asuhan Gizi Pasien ]::",
+                        "select reg_periksa.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,pasien.jk,pasien.tgl_lahir,asuhan_gizi.tanggal,"+
+                        "asuhan_gizi.antropometri_bb,asuhan_gizi.antropometri_tb,asuhan_gizi.antropometri_imt,asuhan_gizi.antropometri_lla,"+
+                        "asuhan_gizi.antropometri_tl,asuhan_gizi.antropometri_ulna,asuhan_gizi.antropometri_bbideal,asuhan_gizi.antropometri_bbperu,"+
+                        "asuhan_gizi.antropometri_tbperu,asuhan_gizi.antropometri_bbpertb,asuhan_gizi.antropometri_llaperu,asuhan_gizi.biokimia,"+
+                        "asuhan_gizi.fisik_klinis,asuhan_gizi.alergi_telur,asuhan_gizi.alergi_susu_sapi,asuhan_gizi.alergi_kacang,asuhan_gizi.alergi_gluten,"+
+                        "asuhan_gizi.alergi_udang,asuhan_gizi.alergi_ikan,asuhan_gizi.alergi_hazelnut,asuhan_gizi.pola_makan,asuhan_gizi.riwayat_personal,"+
+                        "asuhan_gizi.diagnosis,asuhan_gizi.intervensi_gizi,asuhan_gizi.monitoring_evaluasi,asuhan_gizi.nip,petugas.nama,reg_periksa.umurdaftar,reg_periksa.sttsumur, penjab.png_jawab "+
+                        "from reg_periksa inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
+                        "inner join asuhan_gizi on reg_periksa.no_rawat=asuhan_gizi.no_rawat "+
+                        "inner join penjab on reg_periksa.kd_pj=penjab.kd_pj "+
+                        "inner join petugas on asuhan_gizi.nip=petugas.nip where asuhan_gizi.no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"'",param);
         }
     }
 }

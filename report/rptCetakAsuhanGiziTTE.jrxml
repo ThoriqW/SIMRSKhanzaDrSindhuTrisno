@@ -26,6 +26,7 @@
 	<parameter name="logo" class="java.io.InputStream"/>
 	<parameter name="diagnosa" class="java.lang.String"/>
 	<parameter name="finger" class="java.lang.String"/>
+	<parameter name="logobsre" class="java.io.InputStream"/>
 	<queryString language="SQL">
 		<![CDATA[select reg_periksa.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,pasien.jk,pasien.tgl_lahir,asuhan_gizi.tanggal,
 asuhan_gizi.antropometri_bb,asuhan_gizi.antropometri_tb,asuhan_gizi.antropometri_imt,asuhan_gizi.antropometri_lla,
@@ -1214,6 +1215,21 @@ inner join petugas on asuhan_gizi.nip=petugas.nip]]>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[#]]></text>
+			</staticText>
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement x="0" y="780" width="43" height="19" uuid="45d51edc-a58b-4a95-8410-4f212f47e911"/>
+				<imageExpression><![CDATA[$P{logobsre}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="47" y="783" width="208" height="14" uuid="37fa6796-0149-4e24-9019-d337205a2a64">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left">
+					<font fontName="Tahoma" size="5" isBold="false" isItalic="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Dokumen ini telah ditanda tangani secara elektronikmenggunakan sertifikat elektronik
+yang telah diterbitkan oleh Balai Sertifikasi Elektronik (BSrE), Badan Siber dan Sandi Negara]]></text>
 			</staticText>
 		</band>
 	</title>

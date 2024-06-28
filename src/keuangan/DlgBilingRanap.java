@@ -17,6 +17,7 @@ package keuangan;
 import bridging.ApiBRI;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import digitalsignature.DlgViewPdf;
 import fungsi.WarnaTable;
 import fungsi.WarnaTable2;
 import fungsi.batasInput;
@@ -50,6 +51,8 @@ import inventory.DlgResepPulang;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.util.HashMap;
+import java.util.Map;
 import simrskhanza.DlgCariCaraBayar;
 import simrskhanza.DlgCariPeriksaLabPA;
 import simrskhanza.DlgInputResepPulang;
@@ -84,7 +87,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
             rskamarin,rsbiayasekali,rsbiayaharian,rsreseppulang,rstambahanbiaya,rspotonganbiaya,
             rsralandokter,rsralandrpr,rsranapdokter,rsoperasi,rsralanperawat,rsranapperawat,rsperiksalab,rskategori,
             rsperiksarad,rsanak,rstamkur,rsrekening,rsservice,rsakunbayar,rsakunpiutang;
-    private String biaya="",tambahan="",totals="",norawatbayi="",centangdokterranap="",kd_pj="",
+    private String biaya="",tambahan="",FileName,norawat,totals="",norawatbayi="",centangdokterranap="",kd_pj="",
             rinciandokterranap="",rincianoperasi="",notaranap="",tampilkan_administrasi_di_billingranap="",
             Tindakan_Ranap="",Laborat_Ranap="",Radiologi_Ranap="",Obat_Ranap="",Registrasi_Ranap="",Persediaan_Obat_Rawat_Inap="",
             Tambahan_Ranap="",Potongan_Ranap="",Retur_Obat_Ranap="",Resep_Pulang_Ranap="",Kamar_Inap="",Operasi_Ranap="",
@@ -2057,7 +2060,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         jLabel4.setPreferredSize(new java.awt.Dimension(65, 23));
         panelGlass1.add(jLabel4);
 
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-01-2023 07:41:51" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-06-2024 11:30:04" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -3801,7 +3804,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
                 i = 0;
                 try{
-                      biaya = (String)JOptionPane.showInputDialog(null,"Silahkan pilih nota yang mau dicetak!","Nota",JOptionPane.QUESTION_MESSAGE,null,new Object[]{"Nota 1", "Nota 2", "Kwitansi", "Nota & Kwitansi","Kwitansi Piutang"},"Nota 1");
+                      biaya = (String)JOptionPane.showInputDialog(null,"Silahkan pilih nota yang mau dicetak!","Nota",JOptionPane.QUESTION_MESSAGE,null,new Object[]{"Nota 1", "Nota 2", "Kwitansi", "Nota & Kwitansi","Kwitansi Piutang","Nota TTE"},"Nota 1");
                       switch (biaya) {
                             case "Nota 1":
                                   i=1;
@@ -3817,6 +3820,9 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                                   break;
                             case "Kwitansi Piutang":
                                   i=5;
+                                  break;
+                            case "Nota TTE":
+                                  i=6;
                                   break;
                       }
                 }catch(Exception e){
@@ -3859,6 +3865,28 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                         }else{
                             JOptionPane.showMessageDialog(null,"Nilai Piutang masih kosong...!!!");
                         }                          
+                    }else if(i==6){
+                        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                        FileName=tbBilling.getValueAt(0,2).toString().replaceAll("/","_")+".pdf";
+                        if (FileName.startsWith(":")) {
+                            FileName = FileName.substring(1);
+                        }
+                        norawat=tbBilling.getValueAt(0,2).toString();
+                        if (norawat.startsWith(":")) {
+                            norawat = norawat.substring(1);
+                        }
+                        DlgViewPdf berkas=new DlgViewPdf(null,true);
+                        if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+norawat+"'")>0){
+                            berkas.tampilPdf(FileName,"berkastte/billing",norawat,"010");
+                        }else{
+                            createPdf(FileName);
+                            berkas.tampilPdfLocal(FileName,"local","berkastte/billing",norawat,"010");
+                        }
+                        berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                        berkas.setLocationRelativeTo(internalFrame1);
+                        berkas.setVisible(true);
+
+                        this.setCursor(Cursor.getDefaultCursor());
                     }
                     this.setCursor(Cursor.getDefaultCursor());
                 }
@@ -7405,6 +7433,36 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         }catch (Exception ex) {
             System.out.println("Notifikasi : "+ex);            
             JOptionPane.showMessageDialog(null,"Maaf, gagal menyimpan data. Data yang sama dimasukkan sebelumnya...!");
+        }
+    }
+    void createPdf(String FileName){
+        i=Sequel.cariInteger("select count(billing.no_rawat) from billing where billing.no_rawat=?",TNoRw.getText());
+        if(TNoRw.getText().trim().equals("")||TNoRM.getText().trim().equals("")||TPasien.getText().trim().equals("")){
+            Valid.textKosong(TNoRw,"Pasien");
+        }else if(tbBilling.getRowCount()==0){
+            JOptionPane.showMessageDialog(null,"Maaf, data sudah habis. Tidak ada data yang bisa anda print...!!!!");
+            //TCari.requestFocus();
+        }else if(tbBilling.getRowCount()!=0){
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR)); 
+            Map<String, Object> param = new HashMap<>();
+            param.put("namars",akses.getnamars());
+            param.put("alamatrs",akses.getalamatrs());
+            param.put("kotars",akses.getkabupatenrs());
+            param.put("propinsirs",akses.getpropinsirs());
+            param.put("kontakrs",akses.getkontakrs());
+            param.put("emailrs",akses.getemailrs());
+            param.put("nota",tbBilling.getValueAt(0,2).toString().substring(1));
+            param.put("kamar",tbBilling.getValueAt(1,2).toString().substring(1));
+            param.put("tanggal",tbBilling.getValueAt(2,2).toString().substring(1));
+            param.put("norm",tbBilling.getValueAt(3,2).toString().substring(1));
+            param.put("nama",tbBilling.getValueAt(4,2).toString().substring(1));
+            param.put("alamat",tbBilling.getValueAt(5,2).toString().substring(1));
+            param.put("logo",Sequel.cariGambar("select setting.logo from setting"));
+            param.put("logobsre",Sequel.cariGambar("select setting.logo_bsre from setting"));
+            Valid.MyReportPDFWithName1("rptBillingTTE.jasper","report","tempfile",FileName,"::[ Pembayaran Pasien Ranap ]::","select temp1, temp2, temp3, temp4, "
+                    + "temp5, temp6, temp7, temp8, temp9, temp10, "
+                    + "temp11, temp12, temp13, temp14 from temporary_bayar_ranap order by no ASC",param);
+            this.setCursor(Cursor.getDefaultCursor());
         }
     }
 }

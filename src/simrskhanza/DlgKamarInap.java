@@ -15558,7 +15558,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             DlgViewPdf berkas=new DlgViewPdf(null,true);
             if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+tbKamIn.getValueAt(tbKamIn.getSelectedRow(),0).toString()+"'")>0){
                 berkas.tampilPdf(FileName,"berkastte/formulir_penerimaan_pasien",tbKamIn.getValueAt(tbKamIn.getSelectedRow(),0).toString(),"006");
-                berkas.setButton(false);
             }else{
                 createPdf(FileName);
                 berkas.tampilPdfLocal(FileName,"local","berkastte/formulir_penerimaan_pasien",tbKamIn.getValueAt(tbKamIn.getSelectedRow(),0).toString(),"006");

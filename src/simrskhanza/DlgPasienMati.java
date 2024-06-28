@@ -1162,7 +1162,6 @@ private void MnCetakSuratMatiActionPerformed(java.awt.event.ActionEvent evt) {//
             DlgViewPdf berkas=new DlgViewPdf(null,true);
             if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+tbMati.getValueAt(tbMati.getSelectedRow(),0).toString()+"'")>0){
                 berkas.tampilPdf(FileName,"berkastte/surat_kematian",tbMati.getValueAt(tbMati.getSelectedRow(),0).toString(),"007");
-                berkas.setButton(false);
             }else{
                 createPdf(FileName);
                 berkas.tampilPdfLocal(FileName,"local","berkastte/surat_kematian",tbMati.getValueAt(tbMati.getSelectedRow(),0).toString(),"007");
@@ -1372,7 +1371,7 @@ private void MnCetakSuratMatiActionPerformed(java.awt.event.ActionEvent evt) {//
             param.put("logobsre",Sequel.cariGambar("select setting.logo_bsre from setting"));
             finger=Sequel.cariIsi("select sha1(sidikjari.sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",KdDokter.getText());
             param.put("finger","Dikeluarkan di "+akses.getnamars()+", Kabupaten/Kota "+akses.getkabupatenrs()+"\nDitandatangani secara elektronik oleh "+NmDokter.getText()+"\nID "+(finger.equals("")?KdDokter.getText():finger)+"\n"+DTPTgl.getSelectedItem());  
-            Valid.MyReportPDFWithName1("rptSuratKematianTTE.jasper","report","tempfile",FileName,"::[ Data Surat Kontrol VClaim ]::",
+            Valid.MyReportPDFWithName1("rptSuratKematianTTE.jasper","report","tempfile",FileName,"::[ Pasien Meninggal ]::",
                   "select date_format(pasien_mati.tanggal,'%d-%m-%Y') as tanggal,pasien_mati.jam,pasien_mati.no_rkm_medis,pasien.nm_pasien, "+
                   "pasien.jk,pasien.tmp_lahir,pasien.tgl_lahir,pasien.gol_darah,pasien.stts_nikah,pasien.umur,pasien.alamat, "+
                   "pasien.agama,pasien_mati.keterangan,pasien_mati.temp_meninggal,pasien_mati.icd1,pasien_mati.icd2,"+
