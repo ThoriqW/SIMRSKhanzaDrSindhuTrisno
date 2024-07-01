@@ -2290,7 +2290,6 @@ public final class SuratPersetujuanPenolakanTindakan extends javax.swing.JDialog
             DlgViewPdf berkas=new DlgViewPdf(null,true);
             if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"'")>0){
                 berkas.tampilPdf(FileName,"berkastte/persetujuan_penolakan_tindakan",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"008");
-                berkas.setButton(false);
             }else{
                 createPdf(FileName);
                 berkas.tampilPdfLocal(FileName,"local","berkastte/persetujuan_penolakan_tindakan",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"008");
