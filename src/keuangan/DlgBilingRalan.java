@@ -3,6 +3,7 @@ package keuangan;
 import bridging.ApiBRI;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import digitalsignature.DlgViewPdf;
 import fungsi.WarnaTable;
 import fungsi.WarnaTable2;
 import fungsi.batasInput;
@@ -35,6 +36,8 @@ import inventory.DlgPemberianObat;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.event.DocumentEvent;
 import simrskhanza.DlgCariPeriksaLabPA;
 import simrskhanza.DlgCariCaraBayar;
@@ -67,7 +70,7 @@ public class DlgBilingRalan extends javax.swing.JDialog {
                    ttlTambahan=0,ttlPotongan=0,ttlRegistrasi=0,ttlRalan_Dokter_Param=0,ppnobat=0,ttlOperasi=0,
                    kekurangan=0,obatlangsung;
     private int i,r,cek,row2,countbayar=0,z=0,jml=0;
-    private String nota_jalan="",dokterrujukan="",polirujukan="",status="",biaya="",tambahan="",totals="",kdptg="",nmptg="",kd_pj="",notaralan="",centangdokterralan="",
+    private String nota_jalan="",dokterrujukan="",FileName,polirujukan="",status="",biaya="",tambahan="",totals="",kdptg="",nmptg="",kd_pj="",notaralan="",centangdokterralan="",
             rinciandokterralan="",Tindakan_Ralan="",Laborat_Ralan="",Radiologi_Ralan="",no_rkm_medis, nm_pasien, alamat, jk, umurdaftar, tgl_registrasi, no_nota,
             Obat_Ralan="",Registrasi_Ralan="",Tambahan_Ralan="",Potongan_Ralan="",Obat_Langsung_Ralan="",tgl_lahir,
             Operasi_Ralan="",tampilkan_ppnobat_ralan="",rincianoperasi="",centangobatralan="No",
@@ -2489,7 +2492,7 @@ public class DlgBilingRalan extends javax.swing.JDialog {
 
                     i = 0;
                     try{
-                          biaya = (String)JOptionPane.showInputDialog(null,"Silahkan pilih nota yang mau dicetak!","Nota",JOptionPane.QUESTION_MESSAGE,null,new Object[]{"Nota", "Kwitansi", "Nota & Kwitansi","Kwitansi Piutang"},"Nota");
+                          biaya = (String)JOptionPane.showInputDialog(null,"Silahkan pilih nota yang mau dicetak!","Nota",JOptionPane.QUESTION_MESSAGE,null,new Object[]{"Nota", "Kwitansi", "Nota & Kwitansi","Kwitansi Piutang","Nota TTE"},"Nota");
                           switch (biaya) {
                                 case "Nota":
                                       i=1;
@@ -2502,6 +2505,9 @@ public class DlgBilingRalan extends javax.swing.JDialog {
                                       break;
                                 case "Kwitansi Piutang":
                                       i=4;
+                                      break;
+                                case "Nota TTE":
+                                      i=5;
                                       break;
                           }
                     }catch(Exception e){
@@ -2537,6 +2543,21 @@ public class DlgBilingRalan extends javax.swing.JDialog {
                             }else{
                                 JOptionPane.showMessageDialog(null,"Nilai Piutang masih kosong...!!!");
                             }
+                        }else if(i==5){
+                            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                            FileName=TNoRw.getText().replaceAll("/","_")+".pdf";
+                            DlgViewPdf berkas=new DlgViewPdf(null,true);
+                            if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+TNoRw.getText()+"'")>0){
+                                berkas.tampilPdf(FileName,"berkastte/billing_ralan",TNoRw.getText(),"015");
+                            }else{
+                                createPdf(FileName);
+                                berkas.tampilPdfLocal(FileName,"local","berkastte/billing_ralan",TNoRw.getText(),"015");
+                            }
+                            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                            berkas.setLocationRelativeTo(internalFrame1);
+                            berkas.setVisible(true);
+
+                            this.setCursor(Cursor.getDefaultCursor());
                         }
                         this.setCursor(Cursor.getDefaultCursor());
                     }
@@ -6082,6 +6103,33 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 System.out.println("Notifikasi : "+ex);            
                 JOptionPane.showMessageDialog(null,"Maaf, gagal menyimpan data. Data yang sama dimasukkan sebelumnya...!");
             }
+        }
+    }
+    
+    void createPdf(String FileName){
+        i=Sequel.cariInteger("select count(billing.no_rawat) from billing where billing.no_rawat=?",TNoRw.getText());
+        if(TNoRw.getText().trim().equals("")||TNoRM.getText().trim().equals("")||TPasien.getText().trim().equals("")){
+            Valid.textKosong(TNoRw,"Pasien");
+        }else if(tbBilling.getRowCount()==0){
+            JOptionPane.showMessageDialog(null,"Maaf, data sudah habis. Tidak ada data yang bisa anda print...!!!!");
+            //TCari.requestFocus();
+        }else if(tbBilling.getRowCount()!=0){
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR)); 
+            Map<String, Object> param = new HashMap<>();
+            param.put("namars",akses.getnamars());
+            param.put("alamatrs",akses.getalamatrs());
+            param.put("kotars",akses.getkabupatenrs());
+            param.put("propinsirs",akses.getpropinsirs());
+            param.put("kontakrs",akses.getkontakrs());
+            param.put("emailrs",akses.getemailrs());
+            param.put("penjab",Sequel.cariIsi("select nama from pegawai where nik ='"+akses.getkode()+"'"));
+            param.put("logo",Sequel.cariGambar("select setting.logo from setting"));
+            param.put("logobsre",Sequel.cariGambar("select setting.logo_bsre from setting"));
+            Valid.MyReportPDFWithName1("rptBillingTTE.jasper","report","tempfile",FileName,"::[ Pembayaran Pasien Ranap ]::","select temporary_bayar_ralan.temp1,temporary_bayar_ralan."
+                    + "temp2,temporary_bayar_ralan.temp3,temporary_bayar_ralan.temp4,temporary_bayar_ralan.temp5,temporary_bayar_ralan.temp6,temporary_bayar_ralan.temp7,temporary_bayar_ralan.temp8,"
+                    + "temporary_bayar_ralan.temp9,temporary_bayar_ralan.temp10,temporary_bayar_ralan.temp11,temporary_bayar_ralan.temp12,temporary_bayar_ralan.temp13,temporary_bayar_ralan.temp14 "
+                    + "from temporary_bayar_ralan where temporary_bayar_ralan.temp9='"+akses.getkode()+"' order by temporary_bayar_ralan.no asc",param);
+            this.setCursor(Cursor.getDefaultCursor());
         }
     }
     

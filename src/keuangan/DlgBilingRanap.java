@@ -2021,6 +2021,11 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         TNoRw.setName("TNoRw"); // NOI18N
         TNoRw.setPreferredSize(new java.awt.Dimension(150, 23));
+        TNoRw.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TNoRwActionPerformed(evt);
+            }
+        });
         TNoRw.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TNoRwKeyPressed(evt);
@@ -3867,20 +3872,13 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                         }                          
                     }else if(i==6){
                         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                        FileName=tbBilling.getValueAt(0,2).toString().replaceAll("/","_")+".pdf";
-                        if (FileName.startsWith(":")) {
-                            FileName = FileName.substring(1);
-                        }
-                        norawat=tbBilling.getValueAt(0,2).toString();
-                        if (norawat.startsWith(":")) {
-                            norawat = norawat.substring(1);
-                        }
+                        FileName=TNoRw.getText().replaceAll("/","_")+".pdf";
                         DlgViewPdf berkas=new DlgViewPdf(null,true);
-                        if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+norawat+"'")>0){
-                            berkas.tampilPdf(FileName,"berkastte/billing",norawat,"010");
+                        if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+TNoRw.getText()+"'")>0){
+                            berkas.tampilPdf(FileName,"berkastte/billing_ranap",TNoRw.getText(),"014");
                         }else{
                             createPdf(FileName);
-                            berkas.tampilPdfLocal(FileName,"local","berkastte/billing",norawat,"010");
+                            berkas.tampilPdfLocal(FileName,"local","berkastte/billing_ranap",TNoRw.getText(),"014");
                         }
                         berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
                         berkas.setLocationRelativeTo(internalFrame1);
@@ -4566,6 +4564,10 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private void MnCariPeriksaLabMBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCariPeriksaLabMBActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_MnCariPeriksaLabMBActionPerformed
+
+    private void TNoRwActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TNoRwActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TNoRwActionPerformed
 
 
 
@@ -7451,12 +7453,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             param.put("propinsirs",akses.getpropinsirs());
             param.put("kontakrs",akses.getkontakrs());
             param.put("emailrs",akses.getemailrs());
-            param.put("nota",tbBilling.getValueAt(0,2).toString().substring(1));
-            param.put("kamar",tbBilling.getValueAt(1,2).toString().substring(1));
-            param.put("tanggal",tbBilling.getValueAt(2,2).toString().substring(1));
-            param.put("norm",tbBilling.getValueAt(3,2).toString().substring(1));
-            param.put("nama",tbBilling.getValueAt(4,2).toString().substring(1));
-            param.put("alamat",tbBilling.getValueAt(5,2).toString().substring(1));
+            param.put("penjab",Sequel.cariIsi("select nama from pegawai where nik ='"+akses.getkode()+"'"));
             param.put("logo",Sequel.cariGambar("select setting.logo from setting"));
             param.put("logobsre",Sequel.cariGambar("select setting.logo_bsre from setting"));
             Valid.MyReportPDFWithName1("rptBillingTTE.jasper","report","tempfile",FileName,"::[ Pembayaran Pasien Ranap ]::","select temp1, temp2, temp3, temp4, "
