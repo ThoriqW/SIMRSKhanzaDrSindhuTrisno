@@ -2548,10 +2548,10 @@ public class DlgBilingRalan extends javax.swing.JDialog {
                             FileName=TNoRw.getText().replaceAll("/","_")+".pdf";
                             DlgViewPdf berkas=new DlgViewPdf(null,true);
                             if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+TNoRw.getText()+"'")>0){
-                                berkas.tampilPdf(FileName,"berkastte/billing_ralan",TNoRw.getText(),"015");
+                                berkas.tampilPdf(FileName,"berkastte/billing_ralan",TNoRw.getText(),"014");
                             }else{
                                 createPdf(FileName);
-                                berkas.tampilPdfLocal(FileName,"local","berkastte/billing_ralan",TNoRw.getText(),"015");
+                                berkas.tampilPdfLocal(FileName,"local","berkastte/billing_ralan",TNoRw.getText(),"014");
                             }
                             berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
                             berkas.setLocationRelativeTo(internalFrame1);

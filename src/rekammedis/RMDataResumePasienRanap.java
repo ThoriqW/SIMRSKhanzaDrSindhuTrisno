@@ -2594,10 +2594,10 @@ public final class RMDataResumePasienRanap extends javax.swing.JDialog {
             FileName=tbObat.getValueAt(tbObat.getSelectedRow(),0).toString().replaceAll("/","_")+".pdf";
             DlgViewPdf berkas=new DlgViewPdf(null,true);
             if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"'")>0){
-                berkas.tampilPdf(FileName,"berkastte/resume",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"001");
+                berkas.tampilPdf(FileName,"berkastte/resume_ranap",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"001");
             }else{
                 createPdf(FileName);
-                berkas.tampilPdfLocal(FileName,"local","berkastte/resume",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"001");
+                berkas.tampilPdfLocal(FileName,"local","berkastte/resume_ranap",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"001");
             }
             berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
             berkas.setLocationRelativeTo(internalFrame1);
@@ -2833,7 +2833,7 @@ public final class RMDataResumePasienRanap extends javax.swing.JDialog {
                         }
                     }
                     
-                    if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+rs.getString("no_rawat")+"' and lokasi_file='berkastte/resume'")>0){
+                    if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+rs.getString("no_rawat")+"' and lokasi_file='berkastte/resume_ranap'")>0){
                         TTE = "Sudah";
                     }else{
                         TTE = "Belum";
