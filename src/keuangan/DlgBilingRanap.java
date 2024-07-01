@@ -3875,10 +3875,10 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                         FileName=TNoRw.getText().replaceAll("/","_")+".pdf";
                         DlgViewPdf berkas=new DlgViewPdf(null,true);
                         if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+TNoRw.getText()+"'")>0){
-                            berkas.tampilPdf(FileName,"berkastte/billing_ranap",TNoRw.getText(),"014");
+                            berkas.tampilPdf(FileName,"berkastte/billing_ranap",TNoRw.getText(),"013");
                         }else{
                             createPdf(FileName);
-                            berkas.tampilPdfLocal(FileName,"local","berkastte/billing_ranap",TNoRw.getText(),"014");
+                            berkas.tampilPdfLocal(FileName,"local","berkastte/billing_ranap",TNoRw.getText(),"013");
                         }
                         berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
                         berkas.setLocationRelativeTo(internalFrame1);

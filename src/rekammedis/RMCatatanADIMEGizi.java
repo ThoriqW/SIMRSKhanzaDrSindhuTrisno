@@ -1165,10 +1165,10 @@ public final class RMCatatanADIMEGizi extends javax.swing.JDialog {
             FileName=tbObat.getValueAt(tbObat.getSelectedRow(),0).toString().replaceAll("/","_")+".pdf";
             DlgViewPdf berkas=new DlgViewPdf(null,true);
             if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"'")>0){
-                berkas.tampilPdf(FileName,"berkastte/adime_gizi",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"013");
+                berkas.tampilPdf(FileName,"berkastte/adime_gizi",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"012");
             }else{
                 createPdf(FileName);
-                berkas.tampilPdfLocal(FileName,"local","berkastte/adime_gizi",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"013");
+                berkas.tampilPdfLocal(FileName,"local","berkastte/adime_gizi",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"012");
             }
             berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
             berkas.setLocationRelativeTo(internalFrame1);
