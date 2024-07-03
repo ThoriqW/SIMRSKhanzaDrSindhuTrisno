@@ -12,6 +12,7 @@
 
 package rekammedis;
 
+import digitalsignature.DlgViewPdf;
 import fungsi.WarnaTable;
 import fungsi.batasInput;
 import fungsi.koneksiDB;
@@ -62,7 +63,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
     private boolean[] pilih; 
     private String[] kode,pengkajian;
     private DlgCariPegawai pegawai=new DlgCariPegawai(null,false);
-    private String keputusan="",pilihan="",datatriase="",finger="",kodepetugas="";
+    private String keputusan="",pilihan="",datatriase="",finger="",kodepetugas="",FileName;
     private StringBuilder htmlContent;
     private boolean sukses=true;
     
@@ -3992,13 +3993,32 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
                     }
                       
                     try {
-                        pilihan = (String)JOptionPane.showInputDialog(null,"Silahkan pilih Lembar/PDF Triase Skala 1..!","Pilihan",JOptionPane.QUESTION_MESSAGE,null,new Object[]{"Lembar Triase Skala 1","PDF Triase Skala 1"},"Lambar Triase Skala 1");
+                        pilihan = (String)JOptionPane.showInputDialog(null,"Silahkan pilih Lembar/PDF Triase Skala 1..!","Pilihan",JOptionPane.QUESTION_MESSAGE,null,new Object[]{"Lembar Triase Skala 1","PDF Triase Skala 1","PDF Triase Skala TTE"},"Lambar Triase Skala 1");
                         switch (pilihan) {
                             case "Lembar Triase Skala 1":
                                   Valid.MyReportqry("rptLembarTriaseSkala1.jasper","report","::[ Triase Skala 1 ]::","select * from temporary where temporary.temp37='"+akses.getalamatip()+"' order by temporary.no",param);
                                   break;
                             case "PDF Triase Skala 1":
                                   Valid.MyReportqrypdf("rptLembarTriaseSkala1.jasper","report","::[ Triase Skala 1 ]::","select * from temporary where temporary.temp37='"+akses.getalamatip()+"' order by temporary.no",param);
+                                  break;
+                            case "PDF Triase Skala TTE":
+                                    if(tbTriase.getSelectedRow()>-1){
+                                        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                                        FileName=tbTriase.getValueAt(tbTriase.getSelectedRow(),0).toString().replaceAll("/","_")+".pdf";
+                                        param.put("logobsre",Sequel.cariGambar("select setting.logo_bsre from setting"));
+                                        DlgViewPdf berkas=new DlgViewPdf(null,true);
+                                        if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+tbTriase.getValueAt(tbTriase.getSelectedRow(),0).toString()+"'")>0){
+                                            berkas.tampilPdf(FileName,"berkastte/triase",tbTriase.getValueAt(tbTriase.getSelectedRow(),0).toString(),"016");
+                                        }else{
+                                            Valid.MyReportPDFWithName1("rptLembarTriaseSkala1TTE.jasper","report","tempfile",FileName,"::[ Triase Skala 1 ]::","select * from temporary where temporary.temp37='"+akses.getalamatip()+"' order by temporary.no",param);
+                                            berkas.tampilPdfLocal(FileName,"local","berkastte/triase",tbTriase.getValueAt(tbTriase.getSelectedRow(),0).toString(),"016");
+                                        }
+                                        berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                                        berkas.setLocationRelativeTo(internalFrame1);
+                                        berkas.setVisible(true);
+
+                                        this.setCursor(Cursor.getDefaultCursor());
+                                    }
                                   break;
                         } 
                     } catch (Exception e) {
@@ -4113,13 +4133,32 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
                     }
                       
                     try {
-                        pilihan = (String)JOptionPane.showInputDialog(null,"Silahkan pilih Lembar/PDF Triase Skala 2..!","Pilihan",JOptionPane.QUESTION_MESSAGE,null,new Object[]{"Lembar Triase Skala 2","PDF Triase Skala 2"},"Lambar Triase Skala 2");
+                        pilihan = (String)JOptionPane.showInputDialog(null,"Silahkan pilih Lembar/PDF Triase Skala 2..!","Pilihan",JOptionPane.QUESTION_MESSAGE,null,new Object[]{"Lembar Triase Skala 2","PDF Triase Skala 2","PDF Triase Skala 2 TTE"},"Lambar Triase Skala 2");
                         switch (pilihan) {
                             case "Lembar Triase Skala 2":
                                   Valid.MyReportqry("rptLembarTriaseSkala2.jasper","report","::[ Triase Skala 2 ]::","select * from temporary where temporary.temp37='"+akses.getalamatip()+"' order by temporary.no",param);
                                   break;
                             case "PDF Triase Skala 2":
                                   Valid.MyReportqrypdf("rptLembarTriaseSkala2.jasper","report","::[ Triase Skala 2 ]::","select * from temporary where temporary.temp37='"+akses.getalamatip()+"' order by temporary.no",param);
+                                  break;
+                            case "PDF Triase Skala 2 TTE":
+                                    if(tbTriase.getSelectedRow()>-1){
+                                        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                                        FileName=tbTriase.getValueAt(tbTriase.getSelectedRow(),0).toString().replaceAll("/","_")+".pdf";
+                                        param.put("logobsre",Sequel.cariGambar("select setting.logo_bsre from setting"));
+                                        DlgViewPdf berkas=new DlgViewPdf(null,true);
+                                        if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+tbTriase.getValueAt(tbTriase.getSelectedRow(),0).toString()+"'")>0){
+                                            berkas.tampilPdf(FileName,"berkastte/triase",tbTriase.getValueAt(tbTriase.getSelectedRow(),0).toString(),"016");
+                                        }else{
+                                            Valid.MyReportPDFWithName1("rptLembarTriaseSkala2TTE.jasper","report","tempfile",FileName,"::[ Triase Skala 2 ]::","select * from temporary where temporary.temp37='"+akses.getalamatip()+"' order by temporary.no",param);
+                                            berkas.tampilPdfLocal(FileName,"local","berkastte/triase",tbTriase.getValueAt(tbTriase.getSelectedRow(),0).toString(),"016");
+                                        }
+                                        berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                                        berkas.setLocationRelativeTo(internalFrame1);
+                                        berkas.setVisible(true);
+
+                                        this.setCursor(Cursor.getDefaultCursor());
+                                    }
                                   break;
                         }
                     } catch (Exception e) {

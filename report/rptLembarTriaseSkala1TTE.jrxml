@@ -45,6 +45,7 @@
 	<parameter name="finger" class="java.lang.String"/>
 	<parameter name="tandavital" class="java.lang.String"/>
 	<parameter name="catatan" class="java.lang.String"/>
+	<parameter name="logobsre" class="java.io.InputStream"/>
 	<queryString>
 		<![CDATA[select * from temporary]]>
 	</queryString>
@@ -740,7 +741,7 @@
 		<band splitType="Stretch"/>
 	</columnFooter>
 	<summary>
-		<band height="128" splitType="Stretch">
+		<band height="157" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<textField>
 				<reportElement mode="Opaque" x="176" y="0" width="379" height="15" forecolor="#FFFFFF" backcolor="#AA0000" uuid="a5a32d90-8204-4271-8866-b37f73c686a4"/>
@@ -827,7 +828,7 @@
 				<text><![CDATA[Dokter/Petugas Jaga IGD]]></text>
 			</staticText>
 			<textField>
-				<reportElement mode="Transparent" x="180" y="74" width="230" height="50" forecolor="#000000" backcolor="#F0F0DC" uuid="0d38c6ea-447e-4b8a-9eb8-6c25a094e0ef"/>
+				<reportElement mode="Transparent" x="180" y="74" width="260" height="50" forecolor="#000000" backcolor="#F0F0DC" uuid="0d38c6ea-447e-4b8a-9eb8-6c25a094e0ef"/>
 				<textElement textAlignment="Left" verticalAlignment="Top">
 					<font fontName="Tahoma" size="8" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -860,14 +861,6 @@
 					<pen lineWidth="0.5" lineStyle="Solid"/>
 				</graphicElement>
 			</line>
-			<componentElement>
-				<reportElement x="430" y="70" width="114" height="56" isRemoveLineWhenBlank="true" uuid="1a2920de-bf6c-46ec-90bf-5a42a5e0bd3e">
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" errorCorrectionLevel="H">
-					<jr:codeExpression><![CDATA[$P{finger}]]></jr:codeExpression>
-				</jr:QRCode>
-			</componentElement>
 			<line>
 				<reportElement positionType="FixRelativeToBottom" x="1" y="68" width="555" height="1" uuid="f4cbb757-ac05-4a96-bde6-e6653df62601"/>
 				<graphicElement>
@@ -890,6 +883,31 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$P{catatan}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="450" y="74" width="100" height="50" uuid="b99b3e97-c3a1-4367-a5a2-988c63529d41">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[#]]></text>
+			</staticText>
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement x="0" y="133" width="43" height="19" uuid="78f9083b-666d-4272-a8ec-a08ad5c7b2dd"/>
+				<imageExpression><![CDATA[$P{logobsre}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="50" y="135" width="208" height="14" uuid="9f9d6d90-2e34-4537-b76a-65f7be6b33e8">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left">
+					<font fontName="Tahoma" size="5" isBold="false" isItalic="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Dokumen ini telah ditanda tangani secara elektronik menggunakan sertifikat elektronik
+yang telah diterbitkan oleh Balai Sertifikasi Elektronik (BSrE), Badan Siber dan Sandi Negara]]></text>
+			</staticText>
 		</band>
 	</summary>
 </jasperReport>
