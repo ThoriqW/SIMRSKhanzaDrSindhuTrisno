@@ -228,7 +228,7 @@ public final class BPJSMapingDokterDPJP extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Mapping Dokter DPJP VClaim ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50,50,50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Mapping Dokter DPJP VClaim ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -451,12 +451,22 @@ public final class BPJSMapingDokterDPJP extends javax.swing.JDialog {
         kdpoli.setEditable(false);
         kdpoli.setHighlighter(null);
         kdpoli.setName("kdpoli"); // NOI18N
+        kdpoli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kdpoliActionPerformed(evt);
+            }
+        });
         FormInput.add(kdpoli);
         kdpoli.setBounds(69, 10, 80, 23);
 
         TPoli.setEditable(false);
         TPoli.setHighlighter(null);
         TPoli.setName("TPoli"); // NOI18N
+        TPoli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TPoliActionPerformed(evt);
+            }
+        });
         FormInput.add(TPoli);
         TPoli.setBounds(151, 10, 170, 23);
 
@@ -697,6 +707,14 @@ private void btnPoliBPJSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
         tampil();
         emptTeks();
     }//GEN-LAST:event_formWindowOpened
+
+    private void TPoliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TPoliActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TPoliActionPerformed
+
+    private void kdpoliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kdpoliActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_kdpoliActionPerformed
 
     /**
     * @param args the command line arguments

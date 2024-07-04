@@ -990,6 +990,7 @@ import ziscsr.ZISPenghasilanPenerimaDankes;
 import ziscsr.ZISTernakPenerimaDankes;
 import ziscsr.ZISUkuranRumahPenerimaDankes;
 import bridging.SatuSehatKirimDiet;
+import digitalsignature.DlgMappingAkunTTE;
 
 
 /**
@@ -17663,6 +17664,17 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         this.setCursor(Cursor.getDefaultCursor());
     }
     
+    private void btnMappingAkunTTEActionPerformed(java.awt.event.ActionEvent evt) {
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        DlgMappingAkunTTE from=new DlgMappingAkunTTE(this,false);
+        from.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        from.setLocationRelativeTo(PanelUtama);
+        from.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }
+    
     private void btnLamaOperasiActionPerformed(java.awt.event.ActionEvent evt) {                                                      
         isTutup();
         DlgHome.dispose();
@@ -21519,7 +21531,7 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             btnRekapPengajuanBiaya,btnPenilaianAwalMedisRalanKulitKelamin,btnHostToHostBankMandiri,btnPenilaianLevelKecemasanRanapAnak,btnPenilaianAwalMedisHemodialisa,
             btnPenilaianRisikoJatuhPsikiatri,btnPenilaianLanjutanSkriningFungsional,btnPenilaianAwalMedisRalanRehabMedik,btnTemplatePersetujuanPenolakanTindakan,
             btnPenilaianAwalMedisRalanIGDPsikiatri,btnBPJSReferensiSettingPPKApotek,btnBPJSReferensiObatApotek,btnPembayaranBankMandiri,btnBPJSMapingObatApotek,
-            btnPenilaianUlangNyeri,btnPenilaianTerapiWicara,btnPengkajianRestrain,btnBPJSKunjunganSEPApotek,btnBSRESignatureLog,btnBSREStatusDokumen,btnKirimDietSatuSehat;
+            btnPenilaianUlangNyeri,btnPenilaianTerapiWicara,btnPengkajianRestrain,btnBPJSKunjunganSEPApotek,btnBSRESignatureLog,btnBSREStatusDokumen,btnMappingAkunTTE,btnKirimDietSatuSehat;
     
     public void isWall(){
         try{            
@@ -21794,6 +21806,11 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             
             if(akses.getbsre_status_dokumen()==true){                          
                 Panelmenu.add(btnBSREStatusDokumen);
+                jmlmenu++;
+            }
+            
+            if(akses.getmapping_akun_tte()==true){                          
+                Panelmenu.add(btnMappingAkunTTE);
                 jmlmenu++;
             }
             
@@ -31423,6 +31440,11 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             jmlmenu++;
         }
         
+        if(akses.getmapping_akun_tte()==true){                          
+            Panelmenu.add(btnMappingAkunTTE);
+            jmlmenu++;
+        }
+        
         if(akses.getbsre_status_dokumen()==true){                          
             Panelmenu.add(btnBSREStatusDokumen);
             jmlmenu++;
@@ -38269,6 +38291,13 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             }
         }
         
+        if(akses.getmapping_akun_tte()==true){                          
+            if(btnMappingAkunTTE.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
+                Panelmenu.add(btnMappingAkunTTE);
+                jmlmenu++;
+            }
+        }
+        
         if(akses.getbsre_status_dokumen()==true){                          
             if(btnBSREStatusDokumen.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
                 Panelmenu.add(btnBSREStatusDokumen);
@@ -42461,6 +42490,14 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         btnBSREStatusDokumen.setName("btnBSREStatusDokumen"); 
         btnBSREStatusDokumen.setPreferredSize(new java.awt.Dimension(200, 90));
         btnBSREStatusDokumen.addActionListener(this::btnBSREStatusDokumenActionPerformed);
+        
+        btnMappingAkunTTE = new widget.ButtonBig();
+        btnMappingAkunTTE.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/akun_tte.png")));
+        btnMappingAkunTTE.setText("Mapping Akun TTE");
+        btnMappingAkunTTE.setIconTextGap(0);
+        btnMappingAkunTTE.setName("btnMappingAkunTTE"); 
+        btnMappingAkunTTE.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnMappingAkunTTE.addActionListener(this::btnMappingAkunTTEActionPerformed);
         
         btnKirimDietSatuSehat = new widget.ButtonBig();
         btnKirimDietSatuSehat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/satusehat.png")));

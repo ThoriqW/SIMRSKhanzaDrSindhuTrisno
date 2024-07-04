@@ -241,17 +241,14 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
             BufferedWriter bw = new BufferedWriter(new FileWriter(f));
             if(TabRawat.getSelectedIndex()==0){
                 bw.write(LoadHTML.getText().replaceAll("<head>","<head><link href=\"file2.css\" rel=\"stylesheet\" type=\"text/css\" />"+
-//                        "<div style='width: max-content;'>"+
-//                            "<p>DATASEMEN KESEHATAN WILAYAH 13.04.02 PALU <br> RUMAH SAKIT III 13.06.01 DR. SINDHU TRISNO</p>"+
-//                            "<hr style='border:none; height:2px; background-color:#999;'>"+
-//                        "</div>"+
-//                        "</hr>"+
+                        "<div style='width: max-content;'>"+
+                            "<p>DATASEMEN KESEHATAN WILAYAH 13.04.02 PALU <br> RUMAH SAKIT III 13.06.01 DR. SINDHU TRISNO</p>"+
+                            "<hr style='border:none; height:2px; background-color:#999;'>"+
+                        "</div>"+
+                        "</hr>"+
                         "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"+
                             "<tr class='isi2'>"+
                                 "<td valign='top' align='center'>"+
-                                    "<font size='4' face='Tahoma'>"+akses.getnamars()+"</font><br>"+
-                                    akses.getalamatrs()+", "+akses.getkabupatenrs()+", "+akses.getpropinsirs()+"<br>"+
-                                    akses.getkontakrs()+", E-mail : "+akses.getemailrs()+"<br><br>"+
                                     "<font size='2' face='Tahoma'>DATA KEADAAN MORBIDITAS PASIEN RAWAT INAP RUMAH SAKIT PENYEBAB KECELAKAN<br>PERIODE "+Tgl1.getSelectedItem()+" s.d. "+Tgl2.getSelectedItem()+"<br><br></font>"+        
                                 "</td>"+
                            "</tr>"+
@@ -260,12 +257,13 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
                 bw.close();
             }else if(TabRawat.getSelectedIndex()==1){
                 bw.write(LoadHTML1.getText().replaceAll("<head>","<head><link href=\"file2.css\" rel=\"stylesheet\" type=\"text/css\" />"+
+                            "<div style='width: max-content;'>"+
+                                "<p>DATASEMEN KESEHATAN WILAYAH 13.04.02 PALU <br> RUMAH SAKIT III 13.06.01 DR. SINDHU TRISNO</p>"+
+                                "<hr style='border:none; height:2px; background-color:#999;'>"+
+                            "</div>"+
                             "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"+
                                 "<tr class='isi2'>"+
                                     "<td valign='top' align='center'>"+
-                                        "<font size='4' face='Tahoma'>"+akses.getnamars()+"</font><br>"+
-                                        akses.getalamatrs()+", "+akses.getkabupatenrs()+", "+akses.getpropinsirs()+"<br>"+
-                                        akses.getkontakrs()+", E-mail : "+akses.getemailrs()+"<br><br>"+
                                         "<font size='2' face='Tahoma'>DATA KEADAAN MORBIDITAS PASIEN RAWAT INAP RUMAH SAKIT PENYEBAB KECELAKAN<br>PERIODE "+Tgl1.getSelectedItem()+" s.d. "+Tgl2.getSelectedItem()+"<br><br></font>"+        
                                     "</td>"+
                                "</tr>"+
@@ -670,7 +668,28 @@ private void btnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b
                       "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"+
                        htmlContent.toString()+
                       "</table>"+
-                      "<p>TESSSS</p>"+
+                    "<table style=\"width:100%; margin-top: 20px\">\n" +
+                        "<tr>" +
+                            "<td style=\"width:50%;\"></td>\n" +
+                            "<td style=\"width:50%;\">\n" +
+                                "<div style=\"text-align: center;\">\n" +
+                                    "<p style=\"height: 2px\">\n" +
+                                        "Kepala Rumkit Tk.III 13.06.01\n" +
+                                    "</p>\n" +
+                                    "<p style=\"height: 2px; margin-bottom: 15px\">\n" +
+                                        "dr. Sindhu Trisno\n" +
+                                    "</p>\n" +
+                                    "<p style=\"height: 70px\"></p>\n" +
+                                    "<p style=\"height: 2px; margin-top: 15px\">\n" +
+                                        "drg. Hengky Yudhana, Sp.KG\n" +
+                                    "</p>\n" +
+                                    "<p style=\"height: 2px\">\n" +
+                                        "Letnan Kolonel Ckrm NRP 11020015731276\n" +
+                                    "</p>\n" +
+                                "</div>\n" +
+                            "</td>\n" +
+                        "</tr>\n" +
+                    "</table>"+
                     "</html>");
         } catch (Exception e) {
             System.out.println("laporan.DlgRL4A.prosesCari() 5 : "+e);
@@ -989,6 +1008,28 @@ private void btnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b
                       "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"+
                        htmlContent.toString()+
                       "</table>"+
+                              "<table style=\"width:100%; margin-top: 20px\">\n" +
+                        "<tr>" +
+                            "<td style=\"width:50%;\"></td>\n" +
+                            "<td style=\"width:50%;\">\n" +
+                                "<div style=\"text-align: center;\">\n" +
+                                    "<p style=\"height: 2px\">\n" +
+                                        "Kepala Rumkit Tk.III 13.06.01\n" +
+                                    "</p>\n" +
+                                    "<p style=\"height: 2px; margin-bottom: 15px\">\n" +
+                                        "dr. Sindhu Trisno\n" +
+                                    "</p>\n" +
+                                    "<p style=\"height: 70px\"></p>\n" +
+                                    "<p style=\"height: 2px; margin-top: 15px\">\n" +
+                                        "drg. Hengky Yudhana, Sp.KG\n" +
+                                    "</p>\n" +
+                                    "<p style=\"height: 2px\">\n" +
+                                        "Letnan Kolonel Ckrm NRP 11020015731276\n" +
+                                    "</p>\n" +
+                                "</div>\n" +
+                            "</td>\n" +
+                        "</tr>\n" +
+                    "</table>"+
                     "</html>");
         } catch (Exception e) {
             System.out.println("laporan.DlgRL4A.prosesCari() 5 : "+e);

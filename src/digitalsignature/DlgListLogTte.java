@@ -297,50 +297,40 @@ public class DlgListLogTte extends javax.swing.JDialog {
         try {
             link=apiTte.URLTTE();
             URL = link+"signlog";
-           // System.out.println(URL);
+            System.out.println(URL);
             headers= new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
 //	    headers.add("X-Cons-ID",koneksiDB.CONSIDAPIBPJS());
 //	    headers.add("X-Timestamp",utc);  
-//            headers.add("user_key",koneksiDB.USERKEYAPIBPJS());
+//          headers.add("user_key",koneksiDB.USERKEYAPIBPJS());
 //	    utc=String.valueOf(api.GetUTCdatetimeAsString());
-//                headers.add("X-Signature",api.getHmac(utc));
-requestJson =" {" +
-                    "\"start_date\":\""+Valid.SetTgl(Tgl1.getSelectedItem()+"")+"\","+
-                    "\"last_date\":\""+Valid.SetTgl(Tgl2.getSelectedItem()+"")+"\""+
-                "}" ;
+//          headers.add("X-Signature",api.getHmac(utc));
+            requestJson =" {" +
+                "\"start_date\":\""+Valid.SetTgl(Tgl1.getSelectedItem()+"")+"\","+
+                "\"last_date\":\""+Valid.SetTgl(Tgl2.getSelectedItem()+"")+"\""+
+            "}" ;
 	    requestEntity = new HttpEntity(requestJson,headers);
 	    root = mapper.readTree(apiTte.getRest().exchange(URL, HttpMethod.POST, requestEntity, String.class).getBody());
             metadata = root.path("metadata");
             response =root.path("response");
 //              System.out.println(response);
 //                System.out.println(response.path("policlinics").asText());
-             if(metadata.path("code").asText().equals("200"))
-             {
-               //  Valid.tabelKosong(tabMode);
-              if(response.path("list").isArray()){
-                    
+            if(metadata.path("code").asText().equals("200")){
+                //  Valid.tabelKosong(tabMode);
+                if(response.path("list").isArray()){                    
                     for(JsonNode list:response.path("list")){
-//                        System.out.println(list.path("kd_poli").asText());
+//                     System.out.println(list.path("kd_poli").asText());
                        tabMode.addRow(new Object[]{
-                                list.path("nik").asText(),list.path("tanggal").asText(),list.path("nama_berkas").asText(),list.path("status_code").asText(),list.path("lokasi_file").asText(),list.path("status").asText()
-                            }); 
-                    }
-                            
-                        
-                    }
-//                    LCountImportDataUmbal.setText(""+tabModeUploadUmbal.getRowCount());
-//                    LCountSelectedImportUmbal.setText(""+tabModeUploadUmbal.getRowCount());
-//                    txfile.setText("");
-
-                  
+                            list.path("nik").asText(),list.path("tanggal").asText(),list.path("nama_berkas").asText(),list.path("status_code").asText(),list.path("lokasi_file").asText(),list.path("status").asText()
+                        }); 
+                    }  
+                }
+//              LCountImportDataUmbal.setText(""+tabModeUploadUmbal.getRowCount());
+//              LCountSelectedImportUmbal.setText(""+tabModeUploadUmbal.getRowCount());
+//              txfile.setText("");   
              }else{
                  
-             }
-              
-              
-            
-            
+             }   
         } catch (Exception e) {
             System.out.println(e);
         }
