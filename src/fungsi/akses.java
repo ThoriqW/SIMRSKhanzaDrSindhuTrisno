@@ -216,7 +216,7 @@ public final class akses {
             penilaian_lanjutan_skrining_fungsional=false,penilaian_medis_ralan_rehab_medik=false,laporan_anestesi=false,template_persetujuan_penolakan_tindakan=false,
             penilaian_medis_ralan_gawat_darurat_psikiatri=false,bpjs_referensi_setting_apotek=false,bpjs_referensi_obat_apotek=false,bpjs_mapping_obat_apotek=false,
             pembayaran_bank_mandiri=false,penilaian_ulang_nyeri=false,penilaian_terapi_wicara=false,bpjs_obat_23hari_apotek=false,pengkajian_restrain=false,
-            bpjs_kunjungan_sep_apotek=false,bpjs_monitoring_klaim_apotek=false,bsre_management_log=false,buka_bsre_log=false,bsre_status_dokumen=false,buka_bsre_status_dokumen=false,
+            bpjs_kunjungan_sep_apotek=false,bpjs_monitoring_klaim_apotek=false,bsre_management_log=false,buka_bsre_log=false,bsre_status_dokumen=false,buka_bsre_status_dokumen=false,mapping_akun_tte=false,
             bpjs_daftar_pelayanan_obat_apotek=false,penilaian_awal_medis_ralan_paru=false,catatan_keperawatan_ralan=false,catatan_persalinan=false,skor_aldrette_pasca_anestesi=false,
             skor_steward_pasca_anestesi=false,skor_bromage_pasca_anestesi=false,penilaian_pre_induksi=false,hasil_usg_urologi=false,hasil_usg_gynecologi=false,hasil_pemeriksaan_ekg=false,
             hapus_edit_sep_bpjs=false,satu_sehat_kirim_diet=false,satu_sehat_mapping_obat=false,dapur_ringkasan_pembelian=false,satu_sehat_kirim_medication=false,
@@ -1236,6 +1236,7 @@ public final class akses {
                         akses.buka_bsre_log=true;
                         akses.bsre_status_dokumen=true;
                         akses.buka_bsre_status_dokumen=true;
+                        akses.mapping_akun_tte=true;
                         akses.bpjs_daftar_pelayanan_obat_apotek=true;
                         akses.penilaian_awal_medis_ralan_paru=true;
                         akses.catatan_keperawatan_ralan=true;
@@ -2256,6 +2257,7 @@ public final class akses {
                         akses.buka_bsre_log=true;
                         akses.bsre_status_dokumen=true;
                         akses.buka_bsre_status_dokumen=true;
+                        akses.mapping_akun_tte=true;
                         akses.bpjs_daftar_pelayanan_obat_apotek=true;
                         akses.penilaian_awal_medis_ralan_paru=true;
                         akses.catatan_keperawatan_ralan=true;
@@ -3270,10 +3272,11 @@ public final class akses {
                         akses.pengkajian_restrain=false;
                         akses.bpjs_kunjungan_sep_apotek=false;
                         akses.bpjs_monitoring_klaim_apotek=false;
-                        akses.bsre_management_log=true;
-                        akses.buka_bsre_log=true;
-                        akses.bsre_status_dokumen=true;
-                        akses.buka_bsre_status_dokumen=true;
+                        akses.bsre_management_log=false;
+                        akses.buka_bsre_log=false;
+                        akses.bsre_status_dokumen=false;
+                        akses.mapping_akun_tte=false;
+                        akses.buka_bsre_status_dokumen=false;
                         akses.bpjs_daftar_pelayanan_obat_apotek=false;
                         akses.penilaian_awal_medis_ralan_paru=false;
                         akses.catatan_keperawatan_ralan=false;
@@ -4315,6 +4318,7 @@ public final class akses {
         akses.buka_bsre_log=false;
         akses.bsre_status_dokumen=false;
         akses.buka_bsre_status_dokumen=false;
+        akses.mapping_akun_tte=false;
         akses.bpjs_daftar_pelayanan_obat_apotek=false;
         akses.penilaian_awal_medis_ralan_paru=false;
         akses.catatan_keperawatan_ralan=false;
@@ -5372,6 +5376,7 @@ public final class akses {
     public static boolean getbuka_bsre_log() {return akses.buka_bsre_log;}
     public static boolean getbsre_status_dokumen() {return akses.bsre_status_dokumen;}
     public static boolean getbuka_bsre_status_dokuemen() {return akses.buka_bsre_status_dokumen;}
+    public static boolean getmapping_akun_tte() {return akses.mapping_akun_tte;}
     public static boolean getbpjs_daftar_pelayanan_obat_apotek(){return akses.bpjs_daftar_pelayanan_obat_apotek;}
     public static boolean getpenilaian_awal_medis_ralan_paru(){return akses.penilaian_awal_medis_ralan_paru;}
     public static boolean getcatatan_keperawatan_ralan(){return akses.catatan_keperawatan_ralan;}
