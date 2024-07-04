@@ -990,6 +990,7 @@ import ziscsr.ZISPenghasilanPenerimaDankes;
 import ziscsr.ZISTernakPenerimaDankes;
 import ziscsr.ZISUkuranRumahPenerimaDankes;
 import bridging.SatuSehatKirimDiet;
+import bridging.SatuSehatKirimMedication;
 import digitalsignature.DlgMappingAkunTTE;
 
 
@@ -20848,6 +20849,30 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         this.setCursor(Cursor.getDefaultCursor());
     }
     
+    private void btnMappingObatSatuSehatActionPerformed(java.awt.event.ActionEvent evt) {
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        SatuSehatKirimDiet aplikasi=new SatuSehatKirimDiet(this,false);
+        aplikasi.isCek();
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }
+    
+    private void btnKirimMedicationSatuSehatActionPerformed(java.awt.event.ActionEvent evt) {
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        SatuSehatKirimMedication aplikasi=new SatuSehatKirimMedication(this,false);
+        aplikasi.isCek();
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }
+    
     /**
     * @param args the command line arguments
     */
@@ -21531,7 +21556,8 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             btnRekapPengajuanBiaya,btnPenilaianAwalMedisRalanKulitKelamin,btnHostToHostBankMandiri,btnPenilaianLevelKecemasanRanapAnak,btnPenilaianAwalMedisHemodialisa,
             btnPenilaianRisikoJatuhPsikiatri,btnPenilaianLanjutanSkriningFungsional,btnPenilaianAwalMedisRalanRehabMedik,btnTemplatePersetujuanPenolakanTindakan,
             btnPenilaianAwalMedisRalanIGDPsikiatri,btnBPJSReferensiSettingPPKApotek,btnBPJSReferensiObatApotek,btnPembayaranBankMandiri,btnBPJSMapingObatApotek,
-            btnPenilaianUlangNyeri,btnPenilaianTerapiWicara,btnPengkajianRestrain,btnBPJSKunjunganSEPApotek,btnBSRESignatureLog,btnBSREStatusDokumen,btnMappingAkunTTE,btnKirimDietSatuSehat;
+            btnPenilaianUlangNyeri,btnPenilaianTerapiWicara,btnPengkajianRestrain,btnBPJSKunjunganSEPApotek,btnBSRESignatureLog,btnBSREStatusDokumen,btnMappingAkunTTE,btnKirimDietSatuSehat,
+            btnMappingObatSatuSehat,btnKirimMedicationSatuSehat;
     
     public void isWall(){
         try{            
@@ -21816,6 +21842,16 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             
             if(akses.getsatu_sehat_kirim_diet()==true){
                 Panelmenu.add(btnKirimDietSatuSehat);
+                jmlmenu++;
+            }
+            
+            if(akses.getsatu_sehat_mapping_obat()==true){
+                Panelmenu.add(btnMappingObatSatuSehat);
+                jmlmenu++;
+            }
+            
+            if(akses.getsatu_sehat_kirim_medication()==true){
+                Panelmenu.add(btnKirimMedicationSatuSehat);
                 jmlmenu++;
             }
         }else if(cmbMenu.getSelectedIndex()==1){ 
@@ -31454,6 +31490,16 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             Panelmenu.add(btnKirimDietSatuSehat);
             jmlmenu++;
         }
+        
+         if(akses.getsatu_sehat_mapping_obat()==true){
+            Panelmenu.add(btnMappingObatSatuSehat);
+            jmlmenu++;
+        }
+         
+        if(akses.getsatu_sehat_kirim_medication()==true){
+            Panelmenu.add(btnKirimMedicationSatuSehat);
+            jmlmenu++;
+        }
     }
     
     private void isCariIsi() {
@@ -38311,6 +38357,20 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
                 jmlmenu++;
             }                
         }
+        
+        if(akses.getsatu_sehat_mapping_obat()==true){
+            if(btnMappingObatSatuSehat.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
+                Panelmenu.add(btnMappingObatSatuSehat);
+                jmlmenu++;
+            }                
+        }
+        
+        if(akses.getsatu_sehat_kirim_medication()==true){
+            if(btnKirimMedicationSatuSehat.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
+                Panelmenu.add(btnKirimMedicationSatuSehat);
+                jmlmenu++;
+            }                
+        }
     }
 
     private void initKhanza() {
@@ -42506,5 +42566,21 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         btnKirimDietSatuSehat.setName("btnKirimDietSatuSehat"); 
         btnKirimDietSatuSehat.setPreferredSize(new java.awt.Dimension(200, 90));
         btnKirimDietSatuSehat.addActionListener(this::btnKirimDietSatuSehatActionPerformed);
+        
+        btnMappingObatSatuSehat = new widget.ButtonBig();
+        btnMappingObatSatuSehat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/satusehat.png")));
+        btnMappingObatSatuSehat.setText("Mapping Obat/Alkes/BHP Satu Sehat");
+        btnMappingObatSatuSehat.setIconTextGap(0);
+        btnMappingObatSatuSehat.setName("btnMappingObatSatuSehat"); 
+        btnMappingObatSatuSehat.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnMappingObatSatuSehat.addActionListener(this::btnMappingObatSatuSehatActionPerformed);
+        
+        btnKirimMedicationSatuSehat = new widget.ButtonBig();
+        btnKirimMedicationSatuSehat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/satusehat.png")));
+        btnKirimMedicationSatuSehat.setText("Kirim Medication Satu Sehat");
+        btnKirimMedicationSatuSehat.setIconTextGap(0);
+        btnKirimMedicationSatuSehat.setName("btnKirimMedicationSatuSehat"); 
+        btnKirimMedicationSatuSehat.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnKirimMedicationSatuSehat.addActionListener(this::btnKirimMedicationSatuSehatActionPerformed);
     }
 }
