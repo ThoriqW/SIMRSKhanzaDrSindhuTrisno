@@ -221,7 +221,12 @@ public final class akses {
             skor_steward_pasca_anestesi=false,skor_bromage_pasca_anestesi=false,penilaian_pre_induksi=false,hasil_usg_urologi=false,hasil_usg_gynecologi=false,hasil_pemeriksaan_ekg=false,
             hapus_edit_sep_bpjs=false,satu_sehat_kirim_diet=false,satu_sehat_mapping_obat=false,dapur_ringkasan_pembelian=false,satu_sehat_kirim_medication=false,
             satu_sehat_kirim_medicationrequest=false,penatalaksanaan_terapi_okupasi=false,satu_sehat_kirim_medicationdispense=false,hasil_usg_neonatus=false,hasil_endoskopi_faring_laring=false,
-            satu_sehat_mapping_radiologi=false;
+            satu_sehat_mapping_radiologi=false,satu_sehat_kirim_servicerequest_radiologi=false,satu_sehat_kirim_specimen_radiologi=false,
+            satu_sehat_kirim_observation_radiologi=false,satu_sehat_kirim_diagnosticreport_radiologi=false,satu_sehat_mapping_lab=false,
+            satu_sehat_kirim_servicerequest_lab=false,satu_sehat_kirim_servicerequest_labmb=false,satu_sehat_kirim_specimen_lab=false,satu_sehat_kirim_specimen_labmb=false,
+            satu_sehat_kirim_observation_lab=false,satu_sehat_kirim_observation_labmb=false,satu_sehat_kirim_diagnosticreport_lab=false,satu_sehat_kirim_diagnosticreport_labmb=false,
+            satu_sehat_kirim_allergy_intollerance=false,satu_sehat_cari_allergy=false,satu_sehat_data_alergi_pasien=false,pembayaran_pihak_ke3_bankmandiri=false,
+            metode_pembayaran_bankmandiri=false,bank_tujuan_transfer_bankmandiri=false,kodetransaksi_tujuan_transfer_bankmandiri;
     
     public static void setData(String user, String pass) {
         try {        
@@ -523,7 +528,7 @@ public final class akses {
                         akses.grafik_kunjungan_ranaptahun=true;
                         akses.pcare_cek_rujukan=true;
                         akses.grafik_lab_ralantahun=true;
-                        akses.grafik_rad_ralantahun=true;;
+                        akses.grafik_rad_ralantahun=true;
                         akses.cek_entry_ralan=true;
                         akses.inacbg_klaim_baru_manual2=true;
                         akses.permintaan_medis=true;
@@ -1259,6 +1264,25 @@ public final class akses {
                         akses.hasil_usg_neonatus=true;
                         akses.hasil_endoskopi_faring_laring=true;
                         akses.satu_sehat_mapping_radiologi=true;
+                        akses.satu_sehat_kirim_servicerequest_radiologi=true;
+                        akses.satu_sehat_kirim_specimen_radiologi=true;
+                        akses.satu_sehat_kirim_observation_radiologi=true;
+                        akses.satu_sehat_kirim_diagnosticreport_radiologi=true;
+                        akses.satu_sehat_mapping_lab=true;
+                        akses.satu_sehat_kirim_servicerequest_lab=true;
+                        akses.satu_sehat_kirim_servicerequest_labmb=true;
+                        akses.satu_sehat_kirim_specimen_lab=true;
+                        akses.satu_sehat_kirim_specimen_labmb=true;
+                        akses.satu_sehat_kirim_observation_lab=true;
+                        akses.satu_sehat_kirim_observation_labmb=true;
+                        akses.satu_sehat_kirim_diagnosticreport_lab=true;
+                        akses.satu_sehat_kirim_diagnosticreport_labmb=true;
+                        akses.satu_sehat_kirim_allergy_intollerance=true;
+                        akses.satu_sehat_data_alergi_pasien=true;
+                        akses.pembayaran_pihak_ke3_bankmandiri=true;
+                        akses.metode_pembayaran_bankmandiri=true;
+                        akses.bank_tujuan_transfer_bankmandiri=true;
+                        akses.kodetransaksi_tujuan_transfer_bankmandiri=true;
                     }else if(rs2.getRow()>=1){   
                         rs2.beforeFirst();
                         rs2.next();
@@ -2280,6 +2304,25 @@ public final class akses {
                         akses.hasil_usg_neonatus=true;
                         akses.hasil_endoskopi_faring_laring=true;
                         akses.satu_sehat_mapping_radiologi=true;
+                        akses.satu_sehat_kirim_servicerequest_radiologi=true;
+                        akses.satu_sehat_kirim_specimen_radiologi=true;
+                        akses.satu_sehat_kirim_observation_radiologi=true;
+                        akses.satu_sehat_kirim_diagnosticreport_radiologi=true;
+                        akses.satu_sehat_mapping_lab=true;
+                        akses.satu_sehat_kirim_servicerequest_lab=true;
+                        akses.satu_sehat_kirim_servicerequest_labmb=true;
+                        akses.satu_sehat_kirim_specimen_lab=true;
+                        akses.satu_sehat_kirim_specimen_labmb=true;
+                        akses.satu_sehat_kirim_observation_lab=true;
+                        akses.satu_sehat_kirim_observation_labmb=true;
+                        akses.satu_sehat_kirim_diagnosticreport_lab=true;
+                        akses.satu_sehat_kirim_diagnosticreport_labmb=true;
+                        akses.satu_sehat_kirim_allergy_intollerance=true;
+                        akses.satu_sehat_data_alergi_pasien=true;
+                        akses.pembayaran_pihak_ke3_bankmandiri=true;
+                        akses.metode_pembayaran_bankmandiri=true;
+                        akses.bank_tujuan_transfer_bankmandiri=true;
+                        akses.kodetransaksi_tujuan_transfer_bankmandiri=true;
                     }else if((rs.getRow()==0)&&(rs2.getRow()==0)){
                         akses.kode="";                  
                         akses.penyakit= false;
@@ -3299,6 +3342,25 @@ public final class akses {
                         akses.hasil_usg_neonatus=false;
                         akses.hasil_endoskopi_faring_laring=false;
                         akses.satu_sehat_mapping_radiologi=false;
+                        akses.satu_sehat_kirim_servicerequest_radiologi=false;
+                        akses.satu_sehat_kirim_specimen_radiologi=false;
+                        akses.satu_sehat_kirim_observation_radiologi=false;
+                        akses.satu_sehat_kirim_diagnosticreport_radiologi=false;
+                        akses.satu_sehat_mapping_lab=false;
+                        akses.satu_sehat_kirim_servicerequest_lab=false;
+                        akses.satu_sehat_kirim_servicerequest_labmb=false;
+                        akses.satu_sehat_kirim_specimen_lab=false;
+                        akses.satu_sehat_kirim_specimen_labmb=false;
+                        akses.satu_sehat_kirim_observation_lab=false;
+                        akses.satu_sehat_kirim_observation_labmb=false;
+                        akses.satu_sehat_kirim_diagnosticreport_lab=false;
+                        akses.satu_sehat_kirim_diagnosticreport_labmb=false;
+                        akses.satu_sehat_kirim_allergy_intollerance=false;
+                        akses.satu_sehat_data_alergi_pasien=false;
+                        akses.pembayaran_pihak_ke3_bankmandiri=false;
+                        akses.metode_pembayaran_bankmandiri=false;
+                        akses.bank_tujuan_transfer_bankmandiri=false;
+                        akses.kodetransaksi_tujuan_transfer_bankmandiri=false;
                     }
                 } catch (Exception e) {
                     System.out.println("Notifikasi : "+e);
@@ -4341,6 +4403,21 @@ public final class akses {
         akses.hasil_usg_neonatus=false;
         akses.hasil_endoskopi_faring_laring=false;
         akses.satu_sehat_mapping_radiologi=false;
+        akses.satu_sehat_kirim_servicerequest_radiologi=false;
+        akses.satu_sehat_kirim_specimen_radiologi=false;
+        akses.satu_sehat_kirim_observation_radiologi=false;
+        akses.satu_sehat_kirim_diagnosticreport_radiologi=false;
+        akses.satu_sehat_mapping_lab=false;
+        akses.satu_sehat_kirim_servicerequest_lab=false;
+        akses.satu_sehat_kirim_servicerequest_labmb=false;
+        akses.satu_sehat_kirim_specimen_lab=false;
+        akses.satu_sehat_kirim_specimen_labmb=false;
+        akses.satu_sehat_kirim_observation_lab=false;
+        akses.satu_sehat_kirim_observation_labmb=false;
+        akses.satu_sehat_kirim_diagnosticreport_lab=false;
+        akses.satu_sehat_kirim_diagnosticreport_labmb=false;
+        akses.satu_sehat_kirim_allergy_intollerance=false;
+        akses.satu_sehat_data_alergi_pasien=true;
     }
     
     public static int getjml1() {return akses.jml1;}    
@@ -5399,4 +5476,23 @@ public final class akses {
     public static boolean gethasil_usg_neonatus(){return akses.hasil_usg_neonatus;}
     public static boolean gethasil_endoskopi_faring_laring(){return akses.hasil_endoskopi_faring_laring;}
     public static boolean getsatu_sehat_mapping_radiologi(){return akses.satu_sehat_mapping_radiologi;}
+    public static boolean getsatu_sehat_kirim_servicerequest_radiologi(){return akses.satu_sehat_kirim_servicerequest_radiologi;}
+    public static boolean getsatu_sehat_kirim_specimen_radiologi(){return akses.satu_sehat_kirim_specimen_radiologi;}
+    public static boolean getsatu_sehat_kirim_observation_radiologi(){return akses.satu_sehat_kirim_observation_radiologi;}
+    public static boolean getsatu_sehat_kirim_diagnosticreport_radiologi(){return akses.satu_sehat_kirim_diagnosticreport_radiologi;}
+    public static boolean getsatu_sehat_mapping_lab(){return akses.satu_sehat_mapping_lab;}
+    public static boolean getsatu_sehat_kirim_servicerequest_lab(){return akses.satu_sehat_kirim_servicerequest_lab;}
+    public static boolean getsatu_sehat_kirim_servicerequest_labmb(){return akses.satu_sehat_kirim_servicerequest_labmb;}
+    public static boolean getsatu_sehat_kirim_specimen_lab(){return akses.satu_sehat_kirim_specimen_lab;}
+    public static boolean getsatu_sehat_kirim_specimen_labmb(){return akses.satu_sehat_kirim_specimen_labmb;}
+    public static boolean getsatu_sehat_kirim_observation_lab(){return akses.satu_sehat_kirim_observation_lab;}
+    public static boolean getsatu_sehat_kirim_observation_labmb(){return akses.satu_sehat_kirim_observation_labmb;}
+    public static boolean getsatu_sehat_kirim_diagnosticreport_lab(){return akses.satu_sehat_kirim_diagnosticreport_lab;}
+    public static boolean getsatu_sehat_kirim_diagnosticreport_labmb(){return akses.satu_sehat_kirim_diagnosticreport_labmb;}
+    public static boolean getsatu_sehat_kirim_allergy_intollerance(){return akses.satu_sehat_kirim_allergy_intollerance;}
+    public static boolean getsatu_sehat_data_alergi_pasien(){return akses.satu_sehat_data_alergi_pasien;};
+    public static boolean getpembayaran_pihak_ke3_bankmandiri(){return akses.pembayaran_pihak_ke3_bankmandiri;}
+    public static boolean getmetode_pembayaran_bankmandiri(){return akses.metode_pembayaran_bankmandiri;}
+    public static boolean getbank_tujuan_transfer_bankmandiri(){return akses.bank_tujuan_transfer_bankmandiri;}
+    public static boolean getkodetransaksi_tujuan_transfer_bankmandiri(){return akses.kodetransaksi_tujuan_transfer_bankmandiri;}
 }   
