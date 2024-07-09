@@ -31,7 +31,7 @@ import simrskhanza.DlgPasien;
  *
  * @author dosen
  */
-public final class SatuSehatKirimAllergyIntollerance extends javax.swing.JDialog {
+public final class SatuSehatKirimCarePlan extends javax.swing.JDialog {
 
     private final DefaultTableModel tabMode;
     private sekuel Sequel = new sekuel();
@@ -56,7 +56,7 @@ public final class SatuSehatKirimAllergyIntollerance extends javax.swing.JDialog
      * @param parent
      * @param modal
      */
-    public SatuSehatKirimAllergyIntollerance(java.awt.Frame parent, boolean modal) {
+    public SatuSehatKirimCarePlan(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
 
@@ -64,9 +64,9 @@ public final class SatuSehatKirimAllergyIntollerance extends javax.swing.JDialog
         setSize(628, 674);
 
         tabMode = new DefaultTableModel(null, new String[]{
-            "P", "No.Rawat", "No.RM", "Nama Pasien", "No.KTP Pasien", "Kode Dokter", "Nama Dokter",
-            "No.KTP Dokter", "Kode Poli", "Nama Poli/Unit", "ID Lokasi Unit", "Stts Rawat", "Stts Lanjut",
-            "Tanggal Entry", "ID Encounter", "KATEGORI", "KODE", "SYSTEM", "DISPLAY", "NOTE", "ID ALLERGY"
+                "P","Tanggal Registrasi","No.Rawat","No.RM","Nama Pasien","No.KTP Pasien","Kode Dokter","Nama Dokter",
+                "No.KTP Dokter","Kode Poli","Nama Poli/Unit","ID Lokasi Unit","Stts Rawat","Stts Lanjut",
+                "Tanggal Pulang","ID Encounter","ID Careplan"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -94,42 +94,42 @@ public final class SatuSehatKirimAllergyIntollerance extends javax.swing.JDialog
         tbKamar.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbKamar.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 21; i++) {
+        for (i = 0; i < 17; i++) {
             TableColumn column = tbKamar.getColumnModel().getColumn(i);
-            if (i == 0) {
+            if(i==0){
                 column.setPreferredWidth(20);
-            } else if (i == 1) {
+            }else if(i==1){
                 column.setPreferredWidth(150);
-            } else if (i == 2) {
+            }else if(i==2){
                 column.setPreferredWidth(105);
-            } else if (i == 3) {
+            }else if(i==3){
                 column.setPreferredWidth(70);
-            } else if (i == 4) {
+            }else if(i==4){
                 column.setPreferredWidth(150);
-            } else if (i == 5) {
+            }else if(i==5){
                 column.setPreferredWidth(110);
-            } else if (i == 6) {
+            }else if(i==6){
                 column.setPreferredWidth(80);
-            } else if (i == 7) {
+            }else if(i==7){
                 column.setPreferredWidth(150);
-            } else if (i == 8) {
+            }else if(i==8){
                 column.setPreferredWidth(110);
-            } else if (i == 9) {
+            }else if(i==9){
                 column.setPreferredWidth(80);
-            } else if (i == 10) {
+            }else if(i==10){
                 column.setPreferredWidth(140);
-            } else if (i == 11) {
+            }else if(i==11){
                 column.setPreferredWidth(210);
-            } else if (i == 12) {
+            }else if(i==12){
                 column.setPreferredWidth(63);
-            } else if (i == 13) {
+            }else if(i==13){
                 column.setPreferredWidth(63);
-            } else if (i == 14) {
+            }else if(i==14){
                 column.setPreferredWidth(150);
-            } else if (i == 15) {
+            }else if(i==15){
                 column.setPreferredWidth(215);
-            } else {
-                column.setPreferredWidth(150);
+            }else if(i==16){
+                column.setPreferredWidth(215);
             }
         }
         tbKamar.setDefaultRenderer(Object.class, new WarnaTable());
@@ -198,7 +198,6 @@ public final class SatuSehatKirimAllergyIntollerance extends javax.swing.JDialog
         jLabel16 = new widget.Label();
         TCari = new widget.TextBox();
         BtnCari = new widget.Button();
-        ChkBelumTerkirim = new widget.CekBox();
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
@@ -240,7 +239,7 @@ public final class SatuSehatKirimAllergyIntollerance extends javax.swing.JDialog
         setUndecorated(true);
         setResizable(false);
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Pengiriman Data Allergy Satu Sehat ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Pengiriman Data Care Plan Satu Sehat ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
@@ -335,7 +334,7 @@ public final class SatuSehatKirimAllergyIntollerance extends javax.swing.JDialog
         jLabel15.setPreferredSize(new java.awt.Dimension(85, 23));
         panelGlass9.add(jLabel15);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-04-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-07-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -348,7 +347,7 @@ public final class SatuSehatKirimAllergyIntollerance extends javax.swing.JDialog
         jLabel17.setPreferredSize(new java.awt.Dimension(24, 23));
         panelGlass9.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-04-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-07-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -386,32 +385,12 @@ public final class SatuSehatKirimAllergyIntollerance extends javax.swing.JDialog
         });
         panelGlass9.add(BtnCari);
 
-        ChkBelumTerkirim.setBorder(null);
-        ChkBelumTerkirim.setText("Data belum terkirim");
-        ChkBelumTerkirim.setBorderPainted(true);
-        ChkBelumTerkirim.setBorderPaintedFlat(true);
-        ChkBelumTerkirim.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        ChkBelumTerkirim.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        ChkBelumTerkirim.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        ChkBelumTerkirim.setIconTextGap(2);
-        ChkBelumTerkirim.setName("ChkBelumTerkirim"); // NOI18N
-        ChkBelumTerkirim.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                ChkBelumTerkirimItemStateChanged(evt);
-            }
-        });
-        ChkBelumTerkirim.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ChkBelumTerkirimActionPerformed(evt);
-            }
-        });
-        panelGlass9.add(ChkBelumTerkirim);
-
         jPanel3.add(panelGlass9, java.awt.BorderLayout.PAGE_START);
 
         internalFrame1.add(jPanel3, java.awt.BorderLayout.PAGE_END);
 
         getContentPane().add(internalFrame1, java.awt.BorderLayout.CENTER);
+        internalFrame1.getAccessibleContext().setAccessibleName("::[ Pengiriman Data Care Plan Satu Sehat ]::");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -462,77 +441,54 @@ public final class SatuSehatKirimAllergyIntollerance extends javax.swing.JDialog
 //                                rs.getString("no_ktp"), rs.getString("kd_dokter"), rs.getString("nama"), rs.getString("ktpdokter"), rs.getString("kd_poli"), rs.getString("nm_poli"),
 //                                rs.getString("id_lokasi_satusehat"), rs.getString("stts"), rs.getString("status_lanjut"), rs.getString("tgl_perawatan"), rs.getString("id_encounter"), rs.getString("category"),
 //                                rs.getString("allergy_code"), rs.getString("system"), rs.getString("display"), rs.getString("note"), rs.getString("id_allergy")
-                    iddokter = cekViaSatuSehat.tampilIDParktisi(tbKamar.getValueAt(i, 7).toString());
-                    idpasien = cekViaSatuSehat.tampilIDPasien(tbKamar.getValueAt(i, 4).toString());
+                    iddokter = cekViaSatuSehat.tampilIDParktisi(tbKamar.getValueAt(i, 8).toString());
+                    idpasien = cekViaSatuSehat.tampilIDPasien(tbKamar.getValueAt(i, 5).toString());
                     try {
                         headers = new HttpHeaders();
                         headers.setContentType(MediaType.APPLICATION_JSON);
                         headers.add("Authorization", "Bearer " + api.TokenSatuSehat());
 
                         json = "{\n"
-                                + "    \"resourceType\": \"AllergyIntolerance\",\n"
-                                + "    \"identifier\": [\n"
+                                + "    \"resourceType\": \"CarePlan\",\n"
+                                + "    \"status\": \"active\",\n"
+                                + "    \"intent\": \"plan\",\n"
+                                + "    \"title\": \"Rencana Perawatan\",\n"
+                                + "    \"description\": \"Rujuk ke RS\",\n"
+                                + "    \"category\": [\n"
                                 + "        {\n"
-                                + "            \"system\": \"http://sys-ids.kemkes.go.id/allergy/" + koneksiDB.IDSATUSEHAT() + "\",\n"
-                                + "            \"use\": \"official\",\n"
-                                + "            \"value\": \"" + tbKamar.getValueAt(i, 1).toString().replaceAll("/", "") + "\"\n"
+                                + "            \"coding\": [\n"
+                                + "               {\n"
+                                + "                   \"system\": \"http://snomed.info/sct\",\n"
+                                + "                   \"code\": \"736372004\",\n"
+                                + "                   \"display\": \"Discharge care plan\"\n"
+                                + "               }\n"
+                                + "            ]\n"
                                 + "        }\n"
                                 + "    ],\n"
-                                + "    \"clinicalStatus\": {\n"
-                                + "        \"coding\": [\n"
-                                + "            {\n"
-                                + "                \"system\": \"http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical\",\n"
-                                + "                \"code\": \"active\",\n"
-                                + "                \"display\": \"Active\"\n"
-                                + "            }\n"
-                                + "        ]\n"
-                                + "    },\n"
-                                + "    \"verificationStatus\": {\n"
-                                + "        \"coding\": [\n"
-                                + "            {\n"
-                                + "                \"system\": \"http://terminology.hl7.org/CodeSystem/allergyintolerance-verification\",\n"
-                                + "                \"code\": \"confirmed\",\n"
-                                + "                \"display\": \"Confirmed\"\n"
-                                + "            }\n"
-                                + "        ]\n"
-                                + "    },\n"
-                                + "    \"category\": [\n"
-                                + "        \"" + tbKamar.getValueAt(i, 15).toString().replaceAll("Makanan", "food").replaceAll("Medication", "medication").replaceAll("Lingkungan", "environment").replaceAll("Biologis", "biologic") + "\"\n"
-                                + "    ],\n"
-                                + "    \"code\": {\n"
-                                + "        \"coding\": [\n"
-                                + "            {\n"
-                                + "                \"system\": \"" + tbKamar.getValueAt(i, 17).toString() + "\",\n"
-                                + "                \"code\": \"" + tbKamar.getValueAt(i, 16).toString() + "\",\n"
-                                + "                \"display\": \"" + tbKamar.getValueAt(i, 18).toString() + "\"\n"
-                                + "            }\n"
-                                + "        ],\n"
-                                + "        \"text\": \"" + tbKamar.getValueAt(i, 19).toString() + "\"\n"
-                                + "    },\n"
-                                + "    \"patient\": {\n"
+                                + "    \"subject\": {\n"
                                 + "        \"reference\": \"Patient/" + idpasien + "\",\n"
-                                + "        \"display\": \"" + tbKamar.getValueAt(i, 3).toString() + "\"\n"
+                                + "        \"display\": \"" + tbKamar.getValueAt(i, 4).toString() + "\"\n"
                                 + "    },\n"
                                 + "    \"encounter\": {\n"
-                                + "        \"reference\": \"Encounter/" + tbKamar.getValueAt(i, 14).toString() + "\",\n"
-                                + "        \"display\": \"Kunjungan " + tbKamar.getValueAt(i, 3).toString() + "\"\n"
+                                + "        \"reference\": \"Encounter/" + tbKamar.getValueAt(i, 15).toString() + "\"\n"
                                 + "    },\n"
-                                + "    \"recordedDate\": \"" + tbKamar.getValueAt(i, 13).toString() + "\",\n"
-                                + "    \"recorder\": {\n"
-                                + "        \"reference\": \"Practitioner/" + iddokter + "\"\n"
+                                + "    \"created\": \"" + tbKamar.getValueAt(i, 14).toString() + "\",\n"
+                                + "    \"author\": {\n"
+                                + "        \"reference\": \"Practitioner/" + iddokter + "\",\n"
+                                + "        \"display\": \"" + tbKamar.getValueAt(i, 7).toString() + "\"\n"
                                 + "    }\n"
                                 + "}";
-                        System.out.println("URL : " + link + "/AllergyIntolerance");
+                        System.out.println("URL : " + link + "/CarePlan");
                         System.out.println("Request JSON : " + json);
                         requestEntity = new HttpEntity(json, headers);
 //                        System.out.println(headers.toString());
-                        json = api.getRest().exchange(link + "/AllergyIntolerance", HttpMethod.POST, requestEntity, String.class).getBody();
+                        json = api.getRest().exchange(link + "/CarePlan", HttpMethod.POST, requestEntity, String.class).getBody();
                         System.out.println("Result JSON : " + json);
                         root = mapper.readTree(json);
                         response = root.path("id");
                         if (!response.asText().equals("")) {
-                            Sequel.menyimpan("satu_sehat_allergy", "?,?", "No.Rawat", 2, new String[]{
-                                tbKamar.getValueAt(i, 1).toString(), response.asText()
+                            Sequel.menyimpan("satu_sehat_careplan", "?,?", "No.Rawat", 2, new String[]{
+                                tbKamar.getValueAt(i, 2).toString(), response.asText()
                             });
                             //tag update encounter
                         }
@@ -573,22 +529,12 @@ public final class SatuSehatKirimAllergyIntollerance extends javax.swing.JDialog
         }
     }//GEN-LAST:event_BtnAllKeyPressed
 
-    private void ChkBelumTerkirimItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ChkBelumTerkirimItemStateChanged
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        tampil();
-        this.setCursor(Cursor.getDefaultCursor());
-    }//GEN-LAST:event_ChkBelumTerkirimItemStateChanged
-
-    private void ChkBelumTerkirimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkBelumTerkirimActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ChkBelumTerkirimActionPerformed
-
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
-            SatuSehatKirimAllergyIntollerance dialog = new SatuSehatKirimAllergyIntollerance(new javax.swing.JFrame(), true);
+            SatuSehatKirimCarePlan dialog = new SatuSehatKirimCarePlan(new javax.swing.JFrame(), true);
             dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosing(java.awt.event.WindowEvent e) {
@@ -604,7 +550,6 @@ public final class SatuSehatKirimAllergyIntollerance extends javax.swing.JDialog
     private widget.Button BtnCari;
     private widget.Button BtnKeluar;
     private widget.Button BtnKirim;
-    private widget.CekBox ChkBelumTerkirim;
     private widget.Tanggal DTPCari1;
     private widget.Tanggal DTPCari2;
     private widget.Label LCount;
@@ -626,82 +571,17 @@ public final class SatuSehatKirimAllergyIntollerance extends javax.swing.JDialog
     private void tampil() {
         Valid.tabelKosong(tabMode);
         try {
-            String belumterkirim = "";
-            if (ChkBelumTerkirim.isSelected() == true) {
-                belumterkirim = " satu_sehat_allergy.id_allergy IS NULL and ";
-            } else {
-                belumterkirim = "";
-            }
-            ps = koneksi.prepareStatement(
-                    "SELECT\n"
-                    + "	reg_periksa.no_rawat, \n"
-                    + "	pasien.nm_pasien, \n"
-                    + "	pasien.no_ktp, \n"
-                    + "	pegawai.nama, \n"
-                    + "	pegawai.no_ktp AS ktpdokter, \n"
-                    + "	poliklinik.nm_poli, \n"
-                    + "	satu_sehat_mapping_lokasi_ralan.id_lokasi_satusehat, \n"
-                    + "	reg_periksa.stts, \n"
-                    + "	reg_periksa.status_lanjut, \n"
-                    + "	reg_periksa.kd_dokter,"
-                    + " reg_periksa.kd_poli, \n"
-                    + "	reg_periksa.no_rkm_medis, \n"
-                    + "	satu_sehat_encounter.id_encounter, \n"
-                    + "	alergi_pasien.allergy_code, \n"
-                    + "	satu_sehat_ref_allergy.system, \n"
-                    + "	satu_sehat_ref_allergy.display, \n"
-                    + "	alergi_pasien.note, \n"
-                    + "	DATE_FORMAT(alergi_pasien.tgl_perawatan, '%Y-%m-%dT%H:%i:%s+00:00') AS tgl_perawatan, \n"
-                    + "	alergi_pasien.nippetugas, \n"
-                    + "	petugas.nama AS petugasallergy, \n"
-                    + "	alergi_pasien.category,"
-                    + " satu_sehat_allergy.id_allergy \n"
-                    + "FROM\n"
-                    + "	reg_periksa\n"
-                    + "	INNER JOIN\n"
-                    + "	pasien\n"
-                    + "	ON \n"
-                    + "		reg_periksa.no_rkm_medis = pasien.no_rkm_medis\n"
-                    + "	INNER JOIN\n"
-                    + "	pegawai\n"
-                    + "	ON \n"
-                    + "		pegawai.nik = reg_periksa.kd_dokter\n"
-                    + "	INNER JOIN\n"
-                    + "	poliklinik\n"
-                    + "	ON \n"
-                    + "		reg_periksa.kd_poli = poliklinik.kd_poli\n"
-                    + "	INNER JOIN\n"
-                    + "	satu_sehat_mapping_lokasi_ralan\n"
-                    + "	ON \n"
-                    + "		satu_sehat_mapping_lokasi_ralan.kd_poli = poliklinik.kd_poli\n"
-                    + "	INNER JOIN\n"
-                    + "	satu_sehat_encounter\n"
-                    + "	ON \n"
-                    + "		satu_sehat_encounter.no_rawat = reg_periksa.no_rawat\n"
-                    + "	INNER JOIN\n"
-                    + "	alergi_pasien\n"
-                    + "	ON \n"
-                    + "		reg_periksa.no_rawat = alergi_pasien.no_rawat\n"
-                    + "	INNER JOIN\n"
-                    + "	satu_sehat_ref_allergy\n"
-                    + "	ON \n"
-                    + "		alergi_pasien.allergy_code = satu_sehat_ref_allergy.kode\n"
-                    + "	INNER JOIN\n"
-                    + "	satu_sehat_ref_allergy_reaction\n"
-                    + "	ON \n"
-                    + "		alergi_pasien.reactioncode = satu_sehat_ref_allergy_reaction.kode\n"
-                    + "	LEFT JOIN\n"
-                    + "	satu_sehat_allergy\n"
-                    + "	ON \n"
-                    + "		reg_periksa.no_rawat = satu_sehat_allergy.no_rawat\n"
-                    + "	INNER JOIN\n"
-                    + "	pegawai AS petugas\n"
-                    + "	ON \n"
-                    + "		petugas.nik = alergi_pasien.nippetugas  "
-                    + "where " + belumterkirim + " reg_periksa.tgl_registrasi between ? and ? "
-                    + (TCari.getText().equals("") ? "" : "and (reg_periksa.no_rawat like ? or reg_periksa.no_rkm_medis like ? or "
-                    + "pasien.nm_pasien like ? or pasien.no_ktp like ? or pegawai.nama like ? or poliklinik.nm_poli like ? or "
-                    + "reg_periksa.stts like ? or reg_periksa.status_lanjut like ?)") + " order by reg_periksa.tgl_registrasi,reg_periksa.jam_reg");
+            ps=koneksi.prepareStatement(
+                "select reg_periksa.tgl_registrasi,reg_periksa.jam_reg,reg_periksa.no_rawat,reg_periksa.no_rkm_medis,pasien.nm_pasien,pasien.no_ktp,reg_periksa.kd_dokter,"+
+                "pegawai.nama,pegawai.no_ktp as ktpdokter,reg_periksa.kd_poli,poliklinik.nm_poli,satu_sehat_mapping_lokasi_ralan.id_lokasi_satusehat,reg_periksa.stts,"+
+                "reg_periksa.status_lanjut,concat(nota_inap.tanggal,'T',nota_inap.jam,'+07:00') as pulang,ifnull(satu_sehat_encounter.id_encounter,'') as id_encounter, satu_sehat_careplan.id_careplan "+
+                "from reg_periksa inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis inner join pegawai on pegawai.nik=reg_periksa.kd_dokter "+
+                "inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli inner join satu_sehat_mapping_lokasi_ralan on satu_sehat_mapping_lokasi_ralan.kd_poli=poliklinik.kd_poli "+
+                "inner join nota_inap on nota_inap.no_rawat=reg_periksa.no_rawat left join satu_sehat_encounter on satu_sehat_encounter.no_rawat=reg_periksa.no_rawat left join satu_sehat_careplan on satu_sehat_careplan.no_rawat=reg_periksa.no_rawat "+
+                "where nota_inap.tanggal between ? and ? "+
+                (TCari.getText().equals("")?"":"and (reg_periksa.no_rawat like ? or reg_periksa.no_rkm_medis like ? or "+
+                "pasien.nm_pasien like ? or pasien.no_ktp like ? or pegawai.nama like ? or poliklinik.nm_poli like ? or "+
+                "reg_periksa.stts like ? or reg_periksa.status_lanjut like ?)")+" order by reg_periksa.tgl_registrasi,reg_periksa.jam_reg");
             try {
                 ps.setString(1, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
                 ps.setString(2, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
@@ -717,21 +597,13 @@ public final class SatuSehatKirimAllergyIntollerance extends javax.swing.JDialog
                 }
                 rs = ps.executeQuery();
                 while (rs.next()) {
-                        if (rs.getString("id_encounter").equals("")) {
+
                             tabMode.addRow(new Object[]{
-                                true, rs.getString("no_rawat"), rs.getString("no_rkm_medis"), rs.getString("nm_pasien"),
-                                rs.getString("no_ktp"), rs.getString("kd_dokter"), rs.getString("nama"), rs.getString("ktpdokter"), rs.getString("kd_poli"), rs.getString("nm_poli"),
-                                rs.getString("id_lokasi_satusehat"), rs.getString("stts"), rs.getString("status_lanjut"), rs.getString("tgl_perawatan"), rs.getString("id_encounter"), rs.getString("category"),
-                                rs.getString("allergy_code"), rs.getString("system"), rs.getString("display"), rs.getString("note"), rs.getString("id_allergy")
+                                false,rs.getString("tgl_registrasi")+"T"+rs.getString("jam_reg")+"+07:00",rs.getString("no_rawat"),rs.getString("no_rkm_medis"),rs.getString("nm_pasien"),
+                                rs.getString("no_ktp"),rs.getString("kd_dokter"),rs.getString("nama"),rs.getString("ktpdokter"),rs.getString("kd_poli"),rs.getString("nm_poli"),
+                                rs.getString("id_lokasi_satusehat"),rs.getString("stts"),rs.getString("status_lanjut"),rs.getString("pulang"),rs.getString("id_encounter"),rs.getString("id_careplan")
                             });
-                        } else {
-                            tabMode.addRow(new Object[]{
-                                false, rs.getString("no_rawat"), rs.getString("no_rkm_medis"), rs.getString("nm_pasien"),
-                                rs.getString("no_ktp"), rs.getString("kd_dokter"), rs.getString("nama"), rs.getString("ktpdokter"), rs.getString("kd_poli"), rs.getString("nm_poli"),
-                                rs.getString("id_lokasi_satusehat"), rs.getString("stts"), rs.getString("status_lanjut"), rs.getString("tgl_perawatan"), rs.getString("id_encounter"), rs.getString("category"),
-                                rs.getString("allergy_code"), rs.getString("system"), rs.getString("display"), rs.getString("note"), rs.getString("id_allergy")
-                            });
-                        }
+                        
                 }
             } catch (Exception e) {
                 System.out.println("Notif : " + e);

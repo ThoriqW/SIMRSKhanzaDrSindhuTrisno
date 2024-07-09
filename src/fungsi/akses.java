@@ -226,7 +226,7 @@ public final class akses {
             satu_sehat_kirim_servicerequest_lab=false,satu_sehat_kirim_servicerequest_labmb=false,satu_sehat_kirim_specimen_lab=false,satu_sehat_kirim_specimen_labmb=false,
             satu_sehat_kirim_observation_lab=false,satu_sehat_kirim_observation_labmb=false,satu_sehat_kirim_diagnosticreport_lab=false,satu_sehat_kirim_diagnosticreport_labmb=false,
             satu_sehat_kirim_allergy_intollerance=false,satu_sehat_cari_allergy=false,satu_sehat_data_alergi_pasien=false,pembayaran_pihak_ke3_bankmandiri=false,
-            metode_pembayaran_bankmandiri=false,bank_tujuan_transfer_bankmandiri=false,kodetransaksi_tujuan_transfer_bankmandiri;
+            metode_pembayaran_bankmandiri=false,bank_tujuan_transfer_bankmandiri=false,kodetransaksi_tujuan_transfer_bankmandiri,satu_sehat_kirim_care_plan;
     
     public static void setData(String user, String pass) {
         try {        
@@ -1283,6 +1283,7 @@ public final class akses {
                         akses.metode_pembayaran_bankmandiri=true;
                         akses.bank_tujuan_transfer_bankmandiri=true;
                         akses.kodetransaksi_tujuan_transfer_bankmandiri=true;
+                        akses.satu_sehat_kirim_care_plan=true;
                     }else if(rs2.getRow()>=1){   
                         rs2.beforeFirst();
                         rs2.next();
@@ -2323,6 +2324,7 @@ public final class akses {
                         akses.metode_pembayaran_bankmandiri=true;
                         akses.bank_tujuan_transfer_bankmandiri=true;
                         akses.kodetransaksi_tujuan_transfer_bankmandiri=true;
+                        akses.satu_sehat_kirim_care_plan=true;
                     }else if((rs.getRow()==0)&&(rs2.getRow()==0)){
                         akses.kode="";                  
                         akses.penyakit= false;
@@ -3361,6 +3363,7 @@ public final class akses {
                         akses.metode_pembayaran_bankmandiri=false;
                         akses.bank_tujuan_transfer_bankmandiri=false;
                         akses.kodetransaksi_tujuan_transfer_bankmandiri=false;
+                        akses.satu_sehat_kirim_care_plan=false;
                     }
                 } catch (Exception e) {
                     System.out.println("Notifikasi : "+e);
@@ -4417,7 +4420,8 @@ public final class akses {
         akses.satu_sehat_kirim_diagnosticreport_lab=false;
         akses.satu_sehat_kirim_diagnosticreport_labmb=false;
         akses.satu_sehat_kirim_allergy_intollerance=false;
-        akses.satu_sehat_data_alergi_pasien=true;
+        akses.satu_sehat_data_alergi_pasien=false;
+        akses.satu_sehat_kirim_care_plan=false;
     }
     
     public static int getjml1() {return akses.jml1;}    
@@ -5495,4 +5499,5 @@ public final class akses {
     public static boolean getmetode_pembayaran_bankmandiri(){return akses.metode_pembayaran_bankmandiri;}
     public static boolean getbank_tujuan_transfer_bankmandiri(){return akses.bank_tujuan_transfer_bankmandiri;}
     public static boolean getkodetransaksi_tujuan_transfer_bankmandiri(){return akses.kodetransaksi_tujuan_transfer_bankmandiri;}
+    public static boolean getsatu_sehat_kirim_care_plan(){return akses.satu_sehat_kirim_care_plan;}
 }   
