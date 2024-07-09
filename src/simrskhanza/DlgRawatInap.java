@@ -1,6 +1,7 @@
 
 package simrskhanza;
 
+import bridging.DlgDataAlergiPasien;
 import rekammedis.RMRiwayatPerawatan;
 import surat.SuratKontrol;
 import keuangan.DlgCariPerawatanRanap;
@@ -8398,6 +8399,18 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
     private void BtnAlergiIntoleranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAlergiIntoleranActionPerformed
         // TODO add your handling code here:
+         if(TNoRw.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu pasien...!!!");
+            TCari.requestFocus();
+        }else{
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            DlgDataAlergiPasien alergi=new DlgDataAlergiPasien(null,false);
+            alergi.setNoRm(TNoRw.getText(),TNoRM.getText(),TPasien.getText());
+            alergi.setSize(internalFrame1.getWidth(),internalFrame1.getHeight());
+            alergi.setLocationRelativeTo(internalFrame1);
+            alergi.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
     }//GEN-LAST:event_BtnAlergiIntoleranActionPerformed
 
     private void BtnTemplateResepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTemplateResepActionPerformed
@@ -9414,6 +9427,11 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         }
         BtnPengkajianRestrain.setVisible(akses.getpengkajian_restrain()); 
         if(akses.getpengkajian_restrain()==true){
+            tinggi=tinggi+24;
+        }
+        
+        BtnAlergiIntoleran.setVisible(true); 
+            if(akses.getsatu_sehat_data_alergi_pasien()==true){
             tinggi=tinggi+24;
         }
         FormMenu.setPreferredSize(new Dimension(195,(tinggi+10)));
