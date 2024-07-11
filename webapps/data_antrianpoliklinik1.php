@@ -103,7 +103,7 @@ $jam = date("H:i");
                         and reg_periksa.no_rkm_medis=pasien.no_rkm_medis 
                         and reg_periksa.kd_poli=poliklinik.kd_poli 
                         where reg_periksa.tgl_registrasi=current_date() 
-                        and poliklinik.nm_poli='GIGI ENDODONTIS' 
+                        and poliklinik.nm_poli='POLIKLINIK GIGI ENDODONSI' 
                         and stts='Belum' 
                         order by reg_periksa.jam_reg asc limit 10";
                         $hasil = bukaquery($_sql);
@@ -218,7 +218,7 @@ $jam = date("H:i");
                         and reg_periksa.no_rkm_medis=pasien.no_rkm_medis 
                         and reg_periksa.kd_poli=poliklinik.kd_poli 
                         where reg_periksa.tgl_registrasi=current_date() 
-                        and poliklinik.nm_poli='GIGI PERIDONTI' 
+                        and poliklinik.nm_poli='POLIKLINIK GIGI PERIODONTI' 
                         and stts='Belum' 
                         order by reg_periksa.jam_reg asc limit 10";
                         $hasil = bukaquery($_sql);

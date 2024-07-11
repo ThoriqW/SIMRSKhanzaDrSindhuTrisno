@@ -279,7 +279,7 @@ $jam = date("H:i");
                     }
                 }
             }
-            if (poli == "GIGI ENDODONTIS") {
+            if (poli == "POLIKLINIK GIGI ENDODONSI") {
                 var poliSound = new Audio('suara/gigi.mp3');
                 var nomorurut;
                 for (var i = 1; i <= 50; i++) {
@@ -293,7 +293,7 @@ $jam = date("H:i");
                     }
                 }
             }
-            if (poli == "GIGI PERIDONTI") {
+            if (poli == "POLIKLINIK GIGI PERIODONTI") {
                 var poliSound = new Audio('suara/gigi.mp3');
                 var nomorurut;
                 for (var i = 1; i <= 50; i++) {
