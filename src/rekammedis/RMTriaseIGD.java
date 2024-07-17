@@ -12,13 +12,16 @@
 
 package rekammedis;
 
+import com.google.zxing.WriterException;
 import digitalsignature.DlgViewPdf;
+import digitalsignature.TteApi;
 import fungsi.WarnaTable;
 import fungsi.batasInput;
 import fungsi.koneksiDB;
 import fungsi.sekuel;
 import fungsi.validasi;
 import fungsi.akses;
+import fungsi.qrcodegenerator;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Desktop;
@@ -30,6 +33,7 @@ import java.awt.event.WindowListener;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -3993,7 +3997,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
                     }
                       
                     try {
-                        pilihan = (String)JOptionPane.showInputDialog(null,"Silahkan pilih Lembar/PDF Triase Skala 1..!","Pilihan",JOptionPane.QUESTION_MESSAGE,null,new Object[]{"Lembar Triase Skala 1","PDF Triase Skala 1","PDF Triase Skala TTE"},"Lambar Triase Skala 1");
+                        pilihan = (String)JOptionPane.showInputDialog(null,"Silahkan pilih Lembar/PDF Triase Skala 1..!","Pilihan",JOptionPane.QUESTION_MESSAGE,null,new Object[]{"Lembar Triase Skala 1","PDF Triase Skala 1","PDF Triase Skala 1 TTE"},"Lambar Triase Skala 1");
                         switch (pilihan) {
                             case "Lembar Triase Skala 1":
                                   Valid.MyReportqry("rptLembarTriaseSkala1.jasper","report","::[ Triase Skala 1 ]::","select * from temporary where temporary.temp37='"+akses.getalamatip()+"' order by temporary.no",param);
@@ -4001,7 +4005,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
                             case "PDF Triase Skala 1":
                                   Valid.MyReportqrypdf("rptLembarTriaseSkala1.jasper","report","::[ Triase Skala 1 ]::","select * from temporary where temporary.temp37='"+akses.getalamatip()+"' order by temporary.no",param);
                                   break;
-                            case "PDF Triase Skala TTE":
+                            case "PDF Triase Skala 1 TTE":
                                     if(tbTriase.getSelectedRow()>-1){
                                         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                                         FileName=tbTriase.getValueAt(tbTriase.getSelectedRow(),0).toString().replaceAll("/","_")+".pdf";

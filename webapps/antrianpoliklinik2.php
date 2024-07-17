@@ -108,7 +108,7 @@ $jam = date("H:i");
 
 <body class="bg">
     <header>
-        <nav class="teal lighten-1">
+        <nav class="teal darken-4">
             <div class="nav-wrapper">
                 <ul class="center hide-on-med-and-down" id="nv">
                     <li>
@@ -137,8 +137,8 @@ $jam = date("H:i");
     </header>
 
     <main>
-        <div class="container-fluid" id="judul">
-        </div>
+        <!-- <div class="container-fluid" id="judul">
+        </div> -->
         <div class="container-fluid" id="data">
         </div>
     </main>

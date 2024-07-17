@@ -120,6 +120,9 @@
                   <Dimension value="[130, 23]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="KdDPJPLayananActionPerformed"/>
+              </Events>
             </Component>
             <Component class="widget.Button" name="BtnCari">
               <Properties>

@@ -101,6 +101,7 @@ $jam = date("H:i");
         .active-slide {
             display: block;
         }
+        
     </style>
     <!-- Global style END -->
 
@@ -108,7 +109,7 @@ $jam = date("H:i");
 
 <body class="bg">
     <header>
-        <nav class="teal lighten-1">
+        <nav class="teal darken-4">
             <div class="nav-wrapper">
                 <ul class="center hide-on-med-and-down" id="nv">
                     <li>
@@ -137,8 +138,8 @@ $jam = date("H:i");
     </header>
 
     <main>
-        <div class="container-fluid" id="judul">
-        </div>
+        <!-- <div class="container-fluid" id="judul">
+        </div> -->
         <div class="container-fluid" id="data">
         </div>
     </main>
@@ -307,6 +308,34 @@ $jam = date("H:i");
                     }
                 }
             }
+            if (poli == "POLIKLINIK PENYAKIT DALAM") {
+                var poliSound = new Audio('suara/penyakitdalam.mp3');
+                var nomorurut;
+                for (var i = 1; i <= 50; i++) {
+                    if (parseInt(nomor) === i) {
+                        nomorurut = new Audio('suara/' + i + '.mp3');
+                        nomorurut.onended = function () {
+                            poliSound.play();
+                        };
+                        nomorurut.play();
+                        break;
+                    }
+                }
+            }
+            if (poli == "POLIKLINIK OBGYN") {
+                var poliSound = new Audio('suara/obgyn.mp3');
+                var nomorurut;
+                for (var i = 1; i <= 50; i++) {
+                    if (parseInt(nomor) === i) {
+                        nomorurut = new Audio('suara/' + i + '.mp3');
+                        nomorurut.onended = function () {
+                            poliSound.play();
+                        };
+                        nomorurut.play();
+                        break;
+                    }
+                }
+            }
         }
 
         $(document).ready(main);
@@ -316,7 +345,7 @@ $jam = date("H:i");
         var auto_refresh = setInterval(
             function () {
                 $('#data').load('data_antrianpoliklinik1.php').fadeIn("fast");
-            }, 27000
+            }, 36000
         );
         var auto_refresh = setInterval(
             function () {

@@ -5,6 +5,7 @@
 
 package surat;
 
+import com.google.zxing.WriterException;
 import fungsi.WarnaTable;
 import fungsi.batasInput;
 import fungsi.koneksiDB;
@@ -37,6 +38,8 @@ import javax.swing.text.html.StyleSheet;
 import kepegawaian.DlgCariDokter;
 import kepegawaian.DlgCariPetugas;
 import digitalsignature.DlgViewPdf;
+import fungsi.qrcodegenerator;
+import java.io.IOException;
 
 
 /**
@@ -2286,13 +2289,13 @@ public final class SuratPersetujuanPenolakanTindakan extends javax.swing.JDialog
         // TODO add your handling code here:
         if(tbObat.getSelectedRow()>-1){
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            FileName=tbObat.getValueAt(tbObat.getSelectedRow(),0).toString().replaceAll("/","_")+".pdf";
+            FileName=tbObat.getValueAt(tbObat.getSelectedRow(),1).toString().replaceAll("/","_")+".pdf";
             DlgViewPdf berkas=new DlgViewPdf(null,true);
-            if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"'")>0){
-                berkas.tampilPdf(FileName,"berkastte/persetujuan_penolakan_tindakan",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"008");
+            if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),1).toString()+"'")>0){
+                berkas.tampilPdf(FileName,"berkastte/persetujuan_penolakan_tindakan",tbObat.getValueAt(tbObat.getSelectedRow(),1).toString(),"008");
             }else{
                 createPdf(FileName);
-                berkas.tampilPdfLocal(FileName,"local","berkastte/persetujuan_penolakan_tindakan",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"008");
+                berkas.tampilPdfLocal(FileName,"local","berkastte/persetujuan_penolakan_tindakan",tbObat.getValueAt(tbObat.getSelectedRow(),1).toString(),"008");
             }
             berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
             berkas.setLocationRelativeTo(internalFrame1);

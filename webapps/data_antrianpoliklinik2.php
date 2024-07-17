@@ -13,7 +13,7 @@ $jam = date("H:i");
     <div class="col s6 list-pasien-poli">
         <div class="slider">
             <div class="slide slide1 active-slide active-slide1">
-                <h1>Poli Anak</h1>
+                <h1>POLIKLINIK ANAK</h1>
                 <table class="responsive-table table-poli">
                     <thead>
                         <tr>
@@ -31,7 +31,7 @@ $jam = date("H:i");
                         where reg_periksa.tgl_registrasi=current_date() 
                         and poliklinik.nm_poli='POLIKLINIK ANAK' 
                         and stts='Belum' 
-                        order by reg_periksa.jam_reg asc limit 10";
+                        order by reg_periksa.no_reg asc limit 15";
                         $hasil = bukaquery($_sql);
 
                         if (mysqli_num_rows($hasil) > 0) {
@@ -42,6 +42,9 @@ $jam = date("H:i");
                                       <td>" . $data['no_reg'] . "</td>
                                   </tr>";
                             }
+                            if(mysqli_num_rows($hasil) > 14){
+                                echo "<td>.  .  .  .  .  .  .</td>";
+                            }
                         } else {
                             echo "<td>TIDAK ADA ANTRIAN</td>";
                         }
@@ -50,7 +53,7 @@ $jam = date("H:i");
                 </table>
             </div>
             <div class="slide slide1">
-                <h1>Poli Jantung</h1>
+                <h1>POLIKLINIK JANTUNG</h1>
                 <table class="responsive-table table-poli">
                     <thead>
                         <tr>
@@ -68,7 +71,7 @@ $jam = date("H:i");
                         where reg_periksa.tgl_registrasi=current_date() 
                         and poliklinik.nm_poli='POLIKLINIK JANTUNG' 
                         and stts='Belum' 
-                        order by reg_periksa.jam_reg asc limit 10";
+                        order by reg_periksa.no_reg asc limit 15";
                         $hasil = bukaquery($_sql);
 
                         if (mysqli_num_rows($hasil) > 0) {
@@ -78,6 +81,9 @@ $jam = date("H:i");
                                       <td>" . $data['nm_dokter'] . "</td>
                                       <td>" . $data['no_reg'] . "</td>
                                   </tr>";
+                            }
+                            if(mysqli_num_rows($hasil) > 14){
+                                echo "<td>.  .  .  .  .  .  .</td>";
                             }
                         } else {
                             echo "<td>TIDAK ADA ANTRIAN</td>";
@@ -91,7 +97,7 @@ $jam = date("H:i");
     <div class="col s6 list-pasien-poli">
         <div class="slider">
             <div class="slide slide2 active-slide active-slide2">
-                <h1>Poli Kulkel</h1>
+                <h1>POLIKLINIK KULIT DAN KELAMIN</h1>
                 <table class="responsive-table table-poli">
                     <thead>
                         <tr>
@@ -109,7 +115,7 @@ $jam = date("H:i");
                         where reg_periksa.tgl_registrasi=current_date() 
                         and poliklinik.nm_poli='POLIKLINIK KULIT DAN KELAMIN' 
                         and stts='Belum' 
-                        order by reg_periksa.jam_reg asc limit 10";
+                        order by reg_periksa.no_reg asc limit 15";
                         $hasil = bukaquery($_sql);
 
                         if (mysqli_num_rows($hasil) > 0) {
@@ -119,6 +125,9 @@ $jam = date("H:i");
                                       <td>" . $data['nm_dokter'] . "</td>
                                       <td>" . $data['no_reg'] . "</td>
                                   </tr>";
+                            }
+                            if(mysqli_num_rows($hasil) > 14){
+                                echo "<td>.  .  .  .  .  .  .</td>";
                             }
                         } else {
                             echo "<td>TIDAK ADA ANTRIAN</td>";

@@ -28,6 +28,7 @@ import surat.SuratKontrol;
 import bridging.INACBGPerawatanCorona;
 import bridging.PCareDataPendaftaran;
 import bridging.SisruteRujukanKeluar;
+import com.google.zxing.WriterException;
 import laporan.DlgDiagnosaPenyakit;
 import informasi.InformasiAnalisaKamin;
 import keuangan.DlgKamar;
@@ -150,6 +151,8 @@ import surat.SuratSakit;
 import surat.SuratSakitPihak2;
 import digitalsignature.DlgViewPdf;
 import fungsi.WarnaTableKamarInap;
+import fungsi.qrcodegenerator;
+import java.io.IOException;
 
 /**
  *
@@ -5843,7 +5846,8 @@ public class DlgKamarInap extends javax.swing.JDialog {
                 kdkamar.setEditable(false);
                 i=1;
                 isKmr();
-                diagnosaawal.setEditable(false);                
+                diagnosaawal.setEditable(false);
+                diagnosaakhir.setEditable(false);                 
                 diagnosaakhir.setVisible(true);                
                 btnDiagnosa.setVisible(true);
                 jLabel23.setVisible(true);

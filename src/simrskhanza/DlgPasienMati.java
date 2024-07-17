@@ -10,6 +10,7 @@
  */
 
 package simrskhanza;
+import com.google.zxing.WriterException;
 import fungsi.WarnaTable;
 import fungsi.batasInput;
 import fungsi.koneksiDB;
@@ -36,6 +37,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import kepegawaian.DlgCariDokter;
 import digitalsignature.DlgViewPdf;
+import fungsi.qrcodegenerator;
+import java.io.IOException;
 
 /**
  *
@@ -1158,13 +1161,13 @@ private void MnCetakSuratMatiActionPerformed(java.awt.event.ActionEvent evt) {//
         // TODO add your handling code here:
         if(tbMati.getSelectedRow()>-1){
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            FileName=tbMati.getValueAt(tbMati.getSelectedRow(),0).toString().replaceAll("/","_")+".pdf";
+            FileName=tbMati.getValueAt(tbMati.getSelectedRow(),2).toString().replaceAll("/","_")+".pdf";
             DlgViewPdf berkas=new DlgViewPdf(null,true);
-            if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+tbMati.getValueAt(tbMati.getSelectedRow(),0).toString()+"'")>0){
-                berkas.tampilPdf(FileName,"berkastte/surat_kematian",tbMati.getValueAt(tbMati.getSelectedRow(),0).toString(),"007");
+            if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+tbMati.getValueAt(tbMati.getSelectedRow(),2).toString()+"'")>0){
+                berkas.tampilPdf(FileName,"berkastte/surat_kematian",tbMati.getValueAt(tbMati.getSelectedRow(),2).toString(),"007");
             }else{
                 createPdf(FileName);
-                berkas.tampilPdfLocal(FileName,"local","berkastte/surat_kematian",tbMati.getValueAt(tbMati.getSelectedRow(),0).toString(),"007");
+                berkas.tampilPdfLocal(FileName,"local","berkastte/surat_kematian",tbMati.getValueAt(tbMati.getSelectedRow(),2).toString(),"007");
             }
             berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
             berkas.setLocationRelativeTo(internalFrame1);

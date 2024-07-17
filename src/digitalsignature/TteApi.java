@@ -2,6 +2,7 @@ package digitalsignature;
 
 import bridging.*;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
@@ -103,7 +104,7 @@ public class TteApi {
         }
         return var;
     }
-    
+      
     public static String NOANTRIAN(){
         try{
             prop.loadFromXML(new FileInputStream("setting/database.xml"));
