@@ -1013,6 +1013,7 @@ import bridging.SatuSehatKirimSpecimenRadiologi;
 import bridging.SatuSehatMapingLaborat;
 import bridging.SatuSehatMapingRadiologi;
 import bridging.SatuSehatKirimCarePlan;
+import bridging.SatuSehatMapingObatAlkes;
 import digitalsignature.DlgMappingAkunTTE;
 import keuangan.DlgLhtPembayaranPihakKe3BankMandiri;
 
@@ -20876,7 +20877,7 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         isTutup();
         DlgHome.dispose();
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        SatuSehatKirimDiet aplikasi=new SatuSehatKirimDiet(this,false);
+        SatuSehatMapingObatAlkes aplikasi=new SatuSehatMapingObatAlkes(this,false);
         aplikasi.isCek();
         aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
         aplikasi.setLocationRelativeTo(PanelUtama);

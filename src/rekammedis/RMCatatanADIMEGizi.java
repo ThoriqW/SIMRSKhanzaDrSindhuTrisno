@@ -1539,6 +1539,7 @@ public final class RMCatatanADIMEGizi extends javax.swing.JDialog {
         if(tbObat.getSelectedRow()>-1){
             Map<String, Object> param = new HashMap<>();
             param.put("diagnosa",Sequel.cariIsi("select kamar_inap.diagnosa_awal from kamar_inap where kamar_inap.diagnosa_awal<>'' and kamar_inap.no_rawat=? ",TNoRw.getText()));
+            param.put("logobsre",Sequel.cariGambar("select setting.logo_bsre from setting"));
             Valid.MyReportPDFWithName1("rptFormulirCatatanADIMEGiziTTE.jasper","report","tempfile",FileName,"::[ Formulir Catatan ADIME Gizi Pasien ]::",
                     "select reg_periksa.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,reg_periksa.umurdaftar,reg_periksa.sttsumur,"+
                     "pasien.jk,catatan_adime_gizi.tanggal,catatan_adime_gizi.asesmen,catatan_adime_gizi.diagnosis,"+

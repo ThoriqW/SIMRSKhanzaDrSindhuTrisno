@@ -95,13 +95,13 @@ public class DlgListFileTte extends javax.swing.JDialog {
         for (int i = 0; i < 5; i++) {
             TableColumn column = tbListFileTte.getColumnModel().getColumn(i);
             if(i==0){
-                column.setPreferredWidth(150);
+                column.setPreferredWidth(250);
             }else if(i==1){
-                column.setPreferredWidth(150);
+                column.setPreferredWidth(250);
             }else if(i==2){
-                column.setPreferredWidth(300);
+                column.setPreferredWidth(350);
             }else if(i==3){
-                column.setPreferredWidth(100);
+                column.setPreferredWidth(200);
             }else if(i==4){
                column.setMinWidth(0);
                 column.setMaxWidth(0);
