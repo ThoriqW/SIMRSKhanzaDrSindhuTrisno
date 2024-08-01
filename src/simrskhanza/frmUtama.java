@@ -1013,6 +1013,8 @@ import bridging.SatuSehatKirimSpecimenRadiologi;
 import bridging.SatuSehatMapingLaborat;
 import bridging.SatuSehatMapingRadiologi;
 import bridging.SatuSehatKirimCarePlan;
+import bridging.SatuSehatKirimMedicationStatement;
+import bridging.SatuSehatKirimQuestionnaireResponse;
 import bridging.SatuSehatMapingObatAlkes;
 import digitalsignature.DlgMappingAkunTTE;
 import keuangan.DlgLhtPembayaranPihakKe3BankMandiri;
@@ -1662,9 +1664,6 @@ public class frmUtama extends javax.swing.JFrame {
         PanelUtama = new javax.swing.JPanel();
         scrollPane1 = new widget.ScrollPane();
         PanelWall = new usu.widget.glass.PanelGlass();
-        panelJudul = new usu.widget.glass.PanelGlass();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         FlayMenu = new usu.widget.glass.PanelGlass();
         MenuBar = new widget.MenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -1933,7 +1932,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04/07/2024" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30/07/2024" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -7342,34 +7341,6 @@ public class frmUtama extends javax.swing.JFrame {
             }
         });
         PanelWall.setLayout(new java.awt.BorderLayout());
-
-        panelJudul.setBackground(new java.awt.Color(255, 255, 255));
-        panelJudul.setOpaqueImage(false);
-        panelJudul.setPreferredSize(new java.awt.Dimension(200, 170));
-        panelJudul.setRound(false);
-        panelJudul.setWarna(new java.awt.Color(102, 102, 102));
-        panelJudul.setLayout(null);
-
-        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(50, 50, 50));
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel11.setText("Your Businis Solution");
-        jLabel11.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel11.setName("jLabel11"); // NOI18N
-        jLabel11.setPreferredSize(new java.awt.Dimension(430, 30));
-        panelJudul.add(jLabel11);
-        jLabel11.setBounds(210, 90, 680, 30);
-
-        jLabel8.setFont(new java.awt.Font("Tahoma", 2, 24)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(50, 50, 50));
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel8.setText("Khanza HMS+, Hospital Management System");
-        jLabel8.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jLabel8.setName("jLabel8"); // NOI18N
-        panelJudul.add(jLabel8);
-        jLabel8.setBounds(40, 0, 1040, 150);
-
-        PanelWall.add(panelJudul, java.awt.BorderLayout.PAGE_END);
 
         FlayMenu.setBackground(new java.awt.Color(255, 255, 255));
         FlayMenu.setOpaqueImage(false);
@@ -21167,6 +21138,28 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         this.setCursor(Cursor.getDefaultCursor());
     }
     
+    private void btnSatuSehatKirimQuestionnaireResponseActionPerformed(java.awt.event.ActionEvent evt) {                                            
+        isTutup();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        SatuSehatKirimQuestionnaireResponse aplikasi=new SatuSehatKirimQuestionnaireResponse(this,false);
+        aplikasi.setSize(PanelUtama.getWidth(),PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        DlgHome.dispose();
+        this.setCursor(Cursor.getDefaultCursor());
+    }
+    
+    private void btnSatuSehatKirimMedicationStatementActionPerformed(java.awt.event.ActionEvent evt) {                                            
+        isTutup();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        SatuSehatKirimMedicationStatement aplikasi=new SatuSehatKirimMedicationStatement(this,false);
+        aplikasi.setSize(PanelUtama.getWidth(),PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        DlgHome.dispose();
+        this.setCursor(Cursor.getDefaultCursor());
+    }
+    
     /**
     * @param args the command line arguments
     */
@@ -21717,12 +21710,10 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
     private widget.InternalFrame internalFrame2;
     private widget.InternalFrame internalFrame3;
     private widget.InternalFrame internalFrame4;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
@@ -21747,7 +21738,6 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
     private javax.swing.JLabel lblTgl;
     private javax.swing.JLabel lblUser;
     private usu.widget.glass.PanelGlass panelGlass1;
-    private usu.widget.glass.PanelGlass panelJudul;
     private widget.InternalFrame panelMenu;
     private widget.panelisi panelisi2;
     private widget.ScrollPane scrollPane1;
@@ -21855,7 +21845,7 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             btnKirimObservationRadiologiSatuSehat,btnKirimDiagnosticReportSatuSehat,btnMappingLaboratSatuSehat,btnKirimServiceRequestLabPKSatuSehat,btnKirimServiceRequestLabMBSatuSehat,
             btnKirimSpecimenLabPKSatuSehat,btnKirimSpecimenLabMBSatuSehat,btnKirimObservationLabPKSatuSehat,btnKirimObservationLabMBSatuSehat,btnKirimDiagnosticReportLabPKSatuSehat,
             btnKirimDiagnosticReportLabMBSatuSehat,btnSatuSehatKirimAllergyIntollerance,btnSatuSehatCariAlergi,btnSatuSehatDataAlergiPasien,btnMandiriMetodePembayaran,btnMandiriBankTujuanTRansfer,btnPembayaranPihakKe3BankMandiri,
-            btnMandiriKodeTransaksiTujuanTRansfer,btnSatuSehatKirimCarePlan;
+            btnMandiriKodeTransaksiTujuanTRansfer,btnSatuSehatKirimCarePlan,btnSatuSehatKirimQuestionnaireResponse,btnSatuSehatKirimMedicationStatement;
     
     public void isWall(){
         try{            
@@ -21863,9 +21853,9 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             try {
                 rs=ps.executeQuery();
                 while(rs.next()){
-                    jLabel8.setText(rs.getString(1));
+//                    jLabel8.setText(rs.getString(1));
                     this.setTitle("SIM "+rs.getString("nama_instansi"));
-                    jLabel11.setText(rs.getString(2) +", "+rs.getString(3) +", "+rs.getString(4) +" ");
+//                    jLabel11.setText(rs.getString(2) +", "+rs.getString(3) +", "+rs.getString(4) +" ");
                     akses.setnamars(rs.getString("nama_instansi"));
                     akses.setalamatrs(rs.getString("alamat_instansi"));
                     akses.setkabupatenrs(rs.getString("kabupaten"));
@@ -22265,6 +22255,16 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             
             if(akses.getsatu_sehat_kirim_care_plan()==true){
                 Panelmenu.add(btnSatuSehatKirimCarePlan);
+                jmlmenu++;
+            }
+            
+            if(akses.getsatu_sehat_kirim_questionnaireResponse()==true){
+                Panelmenu.add(btnSatuSehatKirimQuestionnaireResponse);
+                jmlmenu++;
+            }
+            
+            if(akses.getsatu_sehat_kirim_medicationStatement()==true){
+                Panelmenu.add(btnSatuSehatKirimMedicationStatement);
                 jmlmenu++;
             }
         }else if(cmbMenu.getSelectedIndex()==1){ 
@@ -32028,6 +32028,16 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             Panelmenu.add(btnSatuSehatKirimCarePlan);
             jmlmenu++;
         }
+        
+        if(akses.getsatu_sehat_kirim_questionnaireResponse()==true){
+            Panelmenu.add(btnSatuSehatKirimQuestionnaireResponse);
+            jmlmenu++;
+        }
+            
+        if(akses.getsatu_sehat_kirim_medicationStatement()==true){
+            Panelmenu.add(btnSatuSehatKirimMedicationStatement);
+            jmlmenu++;
+        }
     }
     
     private void isCariIsi() {
@@ -39060,6 +39070,20 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
                 jmlmenu++;
             }
         }
+        
+        if(akses.getsatu_sehat_kirim_questionnaireResponse()==true){
+            if(btnSatuSehatKirimQuestionnaireResponse.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
+                Panelmenu.add(btnSatuSehatKirimQuestionnaireResponse);
+                jmlmenu++;
+            }
+        }
+            
+        if(akses.getsatu_sehat_kirim_medicationStatement()==true){
+            if(btnSatuSehatKirimMedicationStatement.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
+                Panelmenu.add(btnSatuSehatKirimMedicationStatement);
+                jmlmenu++;
+            }
+        }
     }
 
     private void initKhanza() {
@@ -43455,6 +43479,21 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         btnSatuSehatKirimCarePlan.setName("btnSatuSehatKirimCarePlan"); 
         btnSatuSehatKirimCarePlan.setPreferredSize(new java.awt.Dimension(200, 90));
         btnSatuSehatKirimCarePlan.addActionListener(this::btnSatuSehatKirimCarePlanActionPerformed);
-       
+        
+        btnSatuSehatKirimQuestionnaireResponse = new widget.ButtonBig();
+        btnSatuSehatKirimQuestionnaireResponse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/satusehat.png")));
+        btnSatuSehatKirimQuestionnaireResponse.setText("Kirim Respon Kuisioner Satu Sehat");
+        btnSatuSehatKirimQuestionnaireResponse.setIconTextGap(0);
+        btnSatuSehatKirimQuestionnaireResponse.setName("btnSatuSehatKirimQuestionnaireResponse"); 
+        btnSatuSehatKirimQuestionnaireResponse.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnSatuSehatKirimQuestionnaireResponse.addActionListener(this::btnSatuSehatKirimQuestionnaireResponseActionPerformed);
+        
+        btnSatuSehatKirimMedicationStatement = new widget.ButtonBig();
+        btnSatuSehatKirimMedicationStatement.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/satusehat.png")));
+        btnSatuSehatKirimMedicationStatement.setText("Kirim Catatan Pengobatan Satu Sehat");
+        btnSatuSehatKirimMedicationStatement.setIconTextGap(0);
+        btnSatuSehatKirimMedicationStatement.setName("btnSatuSehatKirimMedicationStatement"); 
+        btnSatuSehatKirimMedicationStatement.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnSatuSehatKirimMedicationStatement.addActionListener(this::btnSatuSehatKirimMedicationStatementActionPerformed);
     }
 }
