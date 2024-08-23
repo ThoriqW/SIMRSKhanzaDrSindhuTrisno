@@ -56,7 +56,7 @@ public class SuratKontrol extends javax.swing.JDialog {
     public SuratKontrol(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        MnSurat.setVisible(false);
+//        MnSurat.setVisible(false);
         tabMode=new DefaultTableModel(null,new Object[]{
                 "Tahun","No.RM","Nama Pasien","Diagnosa","Terapi","Alasan 1","Alasan 2",
                 "Rencana Tindak Lanjut 1","Rencana Tindak Lanjut 2","Periksa Kembali",

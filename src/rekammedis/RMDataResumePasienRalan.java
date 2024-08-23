@@ -70,7 +70,7 @@ public final class RMDataResumePasienRalan extends javax.swing.JDialog {
     public RMDataResumePasienRalan(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        MnLaporanResume.setVisible(false);
+//        MnLaporanResume.setVisible(false);
         tabMode=new DefaultTableModel(null,new Object[]{
             "Tgl.Rawat","No.Rawat","No.RM","Nama Pasien","Kode Dokter","Dokter Penanggung Jawab","Pulang","Keluhan utama riwayat penyakit yang postif",
             "Jalannya penyakit selama perawatan","Pemeriksaan penunjang yang positif","Hasil laboratorium yang positif","Diagnosa Utama","ICD10 Utama","Diagnosa Sekunder 1",

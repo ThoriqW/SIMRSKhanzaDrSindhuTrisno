@@ -67,7 +67,7 @@ public final class SuratPersetujuanPenolakanTindakan extends javax.swing.JDialog
     public SuratPersetujuanPenolakanTindakan(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        BtnPrint1.setVisible(false);
+//        BtnPrint1.setVisible(false);
         tabMode=new DefaultTableModel(null,new Object[]{
             "No.Pernyataan","No.Rawat","No.RM","Nama Pasien","Tgl.Lahir","J.K.","Tanggal","Diagnosa","Ya/Tidak","Tindakan Kedokteran","Ya/Tidak",
             "Indikasi Tindakan","Ya/Tidak","Tata Cara","Ya/Tidak","Tujuan","Ya/Tidak","Risiko","Ya/Tidak","Komplikasi","Ya/Tidak","Prognosis","Ya/Tidak",

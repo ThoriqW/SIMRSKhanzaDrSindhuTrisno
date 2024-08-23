@@ -61,8 +61,8 @@ public class DlgPasienMati extends javax.swing.JDialog {
     public DlgPasienMati(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        MnCetakSuratMati.setVisible(false);
-        MnCetakSuratMati1.setVisible(false);
+//        MnCetakSuratMati.setVisible(false);
+//        MnCetakSuratMati1.setVisible(false);
         Object[] row={"Tanggal","Jam","No.R.Medik","Nama Pasien","J.K.","Tmp.Lahir",
                       "Tgl.Lahir","G.D.","Stts.Nikah","Agama","Keterangan","Tempat Meninggal",
                       "ICD-X","Antara 1","Antara 2","Langsung","Kode DPJP","Nama DPJP"};

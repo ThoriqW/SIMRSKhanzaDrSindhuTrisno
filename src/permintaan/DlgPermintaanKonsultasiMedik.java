@@ -58,7 +58,7 @@ public class DlgPermintaanKonsultasiMedik extends javax.swing.JDialog {
     public DlgPermintaanKonsultasiMedik(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        BtnDokumentasiKonsul.setVisible(false);
+//        BtnDokumentasiKonsul.setVisible(false);
         tabMode=new DefaultTableModel(null,new Object[]{
                 "No.Permintaan","No.Rawat","No.RM","Nama Pasien","J.K.","Umur","No.Telp","Cara Bayar","Tanggal Konsultasi","Permintaan",
                 "Kode Dokter Konsul","Nama Dokter Konsul","Kode Dokter Dikonsuli","Nama Dokter Dikonsuli","Diagnosa Kerja Konsul",

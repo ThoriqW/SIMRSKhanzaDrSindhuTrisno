@@ -72,8 +72,8 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
 
-        MnCetakLab.setVisible(false);
-        MnPDFLab.setVisible(false);
+//        MnCetakLab.setVisible(false);
+//        MnPDFLab.setVisible(false);
         Object[] row={"No.Rawat","Pasien","Petugas","Tgl.Periksa","Jam Periksa","Dokter Perujuk","Penanggung Jawab"};
         tabMode=new DefaultTableModel(null,row){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
