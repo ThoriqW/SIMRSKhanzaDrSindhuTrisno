@@ -17,6 +17,7 @@ import java.awt.event.WindowListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JButton;
@@ -3547,6 +3548,11 @@ private void MnHapusObatOperasiActionPerformed(java.awt.event.ActionEvent evt) {
     
     public void setPasien(String pasien){
         NoRawat.setText(pasien);
+    }
+    
+    public void setPasien(String pasien, Date tanggal){
+        NoRawat.setText(pasien);
+        Tgl1.setDate(tanggal);
     }
     
     void createPdf(String FileName){
