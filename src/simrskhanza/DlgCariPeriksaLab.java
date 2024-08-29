@@ -6117,7 +6117,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             String FileName = tbDokter.getValueAt(tbDokter.getSelectedRow(),0).toString().replaceAll("/","_")+".pdf";
             DlgViewPdf berkas=new DlgViewPdf(null,true);
-            if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+tbDokter.getValueAt(tbDokter.getSelectedRow(),0).toString()+"'")>0){
+            if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+tbDokter.getValueAt(tbDokter.getSelectedRow(),0).toString()+"' and kode='002'") > 0){
                 berkas.tampilPdf(FileName,"berkastte/laboratorium",tbDokter.getValueAt(tbDokter.getSelectedRow(),0).toString(),"002");
             }else{
                 createPdf(FileName);

@@ -1824,8 +1824,8 @@ public final class RMDataAsuhanGizi extends javax.swing.JDialog {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             FileName=tbObat.getValueAt(tbObat.getSelectedRow(),0).toString().replaceAll("/","_")+".pdf";
             DlgViewPdf berkas=new DlgViewPdf(null,true);
-            if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"'")>0){
-                berkas.tampilPdf(FileName,"berkastte/asuhan_gizi",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"0009");
+            if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"' and kode='009'") > 0){
+                berkas.tampilPdf(FileName,"berkastte/asuhan_gizi",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"009");
             }else{
                 createPdf(FileName);
                 berkas.tampilPdfLocal(FileName,"local","berkastte/asuhan_gizi",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"009");

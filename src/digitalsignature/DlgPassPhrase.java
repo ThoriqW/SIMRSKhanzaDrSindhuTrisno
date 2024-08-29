@@ -340,18 +340,6 @@ public class DlgPassPhrase extends javax.swing.JDialog {
                 headers= new HttpHeaders();
                 headers.setContentType(MediaType.APPLICATION_JSON);
                 switch (tipeBerkas) {
-                    case "Surat Kontrol":
-                        requestJson =" {" +
-                            "\"nik\":\""+txtNik.getText()+"\","+
-                            "\"id\":\""+akses.getkode()+"\","+
-                            "\"passphrase\":\""+txtPassPhrase.getText()+"\","+
-                            "\"document\":\""+txtNamaFile.getText()+"\","+
-                            "\"location\":\""+txtLokasiFile.getText()+"\","+
-                            "\"tag\":\"#\","+
-                            "\"image\":\"false\","+
-                            "\"tampilan\":\"invisible\""+
-                        "}" ;
-                        break;
                     case "SEP":
                         requestJson =" {" +
                             "\"nik\":\""+txtNik.getText()+"\","+

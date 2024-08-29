@@ -3,6 +3,7 @@
  */
 package rekammedis;
 
+import digitalsignature.DlgViewPdf;
 import fungsi.WarnaTable;
 import fungsi.batasInput;
 import fungsi.koneksiDB;
@@ -215,6 +216,7 @@ public final class RMMonitoringStewardPascaAnestesi extends javax.swing.JDialog 
         jPopupMenu1 = new javax.swing.JPopupMenu();
         MnMonitoringStewardScore = new javax.swing.JMenuItem();
         MnMonitoringStewardScore2 = new javax.swing.JMenuItem();
+        MnDigitalTTE = new javax.swing.JMenuItem();
         JK = new widget.TextBox();
         TanggalRegistrasi = new widget.TextBox();
         internalFrame1 = new widget.InternalFrame();
@@ -321,6 +323,22 @@ public final class RMMonitoringStewardPascaAnestesi extends javax.swing.JDialog 
             }
         });
         jPopupMenu1.add(MnMonitoringStewardScore2);
+
+        MnDigitalTTE.setBackground(new java.awt.Color(255, 255, 254));
+        MnDigitalTTE.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnDigitalTTE.setForeground(new java.awt.Color(50, 50, 50));
+        MnDigitalTTE.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnDigitalTTE.setText("Sign Digital Signature");
+        MnDigitalTTE.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnDigitalTTE.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnDigitalTTE.setName("MnDigitalTTE"); // NOI18N
+        MnDigitalTTE.setPreferredSize(new java.awt.Dimension(250, 26));
+        MnDigitalTTE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnDigitalTTEActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnDigitalTTE);
 
         JK.setHighlighter(null);
         JK.setName("JK"); // NOI18N
@@ -498,7 +516,7 @@ public final class RMMonitoringStewardPascaAnestesi extends javax.swing.JDialog 
         panelGlass9.add(jLabel19);
 
         DTPCari1.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-12-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-04-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -512,7 +530,7 @@ public final class RMMonitoringStewardPascaAnestesi extends javax.swing.JDialog 
         panelGlass9.add(jLabel21);
 
         DTPCari2.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-12-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-04-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -822,7 +840,7 @@ public final class RMMonitoringStewardPascaAnestesi extends javax.swing.JDialog 
         TPasien.setBounds(326, 10, 285, 23);
 
         Tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-12-2023" }));
+        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-04-2024" }));
         Tanggal.setDisplayFormat("dd-MM-yyyy");
         Tanggal.setName("Tanggal"); // NOI18N
         Tanggal.setOpaque(false);
@@ -1396,6 +1414,26 @@ public final class RMMonitoringStewardPascaAnestesi extends javax.swing.JDialog 
         Valid.pindah(evt,btnPetugas,BtnSimpan);
     }//GEN-LAST:event_BtnDokterKeyPressed
 
+    private void MnDigitalTTEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnDigitalTTEActionPerformed
+        // TODO add your handling code here:
+        if(tbObat.getSelectedRow()>-1){
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            String FileName = tbObat.getValueAt(tbObat.getSelectedRow(),0).toString().replaceAll("/","_")+".pdf";
+            DlgViewPdf berkas=new DlgViewPdf(null,true);
+            if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"' and kode='027'") > 0){
+                berkas.tampilPdf(FileName,"berkastte/laporan_anastesi_anak",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"027");
+            }else{
+                createPdf(FileName);
+                berkas.tampilPdfLocal(FileName,"local","berkastte/laporan_anastesi_anak",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"027");
+            }
+            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+            berkas.setLocationRelativeTo(internalFrame1);
+            berkas.setVisible(true);
+
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_MnDigitalTTEActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1435,6 +1473,7 @@ public final class RMMonitoringStewardPascaAnestesi extends javax.swing.JDialog 
     private widget.TextArea Keluar;
     private widget.Label LCount;
     private widget.ComboBox Menit;
+    private javax.swing.JMenuItem MnDigitalTTE;
     private javax.swing.JMenuItem MnMonitoringStewardScore;
     private javax.swing.JMenuItem MnMonitoringStewardScore2;
     private widget.TextBox NIP;
@@ -1817,6 +1856,35 @@ public final class RMMonitoringStewardPascaAnestesi extends javax.swing.JDialog 
             });
             emptTeks();
             LCount.setText(""+tabMode.getRowCount());
+        }
+    }
+    
+    void createPdf(String FileName) {
+        if(tbObat.getSelectedRow()>-1){
+            Map<String, Object> param = new HashMap<>();
+            param.put("namars",akses.getnamars());
+            param.put("alamatrs",akses.getalamatrs());
+            param.put("kotars",akses.getkabupatenrs());
+            param.put("propinsirs",akses.getpropinsirs());
+            param.put("kontakrs",akses.getkontakrs());
+            param.put("emailrs",akses.getemailrs());   
+            param.put("logo",Sequel.cariGambar("select setting.logo from setting"));
+            param.put("logobsre",Sequel.cariGambar("select setting.logo_bsre from setting"));
+            finger=Sequel.cariIsi("select sha1(sidikjari.sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",tbObat.getValueAt(tbObat.getSelectedRow(),15).toString());
+            param.put("finger","Dikeluarkan di "+akses.getnamars()+", Kabupaten/Kota "+akses.getkabupatenrs()+"\nDitandatangani secara elektronik oleh "+tbObat.getValueAt(tbObat.getSelectedRow(),16).toString()+"\nID "+(finger.equals("")?tbObat.getValueAt(tbObat.getSelectedRow(),15).toString():finger)+"\n"+Tanggal.getSelectedItem());
+            finger2=Sequel.cariIsi("select sha1(sidikjari.sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",tbObat.getValueAt(tbObat.getSelectedRow(),17).toString());
+            param.put("finger2","Dikeluarkan di "+akses.getnamars()+", Kabupaten/Kota "+akses.getkabupatenrs()+"\nDitandatangani secara elektronik oleh "+tbObat.getValueAt(tbObat.getSelectedRow(),18).toString()+"\nID "+(finger.equals("")?tbObat.getValueAt(tbObat.getSelectedRow(),17).toString():finger2)+"\n"+Tanggal.getSelectedItem());
+            Valid.MyReportPDFWithName1("rptMonitoringStewardScoreTTE.jasper","report","tempfile",FileName,"::[ Monitoring Steward Score Pasca Anestesi ]::",
+                    "select reg_periksa.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,pasien.jk,pasien.tgl_lahir,skor_steward_pasca_anestesi.tanggal,"+
+                    "skor_steward_pasca_anestesi.penilaian_skala1,skor_steward_pasca_anestesi.penilaian_nilai1,"+
+                    "skor_steward_pasca_anestesi.penilaian_skala2,skor_steward_pasca_anestesi.penilaian_nilai2,"+
+                    "skor_steward_pasca_anestesi.penilaian_skala3,skor_steward_pasca_anestesi.penilaian_nilai3,"+
+                    "skor_steward_pasca_anestesi.penilaian_totalnilai,skor_steward_pasca_anestesi.keluar,"+
+                    "skor_steward_pasca_anestesi.instruksi,skor_steward_pasca_anestesi.kd_dokter,dokter.nm_dokter,skor_steward_pasca_anestesi.nip,petugas.nama "+
+                    "from skor_steward_pasca_anestesi inner join reg_periksa on skor_steward_pasca_anestesi.no_rawat=reg_periksa.no_rawat "+
+                    "inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
+                    "inner join dokter on skor_steward_pasca_anestesi.kd_dokter=dokter.kd_dokter "+
+                    "inner join petugas on skor_steward_pasca_anestesi.nip=petugas.nip where reg_periksa.no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"'",param);
         }
     }
 }

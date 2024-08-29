@@ -1537,13 +1537,13 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         // TODO add your handling code here:
         if(tbObat.getSelectedRow()>-1){
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            String FileName = tbObat.getValueAt(tbObat.getSelectedRow(),10).toString().replaceAll("-","_").replaceAll(":","_").replaceAll(" ","_").replaceAll("\\.","_")+".pdf";
+            String FileName = tbObat.getValueAt(tbObat.getSelectedRow(),11)+".pdf";
             DlgViewPdf berkas=new DlgViewPdf(null,true);
-            if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),10).toString().replaceAll("-","_").replaceAll(":","_").replaceAll(" ","_").replaceAll("\\.","_")+"'")>0){
-                berkas.tampilPdf(FileName,"berkastte/surat_kontrol_internal",tbObat.getValueAt(tbObat.getSelectedRow(),10).toString().replaceAll("-","_").replaceAll(":","_").replaceAll(" ","_").replaceAll("\\.","_"),"017");
+            if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),11).toString()+"' and kode='017'") > 0){
+                berkas.tampilPdf(FileName,"berkastte/surat_kontrol_internal",tbObat.getValueAt(tbObat.getSelectedRow(),11).toString(),"017");
             }else{
                 createPdf(FileName);
-                berkas.tampilPdfLocal(FileName,"local","berkastte/surat_kontrol_internal",tbObat.getValueAt(tbObat.getSelectedRow(),10).toString().replaceAll("-","_").replaceAll(":","_").replaceAll(" ","_").replaceAll("\\.","_"),"017");
+                berkas.tampilPdfLocal(FileName,"local","berkastte/surat_kontrol_internal",tbObat.getValueAt(tbObat.getSelectedRow(),11).toString(),"017");
             }
             berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
             berkas.setLocationRelativeTo(internalFrame1);

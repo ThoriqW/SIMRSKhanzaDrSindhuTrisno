@@ -4011,7 +4011,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
                                         FileName=tbTriase.getValueAt(tbTriase.getSelectedRow(),0).toString().replaceAll("/","_")+".pdf";
                                         param.put("logobsre",Sequel.cariGambar("select setting.logo_bsre from setting"));
                                         DlgViewPdf berkas=new DlgViewPdf(null,true);
-                                        if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+tbTriase.getValueAt(tbTriase.getSelectedRow(),0).toString()+"'")>0){
+                                        if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+tbTriase.getValueAt(tbTriase.getSelectedRow(),0).toString()+"' and kode='016'") > 0){
                                             berkas.tampilPdf(FileName,"berkastte/triase",tbTriase.getValueAt(tbTriase.getSelectedRow(),0).toString(),"016");
                                         }else{
                                             Valid.MyReportPDFWithName1("rptLembarTriaseSkala1TTE.jasper","report","tempfile",FileName,"::[ Triase Skala 1 ]::","select * from temporary where temporary.temp37='"+akses.getalamatip()+"' order by temporary.no",param);
@@ -4151,7 +4151,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
                                         FileName=tbTriase.getValueAt(tbTriase.getSelectedRow(),0).toString().replaceAll("/","_")+".pdf";
                                         param.put("logobsre",Sequel.cariGambar("select setting.logo_bsre from setting"));
                                         DlgViewPdf berkas=new DlgViewPdf(null,true);
-                                        if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+tbTriase.getValueAt(tbTriase.getSelectedRow(),0).toString()+"'")>0){
+                                        if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+tbTriase.getValueAt(tbTriase.getSelectedRow(),0).toString()+"' and kode='016'") > 0){
                                             berkas.tampilPdf(FileName,"berkastte/triase",tbTriase.getValueAt(tbTriase.getSelectedRow(),0).toString(),"016");
                                         }else{
                                             Valid.MyReportPDFWithName1("rptLembarTriaseSkala2TTE.jasper","report","tempfile",FileName,"::[ Triase Skala 2 ]::","select * from temporary where temporary.temp37='"+akses.getalamatip()+"' order by temporary.no",param);

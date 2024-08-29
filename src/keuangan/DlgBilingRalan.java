@@ -2550,7 +2550,7 @@ public class DlgBilingRalan extends javax.swing.JDialog {
                             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                             FileName=TNoRw.getText().replaceAll("/","_")+".pdf";
                             DlgViewPdf berkas=new DlgViewPdf(null,true);
-                            if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+TNoRw.getText()+"'")>0){
+                            if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+TNoRw.getText()+"' and kode='014'") > 0){
                                 berkas.tampilPdf(FileName,"berkastte/billing_ralan",TNoRw.getText(),"014");
                             }else{
                                 createPdf(FileName);

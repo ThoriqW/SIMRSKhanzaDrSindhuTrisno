@@ -3162,7 +3162,7 @@ private void MnHapusObatOperasiActionPerformed(java.awt.event.ActionEvent evt) {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             String FileName = tbDokter.getValueAt(tbDokter.getSelectedRow(),1).toString().replaceAll("/","_")+".pdf";
             DlgViewPdf berkas=new DlgViewPdf(null,true);
-            if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+tbDokter.getValueAt(tbDokter.getSelectedRow(),1).toString()+"'")>0){
+            if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+tbDokter.getValueAt(tbDokter.getSelectedRow(),1).toString()+"' and kode='019'") > 0){
                 berkas.tampilPdf(FileName,"berkastte/laporan_operasi",tbDokter.getValueAt(tbDokter.getSelectedRow(),1).toString(),"019");
             }else{
                 createPdf(FileName);
