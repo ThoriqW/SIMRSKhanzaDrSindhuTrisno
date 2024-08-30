@@ -1321,7 +1321,7 @@ public final class RMDataSkriningGiziLanjut extends javax.swing.JDialog {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             FileName=tbObat.getValueAt(tbObat.getSelectedRow(),0).toString().replaceAll("/","_")+".pdf";
             DlgViewPdf berkas=new DlgViewPdf(null,true);
-            if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"'")>0){
+            if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"' and kode='011'") > 0){
                 berkas.tampilPdf(FileName,"berkastte/skrining_gizi_lanjut",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"011");
             }else{
                 createPdf(FileName);
