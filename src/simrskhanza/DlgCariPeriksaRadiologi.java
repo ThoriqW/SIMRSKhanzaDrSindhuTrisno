@@ -30,6 +30,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
@@ -59,9 +61,9 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
     private JsonNode root;
     private int i;
     private StringBuilder htmlContent;
-    private PreparedStatement ps, ps2, ps3, ps4, ps5, psrekening;
-    private ResultSet rs, rs2, rs3, rs5, rsrekening;
-    private String kamar, namakamar, pemeriksaan = "", pilihan = "", status = "", finger = "";
+    private PreparedStatement ps, ps2, ps3, ps4, ps5, psrekening, pspermintaan;
+    private ResultSet rs, rs2, rs3, rs5, rsrekening,rspermintaan;
+    private String kamar, namakamar, pemeriksaan = "", pilihan = "", status = "", finger = "" , FileName="";
     private double ttl = 0, item = 0;
     private double ttljmdokter = 0, ttljmpetugas = 0, ttlkso = 0, ttlpendapatan = 0, ttlbhp = 0, ttljasasarana = 0, ttljmperujuk = 0, ttlmenejemen = 0;
     ;
@@ -2233,9 +2235,72 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
         // TODO add your handling code here:
         if (tbDokter.getSelectedRow() > -1) {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            String FileName = tbDokter.getValueAt(tbDokter.getSelectedRow(), 0).toString().replaceAll("/", "_") + ".pdf";
+            ps4 = null;
+            pspermintaan = null;
+            rs = null;
+            rspermintaan = null;
+            try {   
+                ps4 = koneksi.prepareStatement(
+                    "SELECT * FROM periksa_radiologi WHERE " +
+                    "periksa_radiologi.tgl_periksa = ? AND periksa_radiologi.jam = ? AND periksa_radiologi.no_rawat = ?"
+                );
+                try {
+                    ps4.setString(1,tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString());
+                    ps4.setString(2,tbDokter.getValueAt(tbDokter.getSelectedRow(),4).toString());
+                    ps4.setString(3,tbDokter.getValueAt(tbDokter.getSelectedRow(),0).toString());
+                    rs=ps4.executeQuery();
+                    while(rs.next()){
+                        pspermintaan=koneksi.prepareStatement(
+                                "select noorder,DATE_FORMAT(tgl_permintaan,'%d-%m-%Y') as tgl_permintaan,jam_permintaan from permintaan_radiologi where "+
+                                "no_rawat=? and tgl_hasil=? and jam_hasil=?");
+                        try {
+                            pspermintaan.setString(1,rs.getString("no_rawat"));
+                            pspermintaan.setString(2,rs.getString("tgl_periksa"));
+                            pspermintaan.setString(3,rs.getString("jam"));
+                            rspermintaan=pspermintaan.executeQuery();
+                            System.out.println(rs.getString("no_rawat"));
+                            System.out.println(Valid.SetTgl(rs.getString("tgl_periksa")));
+                            System.out.println(rs.getString("jam"));
+                            if(rspermintaan.next()){
+                                System.out.println("dsfsdf");
+                                FileName = rspermintaan.getString("noorder")+".pdf";
+                            } else {
+                                System.out.println("dfgdfgdfgdfgdfgdfg123123");
+                            }
+                        } catch (SQLException e) {
+                            System.out.println("Notif : "+e);
+                        } finally{
+                            if(rspermintaan!=null){
+                                try {
+                                    rspermintaan.close();
+                                } catch (SQLException ex) {
+                                    Logger.getLogger(DlgCariPeriksaLab.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                            }
+                            if(pspermintaan!=null){
+                                try {
+                                    pspermintaan.close();
+                                } catch (SQLException ex) {
+                                    Logger.getLogger(DlgCariPeriksaLab.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                            }
+                        }
+                    }
+                } catch (SQLException e) {
+                    System.out.println("Notif ps4 : "+e);
+                } finally{
+                    if(rs!=null){
+                        rs.close();
+                    }
+                    if(ps4!=null){
+                        ps4.close();
+                    }
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
             DlgViewPdf berkas = new DlgViewPdf(null, true);
-            if (Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+tbDokter.getValueAt(tbDokter.getSelectedRow(),0).toString()+"' and kode='004'") > 0) {
+            if (Sequel.cariInteger("select count(no_dokumen) from berkas_tte where no_dokumen='"+FileName+"' and kode='004'") > 0) {
                 berkas.tampilPdf(FileName, "berkastte/radiologi", tbDokter.getValueAt(tbDokter.getSelectedRow(), 0).toString(), "004");
             } else {
                 createPdf(FileName);

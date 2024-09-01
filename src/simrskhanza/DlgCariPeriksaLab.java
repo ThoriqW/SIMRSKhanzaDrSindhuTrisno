@@ -28,6 +28,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
@@ -51,7 +53,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
     private int i,jmlkunjungan=0,jmlpemeriksaan=0,jmlsubpemeriksaan=0;
     private PreparedStatement ps,ps2,ps3,ps4,psrekening,ps5,pspermintaan;
     private ResultSet rs,rs2,rs3,rs5,rsrekening,rspermintaan;
-    private String kamar,namakamar,datapasien="",finger="";
+    private String kamar,namakamar,datapasien="",finger="",FileName;
     private boolean sukses=false;
     private double ttl=0,item=0;
     private StringBuilder htmlContent;
@@ -6115,9 +6117,66 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
         // TODO add your handling code here:
         if(tbDokter.getSelectedRow()>-1){
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            String FileName = tbDokter.getValueAt(tbDokter.getSelectedRow(),0).toString().replaceAll("/","_")+".pdf";
+            try {   
+                ps4=koneksi.prepareStatement(
+                    "select periksa_lab.no_rawat,reg_periksa.no_rkm_medis,pasien.nm_pasien,pasien.jk,pasien.umur,petugas.nama,DATE_FORMAT(periksa_lab.tgl_periksa,'%d-%m-%Y') as tgl_periksa,periksa_lab.jam,periksa_lab.nip,"+
+                    "periksa_lab.dokter_perujuk,periksa_lab.kd_dokter,concat(pasien.alamat,', ',kelurahan.nm_kel,', ',kecamatan.nm_kec,', ',kabupaten.nm_kab) as alamat,dokter.nm_dokter,DATE_FORMAT(pasien.tgl_lahir,'%d-%m-%Y') as lahir "+
+                    " from periksa_lab inner join reg_periksa inner join pasien inner join petugas  inner join dokter inner join kelurahan inner join kecamatan inner join kabupaten "+
+                    "on periksa_lab.no_rawat=reg_periksa.no_rawat and reg_periksa.no_rkm_medis=pasien.no_rkm_medis and periksa_lab.nip=petugas.nip and periksa_lab.kd_dokter=dokter.kd_dokter "+
+                    "and pasien.kd_kel=kelurahan.kd_kel and pasien.kd_kec=kecamatan.kd_kec and pasien.kd_kab=kabupaten.kd_kab where periksa_lab.kategori='PK' and "+
+                    "periksa_lab.tgl_periksa=? and periksa_lab.jam=? and periksa_lab.no_rawat=? group by concat(periksa_lab.no_rawat,periksa_lab.tgl_periksa,periksa_lab.jam)");
+                try {
+                    ps4.setString(1,tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString());
+                    ps4.setString(2,tbDokter.getValueAt(tbDokter.getSelectedRow(),4).toString());
+                    ps4.setString(3,tbDokter.getValueAt(tbDokter.getSelectedRow(),0).toString());
+                    rs=ps4.executeQuery();
+                    while(rs.next()){
+                        pspermintaan=koneksi.prepareStatement(
+                                "select noorder,DATE_FORMAT(tgl_permintaan,'%d-%m-%Y') as tgl_permintaan,jam_permintaan from permintaan_lab where "+
+                                "no_rawat=? and tgl_hasil=? and jam_hasil=?");
+                        try {
+                            pspermintaan.setString(1,rs.getString("no_rawat"));
+                            pspermintaan.setString(2,Valid.SetTgl(rs.getString("tgl_periksa")));
+                            pspermintaan.setString(3,rs.getString("jam"));
+                            rspermintaan=pspermintaan.executeQuery();
+                            if(rspermintaan.next()){
+                                System.out.println(rspermintaan.getString("noorder"));
+                                FileName = rspermintaan.getString("noorder")+".pdf";
+                            }
+                        } catch (SQLException e) {
+                            System.out.println("Notif : "+e);
+                        } finally{
+                            if(rspermintaan!=null){
+                                try {
+                                    rspermintaan.close();
+                                } catch (SQLException ex) {
+                                    Logger.getLogger(DlgCariPeriksaLab.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                            }
+                            if(pspermintaan!=null){
+                                try {
+                                    pspermintaan.close();
+                                } catch (SQLException ex) {
+                                    Logger.getLogger(DlgCariPeriksaLab.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                            }
+                        }
+                    }
+                } catch (SQLException e) {
+                    System.out.println("Notif ps4 : "+e);
+                } finally{
+                    if(rs!=null){
+                        rs.close();
+                    }
+                    if(ps4!=null){
+                        ps4.close();
+                    }
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            } 
             DlgViewPdf berkas=new DlgViewPdf(null,true);
-            if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+tbDokter.getValueAt(tbDokter.getSelectedRow(),0).toString()+"' and kode='002'") > 0){
+            if(Sequel.cariInteger("select count(no_dokumen) from berkas_tte where no_dokumen='"+FileName+"' and kode='002'") > 0){
                 berkas.tampilPdf(FileName,"berkastte/laboratorium",tbDokter.getValueAt(tbDokter.getSelectedRow(),0).toString(),"002");
             }else{
                 createPdf(FileName);
@@ -6892,7 +6951,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                 param.put("jampermintaan",rspermintaan.getString("jam_permintaan"));
                                 Valid.MyReportPDFWithName("rptPeriksaLabPermintaanTTE.jasper","report","tempfile",FileName,"::[ Pemeriksaan Laboratorium ]::",param);     
                             }else{
-                                Valid.MyReport("rptPeriksaLab.jasper","report","::[ Pemeriksaan Laboratorium ]::",param);   
+//                                Valid.MyReport("rptPeriksaLab.jasper","report","::[ Pemeriksaan Laboratorium ]::",param);   
                             }
                         } catch (SQLException e) {
                             System.out.println("Notif : "+e);
@@ -6921,5 +6980,5 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
         }
         this.setCursor(Cursor.getDefaultCursor()); 
     }
- 
+    
 }

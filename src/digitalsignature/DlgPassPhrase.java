@@ -347,7 +347,7 @@ public class DlgPassPhrase extends javax.swing.JDialog {
                             "\"passphrase\":\""+txtPassPhrase.getText()+"\","+
                             "\"document\":\""+txtNamaFile.getText()+"\","+
                             "\"location\":\""+txtLokasiFile.getText()+"\","+
-                            "\"tag\":\"#\","+
+                            "\"tag\":\"|\","+
                             "\"image\":\"false\","+
                             "\"tampilan\":\"invisible\""+
                         "}" ;
@@ -359,7 +359,7 @@ public class DlgPassPhrase extends javax.swing.JDialog {
                             "\"passphrase\":\""+txtPassPhrase.getText()+"\","+
                             "\"document\":\""+txtNamaFile.getText()+"\","+
                             "\"location\":\""+txtLokasiFile.getText()+"\","+
-                            "\"tag\":\"#\","+
+                            "\"tag\":\"|\","+
                             "\"image\":\"true\","+
                             "\"tampilan\":\"visible\""+
                         "}" ;
