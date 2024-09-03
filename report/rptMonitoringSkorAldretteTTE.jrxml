@@ -726,7 +726,7 @@
 					<font fontName="Tahoma" size="8" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[#]]></text>
+				<text><![CDATA[|]]></text>
 			</staticText>
 			<image scaleImage="FillFrame" onErrorType="Blank">
 				<reportElement x="5" y="168" width="43" height="19" uuid="6416051c-9b36-4ab7-b692-f460925644e5"/>

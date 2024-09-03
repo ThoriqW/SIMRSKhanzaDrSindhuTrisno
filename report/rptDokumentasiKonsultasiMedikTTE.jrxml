@@ -513,14 +513,6 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{dokterkonsul}]]></textFieldExpression>
 			</textField>
-			<componentElement>
-				<reportElement x="376" y="373" width="166" height="55" isRemoveLineWhenBlank="true" uuid="b882683c-7a91-4a29-89b0-ea806e0f0d6b">
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" errorCorrectionLevel="H">
-					<jr:codeExpression><![CDATA[$P{finger}]]></jr:codeExpression>
-				</jr:QRCode>
-			</componentElement>
 			<staticText>
 				<reportElement x="376" y="358" width="169" height="14" uuid="455b7ccd-1489-4b45-a025-d9b65a7657ed"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
@@ -666,7 +658,7 @@
 					<font fontName="Tahoma" size="8" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[#]]></text>
+				<text><![CDATA[~]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="50" y="782" width="208" height="14" uuid="5dfc0eb3-70b1-46bc-b380-21ab5a162a38">
@@ -683,6 +675,16 @@ yang telah diterbitkan oleh Balai Sertifikasi Elektronik (BSrE), Badan Siber dan
 				<reportElement x="3" y="779" width="43" height="19" uuid="7c141e54-4844-4ab3-916d-b7d4aee6aefc"/>
 				<imageExpression><![CDATA[$P{logobsre}]]></imageExpression>
 			</image>
+			<staticText>
+				<reportElement positionType="Float" x="377" y="373" width="167" height="56" uuid="90085344-2162-45cf-ba34-245d0db1c19e">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
 		</band>
 	</title>
 	<pageHeader>

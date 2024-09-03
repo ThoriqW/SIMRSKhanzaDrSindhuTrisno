@@ -100,6 +100,7 @@ public class DlgViewPdf extends javax.swing.JDialog {
         BtnSignTTE = new widget.Button();
         BtnKeluar = new widget.Button();
         BtnHapusFile = new widget.Button();
+        ListTTE = new widget.ComboBox();
         txtNameFile = new widget.TextBox();
         txtLokasiFile = new widget.TextBox();
         txtNoRawat = new widget.TextBox();
@@ -195,6 +196,20 @@ public class DlgViewPdf extends javax.swing.JDialog {
             }
         });
         panelGlass8.add(BtnHapusFile);
+
+        ListTTE.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TTE 1", "TTE 2" }));
+        ListTTE.setName("ListTTE"); // NOI18N
+        ListTTE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ListTTEActionPerformed(evt);
+            }
+        });
+        ListTTE.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                ListTTEKeyPressed(evt);
+            }
+        });
+        panelGlass8.add(ListTTE);
 
         txtNameFile.setEditable(false);
         txtNameFile.setText("2022_01_09_000001.pdf");
@@ -316,7 +331,7 @@ public class DlgViewPdf extends javax.swing.JDialog {
        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
        
         passphrase.isCek();
-        passphrase.setNamaFile(txtNameFile.getText(),txtLokasiFile.getText(),txtNoRawat.getText(),kodeFile, tipeBerkas);
+        passphrase.setNamaFile(txtNameFile.getText(),txtLokasiFile.getText(),txtNoRawat.getText(),kodeFile, tipeBerkas, ListTTE.getSelectedItem().toString());
         passphrase.setSize(676,168);
         passphrase.setLocationRelativeTo(internalFrame1);
         passphrase.setVisible(true);
@@ -327,14 +342,6 @@ public class DlgViewPdf extends javax.swing.JDialog {
     private void BtnSignTTEKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnSignTTEKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_BtnSignTTEKeyPressed
-
-    private void txtLokasiFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLokasiFileActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtLokasiFileActionPerformed
-
-    private void txtNoRawatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNoRawatActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNoRawatActionPerformed
 
     private void BtnHapusFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusFileActionPerformed
         // TODO add your handling code here:
@@ -348,6 +355,22 @@ public class DlgViewPdf extends javax.swing.JDialog {
     private void BtnHapusFileKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnHapusFileKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_BtnHapusFileKeyPressed
+
+    private void ListTTEKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ListTTEKeyPressed
+
+    }//GEN-LAST:event_ListTTEKeyPressed
+
+    private void ListTTEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListTTEActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ListTTEActionPerformed
+
+    private void txtNoRawatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNoRawatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNoRawatActionPerformed
+
+    private void txtLokasiFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLokasiFileActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtLokasiFileActionPerformed
 
     /**
     * @param args the command line arguments
@@ -370,6 +393,7 @@ public class DlgViewPdf extends javax.swing.JDialog {
     private widget.Button BtnKeluar;
     private widget.Button BtnSignTTE;
     private widget.Button BtnViewFile;
+    private widget.ComboBox ListTTE;
     private widget.InternalFrame internalFrame1;
     private javax.swing.JScrollPane jScrollPane1;
     private widget.panelisi panelGlass8;

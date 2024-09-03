@@ -103,7 +103,7 @@
 	<detail>
 		<band height="968">
 			<rectangle>
-				<reportElement x="0" y="70" width="545" height="875" uuid="d53c4d18-b4a1-482f-8358-e4cc3378fee1"/>
+				<reportElement x="0" y="70" width="545" height="878" uuid="d53c4d18-b4a1-482f-8358-e4cc3378fee1"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
@@ -197,7 +197,7 @@
 				<text><![CDATA[Dokter]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="21" y="700" width="508" height="20" uuid="6b911e15-eefb-46ad-9dd6-5cef303f6db3">
+				<reportElement x="21" y="700" width="378" height="20" uuid="6b911e15-eefb-46ad-9dd6-5cef303f6db3">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Justified">
@@ -314,7 +314,7 @@
 				<textFieldExpression><![CDATA[$P{kotars}+", "+$F{tanggal}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="30" y="833" width="90" height="10" uuid="51f08870-37b2-4a71-b7ec-8f4d51db3bfd">
+				<reportElement x="428" y="683" width="90" height="10" uuid="51f08870-37b2-4a71-b7ec-8f4d51db3bfd">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center">
@@ -324,7 +324,7 @@
 				<text><![CDATA[Dokter]]></text>
 			</staticText>
 			<textField textAdjust="StretchHeight">
-				<reportElement x="6" y="931" width="139" height="10" uuid="e80ba4b4-8d20-4e8c-a9fc-cef5f690c121">
+				<reportElement x="401" y="757" width="139" height="10" uuid="e80ba4b4-8d20-4e8c-a9fc-cef5f690c121">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center">
@@ -1281,7 +1281,7 @@
 				<text><![CDATA[2.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="21" y="740" width="506" height="20" uuid="6e6934bd-2a92-4e5d-8215-05b78bfc6bbd">
+				<reportElement x="21" y="740" width="378" height="20" uuid="6e6934bd-2a92-4e5d-8215-05b78bfc6bbd">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Justified">
@@ -1326,6 +1326,26 @@
 					<pen lineWidth="0.5" lineStyle="Solid"/>
 				</graphicElement>
 			</line>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="6" y="931" width="135" height="10" uuid="31cd5bbc-73d2-4d31-8884-2d8bbac05d6e">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="Tahoma" size="8" isBold="false" isItalic="false" isUnderline="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nama}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="8" y="833" width="135" height="10" uuid="6f60bbc3-aa9a-4282-971d-8b78ed6fbe12">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Saksi II Perawat / Petugas]]></text>
+			</staticText>
 			<line>
 				<reportElement x="0" y="476" width="545" height="1" uuid="89ab59e8-17ef-41a4-98dc-388a61a39b4b"/>
 				<graphicElement>
@@ -2047,17 +2067,31 @@
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement positionType="Float" x="11" y="848" width="129" height="72" uuid="5a2b4a3b-8cae-4c3c-9069-2c2900cc39ee">
+				<reportElement positionType="Float" x="8" y="848" width="135" height="78" uuid="c60cb4ad-3b61-48e4-bb28-b95411ff38fb">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[#]]></text>
+				<text><![CDATA[|]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="48" y="949" width="208" height="14" uuid="6080a4c4-04e8-43c9-b4ec-ffe2956d9385">
+				<reportElement positionType="Float" x="401" y="699" width="139" height="50" uuid="dfb42c08-1baa-46d1-a76e-8463027c884c">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[~]]></text>
+			</staticText>
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement x="2" y="951" width="40" height="14" uuid="2d081cfc-a572-46b1-8820-d911534c24bc"/>
+				<imageExpression><![CDATA[$P{logobsre}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement positionType="Float" x="45" y="951" width="210" height="14" uuid="27fb1476-8fab-4370-9296-adb85a77dd04">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left">
@@ -2067,10 +2101,6 @@
 				<text><![CDATA[Dokumen ini telah ditanda tangani secara elektronik menggunakan sertifikat elektronik
 yang telah diterbitkan oleh Balai Sertifikasi Elektronik (BSrE), Badan Siber dan Sandi Negara]]></text>
 			</staticText>
-			<image scaleImage="FillFrame" onErrorType="Blank">
-				<reportElement x="-1" y="947" width="43" height="19" uuid="8f48d4c4-1274-4462-8189-0a33b2480eaa"/>
-				<imageExpression><![CDATA[$P{logobsre}]]></imageExpression>
-			</image>
 		</band>
 	</detail>
 	<columnFooter>

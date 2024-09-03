@@ -1709,7 +1709,7 @@ where resume_pasien_ranap.no_rawat= $P{norawat}]]>
 					<font fontName="Tahoma" size="8" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[#]]></text>
+				<text><![CDATA[|]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="52" y="780" width="208" height="14" uuid="6da8991b-35e3-4e4d-9d81-8e71b6941f4b">

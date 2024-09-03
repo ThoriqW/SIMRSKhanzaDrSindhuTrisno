@@ -56,7 +56,7 @@ public class DlgPassPhrase extends javax.swing.JDialog {
     private JsonNode nameNode,code,metadata;
     private JsonNode response;
     private TteApi apiTte=new TteApi();
-    private String kodeFile;
+    private String kodeFile, txtListTTE;
 
     /** Creates new form DlgPemberianObat
      * @param parent
@@ -339,20 +339,8 @@ public class DlgPassPhrase extends javax.swing.JDialog {
                 System.out.println(URL);
                 headers= new HttpHeaders();
                 headers.setContentType(MediaType.APPLICATION_JSON);
-                switch (tipeBerkas) {
-                    case "SEP":
-                        requestJson =" {" +
-                            "\"nik\":\""+txtNik.getText()+"\","+
-                            "\"id\":\""+akses.getkode()+"\","+
-                            "\"passphrase\":\""+txtPassPhrase.getText()+"\","+
-                            "\"document\":\""+txtNamaFile.getText()+"\","+
-                            "\"location\":\""+txtLokasiFile.getText()+"\","+
-                            "\"tag\":\"|\","+
-                            "\"image\":\"false\","+
-                            "\"tampilan\":\"invisible\""+
-                        "}" ;
-                        break;
-                    default:
+                switch (txtListTTE) {
+                    case "TTE 1":
                         requestJson =" {" +
                             "\"nik\":\""+txtNik.getText()+"\","+
                             "\"id\":\""+akses.getkode()+"\","+
@@ -362,7 +350,20 @@ public class DlgPassPhrase extends javax.swing.JDialog {
                             "\"tag\":\"|\","+
                             "\"image\":\"true\","+
                             "\"tampilan\":\"visible\""+
-                        "}" ;
+                        "}";
+                        break;
+                    case "TTE 2":
+                        requestJson =" {" +
+                            "\"nik\":\""+txtNik.getText()+"\","+
+                            "\"id\":\""+akses.getkode()+"\","+
+                            "\"passphrase\":\""+txtPassPhrase.getText()+"\","+
+                            "\"document\":\""+txtNamaFile.getText()+"\","+
+                            "\"location\":\""+txtLokasiFile.getText()+"\","+
+                            "\"tag\":\"~\","+
+                            "\"image\":\"true\","+
+                            "\"tampilan\":\"visible\""+
+                        "}";
+                        break;
                 }
                 requestEntity = new HttpEntity(requestJson,headers);
                 root = mapper.readTree(apiTte.getRest().exchange(URL, HttpMethod.POST, requestEntity, String.class).getBody());
@@ -515,13 +516,13 @@ public class DlgPassPhrase extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
     
 
-    public void setNamaFile(String namaFile,String pathFile,String NoRawat, String kodFile, String tipeFile) {
+    public void setNamaFile(String namaFile,String pathFile,String NoRawat, String kodFile, String tipeFile, String listTTE) {
         txtNamaFile.setText(namaFile);
         txtLokasiFile.setText(pathFile);
         txtNoRawat.setText(NoRawat);
         kodeFile = kodFile;
         tipeBerkas=tipeFile;
-        System.out.println(tipeFile);
+        txtListTTE=listTTE;
     }
     
     public void isCek(){

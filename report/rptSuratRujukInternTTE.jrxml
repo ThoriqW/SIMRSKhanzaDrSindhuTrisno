@@ -255,7 +255,7 @@
 					<font fontName="Tahoma" size="8" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[#]]></text>
+				<text><![CDATA[|]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="129" y="366" width="128" height="12" uuid="fcb81fcc-229e-4ba3-889e-79876290a048"/>

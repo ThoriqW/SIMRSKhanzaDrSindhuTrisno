@@ -1214,7 +1214,7 @@ inner join petugas on asuhan_gizi.nip=petugas.nip]]>
 					<font fontName="Tahoma" size="8" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[#]]></text>
+				<text><![CDATA[|]]></text>
 			</staticText>
 			<image scaleImage="FillFrame" onErrorType="Blank">
 				<reportElement x="0" y="780" width="43" height="19" uuid="45d51edc-a58b-4a95-8410-4f212f47e911"/>

@@ -1254,7 +1254,7 @@ yang telah diterbitkan oleh Balai Sertifikasi Elektronik (BSrE), Badan Siber dan
 					<font fontName="Tahoma" size="8" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[#]]></text>
+				<text><![CDATA[|]]></text>
 			</staticText>
 		</band>
 	</title>
