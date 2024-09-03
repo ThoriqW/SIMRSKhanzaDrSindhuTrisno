@@ -1499,7 +1499,7 @@
 					<font fontName="Tahoma" size="8" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[#]]></text>
+				<text><![CDATA[|]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="50" y="782" width="208" height="14" uuid="865a9925-af01-4901-b419-6efc89ac56d7">

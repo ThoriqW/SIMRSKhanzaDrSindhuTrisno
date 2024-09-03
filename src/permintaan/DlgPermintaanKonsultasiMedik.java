@@ -58,7 +58,7 @@ public class DlgPermintaanKonsultasiMedik extends javax.swing.JDialog {
     public DlgPermintaanKonsultasiMedik(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        BtnDokumentasiKonsul.setVisible(false);
+//        BtnDokumentasiKonsul.setVisible(false);
         tabMode=new DefaultTableModel(null,new Object[]{
                 "No.Permintaan","No.Rawat","No.RM","Nama Pasien","J.K.","Umur","No.Telp","Cara Bayar","Tanggal Konsultasi","Permintaan",
                 "Kode Dokter Konsul","Nama Dokter Konsul","Kode Dokter Dikonsuli","Nama Dokter Dikonsuli","Diagnosa Kerja Konsul",
@@ -1624,7 +1624,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             String FileName = tbObat.getValueAt(tbObat.getSelectedRow(),0).toString().replaceAll("/","_")+".pdf";
             DlgViewPdf berkas=new DlgViewPdf(null,true);
-            if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"'")>0){
+            if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"' and kode='020'") > 0){
                 berkas.tampilPdf(FileName,"berkastte/konsultasi_medik",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"020");
             }else{
                 createPdf(FileName);

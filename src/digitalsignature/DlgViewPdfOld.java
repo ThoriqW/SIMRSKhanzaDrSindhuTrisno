@@ -131,6 +131,7 @@ passphrase.addWindowListener(new WindowListener() {
         BtnViewFile = new widget.Button();
         BtnSignTTE = new widget.Button();
         BtnKeluar = new widget.Button();
+        ListTTE = new widget.ComboBox();
         txtNameFile = new widget.TextBox();
         txtLokasiFile = new widget.TextBox();
         txtNoRawat = new widget.TextBox();
@@ -144,7 +145,7 @@ passphrase.addWindowListener(new WindowListener() {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Signature Resume Pasien ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(70, 70, 70))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Signature Resume Pasien ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(70, 70, 70))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -208,6 +209,20 @@ passphrase.addWindowListener(new WindowListener() {
             }
         });
         panelGlass8.add(BtnKeluar);
+
+        ListTTE.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TTE 1", "TTE 2" }));
+        ListTTE.setName("ListTTE"); // NOI18N
+        ListTTE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ListTTEActionPerformed(evt);
+            }
+        });
+        ListTTE.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                ListTTEKeyPressed(evt);
+            }
+        });
+        panelGlass8.add(ListTTE);
 
         txtNameFile.setEditable(false);
         txtNameFile.setText("2022_01_09_000001.pdf");
@@ -355,7 +370,7 @@ void viewpdf(String fileName,String fileLocation){
     private void BtnSignTTEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSignTTEActionPerformed
        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
        
-        passphrase.setNamaFile(txtNameFile.getText(),txtLokasiFile.getText(),txtNoRawat.getText(),kodeFile, tipeBerkas);
+        passphrase.setNamaFile(txtNameFile.getText(),txtLokasiFile.getText(),txtNoRawat.getText(),kodeFile, tipeBerkas, ListTTE.getSelectedItem().toString());
         passphrase.setSize(676,168);
         passphrase.setLocationRelativeTo(internalFrame1);
         passphrase.setVisible(true);
@@ -374,6 +389,14 @@ void viewpdf(String fileName,String fileLocation){
     private void txtNoRawatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNoRawatActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNoRawatActionPerformed
+
+    private void ListTTEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListTTEActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ListTTEActionPerformed
+
+    private void ListTTEKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ListTTEKeyPressed
+
+    }//GEN-LAST:event_ListTTEKeyPressed
     void signtte(){           
 //         System.out.println("sign");
 //        try{
@@ -413,6 +436,7 @@ void viewpdf(String fileName,String fileLocation){
     private widget.Button BtnKeluar;
     private widget.Button BtnSignTTE;
     private widget.Button BtnViewFile;
+    private widget.ComboBox ListTTE;
     private widget.InternalFrame internalFrame1;
     private javax.swing.JScrollPane jScrollPane1;
     private widget.panelisi panelGlass8;

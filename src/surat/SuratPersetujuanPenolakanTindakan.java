@@ -67,7 +67,7 @@ public final class SuratPersetujuanPenolakanTindakan extends javax.swing.JDialog
     public SuratPersetujuanPenolakanTindakan(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        BtnPrint1.setVisible(false);
+//        BtnPrint1.setVisible(false);
         tabMode=new DefaultTableModel(null,new Object[]{
             "No.Pernyataan","No.Rawat","No.RM","Nama Pasien","Tgl.Lahir","J.K.","Tanggal","Diagnosa","Ya/Tidak","Tindakan Kedokteran","Ya/Tidak",
             "Indikasi Tindakan","Ya/Tidak","Tata Cara","Ya/Tidak","Tujuan","Ya/Tidak","Risiko","Ya/Tidak","Komplikasi","Ya/Tidak","Prognosis","Ya/Tidak",
@@ -2291,7 +2291,7 @@ public final class SuratPersetujuanPenolakanTindakan extends javax.swing.JDialog
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             FileName=tbObat.getValueAt(tbObat.getSelectedRow(),1).toString().replaceAll("/","_")+".pdf";
             DlgViewPdf berkas=new DlgViewPdf(null,true);
-            if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),1).toString()+"'")>0){
+            if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),1).toString()+"' and kode='008'") > 0){
                 berkas.tampilPdf(FileName,"berkastte/persetujuan_penolakan_tindakan",tbObat.getValueAt(tbObat.getSelectedRow(),1).toString(),"008");
             }else{
                 createPdf(FileName);

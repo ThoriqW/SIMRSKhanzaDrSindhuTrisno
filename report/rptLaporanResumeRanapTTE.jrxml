@@ -1702,14 +1702,14 @@ where resume_pasien_ranap.no_rawat= $P{norawat}]]>
 				<textFieldExpression><![CDATA[$P{jamkeluar}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement positionType="Float" x="378" y="688" width="120" height="30" uuid="4ed2d710-08a1-43b6-bcc4-32e35f1dc988">
+				<reportElement positionType="Float" x="378" y="686" width="120" height="45" uuid="4ed2d710-08a1-43b6-bcc4-32e35f1dc988">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[#]]></text>
+				<text><![CDATA[|]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="52" y="780" width="208" height="14" uuid="6da8991b-35e3-4e4d-9d81-8e71b6941f4b">

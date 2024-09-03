@@ -899,7 +899,7 @@
 					<font fontName="Tahoma" size="8" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[#]]></text>
+				<text><![CDATA[|]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="50" y="135" width="208" height="14" uuid="674efedd-283e-4ca6-a91c-623c941796e0">

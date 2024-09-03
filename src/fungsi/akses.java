@@ -230,7 +230,7 @@ public final class akses {
             satu_sehat_kirim_medicationStatement,konsultasi_medik=false,jawaban_konsultasi_medik=false,hasil_endoskopi_hidung=false,penilaian_pasien_imunitas_rendah=false,hasil_endoskopi_telinga=false,
             balance_cairan=false,catatan_observasi_chbp=false,catatan_observasi_induksi_persalinan=false,skrining_perilaku_merokok_sekolah_remaja=false,skrining_kekerasan_pada_perempuan=false,
             skrining_obesitas=false,skrining_risiko_kanker_payudara=false,skrining_risiko_kanker_paru=false,skrining_kesehatan_gigi_mulut_remaja=false,skrining_tbc=false,master_masalah_keperawatan_neonatus=false,
-            master_rencana_keperawatan_neonatus=false,penilaian_awal_keperawatan_ranap_neonatus=false;
+            master_rencana_keperawatan_neonatus=false,penilaian_awal_keperawatan_ranap_neonatus=false,surat_rujukan_intern=false,hasil_pemeriksaan_echo=false;
     
     public static void setData(String user, String pass) {
         try {        
@@ -1308,6 +1308,8 @@ public final class akses {
                         akses.master_masalah_keperawatan_neonatus=true;
                         akses.master_rencana_keperawatan_neonatus=true;
                         akses.penilaian_awal_keperawatan_ranap_neonatus=true;
+                        akses.surat_rujukan_intern=true;
+                        akses.hasil_pemeriksaan_echo=true;
                     }else if(rs2.getRow()>=1){   
                         rs2.beforeFirst();
                         rs2.next();
@@ -2369,6 +2371,8 @@ public final class akses {
                         akses.master_masalah_keperawatan_neonatus=true;
                         akses.master_rencana_keperawatan_neonatus=true;
                         akses.penilaian_awal_keperawatan_ranap_neonatus=true;
+                        akses.surat_rujukan_intern=true;
+                        akses.hasil_pemeriksaan_echo=true;
                     }else if((rs.getRow()==0)&&(rs2.getRow()==0)){
                         akses.kode="";                  
                         akses.penyakit= false;
@@ -3428,6 +3432,8 @@ public final class akses {
                         akses.master_masalah_keperawatan_neonatus=false;
                         akses.master_rencana_keperawatan_neonatus=false;
                         akses.penilaian_awal_keperawatan_ranap_neonatus=false;
+                        akses.surat_rujukan_intern=false;
+                        akses.hasil_pemeriksaan_echo=false;
                     }
                 } catch (Exception e) {
                     System.out.println("Notifikasi : "+e);
@@ -4505,6 +4511,8 @@ public final class akses {
         akses.master_masalah_keperawatan_neonatus=false;
         akses.master_rencana_keperawatan_neonatus=false;
         akses.penilaian_awal_keperawatan_ranap_neonatus=false;
+        akses.surat_rujukan_intern=false;
+        akses.hasil_pemeriksaan_echo=false;
     }
     
     public static int getjml1() {return akses.jml1;}    
@@ -5603,5 +5611,7 @@ public final class akses {
     public static boolean getmaster_masalah_keperawatan_neonatus(){return akses.master_masalah_keperawatan_neonatus;}
     public static boolean getmaster_rencana_keperawatan_neonatus(){return akses.master_rencana_keperawatan_neonatus;}
     public static boolean getpenilaian_awal_keperawatan_ranap_neonatus(){return akses.penilaian_awal_keperawatan_ranap_neonatus;}
+    public static boolean getsurat_surat_rujukan_intern(){return akses.surat_rujukan_intern;}
+    public static boolean gethasil_pemeriksaan_echo(){return akses.hasil_pemeriksaan_echo;}
     
 }   

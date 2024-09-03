@@ -463,7 +463,7 @@
 					<font fontName="Tahoma" size="8" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[#]]></text>
+				<text><![CDATA[|]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="405" y="22" width="143" height="14" uuid="bb04233a-7f97-43b7-a2ae-ffee22cdb115"/>

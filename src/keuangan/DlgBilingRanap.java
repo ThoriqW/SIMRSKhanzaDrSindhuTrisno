@@ -3812,7 +3812,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
                 i = 0;
                 try{
-                      biaya = (String)JOptionPane.showInputDialog(null,"Silahkan pilih nota yang mau dicetak!","Nota",JOptionPane.QUESTION_MESSAGE,null,new Object[]{"Nota 1", "Nota 2", "Kwitansi", "Nota & Kwitansi","Kwitansi Piutang","Nota TTE"},"Nota TTE");
+                      biaya = (String)JOptionPane.showInputDialog(null,"Silahkan pilih nota yang mau dicetak!","Nota",JOptionPane.QUESTION_MESSAGE,null,new Object[]{"Nota 1", "Nota 2", "Kwitansi", "Nota & Kwitansi","Kwitansi Piutang","Nota TTE"},"Nota 1");
                       switch (biaya) {
                             case "Nota 1":
                                   i=1;
@@ -3877,7 +3877,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                         FileName=TNoRw.getText().replaceAll("/","_")+".pdf";
                         DlgViewPdf berkas=new DlgViewPdf(null,true);
-                        if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+TNoRw.getText()+"'")>0){
+                        if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+TNoRw.getText()+"' and kode='013'") > 0){
                             berkas.tampilPdf(FileName,"berkastte/billing_ranap",TNoRw.getText(),"013");
                         }else{
                             createPdf(FileName);

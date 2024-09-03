@@ -173,6 +173,7 @@ public class DlgMappingAkunTTE extends javax.swing.JDialog {
         BtnCari = new widget.Button();
         BtnSimpan = new widget.Button();
         BtnKeluar = new widget.Button();
+        BtnDeleteTTE = new widget.Button();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -373,10 +374,27 @@ public class DlgMappingAkunTTE extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnKeluar);
 
+        BtnDeleteTTE.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete-16x16.png"))); // NOI18N
+        BtnDeleteTTE.setMnemonic('S');
+        BtnDeleteTTE.setText("Hapus");
+        BtnDeleteTTE.setToolTipText("Alt+S");
+        BtnDeleteTTE.setName("BtnDeleteTTE"); // NOI18N
+        BtnDeleteTTE.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnDeleteTTE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnDeleteTTEActionPerformed(evt);
+            }
+        });
+        BtnDeleteTTE.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnDeleteTTEKeyPressed(evt);
+            }
+        });
+        panelGlass8.add(BtnDeleteTTE);
+
         internalFrame1.add(panelGlass8, java.awt.BorderLayout.PAGE_END);
 
         getContentPane().add(internalFrame1, java.awt.BorderLayout.CENTER);
-        internalFrame1.getAccessibleContext().setAccessibleName("::[ Mapping Akun TTE ]::");
         internalFrame1.getAccessibleContext().setAccessibleDescription("");
 
         pack();
@@ -466,23 +484,21 @@ public class DlgMappingAkunTTE extends javax.swing.JDialog {
                             "\"sign_image\":\""+TQrCode.getText()+"\""+
                         "}" ;
             System.out.println(requestJson);
-            
-	    requestEntity = new HttpEntity(requestJson,headers);
-	    root = mapper.readTree(apiTte.getRest().exchange(URL, HttpMethod.POST, requestEntity, String.class).getBody());
-//          System.out.println(response.path("policlinics").asText());
-            metadata = root.path("metadata");
-            response =root.path("response");
-//              System.out.println(response);
-//                System.out.println(response.path("policlinics").asText());
-            if(metadata.path("code").asText().equals("200")){
-                TNama.setText("");
-                TNik.setText("");
-                TQrCode.setText(""); 
-             }else if(metadata.path("code").asText().equals("400")){
-                 JOptionPane.showMessageDialog(null,metadata.path("message").asText());
-             } 
-            JOptionPane.showMessageDialog(null,metadata.path("message").asText());
-            tampil();
+                requestEntity = new HttpEntity(requestJson,headers);
+                root = mapper.readTree(apiTte.getRest().exchange(URL, HttpMethod.POST, requestEntity, String.class).getBody());
+    //          System.out.println(response.path("policlinics").asText());
+                metadata = root.path("metadata");
+                response =root.path("response");
+    //              System.out.println(response);
+    //                System.out.println(response.path("policlinics").asText());
+                if(metadata.path("code").asText().equals("200")){
+                    TNama.setText("");
+                    TNik.setText("");
+                    TQrCode.setText(""); 
+                 }else if(metadata.path("code").asText().equals("400")){
+                     JOptionPane.showMessageDialog(null,metadata.path("message").asText());
+                 } 
+                tampil();
         }catch (HttpServerErrorException e) {
         // Handle HTTP server error responses
             System.out.println("HTTP Error: " + e.getStatusCode() + " " + e.getStatusText());
@@ -517,6 +533,53 @@ public class DlgMappingAkunTTE extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_TNamaKeyPressed
 
+    private void BtnDeleteTTEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDeleteTTEActionPerformed
+        // TODO add your handling code here:
+                try {
+            link=apiTte.URLTTE();
+            URL = link+"deleteAkunTTE";
+            headers= new HttpHeaders();
+            System.out.println(URL);
+            headers.setContentType(MediaType.APPLICATION_JSON);
+//	    headers.add("X-Cons-ID",koneksiDB.CONSIDAPIBPJS());
+//	    headers.add("X-Timestamp",utc);  
+//          headers.add("user_key",koneksiDB.USERKEYAPIBPJS());
+//	    utc=String.valueOf(api.GetUTCdatetimeAsString());
+//          headers.add("X-Signature",api.getHmac(utc));
+            requestJson ="{" +
+                            "\"nik\":\""+TNik.getText()+"\""+
+                         "}" ;
+            System.out.println(requestJson);
+            
+	    requestEntity = new HttpEntity(requestJson,headers);
+	    root = mapper.readTree(apiTte.getRest().exchange(URL, HttpMethod.POST, requestEntity, String.class).getBody());
+//          System.out.println(response.path("policlinics").asText());
+            metadata = root.path("metadata");
+            response =root.path("response");
+//              System.out.println(response);
+//                System.out.println(response.path("policlinics").asText());
+            if(metadata.path("code").asText().equals("200")){
+                TNama.setText("");
+                TNik.setText("");
+                TQrCode.setText(""); 
+             }else if(metadata.path("code").asText().equals("400")){
+                 JOptionPane.showMessageDialog(null,metadata.path("message").asText());
+             } 
+            JOptionPane.showMessageDialog(null,metadata.path("message").asText());
+            tampil();
+        }catch (HttpServerErrorException e) {
+        // Handle HTTP server error responses
+            System.out.println("HTTP Error: " + e.getStatusCode() + " " + e.getStatusText());
+            JOptionPane.showMessageDialog(null, "Server Error: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println(e);
+        }  
+    }//GEN-LAST:event_BtnDeleteTTEActionPerformed
+
+    private void BtnDeleteTTEKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnDeleteTTEKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnDeleteTTEKeyPressed
+
     /**
     * @param args the command line arguments
     */
@@ -535,6 +598,7 @@ public class DlgMappingAkunTTE extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private widget.Button BtnCari;
+    private widget.Button BtnDeleteTTE;
     private widget.Button BtnKeluar;
     private widget.Button BtnPasien;
     private widget.Button BtnPasien1;
