@@ -486,7 +486,7 @@
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Dokumen ini telah ditanda tangani secara elektronik menggunakan sertifikat elektronik
-yang telah diterbitkan oleh Balai Sertifikasi Elektronik (BSrE), Badan Siber dan Sandi Negara Tes]]></text>
+yang telah diterbitkan oleh Balai Sertifikasi Elektronik (BSrE), Badan Siber dan Sandi Negara]]></text>
 			</staticText>
 			<image scaleImage="FillFrame" onErrorType="Blank">
 				<reportElement x="0" y="120" width="44" height="21" uuid="98c2d127-1ea6-4ad5-8cd6-fdc55d6c6b65">

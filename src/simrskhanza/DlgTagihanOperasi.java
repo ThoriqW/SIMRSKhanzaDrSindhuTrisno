@@ -59,7 +59,7 @@ public class DlgTagihanOperasi extends javax.swing.JDialog {
     public DlgTagihanOperasi(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-
+        autoNomor();
         Object[] row={"P","Kode Paket","Nama Operasi","Kategori","Operator 1","Operator 2","Operator 3",
                       "Asisten Op 1","Asisten Op 2","Asisten Op 3","Instrumen","dr Anak","Perawat Resus","dr Anastesi",
                       "Asisten Anast 1","Asisten Anast 2","Bidan 1","Bidan 2","Bidan 3","Perawat Luar","Alat","Sewa OK/VK",
@@ -658,6 +658,7 @@ public class DlgTagihanOperasi extends javax.swing.JDialog {
         Laporan = new widget.TextArea();
         jLabel10 = new widget.Label();
         btnTemplate = new widget.Button();
+        TNoPermintaanPK = new widget.TextBox();
 
         Kd2.setName("Kd2"); // NOI18N
         Kd2.setPreferredSize(new java.awt.Dimension(207, 23));
@@ -2002,6 +2003,16 @@ public class DlgTagihanOperasi extends javax.swing.JDialog {
         FormInput.add(btnTemplate);
         btnTemplate.setBounds(479, 460, 28, 23);
 
+        TNoPermintaanPK.setHighlighter(null);
+        TNoPermintaanPK.setName("TNoPermintaanPK"); // NOI18N
+        TNoPermintaanPK.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TNoPermintaanPKKeyPressed(evt);
+            }
+        });
+        FormInput.add(TNoPermintaanPK);
+        TNoPermintaanPK.setBounds(670, 40, 130, 23);
+
         scrollPane1.setViewportView(FormInput);
 
         PanelInput.add(scrollPane1, java.awt.BorderLayout.CENTER);
@@ -2787,7 +2798,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                             +"','"+tbtindakan.getValueAt(i,28).toString()
                             +"','"+tbtindakan.getValueAt(i,29).toString()
                             +"','"+tbtindakan.getValueAt(i,30).toString()
-                            +"','"+tbtindakan.getValueAt(i,31).toString()+"','"+status+"'","data")==true){
+                            +"','"+tbtindakan.getValueAt(i,31).toString()+"','"+status+"','"+TNoPermintaanPK.getText()+"'","data")==true){
                             ttljmdokter=ttljmdokter+Double.parseDouble(tbtindakan.getValueAt(i,4).toString())+
                                     Double.parseDouble(tbtindakan.getValueAt(i,5).toString())+
                                     Double.parseDouble(tbtindakan.getValueAt(i,6).toString())+
@@ -2864,7 +2875,8 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                             Sequel.menyimpan("tampjurnal","'"+HPP_Obat_Operasi_Ranap+"','HPP Persediaan Operasi Rawat Inap','"+ttlbhp+"','0'","debet=debet+'"+(ttlbhp)+"'","kd_rek='"+HPP_Obat_Operasi_Ranap+"'");     
                             Sequel.menyimpan("tampjurnal","'"+Persediaan_Obat_Kamar_Operasi_Ranap+"','Persediaan BHP Operasi Rawat Inap','0','"+ttlbhp+"'","kredit=kredit+'"+(ttlbhp)+"'","kd_rek='"+Persediaan_Obat_Kamar_Operasi_Ranap+"'");                                
                         }
-                        sukses=jur.simpanJurnal(TNoRw.getText(),"U","OPERASI RAWAT INAP PASIEN "+TPasien.getText()+" DIPOSTING OLEH "+akses.getkode());                                              
+                        sukses=jur.simpanJurnal(TNoRw.getText(),"U","OPERASI RAWAT INAP PASIEN "+TPasien.getText()+" DIPOSTING OLEH "+akses.getkode());
+                        
                     }else if(status.equals("Ralan")){
                         Sequel.queryu("delete from tampjurnal");    
                         if(ttlpendapatan>0){
@@ -2903,6 +2915,9 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                     Jaringan.setText("");
                     Laporan.setText("");
                     jenis.setText("");
+                    Sequel.menyimpantf2("no_surat_laporan_operasi","?,?,?","no_surat laporan operasi",3,new String[]{
+                                TNoPermintaanPK.getText(),TNoRw.getText(),Valid.SetTgl(tgl.getSelectedItem()+"")
+                            });
                     JOptionPane.showMessageDialog(rootPane,"Proses simpan selesai...!");
                 }else{
                     JOptionPane.showMessageDialog(null,"Terjadi kesalahan saat pemrosesan data, transaksi dibatalkan.\nPeriksa kembali data sebelum melanjutkan menyimpan..!!");
@@ -3005,6 +3020,10 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         template.setVisible(true);
     }//GEN-LAST:event_btnTemplateActionPerformed
 
+    private void TNoPermintaanPKKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TNoPermintaanPKKeyPressed
+//        Valid.pindah(evt,Pemeriksaan,TCari);
+    }//GEN-LAST:event_TNoPermintaanPKKeyPressed
+
     /**
     * @param args the command line arguments
     */
@@ -3052,6 +3071,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.ScrollPane Scroll1;
     private widget.TextBox TCari;
     private widget.TextBox TCariPaket;
+    private widget.TextBox TNoPermintaanPK;
     private widget.TextBox TNoRw;
     private widget.TextBox TPasien;
     private widget.Button btnAnak;
@@ -3675,6 +3695,11 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         TCariPaket.setText(Operasi);
         kdoperator1.setText(kodedokter);
         nmoperator1.setText(namadokter);
+    }
+    
+    private void autoNomor() {
+        Valid.autoNomer3("select ifnull(MAX(CONVERT(RIGHT(no_surat_laporan_operasi.no_surat_operasi,4),signed)),0) from no_surat_laporan_operasi where no_surat_laporan_operasi.tgl_surat='"+Valid.SetTgl(tgl.getSelectedItem()+"")+"' ","LO"+Valid.SetTgl(tgl.getSelectedItem()+"").replaceAll("-",""),4,TNoPermintaanPK);           
+        System.out.println(TNoPermintaanPK.getText());
     }
  
 }

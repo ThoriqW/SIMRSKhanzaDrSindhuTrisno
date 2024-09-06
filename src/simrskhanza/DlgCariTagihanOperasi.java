@@ -44,6 +44,7 @@ public class DlgCariTagihanOperasi extends javax.swing.JDialog {
     private MasterCariTemplateLaporanOperasi template=new MasterCariTemplateLaporanOperasi(null,false);
     private int pilihan=0;
     private boolean sukses=true;
+    private String FileName;
     private double ttljmdokter=0,ttljmpetugas=0,ttlpendapatan=0,ttlbhp=0;
     private String Suspen_Piutang_Operasi_Ranap="",Operasi_Ranap="",Beban_Jasa_Medik_Dokter_Operasi_Ranap="",Utang_Jasa_Medik_Dokter_Operasi_Ranap="",
             Beban_Jasa_Medik_Paramedis_Operasi_Ranap="",Utang_Jasa_Medik_Paramedis_Operasi_Ranap="",HPP_Obat_Operasi_Ranap="",Persediaan_Obat_Kamar_Operasi_Ranap="",
@@ -3160,9 +3161,13 @@ private void MnHapusObatOperasiActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
         if(tbDokter.getSelectedRow()>-1){
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            String FileName = tbDokter.getValueAt(tbDokter.getSelectedRow(),1).toString().replaceAll("/","_")+".pdf";
+            if(tbDokter.getValueAt(tbDokter.getSelectedRow() + 1,39) != null){
+                FileName = tbDokter.getValueAt(tbDokter.getSelectedRow() + 1,39).toString().replaceAll("/","_")+".pdf";
+            } else {
+                FileName = tbDokter.getValueAt(tbDokter.getSelectedRow(),1).toString().replaceAll("/","_")+".pdf";
+            }
             DlgViewPdf berkas=new DlgViewPdf(null,true);
-            if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+tbDokter.getValueAt(tbDokter.getSelectedRow(),1).toString()+"' and kode='019'") > 0){
+            if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_dokumen='"+FileName+"' and kode='019'") > 0){
                 berkas.tampilPdf(FileName,"berkastte/laporan_operasi",tbDokter.getValueAt(tbDokter.getSelectedRow(),1).toString(),"019");
             }else{
                 createPdf(FileName);
@@ -3405,7 +3410,7 @@ private void MnHapusObatOperasiActionPerformed(java.awt.event.ActionEvent evt) {
                     diagnosa_preop,diagnosa_postop,jaringan_dieksekusi,permintaan_pa,selesaioperasi,laporan_operasi
                 });     
                 rs2=koneksi.prepareStatement(
-                        "select operasi.operator1, operasi.operator2, operasi.operator3, operasi.asisten_operator1,"+
+                        "select operasi.operator1, operasi.no_surat_laporan_operasi, operasi.operator2, operasi.operator3, operasi.asisten_operator1,"+
                         "operasi.asisten_operator2,operasi.asisten_operator3, operasi.instrumen, operasi.dokter_anak, operasi.perawaat_resusitas, "+
                         "operasi.dokter_anestesi, operasi.asisten_anestesi,operasi.asisten_anestesi2, operasi.bidan, operasi.bidan2, operasi.bidan3, operasi.perawat_luar, "+
                         "operasi.omloop,operasi.omloop2,operasi.omloop3,operasi.omloop4,operasi.omloop5,operasi.dokter_pjanak,operasi.dokter_umum,"+
@@ -3453,7 +3458,7 @@ private void MnHapusObatOperasiActionPerformed(java.awt.event.ActionEvent evt) {
                            "",
                            dokter.tampil3(rs2.getString("dokter_pjanak")),
                            dokter.tampil3(rs2.getString("dokter_umum")),
-                           "","","","","","",""
+                           "","","","","","",rs2.getString("no_surat_laporan_operasi")
                     });  
                     tabMode.addRow(new Object[]{"","","","","",Valid.SetAngka(rs2.getDouble("biayaoperator1")),
                            Valid.SetAngka(rs2.getDouble("biayaoperator2")),

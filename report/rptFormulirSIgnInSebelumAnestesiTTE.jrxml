@@ -843,7 +843,7 @@
 		<band height="157" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<staticText>
-				<reportElement x="320" y="14" width="220" height="14" uuid="c1fbf8b7-e738-49a7-95b4-a424b7f1e65c"/>
+				<reportElement x="320" y="11" width="220" height="14" uuid="c1fbf8b7-e738-49a7-95b4-a424b7f1e65c"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font fontName="Tahoma" size="10"/>
 					<paragraph lineSpacing="Single"/>
@@ -851,7 +851,7 @@
 				<text><![CDATA[Dokter Anestesi]]></text>
 			</staticText>
 			<textField pattern="dd MMMM, yyyy">
-				<reportElement x="320" y="3" width="220" height="11" uuid="9f783fb7-7368-4d30-8670-cf350efa3902"/>
+				<reportElement x="320" y="0" width="220" height="11" uuid="9f783fb7-7368-4d30-8670-cf350efa3902"/>
 				<textElement textAlignment="Center" verticalAlignment="Bottom">
 					<font fontName="Tahoma" size="9"/>
 					<paragraph lineSpacing="Single"/>
@@ -859,7 +859,7 @@
 				<textFieldExpression><![CDATA[$P{kotars}+", "+new SimpleDateFormat("dd MMMM yyyy", new java.util.Locale("id")).format(new Date())]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="320" y="106" width="220" height="15" uuid="6ea48481-f15a-4169-9e1b-675850c6d206"/>
+				<reportElement stretchType="RelativeToBandHeight" x="320" y="103" width="220" height="15" uuid="6ea48481-f15a-4169-9e1b-675850c6d206"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="10"/>
 					<paragraph lineSpacing="Single"/>
@@ -889,21 +889,21 @@
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement positionType="Float" x="352" y="40" width="156" height="57" uuid="a98a46bb-a35c-4ede-b602-ebaa862b2ddd">
+				<reportElement positionType="Float" x="320" y="25" width="219" height="78" uuid="a98a46bb-a35c-4ede-b602-ebaa862b2ddd">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[|]]></text>
+				<text><![CDATA[~]]></text>
 			</staticText>
 			<image scaleImage="FillFrame" onErrorType="Blank">
-				<reportElement x="7" y="117" width="43" height="19" uuid="de9c6256-94d1-4424-81b0-304b4299501b"/>
+				<reportElement x="7" y="123" width="43" height="19" uuid="de9c6256-94d1-4424-81b0-304b4299501b"/>
 				<imageExpression><![CDATA[$P{logobsre}]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="54" y="120" width="208" height="14" uuid="57275841-74c8-43e2-bece-3c943324602f">
+				<reportElement x="54" y="126" width="208" height="14" uuid="57275841-74c8-43e2-bece-3c943324602f">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left">
@@ -912,6 +912,32 @@
 				</textElement>
 				<text><![CDATA[Dokumen ini telah ditanda tangani secara elektronikmenggunakan sertifikat elektronik
 yang telah diterbitkan oleh Balai Sertifikasi Elektronik (BSrE), Badan Siber dan Sandi Negara]]></text>
+			</staticText>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="38" y="103" width="214" height="15" uuid="f3ac778d-5b01-40a9-aa45-d08d2b3ebb16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nama}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="38" y="11" width="214" height="14" uuid="0870309d-4254-4e77-b6c5-1d346600f7f8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Tahoma" size="10"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Perawat Kamar Operasi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="38" y="25" width="214" height="78" uuid="ad86d809-9e02-43be-a353-1a0ef7db045a">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
 			</staticText>
 		</band>
 	</summary>

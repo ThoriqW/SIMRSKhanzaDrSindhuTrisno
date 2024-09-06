@@ -1582,7 +1582,7 @@ public final class RMSignInSebelumAnastesi extends javax.swing.JDialog {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             FileName=tbObat.getValueAt(tbObat.getSelectedRow(),0).toString().replaceAll("/","_")+".pdf";
             DlgViewPdf berkas=new DlgViewPdf(null,true);
-            if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"'")>0){
+            if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"' and kode='010'") > 0){
                 berkas.tampilPdf(FileName,"berkastte/sign_in_sebelum_anastesi",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"010");
             }else{
                 createPdf(FileName);

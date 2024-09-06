@@ -346,7 +346,7 @@ public class DlgViewPdf extends javax.swing.JDialog {
     private void BtnHapusFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusFileActionPerformed
         // TODO add your handling code here:
         if(txtNameFile.getText() != null && !txtNameFile.getText().isEmpty() && txtLokasiFile.getText() != null && !txtLokasiFile.getText().isEmpty()){
-            System.out.println(txtNameFile.getText());
+            System.out.println(txtLokasiFile.getText() + " " + txtNameFile.getText());
             Sequel.hapusTTE("berkas_tte", "nama_file", "lokasi_file", txtNameFile.getText(), txtLokasiFile.getText());
             dispose();
         }   
