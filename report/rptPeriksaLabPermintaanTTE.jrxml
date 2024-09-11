@@ -723,7 +723,7 @@
 				<text><![CDATA[Jika ada keragu-raguan pemeriksaan, diharapkan segera menghubungi laboratorium.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="1" y="29" width="151" height="15" forecolor="#000000" backcolor="#F0F0DC" uuid="6bb71053-8f7f-48ee-9e93-19d6260db68c"/>
+				<reportElement mode="Transparent" x="1" y="29" width="169" height="15" forecolor="#000000" backcolor="#F0F0DC" uuid="6bb71053-8f7f-48ee-9e93-19d6260db68c"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="10" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -731,7 +731,7 @@
 				<text><![CDATA[Penanggung Jawab]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="1" y="89" width="151" height="15" uuid="4afc0271-954b-4330-a87f-b39b31e89814">
+				<reportElement x="1" y="96" width="169" height="15" uuid="4afc0271-954b-4330-a87f-b39b31e89814">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -758,7 +758,7 @@ yang telah diterbitkan oleh Balai Sertifikasi Elektronik (BSrE), Badan Siber dan
 				<imageExpression><![CDATA[$P{logobsre}]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement positionType="Float" x="1" y="49" width="151" height="34" uuid="f53b5e9e-59f4-4740-8268-0bf26a6655a1">
+				<reportElement positionType="Float" x="1" y="49" width="169" height="38" uuid="f53b5e9e-59f4-4740-8268-0bf26a6655a1">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -768,7 +768,7 @@ yang telah diterbitkan oleh Balai Sertifikasi Elektronik (BSrE), Badan Siber dan
 				<text><![CDATA[~]]></text>
 			</staticText>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="360" y="90" width="150" height="15" uuid="f68a0a2c-04ac-4f08-a885-f64367f37915"/>
+				<reportElement stretchType="RelativeToBandHeight" x="330" y="96" width="180" height="15" uuid="f68a0a2c-04ac-4f08-a885-f64367f37915"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="10"/>
 					<paragraph lineSpacing="Single"/>
@@ -776,7 +776,7 @@ yang telah diterbitkan oleh Balai Sertifikasi Elektronik (BSrE), Badan Siber dan
 				<textFieldExpression><![CDATA[$P{petugas}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement positionType="Float" x="360" y="50" width="151" height="34" uuid="bb4f74c0-41f4-4614-bf12-133a072ef905">
+				<reportElement positionType="Float" x="330" y="50" width="181" height="38" uuid="bb4f74c0-41f4-4614-bf12-133a072ef905">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -786,7 +786,7 @@ yang telah diterbitkan oleh Balai Sertifikasi Elektronik (BSrE), Badan Siber dan
 				<text><![CDATA[|]]></text>
 			</staticText>
 			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="360" y="30" width="151" height="15" forecolor="#000000" backcolor="#F0F0DC" uuid="43a733b1-1831-413f-b292-f190784aea4b"/>
+				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="330" y="30" width="181" height="15" forecolor="#000000" backcolor="#F0F0DC" uuid="43a733b1-1831-413f-b292-f190784aea4b"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="10" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
