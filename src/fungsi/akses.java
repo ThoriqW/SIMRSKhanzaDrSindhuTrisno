@@ -235,7 +235,7 @@ public final class akses {
             skrining_kesehatan_gigi_mulut_remaja=false,penilaian_awal_keperawatan_ranap_bayi=false,booking_mcu_perusahaan=false,
             bsre_management_log=false,buka_bsre_log=false,bsre_status_dokumen=false,buka_bsre_status_dokumen=false,mapping_akun_tte=false,
             satu_sehat_kirim_care_plan=false,satu_sehat_kirim_questionnaireResponse=false,satu_sehat_kirim_medicationStatement=false,
-            satu_sehat_kirim_allergy_intollerance=false,satu_sehat_data_alergi_pasien=false,surat_rujukan_intern=false,hasil_pemeriksaan_echo=false;
+            satu_sehat_kirim_allergy_intollerance=false,satu_sehat_data_alergi_pasien=false,surat_rujukan_intern=false,hasil_pemeriksaan_echo=false,master_berkas_tte;
     public static void setData(String user, String pass) {
         try {        
                 ps=koneksi.prepareStatement("select * from admin where admin.usere=AES_ENCRYPT(?,'nur') and admin.passworde=AES_ENCRYPT(?,'windi')");               
@@ -1329,6 +1329,7 @@ public final class akses {
                         akses.satu_sehat_data_alergi_pasien=true;
                         akses.surat_rujukan_intern=true;
                         akses.hasil_pemeriksaan_echo=true;
+                        akses.master_berkas_tte=true;
                     }else if(rs2.getRow()>=1){   
                         rs2.beforeFirst();
                         rs2.next();
@@ -2404,6 +2405,7 @@ public final class akses {
                         akses.satu_sehat_data_alergi_pasien=true;
                         akses.surat_rujukan_intern=true;
                         akses.hasil_pemeriksaan_echo=true;
+                        akses.master_berkas_tte=true;
                     }else if((rs.getRow()==0)&&(rs2.getRow()==0)){
                         akses.kode="";                  
                         akses.penyakit= false;
@@ -3480,6 +3482,7 @@ public final class akses {
                         akses.satu_sehat_data_alergi_pasien=false;
                         akses.surat_rujukan_intern=false;
                         akses.hasil_pemeriksaan_echo=false;
+                        akses.master_berkas_tte=false;
                     }
                 } catch (Exception e) {
                     System.out.println("Notifikasi : "+e);
@@ -4576,6 +4579,7 @@ public final class akses {
         akses.satu_sehat_data_alergi_pasien=false;
         akses.surat_rujukan_intern=false;
         akses.hasil_pemeriksaan_echo=false;
+        akses.master_berkas_tte=false;
     }
     
     public static int getjml1() {return akses.jml1;}    
@@ -5691,4 +5695,5 @@ public final class akses {
     public static boolean getsatu_sehat_data_alergi_pasien(){return akses.satu_sehat_data_alergi_pasien;}
     public static boolean getsurat_surat_rujukan_intern(){return akses.surat_rujukan_intern;}
     public static boolean gethasil_pemeriksaan_echo(){return akses.hasil_pemeriksaan_echo;}
+    public static boolean getmaster_berkas_tte() {return akses.master_berkas_tte;}
 }   

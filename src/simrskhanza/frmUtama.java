@@ -1066,6 +1066,7 @@ import digitalsignature.DlgMappingAkunTTE;
 import bridging.SatuSehatKirimCarePlan;
 import bridging.SatuSehatKirimMedicationStatement;
 import bridging.SatuSehatKirimQuestionnaireResponse;
+import digitalsignature.DlgMasterBerkasTTE;
 
 /**
  *
@@ -21766,6 +21767,17 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         DlgHome.dispose();
         this.setCursor(Cursor.getDefaultCursor());
     }
+    
+    private void btnMasterBerkasTTEActionPerformed(java.awt.event.ActionEvent evt) {
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        DlgMasterBerkasTTE from=new DlgMasterBerkasTTE(this,false);
+        from.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        from.setLocationRelativeTo(PanelUtama);
+        from.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }
             
     /**
     * @param args the command line arguments
@@ -22462,7 +22474,7 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             btnDataSasaranUsiaLansia,btnSkriningMerokokUsiaSekolah,btnSkriningKekerasanPadaPerempuan,btnSkriningObesitas,btnSkriningRisikoKankerPayudara,btnSkriningRisikoKankerParu,
             btnSkriningKesehatanGigiMulutRemaja,btnSkriningTBC,btnPenilaianAwalKeperawatanRanapBayiAnak,btnBookingMCUPerusahaan,
             btnBSRESignatureLog,btnBSREStatusDokumen,btnMappingAkunTTE,btnSatuSehatKirimAllergyIntollerance,btnSatuSehatCariAlergi,btnSatuSehatDataAlergiPasien,
-            btnSatuSehatKirimCarePlan,btnSatuSehatKirimMedicationStatement,btnSatuSehatKirimQuestionnaireResponse;
+            btnSatuSehatKirimCarePlan,btnSatuSehatKirimMedicationStatement,btnSatuSehatKirimQuestionnaireResponse,btnMasterBerkasTTE;
     
     public void isWall(){
         try{            
@@ -22772,6 +22784,11 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
 
             if(akses.getsatu_sehat_kirim_questionnaireResponse()==true){
                 Panelmenu.add(btnSatuSehatKirimQuestionnaireResponse);
+                jmlmenu++;
+            }
+            
+            if(akses.getmaster_berkas_tte()==true){
+                Panelmenu.add(btnMasterBerkasTTE);
                 jmlmenu++;
             }
         }else if(cmbMenu.getSelectedIndex()==1){ 
@@ -33133,6 +33150,11 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             Panelmenu.add(btnSatuSehatKirimQuestionnaireResponse);
             jmlmenu++;
         }
+        
+        if(akses.getmaster_berkas_tte()==true){
+            Panelmenu.add(btnMasterBerkasTTE);
+            jmlmenu++;
+        }
     }
     
     private void isCariIsi() {
@@ -40515,6 +40537,13 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
                 jmlmenu++;
             }
         }
+        
+        if(akses.getmaster_berkas_tte()==true){
+            if(btnMasterBerkasTTE.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
+                Panelmenu.add(btnMasterBerkasTTE);
+                jmlmenu++;
+            }
+        }
     }
 
     private void initKhanza() {
@@ -45310,5 +45339,13 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         btnSatuSehatKirimQuestionnaireResponse.setName("btnSatuSehatKirimQuestionnaireResponse"); 
         btnSatuSehatKirimQuestionnaireResponse.setPreferredSize(new java.awt.Dimension(200, 90));
         btnSatuSehatKirimQuestionnaireResponse.addActionListener(this::btnSatuSehatKirimQuestionnaireResponseActionPerformed);
+        
+        btnMasterBerkasTTE = new widget.ButtonBig();
+        btnMasterBerkasTTE.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/akun_tte.png")));
+        btnMasterBerkasTTE.setText("Master Berkas TTE");
+        btnMasterBerkasTTE.setIconTextGap(0);
+        btnMasterBerkasTTE.setName("btnMasterBerkasTTE"); 
+        btnMasterBerkasTTE.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnMasterBerkasTTE.addActionListener(this::btnMasterBerkasTTEActionPerformed);
     }
 }
