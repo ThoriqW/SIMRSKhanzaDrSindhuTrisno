@@ -1249,7 +1249,7 @@ public final class RMHasilPemeriksaanECHO extends javax.swing.JDialog {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             String FileName = tbObat.getValueAt(tbObat.getSelectedRow(),0).toString().replaceAll("/","_")+".pdf";
             DlgViewPdf berkas=new DlgViewPdf(null,true);
-            if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"' and kode='031'") > 0){
+            if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_dokumen='"+FileName+"' and kode='031'") > 0){
                 berkas.tampilPdf(FileName,"berkastte/pemeriksaan_echo",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"031");
             }else{
                 createPdf(FileName);

@@ -1549,7 +1549,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             String FileName = tbObat.getValueAt(tbObat.getSelectedRow(),11)+".pdf";
             DlgViewPdf berkas=new DlgViewPdf(null,true);
-            if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),11).toString()+"' and kode='017'") > 0){
+            if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_dokumen='"+FileName+"' and kode='017'") > 0){
                 berkas.tampilPdf(FileName,"berkastte/surat_kontrol_internal",tbObat.getValueAt(tbObat.getSelectedRow(),11).toString(),"017");
             }else{
                 createPdf(FileName);

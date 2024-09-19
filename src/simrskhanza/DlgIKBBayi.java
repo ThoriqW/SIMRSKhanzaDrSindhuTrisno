@@ -3860,10 +3860,9 @@ private void MnKartuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
         // TODO add your handling code here:
         if(tabMode.getRowCount()!=0){
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            System.out.println(tbDokter.getValueAt(tbDokter.getSelectedRow(),0).toString());
             String FileName = tbDokter.getValueAt(tbDokter.getSelectedRow(),0).toString()+".pdf";
             DlgViewPdf berkas=new DlgViewPdf(null,true);
-            if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+tbDokter.getValueAt(tbDokter.getSelectedRow(),0).toString()+"' and kode='029'") > 0){
+            if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_dokumen='"+FileName+"' and kode='029'") > 0){
                 berkas.tampilPdf(FileName,"berkastte/surat_kelahiran",tbDokter.getValueAt(tbDokter.getSelectedRow(),0).toString(),"029");
             }else{
                 createPdf(FileName);

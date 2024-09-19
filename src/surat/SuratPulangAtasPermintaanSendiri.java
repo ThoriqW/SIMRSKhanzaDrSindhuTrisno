@@ -1329,11 +1329,11 @@ public final class SuratPulangAtasPermintaanSendiri extends javax.swing.JDialog 
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             String FileName = tbObat.getValueAt(tbObat.getSelectedRow(),0).toString().replaceAll("/","_")+".pdf";
             DlgViewPdf berkas=new DlgViewPdf(null,true);
-            if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"' and kode='025'") > 0){
-                berkas.tampilPdf(FileName,"berkastte/pulang_atas_permintaan_sendiri",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"025");
+            if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_dokumen='"+FileName+"' and kode='025'") > 0){
+                berkas.tampilPdf(FileName,"berkastte/pulang_atas_permintaan_sendiri",tbObat.getValueAt(tbObat.getSelectedRow(),1).toString(),"025");
             }else{
                 createPdf(FileName);
-                berkas.tampilPdfLocal(FileName,"local","berkastte/pulang_atas_permintaan_sendiri",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"025");
+                berkas.tampilPdfLocal(FileName,"local","berkastte/pulang_atas_permintaan_sendiri",tbObat.getValueAt(tbObat.getSelectedRow(),1).toString(),"025");
             }
             berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
             berkas.setLocationRelativeTo(internalFrame1);
