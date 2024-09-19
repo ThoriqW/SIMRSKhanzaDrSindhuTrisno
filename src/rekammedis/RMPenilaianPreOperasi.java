@@ -5,6 +5,7 @@
 
 package rekammedis;
 
+import digitalsignature.DlgViewPdf;
 import fungsi.WarnaTable;
 import fungsi.batasInput;
 import fungsi.koneksiDB;
@@ -184,6 +185,7 @@ public final class RMPenilaianPreOperasi extends javax.swing.JDialog {
         LoadHTML = new widget.editorpane();
         jPopupMenu1 = new javax.swing.JPopupMenu();
         MnPenilaianMedis = new javax.swing.JMenuItem();
+        MnDigitalTTE = new javax.swing.JMenuItem();
         internalFrame1 = new widget.InternalFrame();
         panelGlass8 = new widget.panelisi();
         BtnSimpan = new widget.Button();
@@ -271,6 +273,22 @@ public final class RMPenilaianPreOperasi extends javax.swing.JDialog {
             }
         });
         jPopupMenu1.add(MnPenilaianMedis);
+
+        MnDigitalTTE.setBackground(new java.awt.Color(255, 255, 254));
+        MnDigitalTTE.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnDigitalTTE.setForeground(new java.awt.Color(50, 50, 50));
+        MnDigitalTTE.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnDigitalTTE.setText("Sign Digital Signature");
+        MnDigitalTTE.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnDigitalTTE.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnDigitalTTE.setName("MnDigitalTTE"); // NOI18N
+        MnDigitalTTE.setPreferredSize(new java.awt.Dimension(250, 26));
+        MnDigitalTTE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnDigitalTTEActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnDigitalTTE);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -538,7 +556,7 @@ public final class RMPenilaianPreOperasi extends javax.swing.JDialog {
         label11.setBounds(538, 40, 52, 23);
 
         TglAsuhan.setForeground(new java.awt.Color(50, 70, 50));
-        TglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-10-2022 08:17:33" }));
+        TglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-03-2023 09:20:52" }));
         TglAsuhan.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglAsuhan.setName("TglAsuhan"); // NOI18N
         TglAsuhan.setOpaque(false);
@@ -794,7 +812,7 @@ public final class RMPenilaianPreOperasi extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-10-2022" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-03-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -808,7 +826,7 @@ public final class RMPenilaianPreOperasi extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-10-2022" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-03-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1271,6 +1289,29 @@ public final class RMPenilaianPreOperasi extends javax.swing.JDialog {
         Valid.pindah2(evt,HalYangDipersiapkan,BtnSimpan);
     }//GEN-LAST:event_TerapiPreOpKeyPressed
 
+    private void MnDigitalTTEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnDigitalTTEActionPerformed
+        // TODO add your handling code here:
+        if(tbObat.getSelectedRow()>-1){
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            String FileName=tbObat.getValueAt(tbObat.getSelectedRow(),2).toString().replaceAll(" ","_")+ tbObat.getValueAt(tbObat.getSelectedRow(),7).toString().replace("-", "")
+            .replace(" ", "")
+            .replace(":", "")
+            .replace(".", "") + ".pdf";
+            DlgViewPdf berkas=new DlgViewPdf(null,true);
+            if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_dokumen='"+FileName+"' and kode='034'") > 0){
+                berkas.tampilPdf(FileName,"berkastte/penilaian_pre_operasi",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"034");
+            }else{
+                createPdf(FileName);
+                berkas.tampilPdfLocal(FileName,"local","berkastte/penilaian_pre_operasi",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"034");
+            }
+            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+            berkas.setLocationRelativeTo(internalFrame1);
+            berkas.setVisible(true);
+
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_MnDigitalTTEActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1306,6 +1347,7 @@ public final class RMPenilaianPreOperasi extends javax.swing.JDialog {
     private widget.TextBox KdDokter;
     private widget.Label LCount;
     private widget.editorpane LoadHTML;
+    private javax.swing.JMenuItem MnDigitalTTE;
     private javax.swing.JMenuItem MnPenilaianMedis;
     private widget.TextBox NmDokter;
     private widget.TextArea PemeriksaanDiagnostik;
@@ -1544,6 +1586,30 @@ public final class RMPenilaianPreOperasi extends javax.swing.JDialog {
                tampil();
                emptTeks();
                TabRawat.setSelectedIndex(1);
+        }
+    }
+    
+    void createPdf(String FileName){
+        if(tbObat.getSelectedRow()>-1){
+            Map<String, Object> param = new HashMap<>();
+            param.put("namars",akses.getnamars());
+            param.put("alamatrs",akses.getalamatrs());
+            param.put("kotars",akses.getkabupatenrs());
+            param.put("propinsirs",akses.getpropinsirs());
+            param.put("kontakrs",akses.getkontakrs());
+            param.put("emailrs",akses.getemailrs());          
+            param.put("logo",Sequel.cariGambar("select setting.logo from setting")); 
+            finger=Sequel.cariIsi("select sha1(sidikjari.sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",tbObat.getValueAt(tbObat.getSelectedRow(),5).toString());
+            param.put("finger","Dikeluarkan di "+akses.getnamars()+", Kabupaten/Kota "+akses.getkabupatenrs()+"\nDitandatangani secara elektronik oleh "+tbObat.getValueAt(tbObat.getSelectedRow(),6).toString()+"\nID "+(finger.equals("")?tbObat.getValueAt(tbObat.getSelectedRow(),5).toString():finger)+"\n"+Valid.SetTgl3(tbObat.getValueAt(tbObat.getSelectedRow(),7).toString())); 
+            param.put("logobsre",Sequel.cariGambar("select setting.logo_bsre from setting"));
+            Valid.MyReportPDFWithName1("rptCetakPenilaianPreOperasiTTE.jasper","report","tempfile",FileName,"::[ Laporan Penilaian Pre Operasi ]::",
+                "select reg_periksa.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,if(pasien.jk='L','Laki-Laki','Perempuan') as jk,pasien.tgl_lahir,penilaian_pre_operasi.tanggal,"+
+                "penilaian_pre_operasi.kd_dokter,penilaian_pre_operasi.ringkasan_klinik,penilaian_pre_operasi.pemeriksaan_fisik,penilaian_pre_operasi.pemeriksaan_diagnostik,"+
+                "penilaian_pre_operasi.diagnosa_pre_operasi,penilaian_pre_operasi.rencana_tindakan_bedah,penilaian_pre_operasi.hal_hal_yang_perludi_persiapkan,"+
+                "penilaian_pre_operasi.terapi_pre_operasi,dokter.nm_dokter from reg_periksa inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
+                "inner join penilaian_pre_operasi on reg_periksa.no_rawat=penilaian_pre_operasi.no_rawat "+
+                "inner join dokter on penilaian_pre_operasi.kd_dokter=dokter.kd_dokter where penilaian_pre_operasi.no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"' "+
+                "and penilaian_pre_operasi.tanggal='"+tbObat.getValueAt(tbObat.getSelectedRow(),7).toString()+"'",param);
         }
     }
 }

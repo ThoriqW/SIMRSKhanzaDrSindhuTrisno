@@ -2151,9 +2151,12 @@ public final class RMPenilaianPreAnastesi extends javax.swing.JDialog {
         // TODO add your handling code here:
         if(tbObat.getSelectedRow()>-1){
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            String FileName=tbObat.getValueAt(tbObat.getSelectedRow(),0).toString().replaceAll("/","_")+".pdf";
+            String FileName=tbObat.getValueAt(tbObat.getSelectedRow(),2).toString().replaceAll(" ","_")+ tbObat.getValueAt(tbObat.getSelectedRow(),7).toString().replace("-", "")
+                                .replace(" ", "")
+                                .replace(":", "")
+                                .replace(".", "") + ".pdf";
             DlgViewPdf berkas=new DlgViewPdf(null,true);
-            if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"' and kode='032'") > 0){
+            if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_dokumen='"+FileName+"' and kode='032'") > 0){
                 berkas.tampilPdf(FileName,"berkastte/penilaian_pre_anestesi",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"032");
             }else{
                 createPdf(FileName);

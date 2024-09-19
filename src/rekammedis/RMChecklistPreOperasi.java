@@ -2226,7 +2226,6 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
     }
     
     void createPdf(String FileName){
-        System.out.println(FileName);
         if(tbObat.getSelectedRow()>-1){
             Map<String, Object> param = new HashMap<>();
             param.put("namars",akses.getnamars());
