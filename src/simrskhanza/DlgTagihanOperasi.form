@@ -2461,6 +2461,7 @@
                         <Property name="name" type="java.lang.String" value="TNoPermintaanPK" noResource="true"/>
                       </Properties>
                       <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TNoPermintaanPKActionPerformed"/>
                         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TNoPermintaanPKKeyPressed"/>
                       </Events>
                       <Constraints>

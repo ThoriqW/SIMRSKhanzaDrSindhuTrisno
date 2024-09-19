@@ -2005,6 +2005,11 @@ public class DlgTagihanOperasi extends javax.swing.JDialog {
 
         TNoPermintaanPK.setHighlighter(null);
         TNoPermintaanPK.setName("TNoPermintaanPK"); // NOI18N
+        TNoPermintaanPK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TNoPermintaanPKActionPerformed(evt);
+            }
+        });
         TNoPermintaanPK.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TNoPermintaanPKKeyPressed(evt);
@@ -3023,6 +3028,10 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private void TNoPermintaanPKKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TNoPermintaanPKKeyPressed
 //        Valid.pindah(evt,Pemeriksaan,TCari);
     }//GEN-LAST:event_TNoPermintaanPKKeyPressed
+
+    private void TNoPermintaanPKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TNoPermintaanPKActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TNoPermintaanPKActionPerformed
 
     /**
     * @param args the command line arguments

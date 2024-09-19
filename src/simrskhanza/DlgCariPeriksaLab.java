@@ -1,5 +1,4 @@
 package simrskhanza;
-import com.google.zxing.WriterException;
 import digitalsignature.DlgViewPdf;
 import kepegawaian.DlgCariPetugas;
 import keuangan.Jurnal;
@@ -13,7 +12,6 @@ import fungsi.qrcodegenerator;
 import java.awt.Cursor;
 import java.awt.Desktop;
 import java.awt.Dimension;
-import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
@@ -21,7 +19,6 @@ import java.awt.event.WindowListener;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -87,30 +84,20 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         for (i = 0; i < 7; i++) {
             TableColumn column = tbDokter.getColumnModel().getColumn(i);
-            switch (i) {
-                case 0:
-                    column.setPreferredWidth(110);
-                    break;
-                case 1:
-                    column.setPreferredWidth(400);
-                    break;
-                case 2:
-                    column.setPreferredWidth(300);
-                    break;
-                case 3:
-                    column.setPreferredWidth(130);
-                    break;
-                case 4:
-                    column.setPreferredWidth(100);
-                    break;
-                case 5:
-                    column.setPreferredWidth(200);
-                    break;
-                case 6:
-                    column.setPreferredWidth(200);
-                    break;
-                default:
-                    break;
+            if(i==0){
+                column.setPreferredWidth(110);
+            }else if(i==1){
+                column.setPreferredWidth(220);
+            }else if(i==2){
+                column.setPreferredWidth(200);
+            }else if(i==3){
+                column.setPreferredWidth(130);
+            }else if(i==4){
+                column.setPreferredWidth(100);
+            }else if(i==5){
+                column.setPreferredWidth(200);
+            }else if(i==6){
+                column.setPreferredWidth(200);
             }
         }
         tbDokter.setDefaultRenderer(Object.class, new WarnaTable());
@@ -128,51 +115,34 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         for (i = 0; i < 14; i++) {
             TableColumn column = tbDokter2.getColumnModel().getColumn(i);
-            switch (i) {
-                case 0:
-                    column.setPreferredWidth(105);
-                    break;
-                case 1:
-                    column.setPreferredWidth(210);
-                    break;
-                case 2:
-                    column.setPreferredWidth(65);
-                    break;
-                case 3:
-                    column.setPreferredWidth(55);
-                    break;
-                case 4:
-                    column.setPreferredWidth(155);
-                    break;
-                case 5:
-                    column.setPreferredWidth(165);
-                    break;
-                case 6:
-                    column.setPreferredWidth(70);
-                    break;
-                case 7:
-                    column.setPreferredWidth(50);
-                    break;
-                case 8:
-                    column.setPreferredWidth(110);
-                    break;
-                case 9:
-                    column.setPreferredWidth(100);
-                    break;
-                case 10:
-                    column.setPreferredWidth(130);
-                    break;
-                case 11:
-                    column.setPreferredWidth(130);
-                    break;
-                case 12:
-                    column.setPreferredWidth(160);
-                    break;
-                case 13:
-                    column.setPreferredWidth(160);
-                    break;
-                default:
-                    break;
+            if(i==0){
+                column.setPreferredWidth(105);
+            }else if(i==1){
+                column.setPreferredWidth(210);
+            }else if(i==2){
+                column.setPreferredWidth(65);
+            }else if(i==3){
+                column.setPreferredWidth(55);
+            }else if(i==4){
+                column.setPreferredWidth(155);
+            }else if(i==5){
+                column.setPreferredWidth(165);
+            }else if(i==6){
+                column.setPreferredWidth(70);
+            }else if(i==7){
+                column.setPreferredWidth(50);
+            }else if(i==8){
+                column.setPreferredWidth(110);
+            }else if(i==9){
+                column.setPreferredWidth(100);
+            }else if(i==10){
+                column.setPreferredWidth(130);
+            }else if(i==11){
+                column.setPreferredWidth(130);
+            }else if(i==12){
+                column.setPreferredWidth(160);
+            }else if(i==13){
+                column.setPreferredWidth(160);
             }
         }
         tbDokter2.setDefaultRenderer(Object.class, new WarnaTable());
@@ -291,7 +261,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
                     Beban_Jasa_Menejemen_Laborat_Ranap=rsrekening.getString("Beban_Jasa_Menejemen_Laborat_Ranap");
                     Utang_Jasa_Menejemen_Laborat_Ranap=rsrekening.getString("Utang_Jasa_Menejemen_Laborat_Ranap");
                 }
-            } catch (SQLException e) {
+            } catch (Exception e) {
                 System.out.println("Notif Rekening : "+e);
             } finally{
                 if(rsrekening!=null){
@@ -323,7 +293,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
                     Beban_Jasa_Menejemen_Laborat_Ralan=rsrekening.getString("Beban_Jasa_Menejemen_Laborat_Ralan");
                     Utang_Jasa_Menejemen_Laborat_Ralan=rsrekening.getString("Utang_Jasa_Menejemen_Laborat_Ralan");
                 }
-            } catch (SQLException e) {
+            } catch (Exception e) {
                 System.out.println("Notif Rekening : "+e);
             } finally{
                 if(rsrekening!=null){
@@ -333,7 +303,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
                     psrekening.close();
                 }
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println(e);
         }
         
@@ -1375,23 +1345,16 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
     }//GEN-LAST:event_Tgl1KeyPressed
 
     private void kdmemKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kdmemKeyPressed
-        switch (evt.getKeyCode()) {
-            case KeyEvent.VK_PAGE_DOWN:
-                Sequel.cariIsi("select pasien.nm_pasien from pasien where pasien.no_rkm_medis=?", nmmem,kdmem.getText());
-                break;
-            case KeyEvent.VK_PAGE_UP:
-                Sequel.cariIsi("select pasien.nm_pasien from pasien where pasien.no_rkm_medis=?", nmmem,kdmem.getText());
-                NoRawat.requestFocus();
-                break;
-            case KeyEvent.VK_UP:
-                btnPasienActionPerformed(null);      
-                break;
-            case KeyEvent.VK_ENTER:
-                Sequel.cariIsi("select pasien.nm_pasien from pasien where pasien.no_rkm_medis=?", nmmem,kdmem.getText());
-                Tgl1.requestFocus();
-                break;
-            default:
-                break;
+        if(evt.getKeyCode()==KeyEvent.VK_PAGE_DOWN){
+            Sequel.cariIsi("select pasien.nm_pasien from pasien where pasien.no_rkm_medis=?", nmmem,kdmem.getText());      
+        }else if(evt.getKeyCode()==KeyEvent.VK_PAGE_UP){
+            Sequel.cariIsi("select pasien.nm_pasien from pasien where pasien.no_rkm_medis=?", nmmem,kdmem.getText());
+            NoRawat.requestFocus();
+        }else if(evt.getKeyCode()==KeyEvent.VK_UP){
+            btnPasienActionPerformed(null);
+        }else if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            Sequel.cariIsi("select pasien.nm_pasien from pasien where pasien.no_rkm_medis=?", nmmem,kdmem.getText());
+            Tgl1.requestFocus();      
         }
     }//GEN-LAST:event_kdmemKeyPressed
 
@@ -1400,23 +1363,16 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
     }//GEN-LAST:event_NoRawatKeyPressed
 
     private void kdptgKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kdptgKeyPressed
-        switch (evt.getKeyCode()) {
-            case KeyEvent.VK_PAGE_DOWN:
-                nmptg.setText(petugas.tampil3(kdptg.getText()));
-                break;
-            case KeyEvent.VK_PAGE_UP:
-                nmptg.setText(petugas.tampil3(kdptg.getText()));
-                Tgl2.requestFocus();
-                break;
-            case KeyEvent.VK_UP:
-                btnPetugasActionPerformed(null);            
-                break;
-            case KeyEvent.VK_ENTER:
-                nmptg.setText(petugas.tampil3(kdptg.getText()));
-                NoRawat.requestFocus();
-                break;
-            default:
-                break;
+        if(evt.getKeyCode()==KeyEvent.VK_PAGE_DOWN){
+            nmptg.setText(petugas.tampil3(kdptg.getText()));
+        }else if(evt.getKeyCode()==KeyEvent.VK_PAGE_UP){
+            nmptg.setText(petugas.tampil3(kdptg.getText()));
+            Tgl2.requestFocus();
+        }else if(evt.getKeyCode()==KeyEvent.VK_UP){
+            btnPetugasActionPerformed(null);
+        }else if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            nmptg.setText(petugas.tampil3(kdptg.getText()));
+            NoRawat.requestFocus();            
         }
     }//GEN-LAST:event_kdptgKeyPressed
 
@@ -1425,18 +1381,12 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
     }//GEN-LAST:event_Tgl2KeyPressed
 
     private void TCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCariKeyPressed
-        switch (evt.getKeyCode()) {
-            case KeyEvent.VK_ENTER:
-                BtnCariActionPerformed(null);
-                break;
-            case KeyEvent.VK_PAGE_DOWN:
-                BtnCari.requestFocus();
-                break;
-            case KeyEvent.VK_PAGE_UP:
-                BtnKeluar.requestFocus();
-                break;
-            default:
-                break;
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            BtnCariActionPerformed(null);
+        }else if(evt.getKeyCode()==KeyEvent.VK_PAGE_DOWN){
+            BtnCari.requestFocus();
+        }else if(evt.getKeyCode()==KeyEvent.VK_PAGE_UP){
+            BtnKeluar.requestFocus();
         }
     }//GEN-LAST:event_TCariKeyPressed
 
@@ -1569,7 +1519,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
                     );
                     bw.close();                         
                     Desktop.getDesktop().browse(f.toURI());
-                } catch (IOException e) {
+                } catch (Exception e) {
                     System.out.println("Notifikasi : "+e);
                 }
                 this.setCursor(Cursor.getDefaultCursor());
@@ -1768,7 +1718,7 @@ private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                             Sequel.RollBack();
                         }
                         Sequel.AutoComitTrue();
-                    }catch(HeadlessException e){
+                    }catch(Exception e){
                         System.out.println("Notifikasi : "+e);
                         JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih terlebih dulu data yang mau anda hapus...\n Klik data pada table untuk memilih data...!!!!");
                     }  
@@ -1890,7 +1840,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                                 +"','"+rs3.getString("nilai_rujukan")+"','"+rs3.getString("keterangan")+"','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''","Data User"); 
                                         i++;
                                     }
-                                } catch (SQLException e) {
+                                } catch (Exception e) {
                                     System.out.println("Notif ps3 : "+e);
                                 } finally{
                                     if(rs3!=null){
@@ -1901,7 +1851,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                     }
                                 }
                             }
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif ps2 : "+e);
                         } finally{
                             if(rs2!=null){
@@ -1935,7 +1885,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                             }else{
                                 Valid.MyReport("rptPeriksaLab.jasper","report","::[ Pemeriksaan Laboratorium ]::",param);   
                             }
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif : "+e);
                         } finally{
                             if(rspermintaan!=null){
@@ -1946,7 +1896,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                             }
                         }
                     }
-                } catch (SQLException e) {
+                } catch (Exception e) {
                     System.out.println("Notif ps4 : "+e);
                 } finally{
                     if(rs!=null){
@@ -2023,7 +1973,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                         Sequel.menyimpan("temporary_lab","'"+i+"','"+rs3.getString("kd_jenis_prw")+"','   "+rs3.getString("Pemeriksaan")+"','"+item+"','Detail Pemeriksaan','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''","Transaksi Biaya Lab");                        
                                         i++;
                                     }
-                                } catch (SQLException e) {
+                                } catch (Exception e) {
                                     System.out.println("Notif ps3 : "+e);
                                 } finally{
                                     if(rs3!=null){
@@ -2034,7 +1984,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                     }
                                 }                                
                             }   
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif ps2 : "+e);
                         } finally{
                             if(rs2!=null){
@@ -2052,7 +2002,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                 +"&petugas="+rs.getString("nama").replaceAll(" ","_")+"&kasir="+Sequel.cariIsi("select pegawai.nama from pegawai where pegawai.nik=?",akses.getkode())
                                 +"&usere="+koneksiDB.USERHYBRIDWEB()+"&passwordte="+koneksiDB.PASHYBRIDWEB());
                     }
-                } catch (SQLException e) {
+                } catch (Exception e) {
                     System.out.println("Notif ps4 : "+e);
                 } finally{
                     if(rs!=null){
@@ -2063,7 +2013,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                     }
                 }  
                 
-            } catch (SQLException ex) {
+            } catch (Exception ex) {
                 System.out.println(ex);
             }            
         }
@@ -2177,7 +2127,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                                 +"','"+rs3.getString("nilai_rujukan")+"','"+rs3.getString("keterangan")+"','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''","Data User"); 
                                         i++;
                                     }
-                                } catch (SQLException e) {
+                                } catch (Exception e) {
                                     System.out.println("Notif ps3 : "+e);
                                 } finally{
                                     if(rs3!=null){
@@ -2188,7 +2138,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                     }
                                 }
                             }
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif ps2 : "+e);
                         } finally{
                             if(rs2!=null){
@@ -2222,7 +2172,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                             }else{
                                 Valid.MyReport("rptPeriksaLab2.jasper","report","::[ Pemeriksaan Laboratorium ]::",param);  
                             }
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif : "+e);
                         } finally{
                             if(rspermintaan!=null){
@@ -2233,7 +2183,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                             }
                         }   
                     }
-                } catch (SQLException e) {
+                } catch (Exception e) {
                     System.out.println("Notif ps4 : "+e);
                 } finally{
                     if(rs!=null){
@@ -2332,7 +2282,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                                 +"','"+rs3.getString("nilai_rujukan")+"','"+rs3.getString("keterangan")+"','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''","Data User"); 
                                         i++;
                                     }
-                                } catch (SQLException e) {
+                                } catch (Exception e) {
                                     System.out.println("Notif ps3 : "+e);
                                 } finally{
                                     if(rs3!=null){
@@ -2343,7 +2293,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                     }
                                 }
                             }
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif ps2 : "+e);
                         } finally{
                             if(rs2!=null){
@@ -2377,7 +2327,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                             }else{
                                 Valid.MyReport("rptPeriksaLab3.jasper","report","::[ Pemeriksaan Laboratorium ]::",param);   
                             }
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif : "+e);
                         } finally{
                             if(rspermintaan!=null){
@@ -2388,7 +2338,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                             }
                         }
                     }
-                } catch (SQLException e) {
+                } catch (Exception e) {
                     System.out.println("Notif ps4 : "+e);
                 } finally{
                     if(rs!=null){
@@ -2489,7 +2439,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                                 +"','"+rs3.getString("nilai_rujukan")+"','"+rs3.getString("keterangan")+"','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''","Data User"); 
                                         i++;
                                     }
-                                } catch (SQLException e) {
+                                } catch (Exception e) {
                                     System.out.println("Notif ps3 : "+e);
                                 } finally{
                                     if(rs3!=null){
@@ -2500,7 +2450,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                     }
                                 }
                             }
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif ps2 : "+e);
                         } finally{
                             if(rs2!=null){
@@ -2534,7 +2484,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                             }else{
                                 Valid.MyReport("rptPeriksaLab4.jasper","report","::[ Pemeriksaan Laboratorium ]::",param);
                             }
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif : "+e);
                         } finally{
                             if(rspermintaan!=null){
@@ -2545,7 +2495,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                             }
                         }
                     }
-                } catch (SQLException e) {
+                } catch (Exception e) {
                     System.out.println("Notif ps4 : "+e);
                 } finally{
                     if(rs!=null){
@@ -2646,7 +2596,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                                 +"','"+rs3.getString("nilai_rujukan")+"','"+rs3.getString("keterangan")+"','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''","Data User"); 
                                         i++;
                                     }
-                                } catch (SQLException e) {
+                                } catch (Exception e) {
                                     System.out.println("Notif ps3 : "+e);
                                 } finally{
                                     if(rs3!=null){
@@ -2657,7 +2607,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                     }
                                 }
                             }
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif ps2 : "+e);
                         } finally{
                             if(rs2!=null){
@@ -2692,7 +2642,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                             }else{
                                 Valid.MyReport("rptPeriksaLab5.jasper","report","::[ Pemeriksaan Laboratorium ]::",param);   
                             }
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif : "+e);
                         } finally{
                             if(rspermintaan!=null){
@@ -2703,7 +2653,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                             }
                         }
                     }
-                } catch (SQLException e) {
+                } catch (Exception e) {
                     System.out.println("Notif ps4 : "+e);
                 } finally{
                     if(rs!=null){
@@ -2803,7 +2753,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                                 +"','"+rs3.getString("nilai_rujukan")+"','"+rs3.getString("keterangan")+"','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''","Data User"); 
                                         i++;
                                     }
-                                } catch (SQLException e) {
+                                } catch (Exception e) {
                                     System.out.println("Notif ps3 : "+e);
                                 } finally{
                                     if(rs3!=null){
@@ -2814,7 +2764,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                     }
                                 }
                             }
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif ps2 : "+e);
                         } finally{
                             if(rs2!=null){
@@ -2848,7 +2798,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                             }else{
                                 Valid.MyReport("rptPeriksaLab6.jasper","report","::[ Pemeriksaan Laboratorium ]::",param);   
                             }
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif : "+e);
                         } finally{
                             if(rspermintaan!=null){
@@ -2859,7 +2809,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                             }
                         }
                     }
-                } catch (SQLException e) {
+                } catch (Exception e) {
                     System.out.println("Notif ps4 : "+e);
                 } finally{
                     if(rs!=null){
@@ -2963,7 +2913,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                                 +"','"+rs3.getString("nilai_rujukan")+"','"+rs3.getString("keterangan")+"','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''","Data User"); 
                                         i++;
                                     }
-                                } catch (SQLException e) {
+                                } catch (Exception e) {
                                     System.out.println("Notif ps3 : "+e);
                                 } finally{
                                     if(rs3!=null){
@@ -2974,7 +2924,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                     }
                                 }
                             }
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif ps2 : "+e);
                         } finally{
                             if(rs2!=null){
@@ -3009,7 +2959,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                             }else{
                                 Valid.MyReport("rptPeriksaLab7.jasper","report","::[ Pemeriksaan Laboratorium ]::",param);   
                             }
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif : "+e);
                         } finally{
                             if(rspermintaan!=null){
@@ -3021,7 +2971,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                         }
 
                     }
-                } catch (SQLException e) {
+                } catch (Exception e) {
                     System.out.println("Notif ps4 : "+e);
                 } finally{
                     if(rs!=null){
@@ -3123,7 +3073,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                                 +"','"+rs3.getString("nilai_rujukan")+"','"+rs3.getString("keterangan")+"','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''","Data User"); 
                                         i++;
                                     }
-                                } catch (SQLException e) {
+                                } catch (Exception e) {
                                     System.out.println("Notif ps3 : "+e);
                                 } finally{
                                     if(rs3!=null){
@@ -3134,7 +3084,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                     }
                                 }
                             }
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif ps2 : "+e);
                         } finally{
                             if(rs2!=null){
@@ -3169,7 +3119,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                             }else{
                                 Valid.MyReport("rptPeriksaLab8.jasper","report","::[ Pemeriksaan Laboratorium ]::",param);   
                             }
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif : "+e);
                         } finally{
                             if(rspermintaan!=null){
@@ -3181,7 +3131,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                         }        
 
                     }
-                } catch (SQLException e) {
+                } catch (Exception e) {
                     System.out.println("Notif ps4 : "+e);
                 } finally{
                     if(rs!=null){
@@ -3263,7 +3213,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                 kesan=rs2.getString("kesan");
                                 saran=rs2.getString("saran");
                             } 
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif : "+e);
                         } finally{
                             if(rs2!=null){
@@ -3304,7 +3254,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                                 +"','"+rs3.getString("nilai_rujukan")+"','"+rs3.getString("keterangan")+"','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''","Data User"); 
                                         i++;
                                     }
-                                } catch (SQLException e) {
+                                } catch (Exception e) {
                                     System.out.println("Notif ps3 : "+e);
                                 } finally{
                                     if(rs3!=null){
@@ -3315,7 +3265,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                     }
                                 }                                
                             }
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif ps2 : "+e);
                         } finally{
                             if(rs2!=null){
@@ -3350,7 +3300,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                             }else{
                                 Valid.MyReport("rptPeriksaLab9.jasper","report","::[ Pemeriksaan Laboratorium ]::",param);   
                             }
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif : "+e);
                         } finally{
                             if(rspermintaan!=null){
@@ -3361,7 +3311,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                             }
                         }          
                     }
-                } catch (SQLException e) {
+                } catch (Exception e) {
                     System.out.println("Notif ps4 : "+e);
                 } finally{
                     if(rs!=null){
@@ -3443,7 +3393,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                 kesan=rs2.getString("kesan");
                                 saran=rs2.getString("saran");
                             } 
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif : "+e);
                         } finally{
                             if(rs2!=null){
@@ -3484,7 +3434,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                                 +"','"+rs3.getString("nilai_rujukan")+"','"+rs3.getString("keterangan")+"','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''","Data User"); 
                                         i++;
                                     }
-                                } catch (SQLException e) {
+                                } catch (Exception e) {
                                     System.out.println("Notif ps3 : "+e);
                                 } finally{
                                     if(rs3!=null){
@@ -3495,7 +3445,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                     }
                                 }                                
                             }
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif ps2 : "+e);
                         } finally{
                             if(rs2!=null){
@@ -3530,7 +3480,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                             }else{
                                 Valid.MyReport("rptPeriksaLab10.jasper","report","::[ Pemeriksaan Laboratorium ]::",param);   
                             }
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif : "+e);
                         } finally{
                             if(rspermintaan!=null){
@@ -3542,7 +3492,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                         }         
 
                     }
-                } catch (SQLException e) {
+                } catch (Exception e) {
                     System.out.println("Notif ps4 : "+e);
                 } finally{
                     if(rs!=null){
@@ -3624,7 +3574,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                 kesan=rs2.getString("kesan");
                                 saran=rs2.getString("saran");
                             } 
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif : "+e);
                         } finally{
                             if(rs2!=null){
@@ -3665,7 +3615,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                                 +"','"+rs3.getString("nilai_rujukan")+"','"+rs3.getString("keterangan")+"','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''","Data User"); 
                                         i++;
                                     }
-                                } catch (SQLException e) {
+                                } catch (Exception e) {
                                     System.out.println("Notif ps3 : "+e);
                                 } finally{
                                     if(rs3!=null){
@@ -3676,7 +3626,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                     }
                                 }
                             }
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif ps2 : "+e);
                         } finally{
                             if(rs2!=null){
@@ -3711,7 +3661,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                             }else{
                                 Valid.MyReport("rptPeriksaLab11.jasper","report","::[ Pemeriksaan Laboratorium ]::",param);   
                             }
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif : "+e);
                         } finally{
                             if(rspermintaan!=null){
@@ -3723,7 +3673,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                         }         
 
                     }
-                } catch (SQLException e) {
+                } catch (Exception e) {
                     System.out.println("Notif ps4 : "+e);
                 } finally{
                     if(rs!=null){
@@ -3765,7 +3715,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                             Kesan.setText(rs.getString("kesan"));
                             Saran.setText(rs.getString("saran"));
                         } 
-                    } catch (SQLException e) {
+                    } catch (Exception e) {
                         System.out.println("Notif : "+e);
                     } finally{
                         if(rs!=null){
@@ -3778,7 +3728,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                     WindowSaran.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
                     WindowSaran.setLocationRelativeTo(internalFrame1);
                     WindowSaran.setVisible(true);
-                } catch (SQLException ex) {
+                } catch (Exception ex) {
                     System.out.println(ex);
                 }
             }         
@@ -3821,18 +3771,12 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
     }//GEN-LAST:event_BtnCloseIn5ActionPerformed
 
     private void TabRawatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabRawatMouseClicked
-        switch (TabRawat.getSelectedIndex()) {
-            case 0:
-                tampil();
-                break;
-            case 1:
-                tampil2();
-                break;
-            case 2:
-                tampil3();
-                break;
-            default:
-                break;
+        if(TabRawat.getSelectedIndex()==0){
+            tampil();
+        }else if(TabRawat.getSelectedIndex()==1){
+            tampil2();
+        }else if(TabRawat.getSelectedIndex()==2){
+            tampil3();
         }
     }//GEN-LAST:event_TabRawatMouseClicked
 
@@ -3927,7 +3871,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                                 +"','"+rs3.getString("nilai_rujukan")+"','"+rs3.getString("keterangan")+"','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''","Data User"); 
                                         i++;
                                     }
-                                } catch (SQLException e) {
+                                } catch (Exception e) {
                                     System.out.println("Notif ps3 : "+e);
                                 } finally{
                                     if(rs3!=null){
@@ -3938,7 +3882,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                     }
                                 }
                             }
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif ps2 : "+e);
                         } finally{
                             if(rs2!=null){
@@ -3973,7 +3917,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                             }else{
                                 Valid.MyReportPDF("rptPeriksaLab.jasper","report","::[ Pemeriksaan Laboratorium ]::",param); 
                             }
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif : "+e);
                         } finally{
                             if(rspermintaan!=null){
@@ -3984,7 +3928,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                             }
                         }
                     }
-                } catch (SQLException e) {
+                } catch (Exception e) {
                     System.out.println("Notif ps4 : "+e);
                 } finally{
                     if(rs!=null){
@@ -4084,7 +4028,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                                 +"','"+rs3.getString("nilai_rujukan")+"','"+rs3.getString("keterangan")+"','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''","Data User"); 
                                         i++;
                                     }
-                                } catch (SQLException e) {
+                                } catch (Exception e) {
                                     System.out.println("Notif ps3 : "+e);
                                 } finally{
                                     if(rs3!=null){
@@ -4095,7 +4039,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                     }
                                 }
                             }
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif ps2 : "+e);
                         } finally{
                             if(rs2!=null){
@@ -4130,7 +4074,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                             }else{
                                 Valid.MyReportPDF("rptPeriksaLab2.jasper","report","::[ Pemeriksaan Laboratorium ]::",param); 
                             }
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif : "+e);
                         } finally{
                             if(rspermintaan!=null){
@@ -4142,7 +4086,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                         }         
 
                     }
-                } catch (SQLException e) {
+                } catch (Exception e) {
                     System.out.println("Notif ps4 : "+e);
                 } finally{
                     if(rs!=null){
@@ -4242,7 +4186,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                                 +"','"+rs3.getString("nilai_rujukan")+"','"+rs3.getString("keterangan")+"','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''","Data User"); 
                                         i++;
                                     }
-                                } catch (SQLException e) {
+                                } catch (Exception e) {
                                     System.out.println("Notif ps3 : "+e);
                                 } finally{
                                     if(rs3!=null){
@@ -4253,7 +4197,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                     }
                                 }
                             }
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif ps2 : "+e);
                         } finally{
                             if(rs2!=null){
@@ -4288,7 +4232,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                             }else{
                                 Valid.MyReportPDF("rptPeriksaLab3.jasper","report","::[ Pemeriksaan Laboratorium ]::",param); 
                             }
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif : "+e);
                         } finally{
                             if(rspermintaan!=null){
@@ -4299,7 +4243,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                             }
                         }
                     }
-                } catch (SQLException e) {
+                } catch (Exception e) {
                     System.out.println("Notif ps4 : "+e);
                 } finally{
                     if(rs!=null){
@@ -4400,7 +4344,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                                 +"','"+rs3.getString("nilai_rujukan")+"','"+rs3.getString("keterangan")+"','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''","Data User"); 
                                         i++;
                                     }
-                                } catch (SQLException e) {
+                                } catch (Exception e) {
                                     System.out.println("Notif ps3 : "+e);
                                 } finally{
                                     if(rs3!=null){
@@ -4411,7 +4355,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                     }
                                 }
                             }
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif ps2 : "+e);
                         } finally{
                             if(rs2!=null){
@@ -4446,7 +4390,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                             }else{
                                 Valid.MyReportPDF("rptPeriksaLab4.jasper","report","::[ Pemeriksaan Laboratorium ]::",param); 
                             }
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif : "+e);
                         } finally{
                             if(rspermintaan!=null){
@@ -4457,7 +4401,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                             }
                         }           
                     }
-                } catch (SQLException e) {
+                } catch (Exception e) {
                     System.out.println("Notif ps4 : "+e);
                 } finally{
                     if(rs!=null){
@@ -4557,7 +4501,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                                 +"','"+rs3.getString("nilai_rujukan")+"','"+rs3.getString("keterangan")+"','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''","Data User"); 
                                         i++;
                                     }
-                                } catch (SQLException e) {
+                                } catch (Exception e) {
                                     System.out.println("Notif ps3 : "+e);
                                 } finally{
                                     if(rs3!=null){
@@ -4568,7 +4512,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                     }
                                 }
                             }
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif ps2 : "+e);
                         } finally{
                             if(rs2!=null){
@@ -4603,7 +4547,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                             }else{
                                 Valid.MyReportPDF("rptPeriksaLab5.jasper","report","::[ Pemeriksaan Laboratorium ]::",param); 
                             }
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif : "+e);
                         } finally{
                             if(rspermintaan!=null){
@@ -4614,7 +4558,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                             }
                         }          
                     }
-                } catch (SQLException e) {
+                } catch (Exception e) {
                     System.out.println("Notif ps4 : "+e);
                 } finally{
                     if(rs!=null){
@@ -4714,7 +4658,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                                 +"','"+rs3.getString("nilai_rujukan")+"','"+rs3.getString("keterangan")+"','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''","Data User"); 
                                         i++;
                                     }
-                                } catch (SQLException e) {
+                                } catch (Exception e) {
                                     System.out.println("Notif ps3 : "+e);
                                 } finally{
                                     if(rs3!=null){
@@ -4725,7 +4669,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                     }
                                 }
                             }
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif ps2 : "+e);
                         } finally{
                             if(rs2!=null){
@@ -4760,7 +4704,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                             }else{
                                 Valid.MyReportPDF("rptPeriksaLab6.jasper","report","::[ Pemeriksaan Laboratorium ]::",param); 
                             }
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif : "+e);
                         } finally{
                             if(rspermintaan!=null){
@@ -4771,7 +4715,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                             }
                         }            
                     }
-                } catch (SQLException e) {
+                } catch (Exception e) {
                     System.out.println("Notif ps4 : "+e);
                 } finally{
                     if(rs!=null){
@@ -4875,7 +4819,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                                 +"','"+rs3.getString("nilai_rujukan")+"','"+rs3.getString("keterangan")+"','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''","Data User"); 
                                         i++;
                                     }
-                                } catch (SQLException e) {
+                                } catch (Exception e) {
                                     System.out.println("Notif ps3 : "+e);
                                 } finally{
                                     if(rs3!=null){
@@ -4886,7 +4830,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                     }
                                 }
                             }
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif ps2 : "+e);
                         } finally{
                             if(rs2!=null){
@@ -4921,7 +4865,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                             }else{
                                 Valid.MyReportPDF("rptPeriksaLab7.jasper","report","::[ Pemeriksaan Laboratorium ]::",param); 
                             }
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif : "+e);
                         } finally{
                             if(rspermintaan!=null){
@@ -4933,7 +4877,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                         }         
 
                     }
-                } catch (SQLException e) {
+                } catch (Exception e) {
                     System.out.println("Notif ps4 : "+e);
                 } finally{
                     if(rs!=null){
@@ -5036,7 +4980,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                                 +"','"+rs3.getString("nilai_rujukan")+"','"+rs3.getString("keterangan")+"','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''","Data User"); 
                                         i++;
                                     }
-                                } catch (SQLException e) {
+                                } catch (Exception e) {
                                     System.out.println("Notif ps3 : "+e);
                                 } finally{
                                     if(rs3!=null){
@@ -5047,7 +4991,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                     }
                                 }
                             }
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif ps2 : "+e);
                         } finally{
                             if(rs2!=null){
@@ -5082,7 +5026,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                             }else{
                                 Valid.MyReportPDF("rptPeriksaLab8.jasper","report","::[ Pemeriksaan Laboratorium ]::",param); 
                             }
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif : "+e);
                         } finally{
                             if(rspermintaan!=null){
@@ -5094,7 +5038,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                         }           
 
                     }
-                } catch (SQLException e) {
+                } catch (Exception e) {
                     System.out.println("Notif ps4 : "+e);
                 } finally{
                     if(rs!=null){
@@ -5177,7 +5121,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                 kesan=rs2.getString("kesan");
                                 saran=rs2.getString("saran");
                             } 
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif : "+e);
                         } finally{
                             if(rs2!=null){
@@ -5218,7 +5162,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                                 +"','"+rs3.getString("nilai_rujukan")+"','"+rs3.getString("keterangan")+"','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''","Data User"); 
                                         i++;
                                     }
-                                } catch (SQLException e) {
+                                } catch (Exception e) {
                                     System.out.println("Notif ps3 : "+e);
                                 } finally{
                                     if(rs3!=null){
@@ -5229,7 +5173,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                     }
                                 }                                
                             }
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif ps2 : "+e);
                         } finally{
                             if(rs2!=null){
@@ -5264,7 +5208,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                             }else{
                                 Valid.MyReportPDF("rptPeriksaLab9.jasper","report","::[ Pemeriksaan Laboratorium ]::",param); 
                             }
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif : "+e);
                         } finally{
                             if(rspermintaan!=null){
@@ -5275,7 +5219,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                             }
                         }         
                     }
-                } catch (SQLException e) {
+                } catch (Exception e) {
                     System.out.println("Notif ps4 : "+e);
                 } finally{
                     if(rs!=null){
@@ -5358,7 +5302,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                 kesan=rs2.getString("kesan");
                                 saran=rs2.getString("saran");
                             } 
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif : "+e);
                         } finally{
                             if(rs2!=null){
@@ -5399,7 +5343,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                                 +"','"+rs3.getString("nilai_rujukan")+"','"+rs3.getString("keterangan")+"','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''","Data User"); 
                                         i++;
                                     }
-                                } catch (SQLException e) {
+                                } catch (Exception e) {
                                     System.out.println("Notif ps3 : "+e);
                                 } finally{
                                     if(rs3!=null){
@@ -5410,7 +5354,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                     }
                                 }                                
                             }
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif ps2 : "+e);
                         } finally{
                             if(rs2!=null){
@@ -5445,7 +5389,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                             }else{
                                 Valid.MyReportPDF("rptPeriksaLab10.jasper","report","::[ Pemeriksaan Laboratorium ]::",param); 
                             }
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif : "+e);
                         } finally{
                             if(rspermintaan!=null){
@@ -5457,7 +5401,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                         }         
 
                     }
-                } catch (SQLException e) {
+                } catch (Exception e) {
                     System.out.println("Notif ps4 : "+e);
                 } finally{
                     if(rs!=null){
@@ -5540,7 +5484,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                 kesan=rs2.getString("kesan");
                                 saran=rs2.getString("saran");
                             } 
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif : "+e);
                         } finally{
                             if(rs2!=null){
@@ -5581,7 +5525,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                                 +"','"+rs3.getString("nilai_rujukan")+"','"+rs3.getString("keterangan")+"','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''","Data User"); 
                                         i++;
                                     }
-                                } catch (SQLException e) {
+                                } catch (Exception e) {
                                     System.out.println("Notif ps3 : "+e);
                                 } finally{
                                     if(rs3!=null){
@@ -5592,7 +5536,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                     }
                                 }
                             }
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif ps2 : "+e);
                         } finally{
                             if(rs2!=null){
@@ -5627,7 +5571,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                             }else{
                                 Valid.MyReportPDF("rptPeriksaLab11.jasper","report","::[ Pemeriksaan Laboratorium ]::",param); 
                             }
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif : "+e);
                         } finally{
                             if(rspermintaan!=null){
@@ -5639,7 +5583,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                         }         
 
                     }
-                } catch (SQLException e) {
+                } catch (Exception e) {
                     System.out.println("Notif ps4 : "+e);
                 } finally{
                     if(rs!=null){
@@ -5810,7 +5754,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                                 +"','"+rs3.getString("nilai_rujukan")+"','"+rs3.getString("keterangan")+"','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''","Data User"); 
                                         i++;
                                     }
-                                } catch (SQLException e) {
+                                } catch (Exception e) {
                                     System.out.println("Notif ps3 : "+e);
                                 } finally{
                                     if(rs3!=null){
@@ -5821,7 +5765,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                     }
                                 }
                             }
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif ps2 : "+e);
                         } finally{
                             if(rs2!=null){
@@ -5845,7 +5789,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                 kesan=rs2.getString("kesan");
                                 saran=rs2.getString("saran");
                             } 
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif : "+e);
                         } finally{
                             if(rs2!=null){
@@ -5882,7 +5826,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                             }else{
                                 Valid.MyReport("rptPeriksaLab12.jasper","report","::[ Pemeriksaan Laboratorium ]::",param);   
                             }
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif : "+e);
                         } finally{
                             if(rspermintaan!=null){
@@ -5893,7 +5837,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                             }
                         }
                     }
-                } catch (SQLException e) {
+                } catch (Exception e) {
                     System.out.println("Notif ps4 : "+e);
                 } finally{
                     if(rs!=null){
@@ -5991,7 +5935,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                                 +"','"+rs3.getString("nilai_rujukan")+"','"+rs3.getString("keterangan")+"','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''","Data User"); 
                                         i++;
                                     }
-                                } catch (SQLException e) {
+                                } catch (Exception e) {
                                     System.out.println("Notif ps3 : "+e);
                                 } finally{
                                     if(rs3!=null){
@@ -6002,7 +5946,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                     }
                                 }
                             }
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif ps2 : "+e);
                         } finally{
                             if(rs2!=null){
@@ -6026,7 +5970,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                 kesan=rs2.getString("kesan");
                                 saran=rs2.getString("saran");
                             } 
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif : "+e);
                         } finally{
                             if(rs2!=null){
@@ -6063,7 +6007,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                             }else{
                                 Valid.MyReportPDF("rptPeriksaLab12.jasper","report","::[ Pemeriksaan Laboratorium ]::",param);   
                             }
-                        } catch (SQLException e) {
+                        } catch (Exception e) {
                             System.out.println("Notif : "+e);
                         } finally{
                             if(rspermintaan!=null){
@@ -6074,7 +6018,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                             }
                         }
                     }
-                } catch (SQLException e) {
+                } catch (Exception e) {
                     System.out.println("Notif ps4 : "+e);
                 } finally{
                     if(rs!=null){
@@ -6378,7 +6322,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                     tabMode.addRow(new Object[]{"","","  "+rs3.getString("Pemeriksaan")+" "+Valid.SetAngka(rs3.getDouble("biaya_item")),rs3.getString("nilai").replaceAll("'","`"),
                                                                 rs3.getString("satuan"),rs3.getString("nilai_rujukan"),rs3.getString("keterangan")});
                                 }
-                           } catch (SQLException e) {
+                           } catch (Exception e) {
                                System.out.println("Notif ps3 : "+e);
                            } finally{
                                 if(rs3!=null){
@@ -6389,7 +6333,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                 }
                            }                                
                         }
-                    } catch (SQLException e) {
+                    } catch (Exception e) {
                         System.out.println("Notif ps2 : "+e);
                     } finally{
                         if(rs2!=null){
@@ -6411,7 +6355,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                         if(rs5.next()){      
                             kesan=rs5.getString("kesan");saran=rs5.getString("saran");
                         } 
-                    } catch (SQLException e) {
+                    } catch (Exception e) {
                         System.out.println("Notif : "+e);
                     } finally{
                         if(rs5!=null){
@@ -6425,7 +6369,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                         tabMode.addRow(new Object[]{"","","Biaya Periksa : "+Valid.SetAngka(item),"","","Kesan : "+kesan,"Saran : "+saran});
                     }
                 }
-            } catch (SQLException e) {
+            } catch (Exception e) {
                 System.out.println("Notif ps : "+e);
             } finally{
                 if(rs!=null){
@@ -6439,7 +6383,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
             if(ttl>0){
                   tabMode.addRow(new Object[]{">>","Total : "+Valid.SetAngka(ttl),"","","","",""});
             }  
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             System.out.println(ex);
         }
         
@@ -6511,7 +6455,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                         rs.getString("nm_dokter")                        
                     });
                 }
-            } catch (SQLException e) {
+            } catch (Exception e) {
                 System.out.println("Notif ps : "+e);
             } finally{
                 if(rs!=null){
@@ -6521,7 +6465,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                     ps.close();
                 }
             }
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             System.out.println(ex);
         }        
     }
@@ -6734,7 +6678,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                         "</tr>");
                                     jmlpemeriksaan++;                                    
                                 }
-                            } catch (SQLException e) {
+                            } catch (Exception e) {
                                 System.out.println("Notif : "+e);
                             } finally{
                                 if(rs3!=null){
@@ -6766,7 +6710,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                         "</tr>");
                     i++;
                 }
-            } catch (SQLException e) {
+            } catch (Exception e) {
                 System.out.println("Notif : "+e);
             } finally{
                 if(rs!=null){
@@ -6793,7 +6737,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                        htmlContent.toString()+
                       "</table>"+datapasien+
                     "</html>");
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println("Notif : "+e);
         } 
         this.setCursor(Cursor.getDefaultCursor());

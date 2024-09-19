@@ -6,6 +6,7 @@
 
 package rekammedis;
 
+import digitalsignature.DlgViewPdf;
 import fungsi.WarnaTable;
 import fungsi.akses;
 import fungsi.batasInput;
@@ -282,6 +283,7 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
         MnSkriningNutrisi = new javax.swing.JMenuItem();
+        MnDigitalTTE = new javax.swing.JMenuItem();
         LoadHTML = new widget.editorpane();
         JK = new widget.TextBox();
         internalFrame1 = new widget.InternalFrame();
@@ -395,6 +397,22 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
             }
         });
         jPopupMenu1.add(MnSkriningNutrisi);
+
+        MnDigitalTTE.setBackground(new java.awt.Color(255, 255, 254));
+        MnDigitalTTE.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnDigitalTTE.setForeground(new java.awt.Color(50, 50, 50));
+        MnDigitalTTE.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnDigitalTTE.setText("Sign Digital Signature");
+        MnDigitalTTE.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnDigitalTTE.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnDigitalTTE.setName("MnDigitalTTE"); // NOI18N
+        MnDigitalTTE.setPreferredSize(new java.awt.Dimension(250, 26));
+        MnDigitalTTE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnDigitalTTEActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnDigitalTTE);
 
         LoadHTML.setBorder(null);
         LoadHTML.setName("LoadHTML"); // NOI18N
@@ -1756,6 +1774,29 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_JKKeyPressed
 
+    private void MnDigitalTTEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnDigitalTTEActionPerformed
+        // TODO add your handling code here:
+        if(tbObat.getSelectedRow()>-1){
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            String FileName=tbObat.getValueAt(tbObat.getSelectedRow(),2).toString().replaceAll(" ","_")+ tbObat.getValueAt(tbObat.getSelectedRow(),5).toString().replace("-", "")
+                      .replace(" ", "")
+                      .replace(":", "")
+                      .replace(".", "") + ".pdf";
+            DlgViewPdf berkas=new DlgViewPdf(null,true);
+            if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_dokumen='"+FileName+"' and kode='033'") > 0){
+                berkas.tampilPdf(FileName,"berkastte/check_list_pre_operasi",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"033");
+            }else{
+                createPdf(FileName);
+                berkas.tampilPdfLocal(FileName,"local","berkastte/check_list_pre_operasi",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"033");
+            }
+            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+            berkas.setLocationRelativeTo(internalFrame1);
+            berkas.setVisible(true);
+
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_MnDigitalTTEActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1807,6 +1848,7 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
     private widget.Label LCount;
     private widget.editorpane LoadHTML;
     private widget.ComboBox MRI;
+    private javax.swing.JMenuItem MnDigitalTTE;
     private javax.swing.JMenuItem MnSkriningNutrisi;
     private widget.TextBox NamaDokterAnestesi;
     private widget.TextBox NamaDokterBedah;
@@ -2180,6 +2222,45 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
             emptTeks();
         }else{
             JOptionPane.showMessageDialog(null,"Gagal menghapus..!!");
+        }
+    }
+    
+    void createPdf(String FileName){
+        System.out.println(FileName);
+        if(tbObat.getSelectedRow()>-1){
+            Map<String, Object> param = new HashMap<>();
+            param.put("namars",akses.getnamars());
+            param.put("alamatrs",akses.getalamatrs());
+            param.put("kotars",akses.getkabupatenrs());
+            param.put("propinsirs",akses.getpropinsirs());
+            param.put("kontakrs",akses.getkontakrs());
+            param.put("emailrs",akses.getemailrs());   
+            param.put("logo",Sequel.cariGambar("select setting.logo from setting"));
+            param.put("logobsre",Sequel.cariGambar("select setting.logo_bsre from setting"));
+            finger=Sequel.cariIsi("select sha1(sidikjari.sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",tbObat.getValueAt(tbObat.getSelectedRow(),31).toString());
+            param.put("finger","Dikeluarkan di "+akses.getnamars()+", Kabupaten/Kota "+akses.getkabupatenrs()+"\nDitandatangani secara elektronik oleh "+tbObat.getValueAt(tbObat.getSelectedRow(),32).toString()+"\nID "+(finger.equals("")?tbObat.getValueAt(tbObat.getSelectedRow(),31).toString():finger)+"\n"+Tanggal.getSelectedItem()); 
+            finger2=Sequel.cariIsi("select sha1(sidikjari.sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",tbObat.getValueAt(tbObat.getSelectedRow(),33).toString());
+            param.put("finger2","Dikeluarkan di "+akses.getnamars()+", Kabupaten/Kota "+akses.getkabupatenrs()+"\nDitandatangani secara elektronik oleh "+tbObat.getValueAt(tbObat.getSelectedRow(),34).toString()+"\nID "+(finger2.equals("")?tbObat.getValueAt(tbObat.getSelectedRow(),33).toString():finger2)+"\n"+Tanggal.getSelectedItem()); 
+            Valid.MyReportPDFWithName1("rptFormulirChecklistPreOperasiTTE.jasper","report","tempfile",FileName,"::[ Formulir Check List Pre Operasi ]::",
+                    "select reg_periksa.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,pasien.tgl_lahir,pasien.jk,checklist_pre_operasi.tanggal,"+
+                    "checklist_pre_operasi.sncn,checklist_pre_operasi.tindakan,checklist_pre_operasi.kd_dokter_bedah,dokterbedah.nm_dokter as dokterbedah,"+
+                    "checklist_pre_operasi.kd_dokter_anestesi,dokteranestesi.nm_dokter as dokteranestesi,checklist_pre_operasi.identitas,"+
+                    "checklist_pre_operasi.surat_ijin_bedah,checklist_pre_operasi.surat_ijin_anestesi,checklist_pre_operasi.surat_ijin_transfusi,"+
+                    "checklist_pre_operasi.penandaan_area_operasi,checklist_pre_operasi.keadaan_umum,checklist_pre_operasi.pemeriksaan_penunjang_rontgen,"+
+                    "checklist_pre_operasi.keterangan_pemeriksaan_penunjang_rontgen,checklist_pre_operasi.pemeriksaan_penunjang_ekg,"+
+                    "checklist_pre_operasi.keterangan_pemeriksaan_penunjang_ekg,checklist_pre_operasi.pemeriksaan_penunjang_usg,"+
+                    "checklist_pre_operasi.keterangan_pemeriksaan_penunjang_usg,checklist_pre_operasi.pemeriksaan_penunjang_ctscan,"+
+                    "checklist_pre_operasi.keterangan_pemeriksaan_penunjang_ctscan,checklist_pre_operasi.pemeriksaan_penunjang_mri,"+
+                    "checklist_pre_operasi.keterangan_pemeriksaan_penunjang_mri,checklist_pre_operasi.persiapan_darah,checklist_pre_operasi.keterangan_persiapan_darah,"+
+                    "checklist_pre_operasi.perlengkapan_khusus,checklist_pre_operasi.nip_petugas_ruangan,petugasruangan.nama as petugasruangan,"+
+                    "checklist_pre_operasi.nip_perawat_ok,petugasok.nama as petugasok "+
+                    "from checklist_pre_operasi inner join reg_periksa on checklist_pre_operasi.no_rawat=reg_periksa.no_rawat "+
+                    "inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
+                    "inner join dokter as dokterbedah on dokterbedah.kd_dokter=checklist_pre_operasi.kd_dokter_bedah "+
+                    "inner join dokter as dokteranestesi on dokteranestesi.kd_dokter=checklist_pre_operasi.kd_dokter_anestesi "+
+                    "inner join petugas as petugasruangan on petugasruangan.nip=checklist_pre_operasi.nip_petugas_ruangan "+
+                    "inner join petugas as petugasok on petugasok.nip=checklist_pre_operasi.nip_perawat_ok "+
+                    "where checklist_pre_operasi.no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"' and checklist_pre_operasi.tanggal='"+tbObat.getValueAt(tbObat.getSelectedRow(),5).toString()+"' ",param);
         }
     }
 }

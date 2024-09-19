@@ -163,11 +163,6 @@ public final class ICareRiwayatPerawatan extends javax.swing.JDialog {
         KdDPJPLayanan.setHighlighter(null);
         KdDPJPLayanan.setName("KdDPJPLayanan"); // NOI18N
         KdDPJPLayanan.setPreferredSize(new java.awt.Dimension(130, 23));
-        KdDPJPLayanan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                KdDPJPLayananActionPerformed(evt);
-            }
-        });
         panelGlass6.add(KdDPJPLayanan);
 
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
@@ -258,10 +253,6 @@ public final class ICareRiwayatPerawatan extends javax.swing.JDialog {
             BtnKeluar.requestFocus();
         }
     }//GEN-LAST:event_NoKartuKeyPressed
-
-    private void KdDPJPLayananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KdDPJPLayananActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_KdDPJPLayananActionPerformed
 
     /**
     * @param args the command line arguments

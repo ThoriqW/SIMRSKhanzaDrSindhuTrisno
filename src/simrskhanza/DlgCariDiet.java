@@ -103,7 +103,6 @@ public final class DlgCariDiet extends javax.swing.JDialog {
             });
         }
     }
-    private DlgDiet diet=new DlgDiet(null,false);
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -295,7 +294,7 @@ public final class DlgCariDiet extends javax.swing.JDialog {
 
     private void BtnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTambahActionPerformed
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        //diet.setModal(true);
+        DlgDiet diet=new DlgDiet(null,false);
         diet.emptTeks();
         diet.isCek();
         diet.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
@@ -404,11 +403,20 @@ public final class DlgCariDiet extends javax.swing.JDialog {
             Valid.tabelKosong(tabMode);
             response = root.path("diet");
             if(response.isArray()){
-                for(JsonNode list:response){
-                    if(list.path("KodeDiet").asText().toLowerCase().contains(TCari.getText().toLowerCase())||list.path("NamaDiet").asText().toLowerCase().contains(TCari.getText().toLowerCase())){
+                if(TCari.getText().trim().equals("")){
+                    for(JsonNode list:response){
                         tabMode.addRow(new Object[]{
                             list.path("KodeDiet").asText(),list.path("NamaDiet").asText()
-                        });                    }
+                        }); 
+                    }
+                }else{
+                    for(JsonNode list:response){
+                        if(list.path("KodeDiet").asText().toLowerCase().contains(TCari.getText().toLowerCase())||list.path("NamaDiet").asText().toLowerCase().contains(TCari.getText().toLowerCase())){
+                            tabMode.addRow(new Object[]{
+                                list.path("KodeDiet").asText(),list.path("NamaDiet").asText()
+                            });                    
+                        }
+                    }
                 }
             }
             myObj.close();

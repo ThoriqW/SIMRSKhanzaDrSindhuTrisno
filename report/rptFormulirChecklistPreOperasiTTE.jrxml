@@ -18,6 +18,7 @@
 	<parameter name="logo" class="java.io.InputStream"/>
 	<parameter name="finger" class="java.lang.String"/>
 	<parameter name="finger2" class="java.lang.String"/>
+	<parameter name="logobsre" class="java.io.InputStream"/>
 	<queryString>
 		<![CDATA[select reg_periksa.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,pasien.tgl_lahir,pasien.jk,checklist_pre_operasi.tanggal,
                     checklist_pre_operasi.sncn,checklist_pre_operasi.tindakan,checklist_pre_operasi.kd_dokter_bedah,dokterbedah.nm_dokter as dokterbedah,
@@ -1020,7 +1021,7 @@
 		<band splitType="Stretch"/>
 	</columnFooter>
 	<summary>
-		<band height="146" splitType="Stretch">
+		<band height="169" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<staticText>
 				<reportElement x="320" y="14" width="220" height="14" uuid="c1fbf8b7-e738-49a7-95b4-a424b7f1e65c"/>
@@ -1038,14 +1039,6 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$P{kotars}+", "+new SimpleDateFormat("dd MMMM yyyy", new java.util.Locale("id")).format(new Date())]]></textFieldExpression>
 			</textField>
-			<componentElement>
-				<reportElement x="320" y="28" width="216" height="72" isRemoveLineWhenBlank="true" uuid="2e125df9-83d7-4563-b5cf-20b2194a8e5c">
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" errorCorrectionLevel="H">
-					<jr:codeExpression><![CDATA[$P{finger2}]]></jr:codeExpression>
-				</jr:QRCode>
-			</componentElement>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement stretchType="RelativeToBandHeight" x="320" y="106" width="220" height="15" uuid="6ea48481-f15a-4169-9e1b-675850c6d206"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -1092,14 +1085,41 @@
 				</textElement>
 				<text><![CDATA[Petugas Ruangan]]></text>
 			</staticText>
-			<componentElement>
-				<reportElement x="26" y="28" width="211" height="73" isRemoveLineWhenBlank="true" uuid="ccc94b4d-1d5a-4071-85da-9ef669c25e24">
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement x="6" y="150" width="40" height="14" uuid="8e485edf-1626-4372-96ce-42605c286c71"/>
+				<imageExpression><![CDATA[$P{logobsre}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement positionType="Float" x="48" y="150" width="210" height="14" uuid="3e46d291-481b-449d-8efb-f2adf1224eae">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left">
+					<font fontName="Tahoma" size="5" isBold="false" isItalic="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Dokumen ini telah ditanda tangani secara elektronik menggunakan sertifikat elektronik
+yang telah diterbitkan oleh Balai Sertifikasi Elektronik (BSrE), Badan Siber dan Sandi Negara]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="26" y="28" width="214" height="78" uuid="b9cdd9a2-2bf8-4741-b99d-646258e703c4">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
-				<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" errorCorrectionLevel="H">
-					<jr:codeExpression><![CDATA[$P{finger}]]></jr:codeExpression>
-				</jr:QRCode>
-			</componentElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="320" y="28" width="220" height="78" uuid="eda10dd4-2c4b-425c-a463-a4cfc3a82b62">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[~]]></text>
+			</staticText>
 		</band>
 	</summary>
 </jasperReport>

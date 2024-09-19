@@ -26,7 +26,7 @@
 	<parameter name="finger2" class="java.lang.String"/>
 	<parameter name="logobsre" class="java.io.InputStream"/>
 	<queryString>
-		<![CDATA[select persetujuan_penolakan_tindakan.no_pernyataan,reg_periksa.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,pasien.jk,pasien.tgl_lahir,
+		<![CDATA[select persetujuan_penolakan_tindakan.no_pernyataan,reg_periksa.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,pasien.no_ktp,pasien.jk,pasien.tgl_lahir,
 				pasien.tmp_lahir,concat(pasien.alamat,', ',kelurahan.nm_kel,', ',kecamatan.nm_kec,', ',kabupaten.nm_kab,', ',propinsi.nm_prop) as alamat,
 				persetujuan_penolakan_tindakan.tanggal,persetujuan_penolakan_tindakan.diagnosa,persetujuan_penolakan_tindakan.diagnosa_konfirmasi,persetujuan_penolakan_tindakan.tindakan,
 				persetujuan_penolakan_tindakan.tindakan_konfirmasi,persetujuan_penolakan_tindakan.indikasi_tindakan,persetujuan_penolakan_tindakan.indikasi_tindakan_konfirmasi,
@@ -51,6 +51,7 @@
 	<field name="no_rawat" class="java.lang.String"/>
 	<field name="no_rkm_medis" class="java.lang.String"/>
 	<field name="nm_pasien" class="java.lang.String"/>
+	<field name="no_ktp" class="java.lang.String"/>
 	<field name="jk" class="java.lang.String"/>
 	<field name="tgl_lahir" class="java.sql.Date"/>
 	<field name="tmp_lahir" class="java.lang.String"/>
@@ -108,16 +109,8 @@
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</rectangle>
-			<staticText>
-				<reportElement x="0" y="70" width="540" height="20" uuid="31b7a553-01e5-4309-8eb3-388b59493704"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Tahoma" size="12" isBold="true" isItalic="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[PEMBERIAN INFORMASI / EDUKASI DAN PERNYATAAN]]></text>
-			</staticText>
 			<textField textAdjust="StretchHeight">
-				<reportElement x="330" y="931" width="184" height="10" uuid="61481e35-032b-4bda-8774-c5fa08d79a61">
+				<reportElement x="352" y="931" width="184" height="10" uuid="61481e35-032b-4bda-8774-c5fa08d79a61">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center">
@@ -127,7 +120,7 @@
 				<textFieldExpression><![CDATA[$F{penerima_informasi}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="330" y="833" width="184" height="10" uuid="e310e9c8-eb47-4aab-8710-9d2c1ca5fff8">
+				<reportElement x="352" y="833" width="184" height="10" uuid="e310e9c8-eb47-4aab-8710-9d2c1ca5fff8">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center">
@@ -304,7 +297,7 @@
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<textField textAdjust="StretchHeight">
-				<reportElement mode="Transparent" x="330" y="821" width="184" height="10" uuid="4c8f3953-e7f9-4169-bcbe-4d3a8a213111">
+				<reportElement mode="Transparent" x="352" y="821" width="184" height="10" uuid="4c8f3953-e7f9-4169-bcbe-4d3a8a213111">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center">
@@ -382,14 +375,6 @@
 					<pen lineWidth="0.5" lineStyle="Solid"/>
 				</graphicElement>
 			</line>
-			<staticText>
-				<reportElement x="0" y="90" width="540" height="20" uuid="e5cbb295-c26a-42a0-b47a-c6182a056a6f"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Tahoma" size="12" isBold="true" isItalic="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[PENOLAKAN OPERASI / TINDAKAN MEDIS / TINDAKAN DIAGNOSTIK]]></text>
-			</staticText>
 			<staticText>
 				<reportElement x="170" y="113" width="199" height="15" uuid="672f90d1-6f05-497a-9847-f2f1f84927fa">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -1327,7 +1312,7 @@
 				</graphicElement>
 			</line>
 			<textField textAdjust="StretchHeight">
-				<reportElement x="6" y="931" width="135" height="10" uuid="31cd5bbc-73d2-4d31-8884-2d8bbac05d6e">
+				<reportElement x="6" y="931" width="156" height="10" uuid="31cd5bbc-73d2-4d31-8884-2d8bbac05d6e">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center">
@@ -1337,7 +1322,7 @@
 				<textFieldExpression><![CDATA[$F{nama}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="8" y="833" width="135" height="10" uuid="6f60bbc3-aa9a-4282-971d-8b78ed6fbe12">
+				<reportElement x="8" y="833" width="154" height="10" uuid="6f60bbc3-aa9a-4282-971d-8b78ed6fbe12">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center">
@@ -1536,12 +1521,12 @@
 				<text><![CDATA[Saya Yang bertanda tangan di bawah ini :]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="10" y="575" width="520" height="10" uuid="da3de938-d98a-435d-9625-a9427d0bd502"/>
+				<reportElement x="10" y="575" width="90" height="10" uuid="da3de938-d98a-435d-9625-a9427d0bd502"/>
 				<textElement>
 					<font fontName="Tahoma" size="8" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[Dengan ini menyatakan menolak untuk dilakukannya Penolakan Operasi / Tindakan Medis / Tindakan Diagnostik Terhadap :]]></text>
+				<text><![CDATA[Dengan ini menyatakan]]></text>
 			</staticText>
 			<textField textAdjust="StretchHeight">
 				<reportElement x="325" y="599" width="205" height="20" uuid="f9908ae3-5ce3-4d0c-8932-747c66428efd">
@@ -1591,11 +1576,11 @@
 				<text><![CDATA[A. Pemberian Informasi]]></text>
 			</staticText>
 			<image scaleImage="FillFrame" onErrorType="Blank">
-				<reportElement x="168" y="848" width="130" height="78" uuid="f5e4acda-72b0-46a3-b46a-13414b49a7b2"/>
+				<reportElement x="190" y="848" width="130" height="78" uuid="f5e4acda-72b0-46a3-b46a-13414b49a7b2"/>
 				<imageExpression><![CDATA[$P{photo_saksi}]]></imageExpression>
 			</image>
 			<textField textAdjust="StretchHeight">
-				<reportElement x="147" y="931" width="172" height="10" uuid="d8e31d71-94f1-438a-b9f5-f6cab9d41d7b">
+				<reportElement x="169" y="931" width="172" height="10" uuid="d8e31d71-94f1-438a-b9f5-f6cab9d41d7b">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center">
@@ -1605,7 +1590,7 @@
 				<textFieldExpression><![CDATA[$F{saksi_keluarga}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="147" y="833" width="172" height="10" uuid="1c9a9bc0-a73f-4c11-9a54-68d89cacab35">
+				<reportElement x="169" y="833" width="172" height="10" uuid="1c9a9bc0-a73f-4c11-9a54-68d89cacab35">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center">
@@ -1615,7 +1600,7 @@
 				<text><![CDATA[Saksi I Keluarga]]></text>
 			</staticText>
 			<image scaleImage="FillFrame" onErrorType="Blank">
-				<reportElement x="357" y="848" width="130" height="78" uuid="7edc71ed-0e3c-4efa-9154-9fe520430f05"/>
+				<reportElement x="379" y="848" width="130" height="78" uuid="7edc71ed-0e3c-4efa-9154-9fe520430f05"/>
 				<imageExpression><![CDATA[$P{photo_penerima}]]></imageExpression>
 			</image>
 			<staticText>
@@ -2067,7 +2052,7 @@
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement positionType="Float" x="8" y="848" width="135" height="78" uuid="c60cb4ad-3b61-48e4-bb28-b95411ff38fb">
+				<reportElement positionType="Float" x="8" y="848" width="153" height="78" uuid="c60cb4ad-3b61-48e4-bb28-b95411ff38fb">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -2100,6 +2085,77 @@
 				</textElement>
 				<text><![CDATA[Dokumen ini telah ditanda tangani secara elektronik menggunakan sertifikat elektronik
 yang telah diterbitkan oleh Balai Sertifikasi Elektronik (BSrE), Badan Siber dan Sandi Negara]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="90" width="540" height="20" uuid="6399f8e8-2e5f-4ac7-802f-07fcd1521f1f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="11" isBold="true" isItalic="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[TINDAKAN OPERASI / TINDAKAN ANESTESI / TINDAKAN MEDIS / TINDAKAN DIAGNOSTIK]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="70" width="540" height="20" uuid="3904885e-b7ab-4b9d-998a-52a14b6350c2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="11" isBold="true" isItalic="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[PEMBERIAN INFORMASI / EDUKASI DAN PERNYATAAN]]></text>
+			</staticText>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="325" y="587" width="93" height="10" uuid="0992c50c-bb0c-44e0-804e-9ed78ee12dba">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Tahoma" size="8" isBold="false" isItalic="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{no_ktp}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="320" y="587" width="5" height="10" uuid="b2363045-d778-4d2c-88d8-3f2e7aa8e908">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Tahoma" size="8" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="587" width="40" height="10" uuid="1947846a-79cb-49bd-ad78-5c5a9e046c54">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Tahoma" size="8" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[No. KTP]]></text>
+			</staticText>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="100" y="575" width="92" height="10" uuid="09f413aa-f40e-4ebc-bbf1-01427349fb41">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineStyle="Double"/>
+					<topPen lineWidth="0.0" lineStyle="Double"/>
+					<leftPen lineWidth="0.0" lineStyle="Double"/>
+					<bottomPen lineWidth="0.0" lineStyle="Double"/>
+					<rightPen lineWidth="0.0" lineStyle="Double"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="true" isItalic="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pernyataan}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="192" y="575" width="352" height="10" uuid="b4989ff1-c93b-4043-a864-fce824f5b592"/>
+				<textElement>
+					<font fontName="Tahoma" size="8" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[untuk dilakukannya tindakan sesuai dengan hal-hal diatas terhadap pasien:]]></text>
 			</staticText>
 		</band>
 	</detail>
