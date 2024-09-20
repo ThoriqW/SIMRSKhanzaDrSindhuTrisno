@@ -197,7 +197,7 @@ public class DlgViewPdf extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnHapusFile);
 
-        ListTTE.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TTE 1", "TTE 2" }));
+        ListTTE.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TTE 1", "TTE 2", "TTE 3" }));
         ListTTE.setName("ListTTE"); // NOI18N
         ListTTE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

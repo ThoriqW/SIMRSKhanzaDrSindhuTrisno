@@ -1277,9 +1277,12 @@ public final class RMMonitoringBromagePascaAnestesi extends javax.swing.JDialog 
         // TODO add your handling code here:
         if(tbObat.getSelectedRow()>-1){
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            String FileName = tbObat.getValueAt(tbObat.getSelectedRow(),0).toString().replaceAll("/","_")+".pdf";
+            String FileName =tbObat.getValueAt(tbObat.getSelectedRow(),2).toString().replaceAll(" ","_")+ tbObat.getValueAt(tbObat.getSelectedRow(),5).toString().replace("-", "")
+                    .replace(" ", "")
+                    .replace(":", "")
+                    .replace(".", "") + ".pdf";
             DlgViewPdf berkas=new DlgViewPdf(null,true);
-            if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"' and kode='022'") > 0){
+            if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+FileName+"' and kode='022'") > 0){
                 berkas.tampilPdf(FileName,"berkastte/laporan_anastesi_spinal",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"022");
             }else{
                 createPdf(FileName);

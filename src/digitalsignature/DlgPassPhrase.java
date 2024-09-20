@@ -364,6 +364,18 @@ public class DlgPassPhrase extends javax.swing.JDialog {
                             "\"tampilan\":\"visible\""+
                         "}";
                         break;
+                    case "TTE 3":
+                        requestJson =" {" +
+                            "\"nik\":\""+txtNik.getText()+"\","+
+                            "\"id\":\""+akses.getkode()+"\","+
+                            "\"passphrase\":\""+txtPassPhrase.getText()+"\","+
+                            "\"document\":\""+txtNamaFile.getText()+"\","+
+                            "\"location\":\""+txtLokasiFile.getText()+"\","+
+                            "\"tag\":\"^\","+
+                            "\"image\":\"true\","+
+                            "\"tampilan\":\"visible\""+
+                        "}";
+                        break;
                 }
                 requestEntity = new HttpEntity(requestJson,headers);
                 root = mapper.readTree(apiTte.getRest().exchange(URL, HttpMethod.POST, requestEntity, String.class).getBody());
