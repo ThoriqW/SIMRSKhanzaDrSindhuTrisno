@@ -2075,14 +2075,14 @@ public final class RMTransferPasienAntarRuang extends javax.swing.JDialog {
                 getData();
             } catch (java.lang.NullPointerException e) {
             }
-            BtnSimpan.setEnabled(false);
-            BtnBatal.setEnabled(false);
-            BtnHapus.setEnabled(false);
-            BtnPrint.setEnabled(false);
-            BtnAll.setEnabled(false);
-            BtnMenerima.setEnabled(false);
-            TanggalMasuk.setEnabled(false);
-            TanggalPindah.setEnabled(false);
+//            BtnSimpan.setEnabled(false);
+//            BtnBatal.setEnabled(false);
+//            BtnHapus.setEnabled(false);
+//            BtnPrint.setEnabled(false);
+//            BtnAll.setEnabled(false);
+//            BtnMenerima.setEnabled(false);
+//            TanggalMasuk.setEnabled(false);
+//            TanggalPindah.setEnabled(false);
             validasiEdit();
             if((evt.getClickCount()==2)&&(tbObat.getSelectedColumn()==0)){
                 TabRawat.setSelectedIndex(0);

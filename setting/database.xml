@@ -32,10 +32,10 @@
     <entry key="ALARMPERMINTAANRANAP">yes</entry>
     <entry key="MENUTRANSPARAN">no</entry>
     <entry key="TANGGALMUNDUR">no</entry>
-    <entry key="URLAPIBPJS">https://apijkn.bpjs-kesehatan.go.id/vclaim-rest</entry>
-    <entry key="SECRETKEYAPIBPJS">wwlu9LpBy4Beg9Z2d6f6Cw==</entry>
-    <entry key="CONSIDAPIBPJS">Nk4pgiVOwrGisHoyfIlQPQ==</entry>
-    <entry key="USERKEYAPIBPJS">u+vKW+HXDOrYu3ovCuFiZpEXiY7pc4j1Sbdud44+EGe+TyquNCwVetjBLdv91ixr</entry>
+    <entry key="URLAPIBPJS">https://apijkn-dev.bpjs-kesehatan.go.id/vclaim-rest-dev</entry>
+    <entry key="SECRETKEYAPIBPJS">Hx0yrkpzKXJeKsgdexhzog==</entry>
+    <entry key="CONSIDAPIBPJS">Pa5Czm9ZXH2OCE21gPMkTQ==</entry>
+    <entry key="USERKEYAPIBPJS">ibeKQwgUdHxu82foZSkCOMsp/P6XGWv7ZPXV4pNaAr+f5WQmABbOcYau7MydaVsU</entry>
     <entry key="DIAGNOSARUJUKANMASUKAPIBPJS">yes</entry>
     <entry key="JADIKANBOOKINGSURATKONTROLAPIBPJS">no</entry>
     <entry key="URLAPIAPLICARE">https://new-api.bpjs-kesehatan.go.id/aplicaresws</entry>
@@ -46,7 +46,7 @@
     <entry key="SECRETKEYAPIMOBILEJKN">wwlu9LpBy4Beg9Z2d6f6Cw==</entry>
     <entry key="CONSIDAPIMOBILEJKN">Nk4pgiVOwrGisHoyfIlQPQ==</entry>
     <entry key="USERKEYAPIMOBILEJKN">QHRf2oQr3+l6vvgvof28IxfGU40vuWHLAkIGny5rAVFXewwxRwClWTZ5+wQZ0rXt</entry>
-    <entry key="ADDANTRIANAPIMOBILEJKN">yes</entry>
+    <entry key="ADDANTRIANAPIMOBILEJKN">no</entry>
     <entry key="URLAPIAPOTEKBPJS">https://dev-soa.bpjs-kesehatan.go.id/apotek-rest</entry>
     <entry key="SECRETKEYAPIAPOTEKBPJS">l4nh5eVYrLAER/I2A4b3Tw==</entry>
     <entry key="CONSIDAPIAPOTEKBPJS">l4nh5eVYrLAER/I2A4b3Tw==</entry>
