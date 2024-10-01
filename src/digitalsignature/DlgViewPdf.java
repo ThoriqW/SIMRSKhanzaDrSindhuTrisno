@@ -20,13 +20,13 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import org.icepdf.ri.common.ComponentKeyBinding;
 import org.icepdf.ri.common.SwingController;
@@ -273,18 +273,18 @@ public class DlgViewPdf extends javax.swing.JDialog {
             if(fileLocation.equals("local")){  
               ctrl.openDocument("tempfile/"+txtNameFile.getText());
             }else{
-             URL url =new URL("http://"+koneksiDB.HOSTHYBRIDWEBTTE()+"/"+koneksiDB.HYBRIDWEB()+"/"+txtLokasiFile.getText()+"/"+txtNameFile.getText());
-               ctrl.openDocument(url);
+             URL url =new URL("http://"+koneksiDB.HOSTHYBRIDWEBTTE()+":"+koneksiDB.PORTWEBTTE()+"/"+koneksiDB.HYBRIDWEB()+"/"+txtLokasiFile.getText()+"/"+txtNameFile.getText());
+                ctrl.openDocument(url);
             }
             jScrollPane1.setViewportView(s); 
         }catch (Exception e){
             
         }
     }
-    void openpdf(String file){
+    
+    void openpdf(String file) {
         try {
-            URL url =new URL("http://"+koneksiDB.HOSTHYBRIDWEBTTE()+"/"+koneksiDB.HYBRIDWEB()+"/"+txtLokasiFile.getText()+"/"+file);
-            
+            URL url = new URL("http://" + koneksiDB.HOSTHYBRIDWEBTTE() + ":" + koneksiDB.PORTWEBTTE() + "/" + koneksiDB.HYBRIDWEB() + "/" + txtLokasiFile.getText() + "/" + file);
             SwingController ctrl = new SwingController();
             SwingViewBuilder vb = new SwingViewBuilder(ctrl);
             JPanel s = vb.buildViewerPanel();
@@ -292,11 +292,15 @@ public class DlgViewPdf extends javax.swing.JDialog {
             ctrl.setToolBarVisible(false);
             ctrl.getDocumentViewController().setAnnotationCallback(
                 new org.icepdf.ri.common.MyAnnotationCallback(ctrl.getDocumentViewController())
-            );            
+            );
+
+            // Attempt to open the document
             ctrl.openDocument(url);
+
+            // Set the viewport only if the document opened successfully
             jScrollPane1.setViewportView(s);
-            
-        } catch (Exception e) {
+
+        }catch (Exception e) {
             LOGGER.log(Level.SEVERE, "An unexpected error occurred", e);
         }
     }
@@ -305,7 +309,7 @@ public class DlgViewPdf extends javax.swing.JDialog {
             BtnViewFileActionPerformed(null);
         }else{
 //            Valid.pindah(evt,TCatatan,BtnKeluar);
-        }
+    }
 }//GEN-LAST:event_BtnViewFileKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed

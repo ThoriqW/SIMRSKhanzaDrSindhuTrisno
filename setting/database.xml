@@ -32,9 +32,9 @@
     <entry key="ALARMPERMINTAANRANAP">yes</entry>
     <entry key="MENUTRANSPARAN">no</entry>
     <entry key="TANGGALMUNDUR">no</entry>
-    <entry key="URLAPIBPJS">https://apijkn-dev.bpjs-kesehatan.go.id/vclaim-rest-dev</entry>
-    <entry key="SECRETKEYAPIBPJS">Hx0yrkpzKXJeKsgdexhzog==</entry>
-    <entry key="CONSIDAPIBPJS">Pa5Czm9ZXH2OCE21gPMkTQ==</entry>
+    <entry key="URLAPIBPJS">https://apijkn.bpjs-kesehatan.go.id/vclaim-rest</entry>
+    <entry key="SECRETKEYAPIBPJS">wwlu9LpBy4Beg9Z2d6f6Cw==</entry>
+    <entry key="CONSIDAPIBPJS">Nk4pgiVOwrGisHoyfIlQPQ==</entry>
     <entry key="USERKEYAPIBPJS">ibeKQwgUdHxu82foZSkCOMsp/P6XGWv7ZPXV4pNaAr+f5WQmABbOcYau7MydaVsU</entry>
     <entry key="DIAGNOSARUJUKANMASUKAPIBPJS">yes</entry>
     <entry key="JADIKANBOOKINGSURATKONTROLAPIBPJS">no</entry>
@@ -52,9 +52,9 @@
     <entry key="CONSIDAPIAPOTEKBPJS">l4nh5eVYrLAER/I2A4b3Tw==</entry>
     <entry key="USERKEYAPIAPOTEKBPJS">l4nh5eVYrLAER/I2A4b3Tw==</entry>
     <entry key="JADIKANPIUTANGAPOTEKBPJS">yes</entry>
-    <entry key="URLAPIICARE">https://apijkn-dev.bpjs-kesehatan.go.id/ihs_dev/api/rs</entry>
-    <entry key="SECRETKEYAPIICARE">Hx0yrkpzKXJeKsgdexhzog==</entry>
-    <entry key="CONSIDAPIICARE">Pa5Czm9ZXH2OCE21gPMkTQ==</entry>
+    <entry key="URLAPIICARE">https://apijkn.bpjs-kesehatan.go.id/wsihs/api/rs</entry>
+    <entry key="SECRETKEYAPIICARE">wwlu9LpBy4Beg9Z2d6f6Cw==</entry>
+    <entry key="CONSIDAPIICARE">Nk4pgiVOwrGisHoyfIlQPQ==</entry>
     <entry key="USERKEYAPIICARE">ibeKQwgUdHxu82foZSkCOMsp/P6XGWv7ZPXV4pNaAr+f5WQmABbOcYau7MydaVsU</entry>
     <entry key="URLAPISMARTCLAIM">https://dvlp.bpjs-kesehatan.go.id/eRekamMedis</entry>
     <entry key="SECRETKEYAPISMARTCLAIM">l4nh5eVYrLAER/I2A4b3Tw==</entry>
@@ -188,10 +188,10 @@
     <entry key="SFTPFILEESIGNUSER">l4nh5eVYrLAER/I2A4b3Tw==</entry>
     <entry key="SFTPFILEESIGNPAS">l4nh5eVYrLAER/I2A4b3Tw==</entry>
     <entry key="SFTPFILEESIGNFOLDER">l4nh5eVYrLAER/I2A4b3Tw==</entry>
-    <entry key="PORTWEBTTE">80</entry>
-    <entry key="HOSTHYBRIDWEBTTE">c5iWnggK1SsVPBd/0funrw==</entry>
-
+    <entry key="PORTWEBTTE">8080</entry>
+    <entry key="HOSTHYBRIDWEBTTE">ZUSUUqk5vflzhO1p/+p4wA==</entry>
+    
     <!--BSSN TTE-->
-    <entry key="URLTTE">http://192.168.1.132/api_gateway/api/v1/tte/</entry>
+    <entry key="URLTTE">http://192.168.1.199:8080/api-gateway/api/v1/tte/</entry>
     <entry key="TOKENTTE">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6ImFkbWluQHR0ZS5jb20iLCJuaWsiOiIwODAzMjAyMTAwMDA3MDYyIiwiZXhwIjoxNzI5OTM3MjI3fQ.Tc-shdYjReA2n14YDpdN5VkxNPeOCj0mF1y4_L6QrGg</entry>
 </properties>

@@ -18,6 +18,7 @@ import fungsi.akses;
 import fungsi.koneksiDB;
 import fungsi.sekuel;
 import fungsi.validasi;
+import java.awt.Cursor;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
@@ -332,6 +333,7 @@ public class DlgPassPhrase extends javax.swing.JDialog {
             }else{
                 username=Sequel.cariIsi("select nama from pegawai where nik=?",akses.getkode());
             }
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             uploadPdf(txtNamaFile.getText(),txtLokasiFile.getText().split("/")[1]);
             try {
                 link="http://"+koneksiDB.HOSTHYBRIDWEBTTE()+":"+koneksiDB.PORTWEBTTE()+"/"+koneksiDB.HYBRIDWEB()+"/berkastte/";
@@ -380,12 +382,12 @@ public class DlgPassPhrase extends javax.swing.JDialog {
                 requestEntity = new HttpEntity(requestJson,headers);
                 root = mapper.readTree(apiTte.getRest().exchange(URL, HttpMethod.POST, requestEntity, String.class).getBody());
                 metadata = root.path("metadata");
-                System.out.println(kodeFile);
                 System.out.println("Hasil"+metadata);
                 System.out.println("Hasil"+URL);
-                JOptionPane.showMessageDialog(null,metadata.path("message").asText());        
-                    if(metadata.path("code").asText().equals("200")){
-                        Sequel.menyimpantf("berkas_tte","?,?,?,?,?,?,?","No.Rawat",7,new String[]{
+                JOptionPane.showMessageDialog(null,metadata.path("message").asText());
+                this.setCursor(Cursor.getDefaultCursor());
+                if(metadata.path("code").asText().equals("200")){
+                    Sequel.menyimpantf("berkas_tte","?,?,?,?,?,?,?","No.Rawat",7,new String[]{
                         txtNamaFile.getText(),txtNoRawat.getText(),metadata.path("datetime").asText(),kodeFile,txtLokasiFile.getText(),txtNamaFile.getText(),"MEDIS"
                     });
                     dispose(); 
