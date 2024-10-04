@@ -391,7 +391,7 @@
 					<font fontName="Tahoma" size="9" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[SURAT KETERANGAN]]></text>
+				<text><![CDATA[SURAT KONTROL]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="2" y="13" width="255" height="10" uuid="c543d972-5b32-4c8f-8353-7f92cea8dc41"/>

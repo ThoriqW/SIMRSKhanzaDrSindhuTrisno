@@ -47,6 +47,7 @@ public class SuratKontrol extends javax.swing.JDialog {
     private DlgCariPoli2 poli2=new DlgCariPoli2(null,false);
     private String URUTNOREG="",status="",kdpoli="",nmpoli="",noantri="",aktifjadwal="";
     private DlgCariPenyakit penyakit=new DlgCariPenyakit(null,false);
+    DlgViewPdf berkas=new DlgViewPdf(null,true);
     private String finger="";
     
 
@@ -1551,16 +1552,14 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                       .replace(" ", "")
                       .replace(":", "")
                       .replace(".", "") + ".pdf";
-            DlgViewPdf berkas=new DlgViewPdf(null,true);
             if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_dokumen='"+FileName+"' and kode='017'") > 0){
                 berkas.tampilPdf(FileName,"berkastte/surat_kontrol_internal",tbObat.getValueAt(tbObat.getSelectedRow(),11).toString(),"017");
+                berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                berkas.setLocationRelativeTo(internalFrame1);
+                berkas.setVisible(true);
             }else{
                 createPdf(FileName);
-                berkas.tampilPdfLocal(FileName,"local","berkastte/surat_kontrol_internal",tbObat.getValueAt(tbObat.getSelectedRow(),11).toString(),"017");
             }
-            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-            berkas.setLocationRelativeTo(internalFrame1);
-            berkas.setVisible(true);
 
             this.setCursor(Cursor.getDefaultCursor());
         }
@@ -1914,7 +1913,11 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                     tabMode.getValueAt(tbObat.getSelectedRow(),16).toString()+"','"+
                     tabMode.getValueAt(tbObat.getSelectedRow(),17).toString()+"','','','','','','','','','','','','','','','','','','',''","Surat Kotrol");
 
-                Valid.MyReportPDFWithName("rptSuratSKDPBPJSTTE.jasper","report","tempfile",FileName,"::[ Surat Kontrol ]::",param); 
+                Valid.MyReportPDFWithName("rptSuratSKDPBPJSTTE.jasper","report","tempfile",FileName,"::[ Surat Kontrol ]::",param);
+                berkas.tampilPdfLocal(FileName,"local","berkastte/surat_kontrol_internal",tbObat.getValueAt(tbObat.getSelectedRow(),11).toString(),"017");
+                berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                berkas.setLocationRelativeTo(internalFrame1);
+                berkas.setVisible(true);
                 this.setCursor(Cursor.getDefaultCursor());
             }else{
                 JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih terlebih dulu data yang mau anda hapus...\n Klik data pada table untuk memilih data...!!!!");

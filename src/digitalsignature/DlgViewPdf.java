@@ -212,7 +212,6 @@ public class DlgViewPdf extends javax.swing.JDialog {
         panelGlass8.add(ListTTE);
 
         txtNameFile.setEditable(false);
-        txtNameFile.setText("2022_01_09_000001.pdf");
         txtNameFile.setName("txtNameFile"); // NOI18N
         txtNameFile.setPreferredSize(new java.awt.Dimension(200, 24));
         txtNameFile.addActionListener(new java.awt.event.ActionListener() {
@@ -270,13 +269,15 @@ public class DlgViewPdf extends javax.swing.JDialog {
             ctrl.getDocumentViewController().setAnnotationCallback(
             new org.icepdf.ri.common.MyAnnotationCallback(ctrl.getDocumentViewController())
             );
-            if(fileLocation.equals("local")){  
-              ctrl.openDocument("tempfile/"+txtNameFile.getText());
-            }else{
-             URL url =new URL("http://"+koneksiDB.HOSTHYBRIDWEBTTE()+":"+koneksiDB.PORTWEBTTE()+"/"+koneksiDB.HYBRIDWEB()+"/"+txtLokasiFile.getText()+"/"+txtNameFile.getText());
-                ctrl.openDocument(url);
+            if(txtNameFile.getText() != null && !txtNameFile.getText().trim().isEmpty()){
+                if(fileLocation.equals("local")){  
+                    ctrl.openDocument("tempfile/"+txtNameFile.getText());
+                }else{
+                 URL url =new URL("http://"+koneksiDB.HOSTHYBRIDWEBTTE()+":"+koneksiDB.PORTWEBTTE()+"/"+koneksiDB.HYBRIDWEB()+"/"+txtLokasiFile.getText()+"/"+txtNameFile.getText());
+                    ctrl.openDocument(url);
+                }
+                jScrollPane1.setViewportView(s); 
             }
-            jScrollPane1.setViewportView(s); 
         }catch (Exception e){
             
         }
@@ -315,6 +316,7 @@ public class DlgViewPdf extends javax.swing.JDialog {
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
         dispose();
         deleteFile();
+        txtNameFile.setText("");
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
@@ -352,6 +354,7 @@ public class DlgViewPdf extends javax.swing.JDialog {
         if(txtNameFile.getText() != null && !txtNameFile.getText().isEmpty() && txtLokasiFile.getText() != null && !txtLokasiFile.getText().isEmpty()){
             System.out.println(txtLokasiFile.getText() + " " + txtNameFile.getText());
             Sequel.hapusTTE("berkas_tte", "nama_file", "lokasi_file", txtNameFile.getText(), txtLokasiFile.getText());
+            txtNameFile.setText("");
             dispose();
         }   
     }//GEN-LAST:event_BtnHapusFileActionPerformed

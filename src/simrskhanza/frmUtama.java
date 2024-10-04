@@ -1093,6 +1093,7 @@ public class frmUtama extends javax.swing.JFrame {
         initComponents();
         initKhanza();
         setIconImage(new ImageIcon(super.getClass().getResource("/picture/yaski24.png")).getImage());
+        panelJudul.setVisible(false);
         
         this.setExtendedState(MAXIMIZED_BOTH);
         //this.setSize(screen.width,screen.height);

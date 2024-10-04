@@ -59,6 +59,7 @@ public final class RMHasilPemeriksaanECHO extends javax.swing.JDialog {
     private String finger="";
     private JsonNode root;
     private String TANGGALMUNDUR="yes";
+    DlgViewPdf berkas=new DlgViewPdf(null,true);
     
     /** Creates new form DlgRujuk
      * @param parent
@@ -470,7 +471,7 @@ public final class RMHasilPemeriksaanECHO extends javax.swing.JDialog {
         FormInput.setBackground(new java.awt.Color(255, 255, 255));
         FormInput.setBorder(null);
         FormInput.setName("FormInput"); // NOI18N
-        FormInput.setPreferredSize(new java.awt.Dimension(750, 403));
+        FormInput.setPreferredSize(new java.awt.Dimension(750, 319));
         FormInput.setLayout(null);
 
         TNoRw.setHighlighter(null);
@@ -561,7 +562,7 @@ public final class RMHasilPemeriksaanECHO extends javax.swing.JDialog {
         label11.setBounds(538, 40, 52, 23);
 
         Tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-09-2024 13:54:14" }));
+        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-10-2024 07:04:16" }));
         Tanggal.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         Tanggal.setName("Tanggal"); // NOI18N
         Tanggal.setOpaque(false);
@@ -576,7 +577,7 @@ public final class RMHasilPemeriksaanECHO extends javax.swing.JDialog {
         jLabel32.setText("Diagnosa Klinis :");
         jLabel32.setName("jLabel32"); // NOI18N
         FormInput.add(jLabel32);
-        jLabel32.setBounds(10, 80, 90, 23);
+        jLabel32.setBounds(0, 80, 90, 23);
 
         DiagnosaKlinis.setFocusTraversalPolicyProvider(true);
         DiagnosaKlinis.setName("DiagnosaKlinis"); // NOI18N
@@ -591,7 +592,7 @@ public final class RMHasilPemeriksaanECHO extends javax.swing.JDialog {
         jLabel44.setText("Kesimpulan :");
         jLabel44.setName("jLabel44"); // NOI18N
         FormInput.add(jLabel44);
-        jLabel44.setBounds(0, 230, 83, 23);
+        jLabel44.setBounds(0, 120, 90, 23);
 
         scrollPane17.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         scrollPane17.setName("scrollPane17"); // NOI18N
@@ -608,13 +609,13 @@ public final class RMHasilPemeriksaanECHO extends javax.swing.JDialog {
         scrollPane17.setViewportView(Kesimpulan);
 
         FormInput.add(scrollPane17);
-        scrollPane17.setBounds(87, 230, 637, 153);
+        scrollPane17.setBounds(100, 120, 637, 153);
 
         scrollInput.setViewportView(FormInput);
 
         internalFrame2.add(scrollInput, java.awt.BorderLayout.CENTER);
 
-        TabRawat.addTab("Input Hasil Pemeriksaan EKG", internalFrame2);
+        TabRawat.addTab("Input Hasil Pemeriksaan ECHO", internalFrame2);
 
         internalFrame3.setBorder(null);
         internalFrame3.setName("internalFrame3"); // NOI18N
@@ -651,7 +652,7 @@ public final class RMHasilPemeriksaanECHO extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-09-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-10-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -665,7 +666,7 @@ public final class RMHasilPemeriksaanECHO extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-09-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-10-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -799,7 +800,7 @@ public final class RMHasilPemeriksaanECHO extends javax.swing.JDialog {
 
         FormPhoto.add(Scroll5, java.awt.BorderLayout.CENTER);
 
-        TabData.addTab("Gambar Pemeriksaan EKG", FormPhoto);
+        TabData.addTab("Gambar Pemeriksaan ECHO", FormPhoto);
 
         FormOrthan.setBackground(new java.awt.Color(255, 255, 255));
         FormOrthan.setBorder(null);
@@ -841,13 +842,12 @@ public final class RMHasilPemeriksaanECHO extends javax.swing.JDialog {
 
         internalFrame3.add(PanelAccor, java.awt.BorderLayout.EAST);
 
-        TabRawat.addTab("Data Hasil Pemeriksaan EKG", internalFrame3);
+        TabRawat.addTab("Data Hasil Pemeriksaan ECHO", internalFrame3);
 
         internalFrame1.add(TabRawat, java.awt.BorderLayout.CENTER);
         TabRawat.getAccessibleContext().setAccessibleName("\"Input Hasil Pemeriksaan ECHO\"");
 
         getContentPane().add(internalFrame1, java.awt.BorderLayout.CENTER);
-        internalFrame1.getAccessibleContext().setAccessibleName("::[ Hasil Pemeriksaan ECHO ]::");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -1247,17 +1247,18 @@ public final class RMHasilPemeriksaanECHO extends javax.swing.JDialog {
         // TODO add your handling code here:
         if(tbObat.getSelectedRow()>-1){
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            String FileName = tbObat.getValueAt(tbObat.getSelectedRow(),0).toString().replaceAll("/","_")+".pdf";
-            DlgViewPdf berkas=new DlgViewPdf(null,true);
+            String FileName =tbObat.getValueAt(tbObat.getSelectedRow(),2).toString().replaceAll(" ","_")+ tbObat.getValueAt(tbObat.getSelectedRow(),6).toString().replace("-", "")
+                      .replace(" ", "")
+                      .replace(":", "")
+                      .replace(".", "") + ".pdf";
             if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_dokumen='"+FileName+"' and kode='031'") > 0){
                 berkas.tampilPdf(FileName,"berkastte/pemeriksaan_echo",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"031");
+                berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                berkas.setLocationRelativeTo(internalFrame1);
+                berkas.setVisible(true);
             }else{
                 createPdf(FileName);
-                berkas.tampilPdfLocal(FileName,"local","berkastte/pemeriksaan_echo",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"031");
             }
-            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-            berkas.setLocationRelativeTo(internalFrame1);
-            berkas.setVisible(true);
 
             this.setCursor(Cursor.getDefaultCursor());
         }
@@ -1620,6 +1621,10 @@ public final class RMHasilPemeriksaanECHO extends javax.swing.JDialog {
                 "hasil_pemeriksaan_echo.kesimpulan from reg_periksa inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
                 "inner join hasil_pemeriksaan_echo on reg_periksa.no_rawat=hasil_pemeriksaan_echo.no_rawat "+
                 "inner join dokter on hasil_pemeriksaan_echo.kd_dokter=dokter.kd_dokter where hasil_pemeriksaan_echo.no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"'",param);
+            berkas.tampilPdfLocal(FileName,"local","berkastte/pemeriksaan_echo",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"031");
+            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+            berkas.setLocationRelativeTo(internalFrame1);
+            berkas.setVisible(true);
         } 
     }
 }

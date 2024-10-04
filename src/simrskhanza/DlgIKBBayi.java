@@ -56,6 +56,7 @@ public class DlgIKBBayi extends javax.swing.JDialog {
     private DlgCariPegawai pegawai=new DlgCariPegawai(null,false);
     private DUKCAPILJakartaCekNik cekViaDukcapilJakarta=new DUKCAPILJakartaCekNik();
     private DUKCAPILJakartaPostLahir postlahir=new DUKCAPILJakartaPostLahir();
+    DlgViewPdf berkas=new DlgViewPdf(null,true);
     private String pengurutan="",bulan="",tahun="",awalantahun="",awalanbulan="",posisitahun="",
             nokk="",nmbayi="",tgllhr="",jamlhr="",jk="",jnslhr="",lahirke="",brt="",
             pjg="",pnlglhr="",nikibu="",nmibu="",alamatibu="",kerjaibu="",nikayah="",
@@ -3860,18 +3861,15 @@ private void MnKartuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
         // TODO add your handling code here:
         if(tabMode.getRowCount()!=0){
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            String FileName = tbDokter.getValueAt(tbDokter.getSelectedRow(),0).toString()+".pdf";
-            DlgViewPdf berkas=new DlgViewPdf(null,true);
+            String FileName = tbDokter.getValueAt(tbDokter.getSelectedRow(),24).toString().replaceAll("/","_")+".pdf";
             if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_dokumen='"+FileName+"' and kode='029'") > 0){
                 berkas.tampilPdf(FileName,"berkastte/surat_kelahiran",tbDokter.getValueAt(tbDokter.getSelectedRow(),0).toString(),"029");
+                berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                berkas.setLocationRelativeTo(internalFrame1);
+                berkas.setVisible(true);
             }else{
                 createPdf(FileName);
-                System.out.println(tbDokter.getValueAt(tbDokter.getSelectedRow(),0).toString());
-                berkas.tampilPdfLocal(FileName,"local","berkastte/surat_kelahiran",tbDokter.getValueAt(tbDokter.getSelectedRow(),0).toString(),"029");
             }
-            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-            berkas.setLocationRelativeTo(internalFrame1);
-            berkas.setVisible(true);
 
             this.setCursor(Cursor.getDefaultCursor());
         }
@@ -4452,7 +4450,10 @@ private void MnKartuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
                 "on pasien.no_rkm_medis=pasien_bayi.no_rkm_medis and pasien_bayi.penolong=pegawai.nik "+
                 "and pasien.kd_kel=kelurahan.kd_kel and pasien.kd_kec=kecamatan.kd_kec and pasien.kd_kab=kabupaten.kd_kab "+
                 "where pasien_bayi.no_rkm_medis='"+NoRm.getText()+"'",param);
-        
+            berkas.tampilPdfLocal(FileName,"local","berkastte/surat_kelahiran",tbDokter.getValueAt(tbDokter.getSelectedRow(),0).toString(),"029");
+            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+            berkas.setLocationRelativeTo(internalFrame1);
+            berkas.setVisible(true);
         this.setCursor(Cursor.getDefaultCursor());
     }
 }

@@ -53,6 +53,7 @@ public final class RMPenilaianPreOperasi extends javax.swing.JDialog {
     private DlgCariDokter dokter=new DlgCariDokter(null,false);
     private StringBuilder htmlContent;
     private String finger="";
+    DlgViewPdf berkas=new DlgViewPdf(null,true);
     
     /** Creates new form DlgRujuk
      * @param parent
@@ -1297,16 +1298,14 @@ public final class RMPenilaianPreOperasi extends javax.swing.JDialog {
             .replace(" ", "")
             .replace(":", "")
             .replace(".", "") + ".pdf";
-            DlgViewPdf berkas=new DlgViewPdf(null,true);
             if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_dokumen='"+FileName+"' and kode='034'") > 0){
                 berkas.tampilPdf(FileName,"berkastte/penilaian_pre_operasi",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"034");
+                berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                berkas.setLocationRelativeTo(internalFrame1);
+                berkas.setVisible(true);
             }else{
                 createPdf(FileName);
-                berkas.tampilPdfLocal(FileName,"local","berkastte/penilaian_pre_operasi",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"034");
             }
-            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-            berkas.setLocationRelativeTo(internalFrame1);
-            berkas.setVisible(true);
 
             this.setCursor(Cursor.getDefaultCursor());
         }
@@ -1610,6 +1609,10 @@ public final class RMPenilaianPreOperasi extends javax.swing.JDialog {
                 "inner join penilaian_pre_operasi on reg_periksa.no_rawat=penilaian_pre_operasi.no_rawat "+
                 "inner join dokter on penilaian_pre_operasi.kd_dokter=dokter.kd_dokter where penilaian_pre_operasi.no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"' "+
                 "and penilaian_pre_operasi.tanggal='"+tbObat.getValueAt(tbObat.getSelectedRow(),7).toString()+"'",param);
+            berkas.tampilPdfLocal(FileName,"local","berkastte/penilaian_pre_operasi",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"034");
+            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+            berkas.setLocationRelativeTo(internalFrame1);
+            berkas.setVisible(true);
         }
     }
 }

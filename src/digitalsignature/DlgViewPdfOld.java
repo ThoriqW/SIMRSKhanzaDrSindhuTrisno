@@ -225,7 +225,6 @@ passphrase.addWindowListener(new WindowListener() {
         panelGlass8.add(ListTTE);
 
         txtNameFile.setEditable(false);
-        txtNameFile.setText("2022_01_09_000001.pdf");
         txtNameFile.setName("txtNameFile"); // NOI18N
         txtNameFile.setPreferredSize(new java.awt.Dimension(200, 24));
         txtNameFile.addActionListener(new java.awt.event.ActionListener() {

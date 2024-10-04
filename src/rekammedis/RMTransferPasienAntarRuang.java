@@ -58,6 +58,7 @@ public final class RMTransferPasienAntarRuang extends javax.swing.JDialog {
     private DlgCariBangsal bangsal=new DlgCariBangsal(null,false);
     private DlgCariPoli poli=new DlgCariPoli(null,false);
     private StringBuilder htmlContent;
+    DlgViewPdf berkas=new DlgViewPdf(null,true);
     
     /** Creates new form DlgRujuk
      * @param parent
@@ -2405,16 +2406,14 @@ public final class RMTransferPasienAntarRuang extends javax.swing.JDialog {
                     .replace(" ", "")
                     .replace(":", "")
                     .replace(".", "") + ".pdf";
-            DlgViewPdf berkas=new DlgViewPdf(null,true);
             if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_dokumen='"+FileName+"' and kode='040'") > 0){
                 berkas.tampilPdf(FileName,"berkastte/transfer_antar_ruang",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"040");
+                berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                berkas.setLocationRelativeTo(internalFrame1);
+                berkas.setVisible(true);
             }else{
                 createPdf(FileName);
-                berkas.tampilPdfLocal(FileName,"local","berkastte/transfer_antar_ruang",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"040");
             }
-            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-            berkas.setLocationRelativeTo(internalFrame1);
-            berkas.setVisible(true);
 
             this.setCursor(Cursor.getDefaultCursor());
         }
@@ -2978,6 +2977,10 @@ public final class RMTransferPasienAntarRuang extends javax.swing.JDialog {
                 "INNER JOIN transfer_pasien_antar_ruang ON reg_periksa.no_rawat = transfer_pasien_antar_ruang.no_rawat "+
                 "INNER JOIN petugas p1 ON transfer_pasien_antar_ruang.nip_menyerahkan = p1.nip "+ 
                 "INNER JOIN petugas p2 ON transfer_pasien_antar_ruang.nip_menerima = p2.nip  where transfer_pasien_antar_ruang.no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"'",param);
+            berkas.tampilPdfLocal(FileName,"local","berkastte/transfer_antar_ruang",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"040");
+            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+            berkas.setLocationRelativeTo(internalFrame1);
+            berkas.setVisible(true);
         }
     }
 }

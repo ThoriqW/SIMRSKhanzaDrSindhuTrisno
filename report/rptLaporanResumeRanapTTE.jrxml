@@ -1712,7 +1712,7 @@ where resume_pasien_ranap.no_rawat= $P{norawat}]]>
 				<text><![CDATA[|]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="52" y="780" width="208" height="14" uuid="6da8991b-35e3-4e4d-9d81-8e71b6941f4b">
+				<reportElement positionType="Float" x="52" y="780" width="208" height="14" uuid="6da8991b-35e3-4e4d-9d81-8e71b6941f4b">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left">
@@ -1723,7 +1723,7 @@ where resume_pasien_ranap.no_rawat= $P{norawat}]]>
 yang telah diterbitkan oleh Balai Sertifikasi Elektronik (BSrE), Badan Siber dan Sandi Negara]]></text>
 			</staticText>
 			<image scaleImage="FillFrame" onErrorType="Blank">
-				<reportElement x="5" y="777" width="43" height="19" uuid="e22798fe-138c-4df5-90c3-998b8b7ea6ec"/>
+				<reportElement positionType="Float" x="5" y="777" width="43" height="19" uuid="e22798fe-138c-4df5-90c3-998b8b7ea6ec"/>
 				<imageExpression><![CDATA[$P{logobsre}]]></imageExpression>
 			</image>
 			<staticText>

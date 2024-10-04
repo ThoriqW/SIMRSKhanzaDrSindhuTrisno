@@ -53,7 +53,7 @@ public final class RMPenilaianPreAnastesi extends javax.swing.JDialog {
     private DlgCariDokter dokter=new DlgCariDokter(null,false);
     private StringBuilder htmlContent;
     private String finger="";
-    
+    DlgViewPdf berkas=new DlgViewPdf(null,true);
     /** Creates new form DlgRujuk
      * @param parent
      * @param modal */
@@ -2155,16 +2155,15 @@ public final class RMPenilaianPreAnastesi extends javax.swing.JDialog {
                                 .replace(" ", "")
                                 .replace(":", "")
                                 .replace(".", "") + ".pdf";
-            DlgViewPdf berkas=new DlgViewPdf(null,true);
             if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_dokumen='"+FileName+"' and kode='032'") > 0){
                 berkas.tampilPdf(FileName,"berkastte/penilaian_pre_anestesi",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"032");
+                berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                berkas.setLocationRelativeTo(internalFrame1);
+                berkas.setVisible(true);
             }else{
                 createPdf(FileName);
-                berkas.tampilPdfLocal(FileName,"local","berkastte/penilaian_pre_anestesi",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"032");
             }
-            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-            berkas.setLocationRelativeTo(internalFrame1);
-            berkas.setVisible(true);
+            
 
             this.setCursor(Cursor.getDefaultCursor());
         }
@@ -2622,6 +2621,10 @@ public final class RMPenilaianPreAnastesi extends javax.swing.JDialog {
                 "inner join penilaian_pre_anestesi on reg_periksa.no_rawat=penilaian_pre_anestesi.no_rawat "+
                 "inner join dokter on penilaian_pre_anestesi.kd_dokter=dokter.kd_dokter where penilaian_pre_anestesi.no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"' "+
                 "and penilaian_pre_anestesi.tanggal='"+tbObat.getValueAt(tbObat.getSelectedRow(),7).toString()+"'",param);
+            berkas.tampilPdfLocal(FileName,"local","berkastte/penilaian_pre_anestesi",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"032");
+            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+            berkas.setLocationRelativeTo(internalFrame1);
+            berkas.setVisible(true);
         }
     }
 }

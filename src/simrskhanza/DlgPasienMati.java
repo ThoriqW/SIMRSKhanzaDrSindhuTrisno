@@ -54,6 +54,7 @@ public class DlgPasienMati extends javax.swing.JDialog {
     private ResultSet rs;
     private DlgCariDokter dokter=new DlgCariDokter(null,false);
     private String finger="",FileName;
+    DlgViewPdf berkas=new DlgViewPdf(null,true);
     
     /** Creates new form DlgPasienMati
      * @param parent
@@ -1162,17 +1163,22 @@ private void MnCetakSuratMatiActionPerformed(java.awt.event.ActionEvent evt) {//
         // TODO add your handling code here:
         if(tbMati.getSelectedRow()>-1){
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            FileName=tbMati.getValueAt(tbMati.getSelectedRow(),2).toString().replaceAll("/","_")+".pdf";
-            DlgViewPdf berkas=new DlgViewPdf(null,true);
+            FileName=tbMati.getValueAt(tbMati.getSelectedRow(),3).toString().replaceAll(" ","_")+tbMati.getValueAt(tbMati.getSelectedRow(),0).toString().replace("-", "")
+                                .replace(" ", "")
+                                .replace(":", "")
+                                .replace(".", "")+tbMati.getValueAt(tbMati.getSelectedRow(),1).toString().replace("-", "")
+                                .replace(" ", "")
+                                .replace(":", "")
+                                .replace(".", "") + ".pdf";
             if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_dokumen='"+FileName+"' and kode='007'") > 0){
                 berkas.tampilPdf(FileName,"berkastte/surat_kematian",tbMati.getValueAt(tbMati.getSelectedRow(),2).toString(),"007");
+                berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                berkas.setLocationRelativeTo(internalFrame1);
+                berkas.setVisible(true);
             }else{
                 createPdf(FileName);
-                berkas.tampilPdfLocal(FileName,"local","berkastte/surat_kematian",tbMati.getValueAt(tbMati.getSelectedRow(),2).toString(),"007");
             }
-            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-            berkas.setLocationRelativeTo(internalFrame1);
-            berkas.setVisible(true);
+            
 
             this.setCursor(Cursor.getDefaultCursor());
         }
@@ -1382,6 +1388,10 @@ private void MnCetakSuratMatiActionPerformed(java.awt.event.ActionEvent evt) {//
                   "pasien_mati.icd3,pasien_mati.icd4,pasien_mati.kd_dokter,dokter.nm_dokter "+
                   "from pasien_mati inner join pasien on pasien_mati.no_rkm_medis=pasien.no_rkm_medis "+
                   "inner join dokter on pasien_mati.kd_dokter=dokter.kd_dokter where pasien_mati.no_rkm_medis='"+TNoRM.getText()+"' ",param);
+            berkas.tampilPdfLocal(FileName,"local","berkastte/surat_kematian",tbMati.getValueAt(tbMati.getSelectedRow(),2).toString(),"007");
+            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+            berkas.setLocationRelativeTo(internalFrame1);
+            berkas.setVisible(true);
         }   
     }
 }

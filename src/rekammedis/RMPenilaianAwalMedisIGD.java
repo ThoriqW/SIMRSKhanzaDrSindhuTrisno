@@ -53,6 +53,7 @@ public final class RMPenilaianAwalMedisIGD extends javax.swing.JDialog {
     private DlgCariDokter dokter=new DlgCariDokter(null,false);
     private StringBuilder htmlContent;
     private String finger="";
+    DlgViewPdf berkas=new DlgViewPdf(null,true);
     
     /** Creates new form DlgRujuk
      * @param parent
@@ -2059,17 +2060,18 @@ public final class RMPenilaianAwalMedisIGD extends javax.swing.JDialog {
         // TODO add your handling code here:
         if(tbObat.getSelectedRow()>-1){
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            String FileName=tbObat.getValueAt(tbObat.getSelectedRow(),0).toString().replaceAll("/","_")+".pdf";
-            DlgViewPdf berkas=new DlgViewPdf(null,true);
+            String FileName=tbObat.getValueAt(tbObat.getSelectedRow(),2).toString().replaceAll(" ","_")+ tbObat.getValueAt(tbObat.getSelectedRow(),7).toString().replace("-", "")
+                      .replace(" ", "")
+                      .replace(":", "")
+                      .replace(".", "") + ".pdf";
             if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_dokumen='"+FileName+"' and kode='039'") > 0){
                 berkas.tampilPdf(FileName,"berkastte/penilaian_awal_medis_igd",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"039");
+                berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                berkas.setLocationRelativeTo(internalFrame1);
+                berkas.setVisible(true);
             }else{
                 createPdf(FileName);
-                berkas.tampilPdfLocal(FileName,"local","berkastte/penilaian_awal_medis_igd",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"039");
             }
-            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-            berkas.setLocationRelativeTo(internalFrame1);
-            berkas.setVisible(true);
 
             this.setCursor(Cursor.getDefaultCursor());
         }
@@ -2492,6 +2494,10 @@ public final class RMPenilaianAwalMedisIGD extends javax.swing.JDialog {
                 "from reg_periksa inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
                 "inner join penilaian_medis_igd on reg_periksa.no_rawat=penilaian_medis_igd.no_rawat "+
                 "inner join dokter on penilaian_medis_igd.kd_dokter=dokter.kd_dokter where penilaian_medis_igd.no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"'",param);
+            berkas.tampilPdfLocal(FileName,"local","berkastte/penilaian_awal_medis_igd",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"039");
+            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+            berkas.setLocationRelativeTo(internalFrame1);
+            berkas.setVisible(true);
         }
     }
 }

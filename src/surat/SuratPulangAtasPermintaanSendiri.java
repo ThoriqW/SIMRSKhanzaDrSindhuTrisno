@@ -55,6 +55,7 @@ public final class SuratPulangAtasPermintaanSendiri extends javax.swing.JDialog 
     private LocalDate birthday;
     private Period p;
     private String finger="",lokasifile="",lokasifile2="";
+    DlgViewPdf berkas=new DlgViewPdf(null,true);
     
     public SuratPulangAtasPermintaanSendiri(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -1328,16 +1329,15 @@ public final class SuratPulangAtasPermintaanSendiri extends javax.swing.JDialog 
         if(tbObat.getSelectedRow()>-1){
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             String FileName = tbObat.getValueAt(tbObat.getSelectedRow(),0).toString().replaceAll("/","_")+".pdf";
-            DlgViewPdf berkas=new DlgViewPdf(null,true);
             if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_dokumen='"+FileName+"' and kode='025'") > 0){
                 berkas.tampilPdf(FileName,"berkastte/pulang_atas_permintaan_sendiri",tbObat.getValueAt(tbObat.getSelectedRow(),1).toString(),"025");
+                berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                berkas.setLocationRelativeTo(internalFrame1);
+                berkas.setVisible(true);
             }else{
                 createPdf(FileName);
-                berkas.tampilPdfLocal(FileName,"local","berkastte/pulang_atas_permintaan_sendiri",tbObat.getValueAt(tbObat.getSelectedRow(),1).toString(),"025");
             }
-            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-            berkas.setLocationRelativeTo(internalFrame1);
-            berkas.setVisible(true);
+            
 
             this.setCursor(Cursor.getDefaultCursor());
         }
@@ -1768,6 +1768,10 @@ public final class SuratPulangAtasPermintaanSendiri extends javax.swing.JDialog 
 		    "surat_pulang_atas_permintaan_sendiri.nama_pj,surat_pulang_atas_permintaan_sendiri.lahir,surat_pulang_atas_permintaan_sendiri.umur,surat_pulang_atas_permintaan_sendiri.jkpj,surat_pulang_atas_permintaan_sendiri.alamat,surat_pulang_atas_permintaan_sendiri.hubungan,surat_pulang_atas_permintaan_sendiri.saksi_keluarga,surat_pulang_atas_permintaan_sendiri.nip,petugas.nama,pasien.pekerjaan from surat_pulang_atas_permintaan_sendiri "+
                     "inner join reg_periksa on surat_pulang_atas_permintaan_sendiri.no_rawat=reg_periksa.no_rawat inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis inner join petugas on surat_pulang_atas_permintaan_sendiri.nip=petugas.nip inner join kelurahan on pasien.kd_kel=kelurahan.kd_kel inner join kecamatan on pasien.kd_kec=kecamatan.kd_kec inner join kabupaten on pasien.kd_kab=kabupaten.kd_kab "+
 		    "inner join propinsi on pasien.kd_prop=propinsi.kd_prop where surat_pulang_atas_permintaan_sendiri.no_surat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"'",param);
+                berkas.tampilPdfLocal(FileName,"local","berkastte/pulang_atas_permintaan_sendiri",tbObat.getValueAt(tbObat.getSelectedRow(),1).toString(),"025");
+                berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                berkas.setLocationRelativeTo(internalFrame1);
+                berkas.setVisible(true);
             }
         }else{
             JOptionPane.showMessageDialog(null,"Maaf, silahkan pilih data terlebih dahulu..!!!!");

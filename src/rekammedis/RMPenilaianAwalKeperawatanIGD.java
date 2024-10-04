@@ -65,6 +65,7 @@ public final class RMPenilaianAwalKeperawatanIGD extends javax.swing.JDialog {
     private JsonNode root;
     private JsonNode response;
     private FileReader myObj;
+    DlgViewPdf berkas=new DlgViewPdf(null,true);
     
     /** Creates new form DlgRujuk
      * @param parent
@@ -3481,17 +3482,18 @@ public final class RMPenilaianAwalKeperawatanIGD extends javax.swing.JDialog {
 //        }
         if(tbObat.getSelectedRow()>-1){
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            String FileName=tbObat.getValueAt(tbObat.getSelectedRow(),0).toString().replaceAll("/","_")+".pdf";
-            DlgViewPdf berkas=new DlgViewPdf(null,true);
+            String FileName=tbObat.getValueAt(tbObat.getSelectedRow(),2).toString().replaceAll(" ","_")+ tbObat.getValueAt(tbObat.getSelectedRow(),8).toString().replace("-", "")
+                      .replace(" ", "")
+                      .replace(":", "")
+                      .replace(".", "") + ".pdf";
             if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_dokumen='"+FileName+"' and kode='038'") > 0){
                 berkas.tampilPdf(FileName,"berkastte/penilaian_awal_keperawatan_igd",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"038");
+                berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                berkas.setLocationRelativeTo(internalFrame1);
+                berkas.setVisible(true);
             }else{
                 createPdf(FileName);
-                berkas.tampilPdfLocal(FileName,"local","berkastte/penilaian_awal_keperawatan_igd",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"038");
             }
-            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-            berkas.setLocationRelativeTo(internalFrame1);
-            berkas.setVisible(true);
 
             this.setCursor(Cursor.getDefaultCursor());
         }
@@ -4787,6 +4789,10 @@ public final class RMPenilaianAwalKeperawatanIGD extends javax.swing.JDialog {
                         "inner join bahasa_pasien on bahasa_pasien.id=pasien.bahasa_pasien "+
                         "inner join penjab on penjab.kd_pj=reg_periksa.kd_pj "+
                         "inner join cacat_fisik on cacat_fisik.id=pasien.cacat_fisik where reg_periksa.no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"'",param);
+            berkas.tampilPdfLocal(FileName,"local","berkastte/penilaian_awal_keperawatan_igd",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"038");
+            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+            berkas.setLocationRelativeTo(internalFrame1);
+            berkas.setVisible(true);
         }else{
             JOptionPane.showMessageDialog(null,"Maaf, silahkan pilih data terlebih dahulu..!!!!");
         }

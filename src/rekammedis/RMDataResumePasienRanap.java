@@ -63,6 +63,7 @@ public final class RMDataResumePasienRanap extends javax.swing.JDialog {
     private RMCariLabPending carilabpending=new RMCariLabPending(null,false);
     private DlgDiagnosaPenyakit penyakit=new DlgDiagnosaPenyakit(null,false);
     private String kodekamar="",namakamar="",tglkeluar="",jamkeluar="",finger="";
+    DlgViewPdf berkas=new DlgViewPdf(null,true);
     
     /** Creates new form DlgRujuk
      * @param parent
@@ -2676,16 +2677,15 @@ public final class RMDataResumePasienRanap extends javax.swing.JDialog {
         if(tbObat.getSelectedRow()>-1){
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             String FileName = tbObat.getValueAt(tbObat.getSelectedRow(),0).toString().replaceAll("/","_")+".pdf";
-            DlgViewPdf berkas=new DlgViewPdf(null,true);
             if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_dokumen='"+FileName+"' and kode='001'") > 0){
                 berkas.tampilPdf(FileName,"berkastte/resume_ranap",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"001");
+                berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                berkas.setLocationRelativeTo(internalFrame1);
+                berkas.setVisible(true);
             }else{
                 createPdf(FileName);
-                berkas.tampilPdfLocal(FileName,"local","berkastte/resume_ranap",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"001");
             }
-            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-            berkas.setLocationRelativeTo(internalFrame1);
-            berkas.setVisible(true);
+
             this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_MnDigitalTTEActionPerformed
@@ -3366,6 +3366,10 @@ public final class RMDataResumePasienRanap extends javax.swing.JDialog {
         param.put("tanggalkeluar",Valid.SetTgl3(Keluar.getText()));
         param.put("jamkeluar",JamKeluar.getText());
         Valid.MyReportPDFWithName("rptLaporanResumeRanapTTE.jasper","report","tempfile",FileName,"::[ Laporan Resume Pasien ]::",param);
+        berkas.tampilPdfLocal(FileName,"local","berkastte/resume_ranap",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"001");
+        berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+        berkas.setLocationRelativeTo(internalFrame1);
+        berkas.setVisible(true);
     }
 
     

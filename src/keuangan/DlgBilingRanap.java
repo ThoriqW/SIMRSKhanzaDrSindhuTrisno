@@ -238,6 +238,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
     private JsonNode root;
     private JsonNode response;
     private FileReader myObj;
+    DlgViewPdf berkas=new DlgViewPdf(null,true);
 
     /** Creates new form DlgBiling
      * @param parent
@@ -3876,16 +3877,14 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                     }else if(i==6){
                         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                         FileName=TNoRw.getText().replaceAll("/","_")+".pdf";
-                        DlgViewPdf berkas=new DlgViewPdf(null,true);
                         if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+TNoRw.getText()+"' and kode='013'") > 0){
                             berkas.tampilPdf(FileName,"berkastte/billing_ranap",TNoRw.getText(),"013");
+                            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                            berkas.setLocationRelativeTo(internalFrame1);
+                            berkas.setVisible(true);
                         }else{
                             createPdf(FileName);
-                            berkas.tampilPdfLocal(FileName,"local","berkastte/billing_ranap",TNoRw.getText(),"013");
                         }
-                        berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-                        berkas.setLocationRelativeTo(internalFrame1);
-                        berkas.setVisible(true);
 
                         this.setCursor(Cursor.getDefaultCursor());
                     }
@@ -7462,6 +7461,10 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             Valid.MyReportPDFWithName1("rptBillingTTE.jasper","report","tempfile",FileName,"::[ Pembayaran Pasien Ranap ]::","select temp1, temp2, temp3, temp4, "
                     + "temp5, temp6, temp7, temp8, temp9, temp10, "
                     + "temp11, temp12, temp13, temp14 from temporary_bayar_ranap order by no ASC",param);
+            berkas.tampilPdfLocal(FileName,"local","berkastte/billing_ranap",TNoRw.getText(),"013");
+            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+            berkas.setLocationRelativeTo(internalFrame1);
+            berkas.setVisible(true);
             this.setCursor(Cursor.getDefaultCursor());
         }
     }

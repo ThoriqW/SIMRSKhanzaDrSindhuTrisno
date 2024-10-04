@@ -63,7 +63,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
             Beban_Jasa_Medik_Petugas_Laborat_Ralan="",Utang_Jasa_Medik_Petugas_Laborat_Ralan="",Beban_Kso_Laborat_Ralan="",Utang_Kso_Laborat_Ralan="",
             HPP_Persediaan_Laborat_Rawat_Jalan="",Persediaan_BHP_Laborat_Rawat_Jalan="",Beban_Jasa_Sarana_Laborat_Ralan="",Utang_Jasa_Sarana_Laborat_Ralan="",
             Beban_Jasa_Perujuk_Laborat_Ralan="",Utang_Jasa_Perujuk_Laborat_Ralan="",Beban_Jasa_Menejemen_Laborat_Ralan="",Utang_Jasa_Menejemen_Laborat_Ralan="",status="";
-
+    DlgViewPdf berkas=new DlgViewPdf(null,true);
     /** Creates new form DlgProgramStudi
      * @param parent
      * @param modal */
@@ -6118,17 +6118,15 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                 }
             } catch (SQLException ex) {
                 System.out.println(ex);
-            } 
-            DlgViewPdf berkas=new DlgViewPdf(null,true);
+            }
             if(Sequel.cariInteger("select count(no_dokumen) from berkas_tte where no_dokumen='"+FileName+"' and kode='002'") > 0){
                 berkas.tampilPdf(FileName,"berkastte/laboratorium",tbDokter.getValueAt(tbDokter.getSelectedRow(),0).toString(),"002");
+                berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                berkas.setLocationRelativeTo(internalFrame1);
+                berkas.setVisible(true);
             }else{
                 createPdf(FileName);
-                berkas.tampilPdfLocal(FileName,"local","berkastte/laboratorium",tbDokter.getValueAt(tbDokter.getSelectedRow(),0).toString(),"002");
             }
-            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-            berkas.setLocationRelativeTo(internalFrame1);
-            berkas.setVisible(true);
 
             this.setCursor(Cursor.getDefaultCursor());
         }
@@ -6893,7 +6891,11 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                 param.put("nopermintaan",rspermintaan.getString("noorder"));   
                                 param.put("tanggalpermintaan",rspermintaan.getString("tgl_permintaan"));  
                                 param.put("jampermintaan",rspermintaan.getString("jam_permintaan"));
-                                Valid.MyReportPDFWithName("rptPeriksaLabPermintaanTTE.jasper","report","tempfile",FileName,"::[ Pemeriksaan Laboratorium ]::",param);     
+                                Valid.MyReportPDFWithName("rptPeriksaLabPermintaanTTE.jasper","report","tempfile",FileName,"::[ Pemeriksaan Laboratorium ]::",param);
+                                berkas.tampilPdfLocal(FileName,"local","berkastte/laboratorium",tbDokter.getValueAt(tbDokter.getSelectedRow(),0).toString(),"002");
+                                berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                                berkas.setLocationRelativeTo(internalFrame1);
+                                berkas.setVisible(true);
                             }else{
 //                                Valid.MyReport("rptPeriksaLab.jasper","report","::[ Pemeriksaan Laboratorium ]::",param);   
                             }

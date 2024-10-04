@@ -67,6 +67,7 @@ public class BPJSSuratKontrol extends javax.swing.JDialog {
     private String link="",requestJson="",URL="",user="",URUTNOREG="",utc="",JADIKANBOOKINGSURATKONTROLAPIBPJS="no",kodedokter="",kodepoli="",noreg="";
     private ApiBPJS api=new ApiBPJS();
     private boolean status=false;
+    DlgViewPdf berkas=new DlgViewPdf(null,true);
 
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -1302,17 +1303,15 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         // TODO add your handling code here:
         if(tbObat.getSelectedRow()>-1){
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            String FileName = tbObat.getValueAt(tbObat.getSelectedRow(),0).toString().replaceAll("/","_")+".pdf";
-            DlgViewPdf berkas=new DlgViewPdf(null,true);
+            String FileName = tbObat.getValueAt(tbObat.getSelectedRow(),9).toString()+".pdf";
             if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_dokumen='"+FileName+"' and kode='005'") > 0){
                 berkas.tampilPdf(FileName,"berkastte/surat_kontrol",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"005");
+                berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                berkas.setLocationRelativeTo(internalFrame1);
+                berkas.setVisible(true);
             }else{
                 createPdf(FileName);
-                berkas.tampilPdfLocal(FileName,"local","berkastte/surat_kontrol",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"005");
             }
-            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-            berkas.setLocationRelativeTo(internalFrame1);
-            berkas.setVisible(true);
 
             this.setCursor(Cursor.getDefaultCursor());
         }
@@ -1704,6 +1703,10 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             param.put("parameter",tbObat.getValueAt(tbObat.getSelectedRow(),9).toString());
             param.put("finger","Dikeluarkan di "+akses.getnamars()+", Kabupaten/Kota "+akses.getkabupatenrs()+"\nDitandatangani secara elektronik oleh "+tbObat.getValueAt(tbObat.getSelectedRow(),13).toString()+"\nID "+tbObat.getValueAt(tbObat.getSelectedRow(),9).toString()+"\n"+Valid.SetTgl3(tbObat.getValueAt(tbObat.getSelectedRow(),11).toString()));
             Valid.MyReportPDFWithName("rptBridgingSuratKontrol2TTE.jasper","report","tempfile",FileName,"::[ Data Surat Kontrol VClaim ]::",param);
+            berkas.tampilPdfLocal(FileName,"local","berkastte/surat_kontrol",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"005");
+            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+            berkas.setLocationRelativeTo(internalFrame1);
+            berkas.setVisible(true);
             this.setCursor(Cursor.getDefaultCursor());
         }else{
             JOptionPane.showMessageDialog(null,"Maaf, silahkan pilih data Surat Kontrol yang mau dicetak...!!!!");

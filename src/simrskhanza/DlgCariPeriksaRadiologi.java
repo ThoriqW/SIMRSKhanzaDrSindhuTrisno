@@ -62,7 +62,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
     private String kamar, namakamar, pemeriksaan = "", pilihan = "", status = "", finger = "" , FileName="";
     private double ttl = 0, item = 0;
     private double ttljmdokter = 0, ttljmpetugas = 0, ttlkso = 0, ttlpendapatan = 0, ttlbhp = 0, ttljasasarana = 0, ttljmperujuk = 0, ttlmenejemen = 0;
-    ;
+    DlgViewPdf berkas = new DlgViewPdf(null, true);
     private String kdpetugas = "", kdpenjab = "", Suspen_Piutang_Radiologi_Ranap = "", Radiologi_Ranap = "", Beban_Jasa_Medik_Dokter_Radiologi_Ranap = "", Utang_Jasa_Medik_Dokter_Radiologi_Ranap = "",
             Beban_Jasa_Medik_Petugas_Radiologi_Ranap = "", Utang_Jasa_Medik_Petugas_Radiologi_Ranap = "", Beban_Kso_Radiologi_Ranap = "", Utang_Kso_Radiologi_Ranap = "",
             HPP_Persediaan_Radiologi_Rawat_Inap = "", Persediaan_BHP_Radiologi_Rawat_Inap = "", Beban_Jasa_Sarana_Radiologi_Ranap = "", Utang_Jasa_Sarana_Radiologi_Ranap = "",
@@ -2173,16 +2173,15 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
             } catch (SQLException ex) {
                 System.out.println(ex);
             }
-            DlgViewPdf berkas = new DlgViewPdf(null, true);
             if (Sequel.cariInteger("select count(no_dokumen) from berkas_tte where no_dokumen='"+FileName+"' and kode='004'") > 0) {
                 berkas.tampilPdf(FileName, "berkastte/radiologi", tbDokter.getValueAt(tbDokter.getSelectedRow(), 0).toString(), "004");
+                berkas.setSize(internalFrame1.getWidth() - 20, internalFrame1.getHeight() - 20);
+                berkas.setLocationRelativeTo(internalFrame1);
+                berkas.setVisible(true);
             } else {
                 createPdf(FileName);
-                berkas.tampilPdfLocal(FileName, "local", "berkastte/radiologi", tbDokter.getValueAt(tbDokter.getSelectedRow(), 0).toString(), "004");
             }
-            berkas.setSize(internalFrame1.getWidth() - 20, internalFrame1.getHeight() - 20);
-            berkas.setLocationRelativeTo(internalFrame1);
-            berkas.setVisible(true);
+            
 
             this.setCursor(Cursor.getDefaultCursor());
         }
@@ -2699,6 +2698,10 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
             param.put("logo", Sequel.cariGambar("select setting.logo from setting"));
             param.put("logobsre", Sequel.cariGambar("select setting.logo_bsre from setting"));
             Valid.MyReportPDFWithName("rptPeriksaRadiologiTTE.jasper", "report", "tempfile", FileName, "::[ Pemeriksaan Radiologi ]::", param);
+            berkas.tampilPdfLocal(FileName, "local", "berkastte/radiologi", tbDokter.getValueAt(tbDokter.getSelectedRow(), 0).toString(), "004");
+            berkas.setSize(internalFrame1.getWidth() - 20, internalFrame1.getHeight() - 20);
+            berkas.setLocationRelativeTo(internalFrame1);
+            berkas.setVisible(true);
             this.setCursor(Cursor.getDefaultCursor());
         }
     }

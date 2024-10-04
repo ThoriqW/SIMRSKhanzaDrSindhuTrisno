@@ -183,7 +183,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
     private sekuel Sequel=new sekuel();
     private validasi Valid=new validasi();
     public  DlgIKBBayi ikb=new DlgIKBBayi(null,false);
-
+    DlgViewPdf berkas=new DlgViewPdf(null,true);
     public  DlgKamar kamar=new DlgKamar(null,false);
     private DlgCariReg reg=new DlgCariReg(null,false);
     public  DlgBilingRanap billing=new DlgBilingRanap( null,false);
@@ -16858,16 +16858,15 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         if(tbKamIn.getSelectedRow()>-1){
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             FileName=tbKamIn.getValueAt(tbKamIn.getSelectedRow(),0).toString().replaceAll("/","_")+".pdf";
-            DlgViewPdf berkas=new DlgViewPdf(null,true);
             if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_dokumen='"+FileName+"' and kode='006'") > 0){
                 berkas.tampilPdf(FileName,"berkastte/formulir_penerimaan_pasien",tbKamIn.getValueAt(tbKamIn.getSelectedRow(),0).toString(),"006");
+                berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                berkas.setLocationRelativeTo(internalFrame1);
+                berkas.setVisible(true);
             }else{
-                createPdf(FileName);
-                berkas.tampilPdfLocal(FileName,"local","berkastte/formulir_penerimaan_pasien",tbKamIn.getValueAt(tbKamIn.getSelectedRow(),0).toString(),"006");
+                createPdf(FileName);               
             }
-            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-            berkas.setLocationRelativeTo(internalFrame1);
-            berkas.setVisible(true);
+            
 
             this.setCursor(Cursor.getDefaultCursor());
         }
@@ -18252,6 +18251,10 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                                 param.put("logo",Sequel.cariGambar("select setting.logo from setting"));
                                 param.put("logobsre",Sequel.cariGambar("select setting.logo_bsre from setting"));
                                 Valid.MyReportPDFWithName("rptFormulirPenerimaanPasien2TTE.jasper","report","tempfile",FileName,"::[ Formulir Penerimaan Pasien ]::",param);
+                                berkas.tampilPdfLocal(FileName,"local","berkastte/formulir_penerimaan_pasien",tbKamIn.getValueAt(tbKamIn.getSelectedRow(),0).toString(),"006");
+                                berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                                berkas.setLocationRelativeTo(internalFrame1);
+                                berkas.setVisible(true);
                                 this.setCursor(Cursor.getDefaultCursor());
                             }else{
                                   JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu pasien...!!!");
@@ -18293,6 +18296,10 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         param.put("logo",Sequel.cariGambar("select setting.logo from setting"));
                         param.put("logobsre",Sequel.cariGambar("select setting.logo_bsre from setting"));   
                         Valid.MyReportPDFWithName("rptFormulirPenerimaanPasien2TTE.jasper","report","tempfile",FileName,"::[ Formulir Penerimaan Pasien ]::",param);
+                        berkas.tampilPdfLocal(FileName,"local","berkastte/formulir_penerimaan_pasien",tbKamIn.getValueAt(tbKamIn.getSelectedRow(),0).toString(),"006");
+                        berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                        berkas.setLocationRelativeTo(internalFrame1);
+                        berkas.setVisible(true);
                 }
             }
     }

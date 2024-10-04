@@ -72,6 +72,7 @@ public class DlgBilingRalan extends javax.swing.JDialog {
                    ttlLaborat=0,ttlRadiologi=0,ttlObat=0,ttlRalan_Dokter=0,ttlRalan_Paramedis=0,
                    ttlTambahan=0,ttlPotongan=0,ttlRegistrasi=0,ttlRalan_Dokter_Param=0,ppnobat=0,ttlOperasi=0,
                    kekurangan=0,obatlangsung;
+    DlgViewPdf berkas=new DlgViewPdf(null,true);
     private int i,r,cek,row2,countbayar=0,z=0,jml=0;
     private String nota_jalan="",dokterrujukan="",FileName,polirujukan="",status="",biaya="",tambahan="",totals="",kdptg="",nmptg="",kd_pj="",notaralan="",centangdokterralan="",
             rinciandokterralan="",Tindakan_Ralan="",Laborat_Ralan="",Radiologi_Ralan="",no_rkm_medis, nm_pasien, alamat, jk, umurdaftar, tgl_registrasi, no_nota,
@@ -2549,16 +2550,14 @@ public class DlgBilingRalan extends javax.swing.JDialog {
                         }else if(i==5){
                             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                             FileName=TNoRw.getText().replaceAll("/","_")+".pdf";
-                            DlgViewPdf berkas=new DlgViewPdf(null,true);
                             if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_rawat='"+TNoRw.getText()+"' and kode='014'") > 0){
                                 berkas.tampilPdf(FileName,"berkastte/billing_ralan",TNoRw.getText(),"014");
+                                berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                                berkas.setLocationRelativeTo(internalFrame1);
+                                berkas.setVisible(true);
                             }else{
                                 createPdf(FileName);
-                                berkas.tampilPdfLocal(FileName,"local","berkastte/billing_ralan",TNoRw.getText(),"014");
                             }
-                            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-                            berkas.setLocationRelativeTo(internalFrame1);
-                            berkas.setVisible(true);
 
                             this.setCursor(Cursor.getDefaultCursor());
                         }
@@ -6133,6 +6132,10 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     + "temporary_bayar_ralan.temp9,temporary_bayar_ralan.temp10,temporary_bayar_ralan.temp11,temporary_bayar_ralan.temp12,temporary_bayar_ralan.temp13,temporary_bayar_ralan.temp14 "
                     + "from temporary_bayar_ralan where temporary_bayar_ralan.temp9='"+akses.getkode()+"' order by temporary_bayar_ralan.no asc",param);
             this.setCursor(Cursor.getDefaultCursor());
+            berkas.tampilPdfLocal(FileName,"local","berkastte/billing_ralan",TNoRw.getText(),"014");
+            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+            berkas.setLocationRelativeTo(internalFrame1);
+            berkas.setVisible(true);
         }
     }
     

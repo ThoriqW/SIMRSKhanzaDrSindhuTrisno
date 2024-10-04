@@ -56,6 +56,7 @@ public final class DlgRujuk extends javax.swing.JDialog {
     private ResultSet rs;
     private int i=0;
     private DlgCariPenyakit penyakit=new DlgCariPenyakit(null,false);
+    DlgViewPdf berkas=new DlgViewPdf(null,true);
     /** Creates new form DlgRujuk
      * @param parent
      * @param modal */
@@ -1235,16 +1236,14 @@ private void TDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_T
         if(tbObat.getSelectedRow()>-1){
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             String FileName = tbObat.getValueAt(tbObat.getSelectedRow(),0).toString().replaceAll("/","_")+".pdf";
-            DlgViewPdf berkas=new DlgViewPdf(null,true);
             if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_dokumen='"+FileName+"' and kode='025'") > 0){
                 berkas.tampilPdf(FileName,"berkastte/rujuk_rs_lain",tbObat.getValueAt(tbObat.getSelectedRow(),1).toString(),"025");
+                berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                berkas.setLocationRelativeTo(internalFrame1);
+                berkas.setVisible(true);
             }else{
                 createPdf(FileName);
-                berkas.tampilPdfLocal(FileName,"local","berkastte/rujuk_rs_lain",tbObat.getValueAt(tbObat.getSelectedRow(),1).toString(),"025");
             }
-            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-            berkas.setLocationRelativeTo(internalFrame1);
-            berkas.setVisible(true);
 
             this.setCursor(Cursor.getDefaultCursor());
         }
@@ -1610,6 +1609,10 @@ private void TDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_T
                 "reg_periksa.almt_pj,pasien.umur,reg_periksa.tgl_registrasi,rujuk.tgl_rujuk from reg_periksa "+
                 "inner join pasien inner join rujuk inner join dokter on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
                 "and reg_periksa.no_rawat=rujuk.no_rawat and rujuk.kd_dokter=dokter.kd_dokter where reg_periksa.no_rawat='"+TNoRw.getText()+"'",param);
+            berkas.tampilPdfLocal(FileName,"local","berkastte/rujuk_rs_lain",tbObat.getValueAt(tbObat.getSelectedRow(),1).toString(),"025");
+            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+            berkas.setLocationRelativeTo(internalFrame1);
+            berkas.setVisible(true);
             this.setCursor(Cursor.getDefaultCursor());
         }
     }

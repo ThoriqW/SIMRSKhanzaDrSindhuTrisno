@@ -50,7 +50,7 @@ public class SuratRujukanIntern extends javax.swing.JDialog {
     private DlgCariPenyakit penyakit=new DlgCariPenyakit(null,false);
     private String finger="";
     private final Connection connect=koneksiDB.condb();
-    
+    DlgViewPdf berkas=new DlgViewPdf(null,true);
 
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -787,8 +787,8 @@ public class SuratRujukanIntern extends javax.swing.JDialog {
                     Diagnosa.getText(),
                     Sequel.cariIsi("select nama from pegawai where nik=?",akses.getkode()),
                     NmDokter.getText(),
-                    Valid.SetTgl(TanggalPeriksa.getSelectedItem()+""),
-                    Valid.SetTgl(TanggalSurat.getSelectedItem()+""),
+                    TanggalPeriksa.getSelectedItem()+"",
+                    TanggalSurat.getSelectedItem()+"",
                     NmPoli.getText()
                 });
                 emptTeks();
@@ -1046,16 +1046,14 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         if(tbObat.getSelectedRow()>-1){
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             String FileName = tbObat.getValueAt(tbObat.getSelectedRow(),0).toString().replaceAll("/","_")+".pdf";
-            DlgViewPdf berkas=new DlgViewPdf(null,true);
             if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_dokumen='"+FileName+"' and kode='030'") > 0){
                 berkas.tampilPdf(FileName,"berkastte/rujukan_intern",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"030");
+                berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                berkas.setLocationRelativeTo(internalFrame1);
+                berkas.setVisible(true);
             }else{
                 createPdf(FileName);
-                berkas.tampilPdfLocal(FileName,"local","berkastte/rujukan_intern",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"030");
             }
-            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-            berkas.setLocationRelativeTo(internalFrame1);
-            berkas.setVisible(true);
 
             this.setCursor(Cursor.getDefaultCursor());
         }
@@ -1282,6 +1280,10 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         param.put("logo",Sequel.cariGambar("select setting.logo from setting")); 
         Valid.MyReportPDFWithName1("rptSuratRujukInternTTE.jasper","report","tempfile",FileName,"::[ Surat Rujukan Internal ]::",
             "select * from rujukan_internal_poli_report where no_surat='"+NoRawat.getText()+"'",param);
+        berkas.tampilPdfLocal(FileName,"local","berkastte/rujukan_intern",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"030");
+        berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+        berkas.setLocationRelativeTo(internalFrame1);
+        berkas.setVisible(true);
         this.setCursor(Cursor.getDefaultCursor());
     }
     

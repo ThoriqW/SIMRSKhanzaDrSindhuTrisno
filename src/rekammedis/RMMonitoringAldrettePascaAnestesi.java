@@ -51,6 +51,8 @@ public final class RMMonitoringAldrettePascaAnestesi extends javax.swing.JDialog
     private DlgCariDokter dokter=new DlgCariDokter(null,false);
     private String finger="",finger2="";
     private String TANGGALMUNDUR="yes";
+    DlgViewPdf berkas=new DlgViewPdf(null,true);
+    
     /** Creates new form DlgRujuk
      * @param parent
      * @param modal */
@@ -1557,16 +1559,14 @@ public final class RMMonitoringAldrettePascaAnestesi extends javax.swing.JDialog
                     .replace(" ", "")
                     .replace(":", "")
                     .replace(".", "") + ".pdf";
-            DlgViewPdf berkas=new DlgViewPdf(null,true);
             if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_dokumen='"+FileName+"' and kode='028'") > 0){
                 berkas.tampilPdf(FileName,"berkastte/laporan_anastesi_general",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"028");
+                berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                berkas.setLocationRelativeTo(internalFrame1);
+                berkas.setVisible(true);
             }else{
                 createPdf(FileName);
-                berkas.tampilPdfLocal(FileName,"local","berkastte/laporan_anastesi_general",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"028");
             }
-            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-            berkas.setLocationRelativeTo(internalFrame1);
-            berkas.setVisible(true);
 
             this.setCursor(Cursor.getDefaultCursor());
         }
@@ -2059,6 +2059,10 @@ public final class RMMonitoringAldrettePascaAnestesi extends javax.swing.JDialog
                     "inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
                     "inner join dokter on skor_aldrette_pasca_anestesi.kd_dokter=dokter.kd_dokter "+
                     "inner join petugas on skor_aldrette_pasca_anestesi.nip=petugas.nip where reg_periksa.no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"'",param);
+            berkas.tampilPdfLocal(FileName,"local","berkastte/laporan_anastesi_general",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"028");
+            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+            berkas.setLocationRelativeTo(internalFrame1);
+            berkas.setVisible(true);
         }
     }
 }

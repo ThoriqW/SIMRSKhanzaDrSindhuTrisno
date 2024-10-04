@@ -53,6 +53,7 @@ public final class RMDataAsuhanGizi extends javax.swing.JDialog {
     private DlgCariPetugas petugas=new DlgCariPetugas(null,false);
     private String alergi_telur, alergi_susu_sapi, alergi_kacang, alergi_gluten, alergi_udang, alergi_ikan, alergi_hazelnut,sttsumur="";
     private String TANGGALMUNDUR="yes";
+    DlgViewPdf berkas=new DlgViewPdf(null,true);
     
     /** Creates new form DlgRujuk
      * @param parent
@@ -1826,17 +1827,18 @@ public final class RMDataAsuhanGizi extends javax.swing.JDialog {
         // TODO add your handling code here:
         if(tbObat.getSelectedRow()>-1){
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            String FileName=tbObat.getValueAt(tbObat.getSelectedRow(),0).toString().replaceAll("/","_")+".pdf";
-            DlgViewPdf berkas=new DlgViewPdf(null,true);
+            String FileName=tbObat.getValueAt(tbObat.getSelectedRow(),2).toString().replaceAll(" ","_")+ tbObat.getValueAt(tbObat.getSelectedRow(),5).toString().replace("-", "")
+                      .replace(" ", "")
+                      .replace(":", "")
+                      .replace(".", "") + ".pdf";
             if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_dokumen='"+FileName+"' and kode='009'") > 0){
                 berkas.tampilPdf(FileName,"berkastte/asuhan_gizi",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"009");
+                berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                berkas.setLocationRelativeTo(internalFrame1);
+                berkas.setVisible(true);
             }else{
                 createPdf(FileName);
-                berkas.tampilPdfLocal(FileName,"local","berkastte/asuhan_gizi",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"009");
             }
-            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-            berkas.setLocationRelativeTo(internalFrame1);
-            berkas.setVisible(true);
 
             this.setCursor(Cursor.getDefaultCursor());
         }
@@ -2393,6 +2395,10 @@ public final class RMDataAsuhanGizi extends javax.swing.JDialog {
                         "inner join asuhan_gizi on reg_periksa.no_rawat=asuhan_gizi.no_rawat "+
                         "inner join penjab on reg_periksa.kd_pj=penjab.kd_pj "+
                         "inner join petugas on asuhan_gizi.nip=petugas.nip where asuhan_gizi.no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"'",param);
+            berkas.tampilPdfLocal(FileName,"local","berkastte/asuhan_gizi",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"009");
+            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+            berkas.setLocationRelativeTo(internalFrame1);
+            berkas.setVisible(true);
         }
     }
 }

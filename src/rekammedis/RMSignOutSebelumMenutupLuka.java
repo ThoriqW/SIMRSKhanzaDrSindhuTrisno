@@ -56,6 +56,8 @@ public final class RMSignOutSebelumMenutupLuka extends javax.swing.JDialog {
     private DlgCariDokter dokter=new DlgCariDokter(null,false);
     private String finger="",finger2="",finger3="";
     private StringBuilder htmlContent;
+    DlgViewPdf berkas=new DlgViewPdf(null,true);
+    
     /** Creates new form DlgRujuk
      * @param parent
      * @param modal */
@@ -1578,16 +1580,14 @@ public final class RMSignOutSebelumMenutupLuka extends javax.swing.JDialog {
             .replace(" ", "")
             .replace(":", "")
             .replace(".", "") + ".pdf";
-            DlgViewPdf berkas=new DlgViewPdf(null,true);
             if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_dokumen='"+FileName+"' and kode='035'") > 0){
                 berkas.tampilPdf(FileName,"berkastte/sign_out_sebelum_menutup_luka",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"035");
+                berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                berkas.setLocationRelativeTo(internalFrame1);
+                berkas.setVisible(true);
             }else{
                 createPdf(FileName);
-                berkas.tampilPdfLocal(FileName,"local","berkastte/sign_out_sebelum_menutup_luka",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"035");
             }
-            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-            berkas.setLocationRelativeTo(internalFrame1);
-            berkas.setVisible(true);
 
             this.setCursor(Cursor.getDefaultCursor());
         }
@@ -1947,6 +1947,10 @@ public final class RMSignOutSebelumMenutupLuka extends javax.swing.JDialog {
                     "inner join dokter as dokteranestesi on dokteranestesi.kd_dokter=signout_sebelum_menutup_luka.kd_dokter_anestesi "+
                     "inner join petugas on petugas.nip=signout_sebelum_menutup_luka.nip_perawat_ok  "+
                     "where signout_sebelum_menutup_luka.no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"' and signout_sebelum_menutup_luka.tanggal='"+tbObat.getValueAt(tbObat.getSelectedRow(),5).toString()+"' ",param);
+            berkas.tampilPdfLocal(FileName,"local","berkastte/sign_out_sebelum_menutup_luka",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"035");
+            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+            berkas.setLocationRelativeTo(internalFrame1);
+            berkas.setVisible(true);
         }
     }
 }

@@ -56,6 +56,7 @@ public final class RMSignInSebelumAnastesi extends javax.swing.JDialog {
     private DlgCariDokter dokter=new DlgCariDokter(null,false);
     private String finger="",finger2="",FileName;
     private StringBuilder htmlContent;
+    DlgViewPdf berkas=new DlgViewPdf(null,true);
     /** Creates new form DlgRujuk
      * @param parent
      * @param modal */
@@ -1584,16 +1585,14 @@ public final class RMSignInSebelumAnastesi extends javax.swing.JDialog {
                                 .replace(" ", "")
                                 .replace(":", "")
                                 .replace(".", "") + ".pdf";
-            DlgViewPdf berkas=new DlgViewPdf(null,true);
             if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_dokumen='"+FileName+"' and kode='010'") > 0){
                 berkas.tampilPdf(FileName,"berkastte/sign_in_sebelum_anastesi",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"010");
+                berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                berkas.setLocationRelativeTo(internalFrame1);
+                berkas.setVisible(true);
             }else{
                 createPdf(FileName);
-                berkas.tampilPdfLocal(FileName,"local","berkastte/sign_in_sebelum_anastesi",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"010");
             }
-            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-            berkas.setLocationRelativeTo(internalFrame1);
-            berkas.setVisible(true);
 
             this.setCursor(Cursor.getDefaultCursor());
         }
@@ -1946,6 +1945,10 @@ public final class RMSignInSebelumAnastesi extends javax.swing.JDialog {
                     "inner join dokter as dokteranestesi on dokteranestesi.kd_dokter=signin_sebelum_anestesi.kd_dokter_anestesi "+
                     "inner join petugas on petugas.nip=signin_sebelum_anestesi.nip_perawat_ok "+
                     "where signin_sebelum_anestesi.no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"' and signin_sebelum_anestesi.tanggal='"+tbObat.getValueAt(tbObat.getSelectedRow(),5).toString()+"' ",param);
+            berkas.tampilPdfLocal(FileName,"local","berkastte/sign_in_sebelum_anastesi",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"010");
+            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+            berkas.setLocationRelativeTo(internalFrame1);
+            berkas.setVisible(true);
         }
     }
 }

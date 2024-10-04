@@ -56,6 +56,8 @@ public final class RMTimeOutSebelumInsisi extends javax.swing.JDialog {
     private DlgCariDokter dokter=new DlgCariDokter(null,false);
     private String finger="",finger2="";
     private StringBuilder htmlContent;
+    DlgViewPdf berkas=new DlgViewPdf(null,true);
+    
     /** Creates new form DlgRujuk
      * @param parent
      * @param modal */
@@ -1812,16 +1814,14 @@ public final class RMTimeOutSebelumInsisi extends javax.swing.JDialog {
             .replace(" ", "")
             .replace(":", "")
             .replace(".", "") + ".pdf";
-            DlgViewPdf berkas=new DlgViewPdf(null,true);
             if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_dokumen='"+FileName+"' and kode='035'") > 0){
                 berkas.tampilPdf(FileName,"berkastte/time_out_sebelum_tindakan_insisi",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"035");
+                berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                berkas.setLocationRelativeTo(internalFrame1);
+                berkas.setVisible(true);
             }else{
                 createPdf(FileName);
-                berkas.tampilPdfLocal(FileName,"local","berkastte/time_out_sebelum_tindakan_insisi",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"035");
             }
-            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-            berkas.setLocationRelativeTo(internalFrame1);
-            berkas.setVisible(true);
 
             this.setCursor(Cursor.getDefaultCursor());
         }
@@ -2221,6 +2221,10 @@ public final class RMTimeOutSebelumInsisi extends javax.swing.JDialog {
                     "inner join dokter as dokteranestesi on dokteranestesi.kd_dokter=timeout_sebelum_insisi.kd_dokter_anestesi "+
                     "inner join petugas on petugas.nip=timeout_sebelum_insisi.nip_perawat_ok "+
                     "where timeout_sebelum_insisi.no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"' and timeout_sebelum_insisi.tanggal='"+tbObat.getValueAt(tbObat.getSelectedRow(),5).toString()+"' ",param);
+            berkas.tampilPdfLocal(FileName,"local","berkastte/time_out_sebelum_tindakan_insisi",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"035");
+            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+            berkas.setLocationRelativeTo(internalFrame1);
+            berkas.setVisible(true);
         }
     }
 }

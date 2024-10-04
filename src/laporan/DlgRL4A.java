@@ -681,10 +681,10 @@ private void btnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b
                                     "</p>\n" +
                                     "<p style=\"height: 70px\"></p>\n" +
                                     "<p style=\"height: 2px; margin-top: 15px\">\n" +
-                                        "drg. Hengki Yudhana, Sp.KG\n" +
+                                        "dr. Marles Edy Wanto Haloho, M.Kes\n" +
                                     "</p>\n" +
                                     "<p style=\"height: 2px\">\n" +
-                                        "Letkol Ckm NRP 11020015731276\n" +
+                                        "Letkol Ckm NRP 11040000780875\n" +
                                     "</p>\n" +
                                 "</div>\n" +
                             "</td>\n" +
@@ -1021,10 +1021,10 @@ private void btnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b
                                     "</p>\n" +
                                     "<p style=\"height: 70px\"></p>\n" +
                                     "<p style=\"height: 2px; margin-top: 15px\">\n" +
-                                        "drg. Hengki Yudhana, Sp.KG\n" +
+                                        "dr. Marles Edy Wanto Haloho, M.Kes\n" +
                                     "</p>\n" +
                                     "<p style=\"height: 2px\">\n" +
-                                        "Letkol Ckm NRP 11020015731276\n" +
+                                        "Letkol Ckm NRP 11040000780875\n" +
                                     "</p>\n" +
                                 "</div>\n" +
                             "</td>\n" +

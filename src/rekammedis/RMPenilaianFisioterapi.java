@@ -53,6 +53,7 @@ public final class RMPenilaianFisioterapi extends javax.swing.JDialog {
     private DlgCariPegawai petugas=new DlgCariPegawai(null,false);
     private String finger=""; 
     private StringBuilder htmlContent;
+    DlgViewPdf berkas=new DlgViewPdf(null,true);
     
     /** Creates new form DlgRujuk
      * @param parent
@@ -2267,17 +2268,18 @@ public final class RMPenilaianFisioterapi extends javax.swing.JDialog {
         // TODO add your handling code here:
         if(tbObat.getSelectedRow()>-1){
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            String FileName = tbObat.getValueAt(tbObat.getSelectedRow(),0).toString().replaceAll("/","_")+".pdf";
-            DlgViewPdf berkas=new DlgViewPdf(null,true);
+            String FileName =tbObat.getValueAt(tbObat.getSelectedRow(),2).toString().replaceAll(" ","_")+ tbObat.getValueAt(tbObat.getSelectedRow(),5).toString().replace("-", "")
+                      .replace(" ", "")
+                      .replace(":", "")
+                      .replace(".", "") + ".pdf";
             if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_dokumen='"+FileName+"' and kode='024'") > 0){
                 berkas.tampilPdf(FileName,"berkastte/penilaian_awal_fisioterapi",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"024");
+                berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                berkas.setLocationRelativeTo(internalFrame1);
+                berkas.setVisible(true);
             }else{
                 createPdf(FileName);
-                berkas.tampilPdfLocal(FileName,"local","berkastte/penilaian_awal_fisioterapi",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"024");
             }
-            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-            berkas.setLocationRelativeTo(internalFrame1);
-            berkas.setVisible(true);
 
             this.setCursor(Cursor.getDefaultCursor());
         }
@@ -2786,6 +2788,10 @@ public final class RMPenilaianFisioterapi extends javax.swing.JDialog {
                 "from reg_periksa inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
                 "inner join penilaian_fisioterapi on reg_periksa.no_rawat=penilaian_fisioterapi.no_rawat "+
                 "inner join pegawai on penilaian_fisioterapi.nip=pegawai.nik where reg_periksa.no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"'",param);
+            berkas.tampilPdfLocal(FileName,"local","berkastte/penilaian_awal_fisioterapi",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"024");
+            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+            berkas.setLocationRelativeTo(internalFrame1);
+            berkas.setVisible(true);
         }
     }
 }

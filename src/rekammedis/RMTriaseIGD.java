@@ -70,7 +70,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
     private String keputusan="",pilihan="",datatriase="",finger="",kodepetugas="",FileName;
     private StringBuilder htmlContent;
     private boolean sukses=true;
-    
+    DlgViewPdf berkas=new DlgViewPdf(null,true);
     /** Creates new form DlgRujuk
      * @param parent
      * @param modal */
@@ -4008,18 +4008,24 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
                             case "PDF Triase Skala 1 TTE":
                                     if(tbTriase.getSelectedRow()>-1){
                                         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                                        FileName=tbTriase.getValueAt(tbTriase.getSelectedRow(),0).toString().replaceAll("/","_")+".pdf";
+                                        FileName=tbTriase.getValueAt(tbTriase.getSelectedRow(),2).toString().replaceAll(" ","_")+ tbTriase.getValueAt(tbTriase.getSelectedRow(),3).toString().replace("-", "")
+                                                    .replace(" ", "")
+                                                    .replace(":", "")
+                                                    .replace(".", "") + ".pdf";
                                         param.put("logobsre",Sequel.cariGambar("select setting.logo_bsre from setting"));
-                                        DlgViewPdf berkas=new DlgViewPdf(null,true);
                                         if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_dokumen='"+FileName+"' and kode='016'") > 0){
                                             berkas.tampilPdf(FileName,"berkastte/triase",tbTriase.getValueAt(tbTriase.getSelectedRow(),0).toString(),"016");
+                                            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                                            berkas.setLocationRelativeTo(internalFrame1);
+                                            berkas.setVisible(true);
                                         }else{
                                             Valid.MyReportPDFWithName1("rptLembarTriaseSkala1TTE.jasper","report","tempfile",FileName,"::[ Triase Skala 1 ]::","select * from temporary where temporary.temp37='"+akses.getalamatip()+"' order by temporary.no",param);
                                             berkas.tampilPdfLocal(FileName,"local","berkastte/triase",tbTriase.getValueAt(tbTriase.getSelectedRow(),0).toString(),"016");
+                                            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                                            berkas.setLocationRelativeTo(internalFrame1);
+                                            berkas.setVisible(true);
                                         }
-                                        berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-                                        berkas.setLocationRelativeTo(internalFrame1);
-                                        berkas.setVisible(true);
+                                        
 
                                         this.setCursor(Cursor.getDefaultCursor());
                                     }
@@ -4148,18 +4154,23 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
                             case "PDF Triase Skala 2 TTE":
                                     if(tbTriase.getSelectedRow()>-1){
                                         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                                        FileName=tbTriase.getValueAt(tbTriase.getSelectedRow(),0).toString().replaceAll("/","_")+".pdf";
+                                        FileName=tbTriase.getValueAt(tbTriase.getSelectedRow(),2).toString().replaceAll(" ","_")+ tbTriase.getValueAt(tbTriase.getSelectedRow(),3).toString().replace("-", "")
+                                                    .replace(" ", "")
+                                                    .replace(":", "")
+                                                    .replace(".", "") + ".pdf";
                                         param.put("logobsre",Sequel.cariGambar("select setting.logo_bsre from setting"));
-                                        DlgViewPdf berkas=new DlgViewPdf(null,true);
                                         if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_dokumen='"+FileName+"' and kode='016'") > 0){
                                             berkas.tampilPdf(FileName,"berkastte/triase",tbTriase.getValueAt(tbTriase.getSelectedRow(),0).toString(),"016");
+                                            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                                            berkas.setLocationRelativeTo(internalFrame1);
+                                            berkas.setVisible(true);
                                         }else{
                                             Valid.MyReportPDFWithName1("rptLembarTriaseSkala2TTE.jasper","report","tempfile",FileName,"::[ Triase Skala 2 ]::","select * from temporary where temporary.temp37='"+akses.getalamatip()+"' order by temporary.no",param);
                                             berkas.tampilPdfLocal(FileName,"local","berkastte/triase",tbTriase.getValueAt(tbTriase.getSelectedRow(),0).toString(),"016");
+                                            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                                            berkas.setLocationRelativeTo(internalFrame1);
+                                            berkas.setVisible(true);
                                         }
-                                        berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-                                        berkas.setLocationRelativeTo(internalFrame1);
-                                        berkas.setVisible(true);
 
                                         this.setCursor(Cursor.getDefaultCursor());
                                     }

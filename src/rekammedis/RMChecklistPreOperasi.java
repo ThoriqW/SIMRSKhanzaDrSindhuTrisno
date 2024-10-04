@@ -56,6 +56,7 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
     private DlgCariDokter dokter=new DlgCariDokter(null,false);
     private String finger="",finger2="";
     private StringBuilder htmlContent;
+    DlgViewPdf berkas=new DlgViewPdf(null,true);
     /** Creates new form DlgRujuk
      * @param parent
      * @param modal */
@@ -1782,17 +1783,14 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
                       .replace(" ", "")
                       .replace(":", "")
                       .replace(".", "") + ".pdf";
-            DlgViewPdf berkas=new DlgViewPdf(null,true);
             if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_dokumen='"+FileName+"' and kode='033'") > 0){
                 berkas.tampilPdf(FileName,"berkastte/check_list_pre_operasi",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"033");
+                berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                berkas.setLocationRelativeTo(internalFrame1);
+                berkas.setVisible(true);
             }else{
                 createPdf(FileName);
-                berkas.tampilPdfLocal(FileName,"local","berkastte/check_list_pre_operasi",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"033");
             }
-            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-            berkas.setLocationRelativeTo(internalFrame1);
-            berkas.setVisible(true);
-
             this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_MnDigitalTTEActionPerformed
@@ -2260,6 +2258,10 @@ public final class RMChecklistPreOperasi extends javax.swing.JDialog {
                     "inner join petugas as petugasruangan on petugasruangan.nip=checklist_pre_operasi.nip_petugas_ruangan "+
                     "inner join petugas as petugasok on petugasok.nip=checklist_pre_operasi.nip_perawat_ok "+
                     "where checklist_pre_operasi.no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"' and checklist_pre_operasi.tanggal='"+tbObat.getValueAt(tbObat.getSelectedRow(),5).toString()+"' ",param);
+            berkas.tampilPdfLocal(FileName,"local","berkastte/check_list_pre_operasi",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"033");
+            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+            berkas.setLocationRelativeTo(internalFrame1);
+            berkas.setVisible(true);
         }
     }
 }

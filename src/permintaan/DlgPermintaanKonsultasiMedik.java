@@ -50,7 +50,7 @@ public class DlgPermintaanKonsultasiMedik extends javax.swing.JDialog {
     private String finger="",sql="";
     private DlgCariDokter dokter=new DlgCariDokter(null,false);
     private StringBuilder htmlContent;
-    
+    DlgViewPdf berkas=new DlgViewPdf(null,true);
 
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -1622,17 +1622,15 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         // TODO add your handling code here:
         if(tbObat.getSelectedRow()>-1){
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            String FileName = tbObat.getValueAt(tbObat.getSelectedRow(),0).toString().replaceAll("/","_")+".pdf";
-            DlgViewPdf berkas=new DlgViewPdf(null,true);
+            String FileName = tbObat.getValueAt(tbObat.getSelectedRow(),0).toString().replaceAll("/","_")+".pdf";            
             if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_dokumen='"+FileName+"' and kode='020'") > 0){
                 berkas.tampilPdf(FileName,"berkastte/konsultasi_medik",tbObat.getValueAt(tbObat.getSelectedRow(),1).toString(),"020");
+                berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                berkas.setLocationRelativeTo(internalFrame1);
+                berkas.setVisible(true);
             }else{
                 createPdf(FileName);
-                berkas.tampilPdfLocal(FileName,"local","berkastte/konsultasi_medik",tbObat.getValueAt(tbObat.getSelectedRow(),1).toString(),"020");
             }
-            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-            berkas.setLocationRelativeTo(internalFrame1);
-            berkas.setVisible(true);
             this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_BtnTTEActionPerformed
@@ -1979,6 +1977,10 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                         "inner join dokter as dokterdikonsuli on konsultasi_medik.kd_dokter_dikonsuli=dokterdikonsuli.kd_dokter "+
                         "inner join jawaban_konsultasi_medik on jawaban_konsultasi_medik.no_permintaan=konsultasi_medik.no_permintaan "+
                         "where konsultasi_medik.no_permintaan='"+NoPermintaan.getText()+"' ",param);
+                    berkas.tampilPdfLocal(FileName,"local","berkastte/konsultasi_medik",tbObat.getValueAt(tbObat.getSelectedRow(),1).toString(),"020");
+                    berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                    berkas.setLocationRelativeTo(internalFrame1);
+                    berkas.setVisible(true);
                     this.setCursor(Cursor.getDefaultCursor());
                 }else{
                     JOptionPane.showMessageDialog(null,"Maaf, belum ada jawaban dokter yang dikonsuli...!!!!");

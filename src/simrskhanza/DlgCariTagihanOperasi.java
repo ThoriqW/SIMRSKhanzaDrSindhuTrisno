@@ -52,6 +52,7 @@ public class DlgCariTagihanOperasi extends javax.swing.JDialog {
             Beban_Jasa_Medik_Paramedis_Operasi_Ralan="",Utang_Jasa_Medik_Paramedis_Operasi_Ralan="",HPP_Obat_Operasi_Ralan="",Persediaan_Obat_Kamar_Operasi_Ralan="",
             status="",tanggal="",mem="",norawat="",sql="",diagnosa_preop="",diagnosa_postop="",jaringan_dieksekusi="",selesaioperasi="",permintaan_pa="",laporan_operasi="",
             finger="",kodeoperator="";
+    DlgViewPdf berkas=new DlgViewPdf(null,true);
 
     /** Creates new form DlgProgramStudi
      * @param parent
@@ -3181,21 +3182,23 @@ private void MnHapusObatOperasiActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
         if(tbDokter.getSelectedRow()>-1){
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            if(tbDokter.getValueAt(tbDokter.getSelectedRow() + 1,39) != null){
-                FileName = tbDokter.getValueAt(tbDokter.getSelectedRow() + 1,39).toString().replaceAll("/","_")+".pdf";
-            } else {
-                FileName = tbDokter.getValueAt(tbDokter.getSelectedRow(),1).toString().replaceAll("/","_")+".pdf";
-            }
-            DlgViewPdf berkas=new DlgViewPdf(null,true);
+//            if(tbDokter.getValueAt(tbDokter.getSelectedRow() + 1,39) != null){
+//                FileName = tbDokter.getValueAt(tbDokter.getSelectedRow() + 1,39).toString().replaceAll("/","_")+".pdf";
+//            } else {
+//                FileName = tbDokter.getValueAt(tbDokter.getSelectedRow(),1).toString().replaceAll("/","_")+".pdf";
+//            }
+            FileName =tbDokter.getValueAt(tbDokter.getSelectedRow(),2).toString().replace(" ","_").replace(",","_")+ tbDokter.getValueAt(tbDokter.getSelectedRow(),0).toString().replace("-", "")
+                    .replace(" ", "")
+                    .replace(":", "")
+                    .replace(".", "") + ".pdf";
             if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_dokumen='"+FileName+"' and kode='019'") > 0){
                 berkas.tampilPdf(FileName,"berkastte/laporan_operasi",tbDokter.getValueAt(tbDokter.getSelectedRow(),1).toString(),"019");
+                berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                berkas.setLocationRelativeTo(internalFrame1);
+                berkas.setVisible(true);
             }else{
                 createPdf(FileName);
-                berkas.tampilPdfLocal(FileName,"local","berkastte/laporan_operasi",tbDokter.getValueAt(tbDokter.getSelectedRow(),1).toString(),"019");
             }
-            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-            berkas.setLocationRelativeTo(internalFrame1);
-            berkas.setVisible(true);
 
             this.setCursor(Cursor.getDefaultCursor());
         }
@@ -3674,6 +3677,10 @@ private void MnHapusObatOperasiActionPerformed(java.awt.event.ActionEvent evt) {
                     }
                 }
                 Valid.MyReportPDFWithName("rptLaporanOperasiTTE.jasper","report","tempfile",FileName,"::[ Laporan Operasi ]::",param);
+                berkas.tampilPdfLocal(FileName,"local","berkastte/laporan_operasi",tbDokter.getValueAt(tbDokter.getSelectedRow(),1).toString(),"019");
+                berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                berkas.setLocationRelativeTo(internalFrame1);
+                berkas.setVisible(true);
             }else{
                 JOptionPane.showMessageDialog(rootPane,"Silahkan pilih data, klik pada No.Rawat ..!!");
             } 
