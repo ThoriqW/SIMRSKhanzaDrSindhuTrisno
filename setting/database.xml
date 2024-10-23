@@ -102,7 +102,7 @@
     <entry key="DOKTERAKTIFKASIRRALAN"></entry>
     <entry key="POLIAKTIFKASIRRALAN"></entry>
     <entry key="RUANGANAKTIFINVENTARIS"></entry>
-    <entry key="BASENOREG">booking</entry>
+    <entry key="BASENOREG">registrasi</entry>
     <entry key="URUTNOREG">dokter + poli</entry>
     <entry key="JADWALDOKTERDIREGISTRASI">nonaktif</entry>    
     <entry key="KUNCIDOKTERRANAP">cj8o6eBdSn+TiUrBgGoElQ==</entry> 
@@ -188,10 +188,10 @@
     <entry key="SFTPFILEESIGNUSER">l4nh5eVYrLAER/I2A4b3Tw==</entry>
     <entry key="SFTPFILEESIGNPAS">l4nh5eVYrLAER/I2A4b3Tw==</entry>
     <entry key="SFTPFILEESIGNFOLDER">l4nh5eVYrLAER/I2A4b3Tw==</entry>
-    <entry key="PORTWEBTTE">8080</entry>
-    <entry key="HOSTHYBRIDWEBTTE">ZUSUUqk5vflzhO1p/+p4wA==</entry>
+    <entry key="PORTWEBTTE">80</entry>
+    <entry key="HOSTHYBRIDWEBTTE">c5iWnggK1SsVPBd/0funrw==</entry>
 
     <!--BSSN TTE-->
-    <entry key="URLTTE">http://192.168.1.199:8080/api-gateway/api/v1/tte/</entry>
+    <entry key="URLTTE">http://192.168.1.132/api-gateway/api/v1/tte/</entry>
     <entry key="TOKENTTE">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6ImFkbWluQHR0ZS5jb20iLCJuaWsiOiIwODAzMjAyMTAwMDA3MDYyIiwiZXhwIjoxNzI5OTM3MjI3fQ.Tc-shdYjReA2n14YDpdN5VkxNPeOCj0mF1y4_L6QrGg</entry>
 </properties>
