@@ -822,7 +822,7 @@ public class BPJSSuratKontrol extends javax.swing.JDialog {
         jLabel14.setBounds(491, 70, 100, 23);
 
         TanggalKontrol.setForeground(new java.awt.Color(50, 70, 50));
-        TanggalKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-11-2024 21:38:11" }));
+        TanggalKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-11-2024 21:43:12" }));
         TanggalKontrol.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TanggalKontrol.setName("TanggalKontrol"); // NOI18N
         TanggalKontrol.setOpaque(false);
@@ -902,6 +902,11 @@ public class BPJSSuratKontrol extends javax.swing.JDialog {
         Diagnosa.setEditable(false);
         Diagnosa.setHighlighter(null);
         Diagnosa.setName("Diagnosa"); // NOI18N
+        Diagnosa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DiagnosaActionPerformed(evt);
+            }
+        });
         FormInput.add(Diagnosa);
         Diagnosa.setBounds(509, 10, 218, 23);
 
@@ -1362,6 +1367,10 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private void Rtl1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Rtl1KeyPressed
 //        Valid.pindah(evt,Alasan2,Rtl2);
     }//GEN-LAST:event_Rtl1KeyPressed
+
+    private void DiagnosaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DiagnosaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DiagnosaActionPerformed
 
     /**
     * @param args the command line arguments

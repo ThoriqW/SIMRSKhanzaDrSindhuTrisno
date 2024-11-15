@@ -1010,6 +1010,11 @@ public class SuratKontrol extends javax.swing.JDialog {
 
         Terapi.setHighlighter(null);
         Terapi.setName("Terapi"); // NOI18N
+        Terapi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TerapiActionPerformed(evt);
+            }
+        });
         Terapi.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TerapiKeyPressed(evt);
@@ -1571,6 +1576,10 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private void DTPCari1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DTPCari1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_DTPCari1ActionPerformed
+
+    private void TerapiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TerapiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TerapiActionPerformed
 
     /**
     * @param args the command line arguments
