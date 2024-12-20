@@ -22773,7 +22773,7 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
                 jmlmenu++;
             }
 
-            if(akses.getsatu_sehat_kirim_care_plan()==true){
+            if(akses.getsatu_sehat_kirim_careplan()==true){
                 Panelmenu.add(btnSatuSehatKirimCarePlan);
                 jmlmenu++;
             }
@@ -33137,7 +33137,7 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             jmlmenu++;
         }
 
-        if(akses.getsatu_sehat_kirim_care_plan()==true){
+        if(akses.getsatu_sehat_kirim_careplan()==true){
             Panelmenu.add(btnSatuSehatKirimCarePlan);
             jmlmenu++;
         }
@@ -40518,7 +40518,7 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             }   
         }
 
-        if(akses.getsatu_sehat_kirim_care_plan()==true){
+        if(akses.getsatu_sehat_kirim_careplan()==true){
             if(btnSatuSehatKirimCarePlan.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
                 Panelmenu.add(btnSatuSehatKirimCarePlan);
                 jmlmenu++;
@@ -45319,7 +45319,7 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
 
         btnSatuSehatKirimCarePlan = new widget.ButtonBig();
         btnSatuSehatKirimCarePlan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/satusehat.png")));
-        btnSatuSehatKirimCarePlan.setText("Kirim Rencana Tindak Lanjut Satu Sehat");
+        btnSatuSehatKirimCarePlan.setText("Kirim Care Plan Satu Sehat");
         btnSatuSehatKirimCarePlan.setIconTextGap(0);
         btnSatuSehatKirimCarePlan.setName("btnSatuSehatKirimCarePlan"); 
         btnSatuSehatKirimCarePlan.setPreferredSize(new java.awt.Dimension(200, 90));

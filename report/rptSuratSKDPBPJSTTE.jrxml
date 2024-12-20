@@ -64,9 +64,6 @@
 	<field name="temp12" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="temp13" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
 	<field name="temp14" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
@@ -345,14 +342,6 @@
 				</textElement>
 				<text><![CDATA[diagnosa di atas pada :]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="0" y="285" width="128" height="12" uuid="b3cd9458-de5c-41ed-8843-c789f410b4ea"/>
-				<textElement markup="none">
-					<font fontName="Tahoma" size="8" isBold="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA["No.Antrian "+$F{temp13}]]></textFieldExpression>
-			</textField>
 			<textField>
 				<reportElement x="129" y="285" width="128" height="12" uuid="9a26df3b-d135-41c6-bfce-69d5ae540e07"/>
 				<textElement textAlignment="Center" markup="none">

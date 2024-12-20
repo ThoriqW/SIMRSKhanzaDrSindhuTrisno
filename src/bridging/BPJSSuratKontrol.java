@@ -262,6 +262,7 @@ public class BPJSSuratKontrol extends javax.swing.JDialog {
         jPopupMenu1 = new javax.swing.JPopupMenu();
         MnSurat = new javax.swing.JMenuItem();
         MnDigitalTTE = new javax.swing.JMenuItem();
+        MnSuratCustom = new javax.swing.JMenuItem();
         NoKartu = new widget.TextBox();
         internalFrame1 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
@@ -359,6 +360,23 @@ public class BPJSSuratKontrol extends javax.swing.JDialog {
             }
         });
         jPopupMenu1.add(MnDigitalTTE);
+
+        MnSuratCustom.setBackground(new java.awt.Color(255, 255, 254));
+        MnSuratCustom.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnSuratCustom.setForeground(new java.awt.Color(50, 50, 50));
+        MnSuratCustom.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnSuratCustom.setActionCommand("Surat Kontrol Custom");
+        MnSuratCustom.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnSuratCustom.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnSuratCustom.setLabel("Surat Kontrol Custom");
+        MnSuratCustom.setName("MnSuratCustom"); // NOI18N
+        MnSuratCustom.setPreferredSize(new java.awt.Dimension(160, 26));
+        MnSuratCustom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnSuratCustomActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnSuratCustom);
 
         NoKartu.setEditable(false);
         NoKartu.setHighlighter(null);
@@ -591,7 +609,7 @@ public class BPJSSuratKontrol extends javax.swing.JDialog {
         R1.setPreferredSize(new java.awt.Dimension(115, 23));
         panelCari.add(R1);
 
-        DTPTanggalSurat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-11-2024" }));
+        DTPTanggalSurat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-12-2024" }));
         DTPTanggalSurat1.setDisplayFormat("dd-MM-yyyy");
         DTPTanggalSurat1.setName("DTPTanggalSurat1"); // NOI18N
         DTPTanggalSurat1.setOpaque(false);
@@ -614,7 +632,7 @@ public class BPJSSuratKontrol extends javax.swing.JDialog {
         jLabel22.setPreferredSize(new java.awt.Dimension(25, 23));
         panelCari.add(jLabel22);
 
-        DTPTanggalSurat2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-11-2024" }));
+        DTPTanggalSurat2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-12-2024" }));
         DTPTanggalSurat2.setDisplayFormat("dd-MM-yyyy");
         DTPTanggalSurat2.setName("DTPTanggalSurat2"); // NOI18N
         DTPTanggalSurat2.setOpaque(false);
@@ -640,7 +658,7 @@ public class BPJSSuratKontrol extends javax.swing.JDialog {
         R2.setPreferredSize(new java.awt.Dimension(120, 23));
         panelCari.add(R2);
 
-        DTPTanggalKontrol1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-11-2024" }));
+        DTPTanggalKontrol1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-12-2024" }));
         DTPTanggalKontrol1.setDisplayFormat("dd-MM-yyyy");
         DTPTanggalKontrol1.setName("DTPTanggalKontrol1"); // NOI18N
         DTPTanggalKontrol1.setOpaque(false);
@@ -663,7 +681,7 @@ public class BPJSSuratKontrol extends javax.swing.JDialog {
         jLabel25.setPreferredSize(new java.awt.Dimension(25, 23));
         panelCari.add(jLabel25);
 
-        DTPTanggalKontrol2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-11-2024" }));
+        DTPTanggalKontrol2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-12-2024" }));
         DTPTanggalKontrol2.setDisplayFormat("dd-MM-yyyy");
         DTPTanggalKontrol2.setName("DTPTanggalKontrol2"); // NOI18N
         DTPTanggalKontrol2.setOpaque(false);
@@ -742,7 +760,7 @@ public class BPJSSuratKontrol extends javax.swing.JDialog {
         NoSEP.setBounds(286, 10, 150, 23);
 
         TanggalSurat.setForeground(new java.awt.Color(50, 70, 50));
-        TanggalSurat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-11-2024" }));
+        TanggalSurat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-12-2024" }));
         TanggalSurat.setDisplayFormat("dd-MM-yyyy");
         TanggalSurat.setName("TanggalSurat"); // NOI18N
         TanggalSurat.setOpaque(false);
@@ -822,7 +840,7 @@ public class BPJSSuratKontrol extends javax.swing.JDialog {
         jLabel14.setBounds(491, 70, 100, 23);
 
         TanggalKontrol.setForeground(new java.awt.Color(50, 70, 50));
-        TanggalKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-11-2024 21:43:12" }));
+        TanggalKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-12-2024 11:38:33" }));
         TanggalKontrol.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TanggalKontrol.setName("TanggalKontrol"); // NOI18N
         TanggalKontrol.setOpaque(false);
@@ -995,6 +1013,8 @@ public class BPJSSuratKontrol extends javax.swing.JDialog {
                             })==true){
                                 emptTeks();
                                 tampil();
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Gagal menyimpan alasan surat kontrol!");
                             }
                         if(JADIKANBOOKINGSURATKONTROLAPIBPJS.equals("yes")){
                             if(isBooking()==false){
@@ -1237,8 +1257,14 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                         if(Sequel.mengedittf("bridging_surat_kontrol_bpjs","no_surat=?","tgl_surat=?,tgl_rencana=?,kd_dokter_bpjs=?,nm_dokter_bpjs=?,kd_poli_bpjs=?,nm_poli_bpjs=?",7,new String[]{
                                 Valid.SetTgl(TanggalSurat.getSelectedItem()+""),Valid.SetTgl(TanggalKontrol.getSelectedItem()+""),KdDokter.getText(),NmDokter.getText(),KdPoli.getText(),NmPoli.getText(),NoSurat.getText()
                             })==true){
-                            emptTeks();
-                            tampil();
+                            if(Sequel.mengedittf("bridging_alasan_surat_kontrol","no_surat=?","alasan_kontrol=?,rencana_tindak_lanjut=?",3,new String[]{
+                                Alasan1.getText(),Rtl1.getText(),NoSurat.getText()
+                            })==true){
+                                emptTeks();
+                                tampil();
+                            }else{
+                                JOptionPane.showMessageDialog(null, "Gagal mengupdate data!");
+                            }
                         }
                     }else{
                         JOptionPane.showMessageDialog(null,nameNode.path("message").asText());
@@ -1372,6 +1398,33 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         // TODO add your handling code here:
     }//GEN-LAST:event_DiagnosaActionPerformed
 
+    private void MnSuratCustomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnSuratCustomActionPerformed
+        // TODO add your handling code here:
+                if(tbObat.getSelectedRow()!= -1){
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR)); 
+            Map<String, Object> param = new HashMap<>();
+            param.put("namars",akses.getnamars());
+            param.put("alamatrs",akses.getalamatrs());
+            param.put("kotars",akses.getkabupatenrs());
+            param.put("propinsirs",akses.getpropinsirs());
+            param.put("kontakrs",akses.getkontakrs());
+            param.put("logo",Sequel.cariGambar("select gambar.bpjs from gambar"));
+            param.put("logobsre",Sequel.cariGambar("select setting.logo_bsre from setting"));
+            param.put("parameter",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString());
+            param.put("finger","Dikeluarkan di "+akses.getnamars()+", Kabupaten/Kota "+akses.getkabupatenrs()+"\nDitandatangani secara elektronik oleh "+tbObat.getValueAt(tbObat.getSelectedRow(),12).toString()+"\nID "+tbObat.getValueAt(tbObat.getSelectedRow(),8).toString()+"\n"+Valid.SetTgl3(tbObat.getValueAt(tbObat.getSelectedRow(),10).toString()));
+            Valid.MyReportqry("rptBridgingSuratKontrol2Custom.jasper","report","::[ Data Surat Kontrol VClaim ]::",
+                    "select bridging_sep.no_rawat,bridging_sep.no_sep,bridging_sep.no_kartu,bridging_sep.nomr,bridging_sep.nama_pasien,bridging_sep.tanggal_lahir,\n" +
+"                    bridging_sep.jkel,bridging_sep.diagawal,bridging_sep.nmdiagnosaawal,bridging_surat_kontrol_bpjs.tgl_surat,bridging_surat_kontrol_bpjs.no_surat,\n" +
+"                    bridging_surat_kontrol_bpjs.tgl_rencana,bridging_surat_kontrol_bpjs.kd_dokter_bpjs,bridging_surat_kontrol_bpjs.nm_dokter_bpjs,\n" +
+"                    bridging_surat_kontrol_bpjs.kd_poli_bpjs,bridging_surat_kontrol_bpjs.nm_poli_bpjs,bridging_alasan_surat_kontrol.alasan_kontrol,bridging_alasan_surat_kontrol.rencana_tindak_lanjut from bridging_sep inner join bridging_surat_kontrol_bpjs\n" +
+"                    on bridging_surat_kontrol_bpjs.no_sep=bridging_sep.no_sep inner join bridging_alasan_surat_kontrol ON bridging_alasan_surat_kontrol.no_surat = bridging_surat_kontrol_bpjs.no_surat where bridging_surat_kontrol_bpjs.no_surat='"+NoSurat.getText()+"'",param);              
+            this.setCursor(Cursor.getDefaultCursor());
+        }else{
+            JOptionPane.showMessageDialog(null,"Maaf, silahkan pilih data Surat Kontrol yang mau dicetak...!!!!");
+            BtnBatal.requestFocus();
+        }  
+    }//GEN-LAST:event_MnSuratCustomActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1414,6 +1467,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.Label LCount1;
     private javax.swing.JMenuItem MnDigitalTTE;
     private javax.swing.JMenuItem MnSurat;
+    private javax.swing.JMenuItem MnSuratCustom;
     private widget.TextBox NmDokter;
     private widget.TextBox NmPasien;
     private widget.TextBox NmPoli;
@@ -1591,6 +1645,8 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             NmPoli.setText(tbObat.getValueAt(tbObat.getSelectedRow(),14).toString());
             Valid.SetTgl(TanggalSurat,tbObat.getValueAt(tbObat.getSelectedRow(),8).toString());
             Valid.SetTgl(TanggalKontrol,tbObat.getValueAt(tbObat.getSelectedRow(),10).toString());
+            Alasan1.setText(Sequel.cariIsi("select alasan_kontrol from bridging_alasan_surat_kontrol where no_surat=?", tbObat.getValueAt(tbObat.getSelectedRow(),9).toString()));
+            Rtl1.setText(Sequel.cariIsi("select rencana_tindak_lanjut from bridging_alasan_surat_kontrol where no_surat=?", tbObat.getValueAt(tbObat.getSelectedRow(),9).toString()));
         }
     }
     
@@ -1700,6 +1756,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 tabMode.removeRow(tbObat.getSelectedRow());
                 emptTeks();
             }else{
+                System.out.println(NoSurat.getText());
                 JOptionPane.showMessageDialog(null,nameNode.path("message").asText());
             }
         } catch (Exception e) {   
