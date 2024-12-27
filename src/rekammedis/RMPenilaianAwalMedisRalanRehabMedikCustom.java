@@ -1494,7 +1494,7 @@ public final class RMPenilaianAwalMedisRalanRehabMedikCustom extends javax.swing
             param.put("logo",Sequel.cariGambar("select setting.logo from setting")); 
             finger=Sequel.cariIsi("select sha1(sidikjari.sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",tbObat.getValueAt(tbObat.getSelectedRow(),5).toString());
             param.put("finger","Dikeluarkan di "+akses.getnamars()+", Kabupaten/Kota "+akses.getkabupatenrs()+"\nDitandatangani secara elektronik oleh "+tbObat.getValueAt(tbObat.getSelectedRow(),6).toString()+"\nID "+(finger.equals("")?tbObat.getValueAt(tbObat.getSelectedRow(),5).toString():finger)+"\n"+Valid.SetTgl3(tbObat.getValueAt(tbObat.getSelectedRow(),7).toString())); 
-            Valid.MyReportqry("rptCetakPenilaianAwalMedisRalanRehabMedikTTE.jasper","report","::[ Laporan Penilaian Awal Medis Rawat Jalan Kedokteran Fisik dan Rehabilitasi ]::",
+            Valid.MyReportqry("rptCetakPenilaianAwalMedisRalanRehabMedikCustom.jasper","report","::[ Laporan Penilaian Awal Medis Rawat Jalan Kedokteran Fisik dan Rehabilitasi ]::",
                 "select reg_periksa.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,if(pasien.jk='L','Laki-Laki','Perempuan') as jk,pasien.tgl_lahir,penilaian_medis_ralan_rehab_medik_custom.tanggal,"+
                 "penilaian_medis_ralan_rehab_medik_custom.kd_dokter,penilaian_medis_ralan_rehab_medik_custom.anamnesis,penilaian_medis_ralan_rehab_medik_custom.hubungan,penilaian_medis_ralan_rehab_medik_custom.keluhan_utama,"+
                 "penilaian_medis_ralan_rehab_medik_custom.rps,penilaian_medis_ralan_rehab_medik_custom.rpd,penilaian_medis_ralan_rehab_medik_custom.alergi,"+

@@ -28,6 +28,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import org.apache.commons.io.FileUtils;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntity;
@@ -336,8 +337,7 @@ public class DlgPassPhrase extends javax.swing.JDialog {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             uploadPdf(txtNamaFile.getText(),txtLokasiFile.getText().split("/")[1]);
             try {
-                link="http://"+koneksiDB.HOSTHYBRIDWEBTTE()+":"+koneksiDB.PORTWEBTTE()+"/"+koneksiDB.HYBRIDWEB()+"/berkastte/";
-                URL = link+"signtte.php";
+                URL="http://"+koneksiDB.HOSTHYBRIDWEBTTE()+":"+koneksiDB.PORTWEBTTE()+"/api/v2/sign/pdf";
                 System.out.println(URL);
                 headers= new HttpHeaders();
                 headers.setContentType(MediaType.APPLICATION_JSON);
@@ -345,37 +345,37 @@ public class DlgPassPhrase extends javax.swing.JDialog {
                     case "TTE 1":
                         requestJson =" {" +
                             "\"nik\":\""+txtNik.getText()+"\","+
-                            "\"id\":\""+akses.getkode()+"\","+
                             "\"passphrase\":\""+txtPassPhrase.getText()+"\","+
-                            "\"document\":\""+txtNamaFile.getText()+"\","+
+                            "\"idUser\":\""+akses.getkode()+"\","+
+                            "\"namaPdf\":\""+txtNamaFile.getText()+"\","+
                             "\"location\":\""+txtLokasiFile.getText()+"\","+
                             "\"tag\":\"|\","+
-                            "\"image\":\"true\","+
-                            "\"tampilan\":\"visible\""+
+                            "\"tampilan\":\"VISIBLE\","+
+                            "\"page\":\"1\""+
                         "}";
                         break;
                     case "TTE 2":
                         requestJson =" {" +
                             "\"nik\":\""+txtNik.getText()+"\","+
-                            "\"id\":\""+akses.getkode()+"\","+
                             "\"passphrase\":\""+txtPassPhrase.getText()+"\","+
-                            "\"document\":\""+txtNamaFile.getText()+"\","+
+                            "\"idUser\":\""+akses.getkode()+"\","+
+                            "\"namaPdf\":\""+txtNamaFile.getText()+"\","+
                             "\"location\":\""+txtLokasiFile.getText()+"\","+
                             "\"tag\":\"~\","+
-                            "\"image\":\"true\","+
-                            "\"tampilan\":\"visible\""+
+                            "\"tampilan\":\"VISIBLE\","+
+                            "\"page\":\"1\""+
                         "}";
                         break;
                     case "TTE 3":
                         requestJson =" {" +
-                            "\"nik\":\""+txtNik.getText()+"\","+
-                            "\"id\":\""+akses.getkode()+"\","+
+                             "\"nik\":\""+txtNik.getText()+"\","+
                             "\"passphrase\":\""+txtPassPhrase.getText()+"\","+
-                            "\"document\":\""+txtNamaFile.getText()+"\","+
+                            "\"idUser\":\""+akses.getkode()+"\","+
+                            "\"namaPdf\":\""+txtNamaFile.getText()+"\","+
                             "\"location\":\""+txtLokasiFile.getText()+"\","+
                             "\"tag\":\"^\","+
-                            "\"image\":\"true\","+
-                            "\"tampilan\":\"visible\""+
+                            "\"tampilan\":\"VISIBLE\","+
+                            "\"page\":\"1\""+
                         "}";
                         break;
                 }
@@ -384,6 +384,7 @@ public class DlgPassPhrase extends javax.swing.JDialog {
                 metadata = root.path("metadata");
                 System.out.println("Hasil"+metadata);
                 System.out.println("Hasil"+URL);
+                System.out.println("Hasil"+metadata.path("datetime").asText());
                 JOptionPane.showMessageDialog(null,metadata.path("message").asText());
                 this.setCursor(Cursor.getDefaultCursor());
                 if(metadata.path("code").asText().equals("200")){
@@ -555,17 +556,19 @@ void uploadPdf(String FileName,String docpath){
         byte[] data = new byte[(int) file.length()];
         data = FileUtils.readFileToByteArray(file);
         HttpClient httpClient = new DefaultHttpClient();
-        HttpPost postRequest = new HttpPost("http://"+koneksiDB.HOSTHYBRIDWEBTTE()+":"+koneksiDB.PORTWEBTTE()+"/"+koneksiDB.HYBRIDWEB()+"/berkastte/upload.php?doc="+docpath);
+        HttpPost postRequest = new HttpPost("http://"+koneksiDB.HOSTHYBRIDWEBTTE()+":"+koneksiDB.PORTWEBTTE()+"/upload");
         ByteArrayBody fileData = new ByteArrayBody(data, FileName);
         MultipartEntity reqEntity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
         reqEntity.addPart("file", fileData); 
         postRequest.setEntity(reqEntity);
-        HttpResponse response = (HttpResponse) httpClient.execute(postRequest); 
+        HttpResponse response = (HttpResponse) httpClient.execute(postRequest);
+        System.out.println(response);
 //        deleteFile();
         }catch (Exception e){
             System.out.println(e);
         }
 }
+
 void deleteFile(){
        File file = new File("tempfile");      
         String[] myFiles;    

@@ -811,16 +811,6 @@ LAYANAN KEDOKTERAN FISIK DAN REHABILITASI]]></text>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement positionType="Float" x="259" y="775" width="118" height="42" uuid="4a7d1a59-a8eb-4c92-95f5-16b45dfd4b8b">
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Tahoma" size="8" isBold="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[|]]></text>
-			</staticText>
-			<staticText>
 				<reportElement positionType="Float" x="46" y="799" width="210" height="14" uuid="7240c5c0-1a52-44e4-933a-a4626696e85b">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -835,6 +825,14 @@ yang telah diterbitkan oleh Balai Sertifikasi Elektronik (BSrE), Badan Siber dan
 				<reportElement x="3" y="799" width="40" height="14" uuid="24545f28-a36d-45ef-961e-e028359d267d"/>
 				<imageExpression><![CDATA[$P{logobsre}]]></imageExpression>
 			</image>
+			<componentElement>
+				<reportElement x="261" y="776" width="84" height="41" isRemoveLineWhenBlank="true" uuid="e438a0a6-48fd-47b4-87af-0c08dbbcd9bb">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" errorCorrectionLevel="H">
+					<jr:codeExpression><![CDATA[$P{finger}]]></jr:codeExpression>
+				</jr:QRCode>
+			</componentElement>
 		</band>
 	</title>
 </jasperReport>

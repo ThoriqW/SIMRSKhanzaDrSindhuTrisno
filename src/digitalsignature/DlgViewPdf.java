@@ -21,6 +21,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.File;
 import java.net.URL;
+import java.net.http.HttpResponse;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -28,6 +29,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpDelete;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.icepdf.ri.common.ComponentKeyBinding;
 import org.icepdf.ri.common.SwingController;
 import org.icepdf.ri.common.SwingViewBuilder;
@@ -273,7 +277,7 @@ public class DlgViewPdf extends javax.swing.JDialog {
                 if(fileLocation.equals("local")){  
                     ctrl.openDocument("tempfile/"+txtNameFile.getText());
                 }else{
-                 URL url =new URL("http://"+koneksiDB.HOSTHYBRIDWEBTTE()+":"+koneksiDB.PORTWEBTTE()+"/"+koneksiDB.HYBRIDWEB()+"/"+txtLokasiFile.getText()+"/"+txtNameFile.getText());
+                 URL url =new URL("http://" + koneksiDB.HOSTHYBRIDWEBTTE() + ":" + koneksiDB.PORTWEBTTE() + "/" + txtLokasiFile.getText() + "/" +txtNameFile.getText());
                     ctrl.openDocument(url);
                 }
                 jScrollPane1.setViewportView(s); 
@@ -285,7 +289,8 @@ public class DlgViewPdf extends javax.swing.JDialog {
     
     void openpdf(String file) {
         try {
-            URL url = new URL("http://" + koneksiDB.HOSTHYBRIDWEBTTE() + ":" + koneksiDB.PORTWEBTTE() + "/" + koneksiDB.HYBRIDWEB() + "/" + txtLokasiFile.getText() + "/" + file);
+            URL url = new URL("http://" + koneksiDB.HOSTHYBRIDWEBTTE() + ":" + koneksiDB.PORTWEBTTE() + "/" + txtLokasiFile.getText() + "/" + file);
+            System.out.println(url);
             SwingController ctrl = new SwingController();
             SwingViewBuilder vb = new SwingViewBuilder(ctrl);
             JPanel s = vb.buildViewerPanel();
@@ -353,6 +358,7 @@ public class DlgViewPdf extends javax.swing.JDialog {
         // TODO add your handling code here:
         if(txtNameFile.getText() != null && !txtNameFile.getText().isEmpty() && txtLokasiFile.getText() != null && !txtLokasiFile.getText().isEmpty()){
             System.out.println(txtLokasiFile.getText() + " " + txtNameFile.getText());
+            deletePdfServer(txtLokasiFile.getText(), txtNameFile.getText());
             Sequel.hapusTTE("berkas_tte", "nama_file", "lokasi_file", txtNameFile.getText(), txtLokasiFile.getText());
             txtNameFile.setText("");
             dispose();
@@ -439,6 +445,22 @@ public void tampilPdfLocal(String namFile,String Location,String pathFile,String
 public void setButton(Boolean BtnTTE)
 {
     BtnSignTTE.setVisible(BtnTTE);
+}
+
+void deletePdfServer(String docpath, String FileName){
+    try {
+        // URL endpoint untuk menghapus file
+        String deleteUrl = "http://" + koneksiDB.HOSTHYBRIDWEBTTE() + ":" + koneksiDB.PORTWEBTTE() + "/delete/" + docpath.replaceFirst("^berkastte/", "") + "/" + FileName;
+        // Membuat HTTP client
+        System.out.println(deleteUrl);
+        HttpClient httpClient = new DefaultHttpClient();
+        HttpDelete deleteRequest = new HttpDelete(deleteUrl);
+        // Eksekusi permintaan DELETE
+        HttpResponse response = (HttpResponse) httpClient.execute(deleteRequest);
+        System.out.println(response);
+    } catch (Exception e) {
+        System.out.println("Error occurred while deleting file: " + e.getMessage());
+    }
 }
 
 void deleteFile(){
