@@ -2633,7 +2633,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
                                         "<td valign='top' cellpadding='0' cellspacing='0'>"+
                                             "<table width='100%' border='0' cellpadding='0' cellspacing='0' align='center'>"+
                                                 "<tr class='isi2'>"+
-                                                    "<td width='34%' valign='top'>Keputusan</td><td valign='top'>:&nbsp;</td><td width='65%' valign='top'>Zona Merah "+rs.getString("plan")+"</td>"+
+                                                    "<td width='34%' valign='top'>Keputusan</td><td valign='top'>:&nbsp;</td><td width='65%' valign='top'>"+rs.getString("plan")+"</td>"+
                                                 "</tr>"+
                                                 "<tr class='isi2'>"+
                                                     "<td width='34%' valign='top'>Tanggal & Jam</td><td valign='top'>:&nbsp;</td><td width='65%' valign='top'>"+rs.getString("tanggaltriase")+"</td>"+
@@ -5384,7 +5384,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
                         htmlContent.append(    
                             "<tr class='isi'>"+
                                 "<td valign='middle'>Plan/Keputusan</td>"+
-                                "<td valign='middle' bgcolor='"+keputusan+"' color='ffffff'>Zona Merah "+rs.getString("plan")+"</td>"+
+                                "<td valign='middle' bgcolor='"+keputusan+"' color='ffffff'>"+rs.getString("plan")+"</td>"+
                             "</tr>"+                       
                             "<tr class='isi'>"+
                                 "<td valign='middle'>&nbsp;</td>"+

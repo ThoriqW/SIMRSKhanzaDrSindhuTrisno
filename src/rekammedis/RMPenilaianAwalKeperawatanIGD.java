@@ -4456,7 +4456,7 @@ public final class RMPenilaianAwalKeperawatanIGD extends javax.swing.JDialog {
                     index++;
                 }
             } 
-
+            System.out.println(TCariMasalah.getText().toLowerCase());
             Valid.tabelKosong(tabModeMasalah);
 
             for(i=0;i<jml;i++){
@@ -4471,6 +4471,8 @@ public final class RMPenilaianAwalKeperawatanIGD extends javax.swing.JDialog {
             if(response.isArray()){
                 for(JsonNode list:response){
                     if(list.path("KodeMasalah").asText().toLowerCase().contains(TCariMasalah.getText().toLowerCase())||list.path("NamaMasalah").asText().toLowerCase().contains(TCariMasalah.getText().toLowerCase())){
+                        System.out.println(list.path("NamaMasalah").asText());
+                        System.out.println(TCariMasalah.getText().toLowerCase());
                         tabModeMasalah.addRow(new Object[]{
                             false,list.path("KodeMasalah").asText(),list.path("NamaMasalah").asText()
                         });                    

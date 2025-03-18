@@ -263,6 +263,7 @@ public class SuratRujukanIntern extends javax.swing.JDialog {
         buttonGroup1 = new javax.swing.ButtonGroup();
         jPopupMenu1 = new javax.swing.JPopupMenu();
         MnDigitalTTE = new javax.swing.JMenuItem();
+        KonsulIntern = new javax.swing.JMenuItem();
         internalFrame1 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbObat = new widget.Table();
@@ -321,6 +322,22 @@ public class SuratRujukanIntern extends javax.swing.JDialog {
             }
         });
         jPopupMenu1.add(MnDigitalTTE);
+
+        KonsulIntern.setBackground(new java.awt.Color(255, 255, 254));
+        KonsulIntern.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        KonsulIntern.setForeground(new java.awt.Color(50, 50, 50));
+        KonsulIntern.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        KonsulIntern.setText("Surat Konsul Intern");
+        KonsulIntern.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        KonsulIntern.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        KonsulIntern.setName("KonsulIntern"); // NOI18N
+        KonsulIntern.setPreferredSize(new java.awt.Dimension(250, 26));
+        KonsulIntern.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                KonsulInternActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(KonsulIntern);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -589,7 +606,7 @@ public class SuratRujukanIntern extends javax.swing.JDialog {
         TPasien.setBounds(185, 10, 190, 23);
 
         TanggalSurat.setForeground(new java.awt.Color(50, 70, 50));
-        TanggalSurat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-09-2024 10:19:32" }));
+        TanggalSurat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-10-2024 07:20:29" }));
         TanggalSurat.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TanggalSurat.setName("TanggalSurat"); // NOI18N
         TanggalSurat.setOpaque(false);
@@ -674,7 +691,7 @@ public class SuratRujukanIntern extends javax.swing.JDialog {
         jLabel14.setBounds(0, 100, 92, 23);
 
         TanggalPeriksa.setForeground(new java.awt.Color(50, 70, 50));
-        TanggalPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-09-2024 10:19:32" }));
+        TanggalPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-10-2024 07:20:29" }));
         TanggalPeriksa.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TanggalPeriksa.setName("TanggalPeriksa"); // NOI18N
         TanggalPeriksa.setOpaque(false);
@@ -1079,6 +1096,24 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         // TODO add your handling code here:
     }//GEN-LAST:event_TCariActionPerformed
 
+    private void KonsulInternActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KonsulInternActionPerformed
+        // TODO add your handling code here:
+         if(tbObat.getSelectedRow()>-1){
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            String FileName = tbObat.getValueAt(tbObat.getSelectedRow(),0).toString().replaceAll("/","_")+".pdf";
+            if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_dokumen='"+FileName+"' and kode='030'") > 0){
+                berkas.tampilPdf(FileName,"berkastte/rujukan_intern",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"030");
+                berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                berkas.setLocationRelativeTo(internalFrame1);
+                berkas.setVisible(true);
+            }else{
+                createPdf(FileName);
+            }
+
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_KonsulInternActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1109,6 +1144,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.PanelBiasa FormInput;
     private widget.TextBox KdDokter;
     private widget.TextBox KdPoli;
+    private javax.swing.JMenuItem KonsulIntern;
     private widget.Label LCount;
     private javax.swing.JMenuItem MnDigitalTTE;
     private widget.TextBox NmDokter;

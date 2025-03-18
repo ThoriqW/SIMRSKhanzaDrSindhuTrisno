@@ -30,12 +30,12 @@
 	<parameter name="bb" class="java.lang.String"/>
 	<parameter name="td" class="java.lang.String"/>
 	<parameter name="tb" class="java.lang.String"/>
-	<parameter name="norawat" class="java.lang.String"/>
 	<parameter name="finger" class="java.lang.String"/>
 	<parameter name="nm_dokter" class="java.lang.String"/>
+	<parameter name="no_pernyataan" class="java.lang.String"/>
 	<parameter name="logobsre" class="java.io.InputStream"/>
 	<queryString>
-		<![CDATA[select nama, no_ktp, no_bpjs, umur, diagnosa, alamat, text1, text2, text3, tanggal from surat_pernyataan_fingerprint where no_surat=$P{norawat}]]>
+		<![CDATA[select nama, no_ktp, no_bpjs, umur, diagnosa, alamat, ket1, ket2, ket3, tanggal from surat_pernyataan_fingerprint where no_pernyataan=$P{no_pernyataan}]]>
 	</queryString>
 	<field name="no_ktp" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="no_ktp"/>
@@ -45,18 +45,6 @@
 	<field name="no_bpjs" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="no_ktp"/>
 		<property name="com.jaspersoft.studio.field.label" value="no_ktp"/>
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="no_rawat" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="no_rawat"/>
-		<property name="com.jaspersoft.studio.field.label" value="no_rawat"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="reg_periksa"/>
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="nm_dokter" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="nm_dokter"/>
-		<property name="com.jaspersoft.studio.field.label" value="nm_dokter"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="dokter"/>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="tanggal" class="java.lang.String">
@@ -84,17 +72,17 @@
 		<property name="com.jaspersoft.studio.field.label" value="alamat"/>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="text1" class="java.lang.String">
+	<field name="ket1" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="umur"/>
 		<property name="com.jaspersoft.studio.field.label" value="umur"/>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="text2" class="java.lang.String">
+	<field name="ket2" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="diagnosa"/>
 		<property name="com.jaspersoft.studio.field.label" value="diagnosa"/>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="text3" class="java.lang.String">
+	<field name="ket3" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="alamat"/>
 		<property name="com.jaspersoft.studio.field.label" value="alamat"/>
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -226,14 +214,6 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{umur}]]></textFieldExpression>
 			</textField>
-			<componentElement>
-				<reportElement x="216" y="494" width="164" height="55" isRemoveLineWhenBlank="true" uuid="125639ed-852a-4f40-ad07-3acdaca4d7db">
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" errorCorrectionLevel="H">
-					<jr:codeExpression><![CDATA[$P{finger}]]></jr:codeExpression>
-				</jr:QRCode>
-			</componentElement>
 			<textField>
 				<reportElement x="216" y="556" width="165" height="20" uuid="3fe174a3-09a7-4a03-8843-fb47f2f27a96"/>
 				<textElement textAlignment="Center">
@@ -323,7 +303,7 @@
 				<text><![CDATA[SURAT PERNYATAAN TIDAK BISA FINGERPRINT]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="10" y="284" width="20" height="20" uuid="402ac323-e604-4f5e-a931-0ee34980d00f"/>
+				<reportElement x="10" y="281" width="20" height="20" uuid="402ac323-e604-4f5e-a931-0ee34980d00f"/>
 				<textElement>
 					<font fontName="Tahoma" size="12" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -336,10 +316,10 @@
 					<font fontName="Tahoma" size="12"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{text2}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ket2}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="9" y="343" width="20" height="20" uuid="f2e2b429-d10c-4776-b89b-5e7db210e578"/>
+				<reportElement x="9" y="340" width="20" height="20" uuid="f2e2b429-d10c-4776-b89b-5e7db210e578"/>
 				<textElement>
 					<font fontName="Tahoma" size="12" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -347,7 +327,7 @@
 				<text><![CDATA[2.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="10" y="405" width="20" height="20" uuid="6fbf21f6-b192-49dd-9304-6ee1416ad5b2"/>
+				<reportElement x="10" y="400" width="20" height="20" uuid="6fbf21f6-b192-49dd-9304-6ee1416ad5b2"/>
 				<textElement>
 					<font fontName="Tahoma" size="12" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -368,7 +348,7 @@
 					<font fontName="Tahoma" size="12"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{text1}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ket1}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="0" y="455" width="380" height="22" uuid="d62a8ac3-f7dd-42f1-8bf4-07e4da27fc01"/>
@@ -384,7 +364,7 @@
 					<font fontName="Tahoma" size="12"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{text3}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ket3}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="5" y="76" width="370" height="32" uuid="1dc8811d-ac39-4c13-8f6d-e07cc257c6b6"/>
@@ -394,6 +374,31 @@
 				</textElement>
 				<text><![CDATA[Yang bertandatangan di bawah ini, menyatakan bahwa pasien atas nama:]]></text>
 			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="216" y="493" width="164" height="63" uuid="76fc2e0c-d4a1-48cb-b578-82fa055e35ca">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[|]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="561" width="186" height="14" uuid="e6374967-9a9a-4013-aa07-5259abced62e">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left">
+					<font fontName="Tahoma" size="4" isBold="false" isItalic="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Dokumen ini telah ditanda tangani secara elektronik menggunakan sertifikat elektronik
+yang telah diterbitkan oleh Balai Sertifikasi Elektronik (BSrE), Badan Siber dan Sandi Negara]]></text>
+			</staticText>
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement x="0" y="560" width="29" height="16" uuid="f7034176-0b29-4b26-a392-0faebe2928aa"/>
+				<imageExpression><![CDATA[$P{logobsre}]]></imageExpression>
+			</image>
 		</band>
 	</detail>
 	<summary>

@@ -24,7 +24,7 @@ public class DlgRL4A extends javax.swing.JDialog {
     private ResultSet rs,rs2,rs4,rs5;
     private StringBuilder htmlContent;
     private int hr0s7l=0,hr0s7p=0,hr0s7=0,hr8s28l=0,hr8s28p=0,hr8s28=0,hr0s1thl=0,hr0s1thp=0,hr0s1th=0,th1s4l=0,th1s4p=0,th1s4=0,th5s9l=0,th5s9p=0,th5s9=0,
-                th10s14l=0,th10s14p=0,th10s14=0,th15s19l=0,th15s19p=0,th15s19=0,th20s44l=0,th20s44p=0,th20s44,th45s54l=0,th45s54p=0,th45s54,th55s59l=0,th55s59p=0,th55s59,th60s69l=0,th60s69p=0,th60s69,lbth70l=0,lbth70p=0,lbth70=0,mati=0,pasienTNI=0,angkatanLain=0;
+                th10s14l=0,th10s14p=0,th10s14=0,th15s19l=0,th15s19p=0,th15s19=0,th20s44l=0,th20s44p=0,th20s44,th45s54l=0,th45s54p=0,th45s54,th55s59l=0,th55s59p=0,th55s59,th60s69l=0,th60s69p=0,th60s69,lbth70l=0,lbth70p=0,lbth70=0,mati=0,pasienTNI=0,pasienPNS=0,angkatanLain=0;
     
     /** Creates new form DlgProgramStudi
      * @param parent
@@ -369,13 +369,14 @@ private void btnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b
                     "<td valign='middle' bgcolor='#FFFAFA' align='center' width='2%' rowspan='2'>No</td>"+
                     "<td valign='middle' bgcolor='#FFFAFA' align='center' width='5%' rowspan='2'>Kode ICD 10</td>"+
                     "<td valign='middle' bgcolor='#FFFAFA' align='center' width='18%' rowspan='2'>Jenis Penyakit</td>"+
-                    "<td valign='middle' bgcolor='#FFFAFA' align='center' width='10%' colspan='2'>Menurut Golongan Status</td>"+
+                    "<td valign='middle' bgcolor='#FFFAFA' align='center' width='10%' colspan='3'>Menurut Golongan Status</td>"+
                     "<td valign='middle' bgcolor='#FFFAFA' align='center' width='45%' colspan='12'>Golongan Umur(Tahun)</td>"+
                     "<td valign='middle' bgcolor='#FFFAFA' align='center' width='10%' colspan='3'>Total Kunjungan</td>"+
                     "<td valign='middle' bgcolor='#FFFAFA' align='center' width='5%' rowspan='2'>Meninggal</td>"+
                 "</tr>"+
                 "<tr class='isi'>"+
                     "<td valign='middle' bgcolor='#FFFAFA' align='center' colspan='1'>Pasien TNI</td>"+
+                    "<td valign='middle' bgcolor='#FFFAFA' align='center' colspan='1'>Pasien PNS</td>"+
                     "<td valign='middle' bgcolor='#FFFAFA' align='center' colspan='1'>Pasien Lainnya</td>"+
                     "<td valign='middle' bgcolor='#FFFAFA' align='center' colspan='1'>0-7 hr</td>"+
                     "<td valign='middle' bgcolor='#FFFAFA' align='center' colspan='1'>8-28hr</td>"+
@@ -453,7 +454,7 @@ private void btnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b
                 i=1;
                 while(rs.next()){
                     hr0s7l=0;hr0s7p=0;hr0s7=0;hr8s28l=0;hr8s28p=0;hr8s28=0;hr0s1thl=0;hr0s1thp=0;hr0s1th=0;th1s4l=0;th1s4p=0;th1s4=0;th5s9l=0;th5s9p=0;th5s9=0;
-                    th10s14l=0;th10s14p=0;th10s14=0;th15s19l=0;th15s19p=0;th15s19=0;th20s44l=0;th20s44p=0;th20s44=0;th45s54l=0;th45s54p=0;th45s54=0;th55s59l=0;th55s59p=0;th55s59=0;th60s69l=0;th60s69p=0;th60s69=0;lbth70l=0;lbth70p=0;lbth70=0;mati=0;pasienTNI=0;angkatanLain=0;
+                    th10s14l=0;th10s14p=0;th10s14=0;th15s19l=0;th15s19p=0;th15s19=0;th20s44l=0;th20s44p=0;th20s44=0;th45s54l=0;th45s54p=0;th45s54=0;th55s59l=0;th55s59p=0;th55s59=0;th60s69l=0;th60s69p=0;th60s69=0;lbth70l=0;lbth70p=0;lbth70=0;mati=0;pasienTNI=0;pasienPNS=0;angkatanLain=0;
                     ps2=koneksi.prepareStatement(
                             "select diagnosa_pasien.kd_penyakit,reg_periksa.umurdaftar,reg_periksa.sttsumur,pasien.jk "+
                             "from diagnosa_pasien inner join reg_periksa inner join pasien "+
@@ -461,7 +462,7 @@ private void btnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b
                             "where diagnosa_pasien.status='Ranap' "+
                             "and reg_periksa.tgl_registrasi between ? and ? and diagnosa_pasien.kd_penyakit=?");
                     ps4=koneksi.prepareStatement(
-                            "select diagnosa_pasien.kd_penyakit,reg_periksa.umurdaftar,reg_periksa.sttsumur,pasien.jk,pasien_tni.golongan_tni,golongan_tni.nama_golongan "+
+                            "select diagnosa_pasien.kd_penyakit,reg_periksa.umurdaftar,reg_periksa.sttsumur,pasien.pekerjaan,pasien.jk,pasien_tni.golongan_tni,golongan_tni.nama_golongan "+
                             "from diagnosa_pasien inner join reg_periksa inner join pasien inner join pasien_tni inner join golongan_tni "+
                             "on reg_periksa.no_rawat=diagnosa_pasien.no_rawat and reg_periksa.no_rkm_medis=pasien.no_rkm_medis and reg_periksa.no_rkm_medis=pasien_tni.no_rkm_medis and pasien_tni.golongan_tni=golongan_tni.id "+
                             "where diagnosa_pasien.status='Ranap' "+
@@ -474,7 +475,13 @@ private void btnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b
                         while(rs4.next()){
                             if(rs4.getString("nama_golongan").equals("TNI AD")){
                                 pasienTNI++;
+                            } else if (rs4.getString("pekerjaan").contains("PNS")) {
+                                pasienPNS++;
                             }
+                        }
+                        if(pasienPNS >= 1){
+                            System.out.println(pasienPNS);
+                            System.out.println(rs.getString("nm_penyakit"));
                         }
                         ps2.setString(1,Valid.SetTgl(Tgl1.getSelectedItem()+""));
                         ps2.setString(2,Valid.SetTgl(Tgl2.getSelectedItem()+""));
@@ -620,7 +627,8 @@ private void btnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b
                             "<td valign='middle' align='center'>"+rs.getString("kd_penyakit")+"</td>"+
                             "<td valign='middle' align='left'>"+rs.getString("nm_penyakit")+"</td>"+
                             "<td valign='middle' align='center'>"+pasienTNI+"</td>"+
-                            "<td valign='middle' align='center'>"+(hr0s7l+hr0s1thl+hr8s28l+th1s4l+th5s9l+th10s14l+th15s19l+th20s44l+th45s54l+th55s59l+th60s69l+lbth70l+hr0s7p+hr8s28p+hr0s1thp+th1s4p+th5s9p+th10s14p+th15s19p+th20s44p+th45s54p+th55s59p+th60s69p+lbth70p-pasienTNI)+"</td>"+
+                            "<td valign='middle' align='center'>"+pasienPNS+"</td>"+
+                            "<td valign='middle' align='center'>"+(hr0s7l+hr0s1thl+hr8s28l+th1s4l+th5s9l+th10s14l+th15s19l+th20s44l+th45s54l+th55s59l+th60s69l+lbth70l+hr0s7p+hr8s28p+hr0s1thp+th1s4p+th5s9p+th10s14p+th15s19p+th20s44p+th45s54p+th55s59p+th60s69p+lbth70p-pasienTNI-pasienPNS)+"</td>"+
                             "<td valign='middle' align='center'>"+hr0s7+"</td>"+
 //                            "<td valign='middle' align='center'>"+hr0s7p+"</td>"+
                             "<td valign='middle' align='center'>"+hr8s28+"</td>"+ 
@@ -707,13 +715,14 @@ private void btnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b
                     "<td valign='middle' bgcolor='#FFFAFA' align='center' width='2%' rowspan='2'>No</td>"+
                     "<td valign='middle' bgcolor='#FFFAFA' align='center' width='5%' rowspan='2'>Kode ICD 10</td>"+
                     "<td valign='middle' bgcolor='#FFFAFA' align='center' width='18%' rowspan='2'>Jenis Penyakit</td>"+
-                    "<td valign='middle' bgcolor='#FFFAFA' align='center' width='10%' colspan='2'>Menurut Golongan Status</td>"+
+                    "<td valign='middle' bgcolor='#FFFAFA' align='center' width='10%' colspan='3'>Menurut Golongan Status</td>"+
                     "<td valign='middle' bgcolor='#FFFAFA' align='center' width='45%' colspan='12'>Golongan Umur(Tahun)</td>"+
                     "<td valign='middle' bgcolor='#FFFAFA' align='center' width='10%' colspan='3'>Total Kunjungan</td>"+
                     "<td valign='middle' bgcolor='#FFFAFA' align='center' width='5%' rowspan='2'>Meninggal</td>"+
                 "</tr>"+
                 "<tr class='isi'>"+
                     "<td valign='middle' bgcolor='#FFFAFA' align='center' colspan='1'>Pasien TNI</td>"+
+                    "<td valign='middle' bgcolor='#FFFAFA' align='center' colspan='1'>Pasien PNS</td>"+
                     "<td valign='middle' bgcolor='#FFFAFA' align='center' colspan='1'>Pasien Lainnya</td>"+
                     "<td valign='middle' bgcolor='#FFFAFA' align='center' colspan='1'>0-7 hr</td>"+
                     "<td valign='middle' bgcolor='#FFFAFA' align='center' colspan='1'>8-28hr</td>"+
@@ -773,7 +782,7 @@ private void btnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b
                     "<td valign='middle' bgcolor='#FFFAFA' align='center'>19</td>"+
                     "<td valign='middle' bgcolor='#FFFAFA' align='center'>20</td>"+
                     "<td valign='middle' bgcolor='#FFFAFA' align='center'>21</td>"+
-//                    "<td valign='middle' bgcolor='#FFFAFA' align='center'>22</td>"+
+                    "<td valign='middle' bgcolor='#FFFAFA' align='center'>22</td>"+
 //                    "<td valign='middle' bgcolor='#FFFAFA' align='center'>23</td>"+
 //                    "<td valign='middle' bgcolor='#FFFAFA' align='center'>24</td>"+
 //                    "<td valign='middle' bgcolor='#FFFAFA' align='center'>25</td>"+
@@ -791,15 +800,15 @@ private void btnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b
                 i=1;
                 while(rs.next()){
                     hr0s7l=0;hr0s7p=0;hr0s7=0;hr8s28l=0;hr8s28p=0;hr8s28=0;hr0s1thl=0;hr0s1thp=0;hr0s1th=0;th1s4l=0;th1s4p=0;th1s4=0;th5s9l=0;th5s9p=0;th5s9=0;
-                    th10s14l=0;th10s14p=0;th10s14=0;th15s19l=0;th15s19p=0;th15s19=0;th20s44l=0;th20s44p=0;th20s44=0;th45s54l=0;th45s54p=0;th45s54=0;th55s59l=0;th55s59p=0;th55s59=0;th60s69l=0;th60s69p=0;th60s69=0;lbth70l=0;lbth70p=0;lbth70=0;mati=0;pasienTNI=0;angkatanLain=0;
+                    th10s14l=0;th10s14p=0;th10s14=0;th15s19l=0;th15s19p=0;th15s19=0;th20s44l=0;th20s44p=0;th20s44=0;th45s54l=0;th45s54p=0;th45s54=0;th55s59l=0;th55s59p=0;th55s59=0;th60s69l=0;th60s69p=0;th60s69=0;lbth70l=0;lbth70p=0;lbth70=0;mati=0;pasienTNI=0;pasienPNS=0;angkatanLain=0;
                     ps2=koneksi.prepareStatement(
                             "select diagnosa_pasien.kd_penyakit,reg_periksa.umurdaftar,reg_periksa.sttsumur,pasien.jk "+
                             "from diagnosa_pasien inner join reg_periksa inner join pasien inner join kamar_inap "+
                             "on reg_periksa.no_rawat=diagnosa_pasien.no_rawat and reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
                             "and kamar_inap.no_rawat=reg_periksa.no_rawat where diagnosa_pasien.status='Ranap' "+
                             "and kamar_inap.tgl_keluar between ? and ? and diagnosa_pasien.kd_penyakit=?");
-                    ps5=koneksi.prepareStatement(
-                            "select diagnosa_pasien.kd_penyakit,reg_periksa.umurdaftar,reg_periksa.sttsumur,pasien.jk,pasien_tni.golongan_tni,golongan_tni.nama_golongan "+
+                    ps5=koneksi.prepareStatement( //CUSTOM
+                            "select diagnosa_pasien.kd_penyakit,reg_periksa.umurdaftar,reg_periksa.sttsumur,pasien.pekerjaan,pasien.jk,pasien_tni.golongan_tni,golongan_tni.nama_golongan "+
                             "from diagnosa_pasien inner join reg_periksa inner join pasien inner join kamar_inap inner join pasien_tni inner join golongan_tni "+
                             "on reg_periksa.no_rawat=diagnosa_pasien.no_rawat and reg_periksa.no_rkm_medis=pasien.no_rkm_medis and reg_periksa.no_rkm_medis=pasien_tni.no_rkm_medis and pasien_tni.golongan_tni=golongan_tni.id and kamar_inap.no_rawat=reg_periksa.no_rawat "+
                             "where diagnosa_pasien.status='Ranap' "+
@@ -812,6 +821,9 @@ private void btnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b
                         while(rs5.next()){
                             if(rs5.getString("nama_golongan").equals("TNI AD")){
                                 pasienTNI++;
+                            } else if(rs5.getString("pekerjaan").contains("PNS")){
+                                pasienPNS++;
+                                System.out.println(pasienPNS);
                             }
                         }
                         ps2.setString(1,Valid.SetTgl(Tgl1.getSelectedItem()+""));
@@ -958,8 +970,9 @@ private void btnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b
                             "<td valign='middle' align='center'>"+rs.getString("kd_penyakit")+"</td>"+
                             "<td valign='middle' align='left'>"+rs.getString("nm_penyakit")+"</td>"+
                             "<td valign='middle' align='center'>"+pasienTNI+"</td>"+
+                            "<td valign='middle' align='center'>"+pasienPNS+"</td>"+
 //                            "<td valign='middle' align='center'>"+hr0s7p+"</td>"+
-                            "<td valign='middle' align='center'>"+(hr0s7l+hr0s1thl+hr8s28l+th1s4l+th5s9l+th10s14l+th15s19l+th20s44l+th45s54l+th55s59l+th60s69l+lbth70l+hr0s7p+hr8s28p+hr0s1thp+th1s4p+th5s9p+th10s14p+th15s19p+th20s44p+th45s54p+th55s59p+th60s69p+lbth70p-pasienTNI)+"</td>"+
+                            "<td valign='middle' align='center'>"+(hr0s7l+hr0s1thl+hr8s28l+th1s4l+th5s9l+th10s14l+th15s19l+th20s44l+th45s54l+th55s59l+th60s69l+lbth70l+hr0s7p+hr8s28p+hr0s1thp+th1s4p+th5s9p+th10s14p+th15s19p+th20s44p+th45s54p+th55s59p+th60s69p+lbth70p-pasienTNI-pasienPNS)+"</td>"+
 //                            "<td valign='middle' align='center'>"+hr8s28p+"</td>"+
                             "<td valign='middle' align='center'>"+hr0s7+"</td>"+
 //                          "<td valign='middle' align='center'>"+hr0s7p+"</td>"+
