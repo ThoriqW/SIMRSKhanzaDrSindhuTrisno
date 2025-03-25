@@ -15216,7 +15216,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                } 
                if(pskasir!=null){
                    pskasir.close();
-               } 
+               }
             }            
         }catch(Exception e){
             System.out.println("Notifikasi : "+e);

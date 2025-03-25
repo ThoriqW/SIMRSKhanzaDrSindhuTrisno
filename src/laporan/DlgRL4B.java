@@ -31,8 +31,12 @@ public class DlgRL4B extends javax.swing.JDialog {
     private PreparedStatement ps,ps2,ps3,ps4,ps5;
     private ResultSet rs,rs2,rs4,rs5;
     private StringBuilder htmlContent;
-    private int hr0s7l=0,hr0s7p=0,hr0s7=0,hr8s28l=0,hr8s28p=0,hr8s28=0,hr0s1thl=0,hr0s1thp=0,hr0s1th=0,th1s4l=0,th1s4p=0,th1s4=0,th5s9l=0,th5s9p=0,th5s9=0,
-                th10s14l=0,th10s14p=0,th10s14=0,th15s19l=0,th15s19p=0,th15s19=0,th20s44l=0,th20s44p=0,th20s44,th45s54l=0,th45s54p=0,th45s54,th55s59l=0,th55s59p=0,th55s59,th60s69l=0,th60s69p=0,th60s69,lbth70l=0,lbth70p=0,lbth70=0,mati=0,pasienTNI;
+//    private int hr0s7l=0,hr0s7p=0,hr0s7=0,hr8s28l=0,hr8s28p=0,hr8s28=0,hr0s1thl=0,hr0s1thp=0,hr0s1th=0,th1s4l=0,th1s4p=0,th1s4=0,th5s9l=0,th5s9p=0,th5s9=0,
+//                th10s14l=0,th10s14p=0,th10s14=0,th15s19l=0,th15s19p=0,th15s19=0,th20s44l=0,th20s44p=0,th20s44,th45s54l=0,th45s54p=0,th45s54,th55s59l=0,th55s59p=0,th55s59,th60s69l=0,th60s69p=0,th60s69,lbth70l=0,lbth70p=0,lbth70=0,mati=0;
+    private int hr0s6l=0,hr0s6p=0,hr0s6=0,hr7s28l=0,hr7s28p=0,hr7s28=0,hr28s1thl=0,hr28s1thp=0,hr28s1th=0,th1s4l=0,th1s4p=0,th1s4=0,th5s14l=0,th5s14p=0,th5s14=0,
+            th15s24l=0,th15s24p=0,th15s24=0,th25s44l=0,th25s44p=0,th25s44=0,th45s64l=0,th45s64p=0,th45s64=0,lbth65l=0,lbth65p=0,lbth65=0,mati=0;
+    
+    private int tniAdMIL=0,tniAdPNS=0,tniAdKEL=0,angkatanlainMIL=0,angkatanlainPNS=0,angkatanlainKEL=0,purnawirawan=0;
     private DlgCariPoli poli=new DlgCariPoli(null,false);
     private DlgCariDokter dokter=new DlgCariDokter(null,false);
     private DlgKabupaten kabupaten=new DlgKabupaten(null,false);
@@ -941,32 +945,62 @@ private void btnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b
             htmlContent = new StringBuilder();
             htmlContent.append(                             
                 "<tr class='isi'>"+
-                    "<td valign='middle' bgcolor='#FFFAFA' align='center' width='2%' rowspan='2'>No</td>"+
-                    "<td valign='middle' bgcolor='#FFFAFA' align='center' width='5%' rowspan='2'>Kode ICD 10</td>"+
-                    "<td valign='middle' bgcolor='#FFFAFA' align='center' width='18%' rowspan='2'>Jenis Penyakit</td>"+
-                    "<td valign='middle' bgcolor='#FFFAFA' align='center' width='10%' colspan='2'>Menurut Golongan Status</td>"+
-                    "<td valign='middle' bgcolor='#FFFAFA' align='center' width='45%' colspan='12'>Golongan Umur(Tahun)</td>"+
+                    "<td valign='middle' bgcolor='#FFFAFA' align='center' width='2%' rowspan='3'>No</td>"+
+                    "<td valign='middle' bgcolor='#FFFAFA' align='center' width='5%' rowspan='3'>Kode ICD 10</td>"+
+                    "<td valign='middle' bgcolor='#FFFAFA' align='center' width='15%' rowspan='3'>Jenis Penyakit</td>"+
+                    "<td valign='middle' bgcolor='#FFFAFA' align='center' width='23%' colspan='9'>Menurut Golongan Status</td>"+
+                    "<td valign='middle' bgcolor='#FFFAFA' align='center' width='35%' colspan='9'>Golongan Umur(Tahun)</td>"+
                     "<td valign='middle' bgcolor='#FFFAFA' align='center' width='10%' colspan='3'>Total Kunjungan</td>"+
-                    "<td valign='middle' bgcolor='#FFFAFA' align='center' width='5%' rowspan='2'>Meninggal</td>"+
+                    "<td valign='middle' bgcolor='#FFFAFA' align='center' width='5%' rowspan='3'>Meninggal</td>"+
+                "</tr>"+
+//                "<tr class='isi'>"+
+//                    "<td valign='middle' bgcolor='#FFFAFA' align='center' colspan='3'>TNI AD</td>"+
+//                    "<td valign='middle' bgcolor='#FFFAFA' align='center' colspan='3'>ANGKATAN LAIN</td>"+
+//                    "<td valign='middle' bgcolor='#FFFAFA' align='center' rowspan='2'>PUR/ASKES</td>"+
+//                    "<td valign='middle' bgcolor='#FFFAFA' align='center' rowspan='2'>JLH</td>"+
+//                    "<td valign='middle' bgcolor='#FFFAFA' align='center' rowspan='2'>Pasien Lainnya</td>"+
+//                    "<td valign='middle' bgcolor='#FFFAFA' align='center' rowspan='2' colspan='1'>0-7hr</td>"+
+//                    "<td valign='middle' bgcolor='#FFFAFA' align='center' rowspan='2' colspan='1'>8-28hr</td>"+
+//                    "<td valign='middle' bgcolor='#FFFAFA' align='center' rowspan='2' colspan='1'><1th</td>"+
+//                    "<td valign='middle' bgcolor='#FFFAFA' align='center' rowspan='2' colspan='1'>1-4th</td>"+
+//                    "<td valign='middle' bgcolor='#FFFAFA' align='center' rowspan='2' colspan='1'>5-9th</td>"+
+//                    "<td valign='middle' bgcolor='#FFFAFA' align='center' rowspan='2' colspan='1'>10-14th</td>"+
+//                    "<td valign='middle' bgcolor='#FFFAFA' align='center' rowspan='2' colspan='1'>15-19th</td>"+
+//                    "<td valign='middle' bgcolor='#FFFAFA' align='center' rowspan='2' colspan='1'>20-44th</td>"+
+//                    "<td valign='middle' bgcolor='#FFFAFA' align='center' rowspan='2' colspan='1'>45-54th</td>"+
+//                    "<td valign='middle' bgcolor='#FFFAFA' align='center' rowspan='2' colspan='1'>55-59th</td>"+
+//                    "<td valign='middle' bgcolor='#FFFAFA' align='center' rowspan='2' colspan='1'>60-69th</td>"+
+//                    "<td valign='middle' bgcolor='#FFFAFA' align='center' rowspan='2' colspan='1'>70+</td>"+
+//                    "<td valign='middle' bgcolor='#FFFAFA' align='center' rowspan='2'>Lk</td>"+
+//                    "<td valign='middle' bgcolor='#FFFAFA' align='center' rowspan='2'>Pr</td>"+
+//                    "<td valign='middle' bgcolor='#FFFAFA' align='center' rowspan='2'>Jumlah</td>"+
+//                "</tr>"+
+                "<tr class='isi'>"+
+                    "<td valign='middle' bgcolor='#FFFAFA' align='center' colspan='3'>TNI AD</td>"+
+                    "<td valign='middle' bgcolor='#FFFAFA' align='center' colspan='3'>ANGKATAN LAIN</td>"+
+                    "<td valign='middle' bgcolor='#FFFAFA' align='center' rowspan='2'>PUR/ASKES</td>"+
+                    "<td valign='middle' bgcolor='#FFFAFA' align='center' rowspan='2'>JLH</td>"+
+                    "<td valign='middle' bgcolor='#FFFAFA' align='center' rowspan='2'>Pasien Lainnya</td>"+
+                    "<td valign='middle' bgcolor='#FFFAFA' align='center' rowspan='2' colspan='1'>0-6 hr</td>"+
+                    "<td valign='middle' bgcolor='#FFFAFA' align='center' rowspan='2' colspan='1'>7-28hr</td>"+
+                    "<td valign='middle' bgcolor='#FFFAFA' align='center' rowspan='2' colspan='1'>28hr-<1th</td>"+
+                    "<td valign='middle' bgcolor='#FFFAFA' align='center' rowspan='2' colspan='1'>1-4th</td>"+
+                    "<td valign='middle' bgcolor='#FFFAFA' align='center' rowspan='2' colspan='1'>5-14th</td>"+
+                    "<td valign='middle' bgcolor='#FFFAFA' align='center' rowspan='2' colspan='1'>15-24th</td>"+
+                    "<td valign='middle' bgcolor='#FFFAFA' align='center' rowspan='2' colspan='1'>25-44th</td>"+
+                    "<td valign='middle' bgcolor='#FFFAFA' align='center' rowspan='2' colspan='1'>45-64th</td>"+
+                    "<td valign='middle' bgcolor='#FFFAFA' align='center' rowspan='2' colspan='1'>> 65</td>"+
+                    "<td valign='middle' bgcolor='#FFFAFA' align='center' rowspan='2'>Lk</td>"+
+                    "<td valign='middle' bgcolor='#FFFAFA' align='center' rowspan='2'>Pr</td>"+
+                    "<td valign='middle' bgcolor='#FFFAFA' align='center' rowspan='2'>Jumlah</td>"+
                 "</tr>"+
                 "<tr class='isi'>"+
-                    "<td valign='middle' bgcolor='#FFFAFA' align='center' colspan='1'>Pasien TNI</td>"+
-                    "<td valign='middle' bgcolor='#FFFAFA' align='center' colspan='1'>Pasien Lainnya</td>"+
-                    "<td valign='middle' bgcolor='#FFFAFA' align='center' colspan='1'>0-7 hr</td>"+
-                    "<td valign='middle' bgcolor='#FFFAFA' align='center' colspan='1'>8-28hr</td>"+
-                    "<td valign='middle' bgcolor='#FFFAFA' align='center' colspan='1'>< 1th</td>"+
-                    "<td valign='middle' bgcolor='#FFFAFA' align='center' colspan='1'>1-4th</td>"+
-                    "<td valign='middle' bgcolor='#FFFAFA' align='center' colspan='1'>5-9th</td>"+
-                    "<td valign='middle' bgcolor='#FFFAFA' align='center' colspan='1'>10-14th</td>"+
-                    "<td valign='middle' bgcolor='#FFFAFA' align='center' colspan='1'>15-19th</td>"+
-                    "<td valign='middle' bgcolor='#FFFAFA' align='center' colspan='1'>20-44th</td>"+
-                    "<td valign='middle' bgcolor='#FFFAFA' align='center' colspan='1'>45-54th</td>"+
-                    "<td valign='middle' bgcolor='#FFFAFA' align='center' colspan='1'>55-59th</td>"+
-                    "<td valign='middle' bgcolor='#FFFAFA' align='center' colspan='1'>60-69th</td>"+
-                    "<td valign='middle' bgcolor='#FFFAFA' align='center' colspan='1'>70+</td>"+
-                    "<td valign='middle' bgcolor='#FFFAFA' align='center' rowspan='1'>Lk</td>"+
-                    "<td valign='middle' bgcolor='#FFFAFA' align='center' rowspan='1'>Pr</td>"+
-                    "<td valign='middle' bgcolor='#FFFAFA' align='center' rowspan='1'>Jumlah</td>"+
+                    "<td valign='middle' bgcolor='#FFFAFA' align='center' colspan='1'>MIL</td>"+
+                    "<td valign='middle' bgcolor='#FFFAFA' align='center' colspan='1'>PNS</td>"+
+                    "<td valign='middle' bgcolor='#FFFAFA' align='center' colspan='1'>KEL</td>"+
+                    "<td valign='middle' bgcolor='#FFFAFA' align='center' colspan='1'>MIL</td>"+
+                    "<td valign='middle' bgcolor='#FFFAFA' align='center' colspan='1'>PNS</td>"+
+                    "<td valign='middle' bgcolor='#FFFAFA' align='center' colspan='1'>KEL</td>"+
                 "</tr>"+
 //                "<tr class='isi'>"+
 //                    "<td valign='middle' bgcolor='#FFFAFA' align='center'>L</td>"+
@@ -1010,10 +1044,10 @@ private void btnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b
                     "<td valign='middle' bgcolor='#FFFAFA' align='center'>19</td>"+
                     "<td valign='middle' bgcolor='#FFFAFA' align='center'>20</td>"+
                     "<td valign='middle' bgcolor='#FFFAFA' align='center'>21</td>"+
-//                    "<td valign='middle' bgcolor='#FFFAFA' align='center'>22</td>"+
-//                    "<td valign='middle' bgcolor='#FFFAFA' align='center'>23</td>"+
-//                    "<td valign='middle' bgcolor='#FFFAFA' align='center'>24</td>"+
-//                    "<td valign='middle' bgcolor='#FFFAFA' align='center'>25</td>"+
+                    "<td valign='middle' bgcolor='#FFFAFA' align='center'>22</td>"+
+                    "<td valign='middle' bgcolor='#FFFAFA' align='center'>23</td>"+
+                    "<td valign='middle' bgcolor='#FFFAFA' align='center'>24</td>"+
+                    "<td valign='middle' bgcolor='#FFFAFA' align='center'>25</td>"+
                 "</tr>"
             );            
             ps=koneksi.prepareStatement("select diagnosa_pasien.kd_penyakit,SUBSTRING(penyakit.nm_penyakit,1,80) as nm_penyakit from diagnosa_pasien "+
@@ -1049,8 +1083,16 @@ private void btnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b
                 rs=ps.executeQuery();
                 i=1;
                 while(rs.next()){
-                    hr0s7l=0;hr0s7p=0;hr0s7=0;hr8s28l=0;hr8s28p=0;hr8s28=0;hr0s1thl=0;hr0s1thp=0;hr0s1th=0;th1s4l=0;th1s4p=0;th1s4=0;th5s9l=0;th5s9p=0;th5s9=0;
-                    th10s14l=0;th10s14p=0;th10s14=0;th15s19l=0;th15s19p=0;th15s19=0;th20s44l=0;th20s44p=0;th20s44=0;th45s54l=0;th45s54p=0;th45s54=0;th55s59l=0;th55s59p=0;th55s59=0;th60s69l=0;th60s69p=0;th60s69=0;lbth70l=0;lbth70p=0;lbth70=0;mati=0;pasienTNI=0;
+//                  hr0s7l=0;hr0s7p=0;hr0s7=0;hr8s28l=0;hr8s28p=0;hr8s28=0;hr0s1thl=0;hr0s1thp=0;hr0s1th=0;th1s4l=0;th1s4p=0;th1s4=0;th5s9l=0;th5s9p=0;th5s9=0;
+//                  th10s14l=0;th10s14p=0;th10s14=0;th15s19l=0;th15s19p=0;th15s19=0;th20s44l=0;th20s44p=0;th20s44=0;th45s54l=0;th45s54p=0;th45s54=0;th55s59l=0;th55s59p=0;th55s59=0;th60s69l=0;th60s69p=0;th60s69=0;lbth70l=0;lbth70p=0;lbth70=0;mati=0;tniAdMIL=0;tniAdPNS=0;tniAdKEL=0;angkatanlainMIL=0;angkatanlainPNS=0;angkatanlainKEL=0;purnawirawan=0;
+                    hr0s6=0;hr7s28=0;hr28s1th=0;th1s4=0;th5s14=0;
+                    th15s24=0;th25s44=0;th45s64=0;lbth65=0;mati=0;
+                    
+                    tniAdMIL=0;tniAdPNS=0;tniAdKEL=0;angkatanlainMIL=0;angkatanlainPNS=0;angkatanlainKEL=0;purnawirawan=0;
+                    
+                    hr0s6l=0;hr0s6p=0;hr7s28l=0;hr7s28p=0;hr28s1thl=0;hr28s1thp=0;th1s4l=0;th1s4p=0;th5s14l=0;th5s14p=0;
+                    th15s24l=0;th15s24p=0;th25s44l=0;th25s44p=0;th45s64l=0;th45s64p=0;lbth65l=0;lbth65p=0;
+                    
                     ps2=koneksi.prepareStatement(
                             "select diagnosa_pasien.kd_penyakit,reg_periksa.umurdaftar,reg_periksa.sttsumur,pasien.jk from diagnosa_pasien "+
                             "inner join reg_periksa on reg_periksa.no_rawat=diagnosa_pasien.no_rawat "+
@@ -1099,7 +1141,26 @@ private void btnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b
                         rs4=ps4.executeQuery();
                         while(rs4.next()){
                             if(rs4.getString("nama_golongan").equals("TNI AD")){
-                                pasienTNI++;
+                                tniAdMIL++;
+                                System.out.println("tni ad");
+                            } else if(rs4.getString("nama_golongan").equals("PNS TNI AD")){
+                                tniAdPNS++;
+                                System.out.println("tni ad pns");
+                            } else if(rs4.getString("nama_golongan").equals("KELUARGA TNI") || rs4.getString("nama_golongan").equals("KELUARGA TNI AD")){
+                                tniAdKEL++;
+                                System.out.println("keluarga tni ad");
+                            } else if(rs4.getString("nama_golongan").equals("TNI AU") || rs4.getString("nama_golongan").equals("TNI AL")){
+                                angkatanlainMIL++;
+                                System.out.println("angkatan lain militer");
+                            } else if(rs4.getString("nama_golongan").equals("PNS TNI ANGKATAN LAIN")){
+                                angkatanlainPNS++;
+                                System.out.println("angkatan lain pns militer");
+                            } else if(rs4.getString("nama_golongan").equals("KELUARGA TNI ANGKATAN LAIN")){
+                                angkatanlainKEL++;
+                                System.out.println("keluarga angkatan lain militer");
+                            } else if(rs4.getString("nama_golongan").equals("Purnawirawan")){
+                                purnawirawan++;
+                                System.out.println("purnawirawan");
                             }
                         }
                         
@@ -1122,102 +1183,179 @@ private void btnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b
                         rs2=ps2.executeQuery();
                         while(rs2.next()){
                             if(rs2.getString("sttsumur").equals("Hr")){
-                                if((rs2.getInt("umurdaftar")>=0)&&(rs2.getInt("umurdaftar")<=6)){
-                                    if(rs2.getString("jk").equals("L")){
-                                        hr0s7l++;
-                                    }else if(rs2.getString("jk").equals("P")){
-                                        hr0s7p++;
-                                    }
-                                    hr0s7++;
-                                }else if((rs2.getInt("umurdaftar")>=7)&&(rs2.getInt("umurdaftar")<=28)){
-                                    if(rs2.getString("jk").equals("L")){
-                                        hr8s28l++;
-                                    }else if(rs2.getString("jk").equals("P")){
-                                        hr8s28p++;
-                                    }
-                                    hr8s28++;
-                                }else if(rs2.getInt("umurdaftar")>28){
-                                    if(rs2.getString("jk").equals("L")){
-                                        hr0s1thl++;
-                                    }else if(rs2.getString("jk").equals("P")){
-                                        hr0s1thp++;
-                                    }
-                                    hr0s1th++;
-                                }
-                            }else if(rs2.getString("sttsumur").equals("Bl")){
-                                if(rs2.getString("jk").equals("L")){
-                                    hr0s1thl++;
-                                }else if(rs2.getString("jk").equals("P")){
-                                    hr0s1thp++;
-                                }
-                                hr0s1th++;
-                            }else if(rs2.getString("sttsumur").equals("Th")){
-                                if((rs2.getInt("umurdaftar")>=0)&&(rs2.getInt("umurdaftar")<=4)){
-                                    if(rs2.getString("jk").equals("L")){
-                                        th1s4l++;
-                                    }else if(rs2.getString("jk").equals("P")){
-                                        th1s4p++;
-                                    }
-                                    th1s4++;
-                                }else if((rs2.getInt("umurdaftar")>=5)&&(rs2.getInt("umurdaftar")<=14)){
-                                    if(rs2.getString("jk").equals("L")){
-                                        th5s9l++;
-                                    }else if(rs2.getString("jk").equals("P")){
-                                        th5s9p++;
-                                    }
-                                    th5s9++;
-                                }else if((rs2.getInt("umurdaftar")>=15)&&(rs2.getInt("umurdaftar")<=24)){
-                                    if(rs2.getString("jk").equals("L")){
-                                        th10s14l++;
-                                    }else if(rs2.getString("jk").equals("P")){
-                                        th10s14p++;
-                                    }
-                                    th10s14++;
-                                }else if((rs2.getInt("umurdaftar")>=25)&&(rs2.getInt("umurdaftar")<=44)){
-                                    if(rs2.getString("jk").equals("L")){
-                                        th15s19l++;
-                                    }else if(rs2.getString("jk").equals("P")){
-                                        th15s19p++;
-                                    }
-                                    th15s19++;
-                                }else if((rs2.getInt("umurdaftar")>=45)&&(rs2.getInt("umurdaftar")<=64)){
-                                    if(rs2.getString("jk").equals("L")){
-                                        th20s44l++;
-                                    }else if(rs2.getString("jk").equals("P")){
-                                        th20s44p++;
-                                    }
-                                    th20s44++;
-                                }else if((rs2.getInt("umurdaftar")>=45)&&(rs2.getInt("umurdaftar")<=64)){
-                                    if(rs2.getString("jk").equals("L")){
-                                        th45s54l++;
-                                    }else if(rs2.getString("jk").equals("P")){
-                                        th45s54p++;
-                                    }
-                                    th45s54++;
-                                }else if((rs2.getInt("umurdaftar")>=45)&&(rs2.getInt("umurdaftar")<=64)){
-                                    if(rs2.getString("jk").equals("L")){
-                                        th55s59l++;
-                                    }else if(rs2.getString("jk").equals("P")){
-                                        th55s59p++;
-                                    }
-                                    th55s59++;
-                                }else if((rs2.getInt("umurdaftar")>=45)&&(rs2.getInt("umurdaftar")<=64)){
-                                    if(rs2.getString("jk").equals("L")){
-                                        th60s69l++;
-                                    }else if(rs2.getString("jk").equals("P")){
-                                        th60s69p++;
-                                    }
-                                    th60s69++;
-                                }else if(rs2.getInt("umurdaftar")>=65){
-                                    if(rs2.getString("jk").equals("L")){
-                                        lbth70l++;
-                                    }else if(rs2.getString("jk").equals("P")){
-                                        lbth70p++;
-                                    }
-                                    lbth70++;
-                                }
-                            }
-                        }
+                              if((rs2.getInt("umurdaftar")>=0)&&(rs2.getInt("umurdaftar")<=6)){
+                                  if(rs2.getString("jk").equals("L")){
+                                      hr0s6l++;
+                                  }else if(rs2.getString("jk").equals("P")){
+                                      hr0s6p++;
+                                  }
+                                  hr0s6++;
+                              }else if((rs2.getInt("umurdaftar")>=7)&&(rs2.getInt("umurdaftar")<=28)){
+                                  if(rs2.getString("jk").equals("L")){
+                                      hr7s28l++;
+                                  }else if(rs2.getString("jk").equals("P")){
+                                      hr7s28p++;
+                                  }
+                                  hr7s28++;
+                              }else if(rs2.getInt("umurdaftar")>28){
+                                  if(rs2.getString("jk").equals("L")){
+                                      hr28s1thl++;
+                                  }else if(rs2.getString("jk").equals("P")){
+                                      hr28s1thp++;
+                                  }
+                                  hr28s1th++;
+                              }
+                          }else if(rs2.getString("sttsumur").equals("Bl")){
+                              if(rs2.getString("jk").equals("L")){
+                                  hr28s1thl++;
+                              }else if(rs2.getString("jk").equals("P")){
+                                  hr28s1thp++;
+                              }
+                              hr28s1th++;
+                          }else if(rs2.getString("sttsumur").equals("Th")){
+                              if((rs2.getInt("umurdaftar")>=0)&&(rs2.getInt("umurdaftar")<=4)){
+                                  if(rs2.getString("jk").equals("L")){
+                                      th1s4l++;
+                                  }else if(rs2.getString("jk").equals("P")){
+                                      th1s4p++;
+                                  }
+                                  th1s4++;
+                              }else if((rs2.getInt("umurdaftar")>=5)&&(rs2.getInt("umurdaftar")<=14)){
+                                  if(rs2.getString("jk").equals("L")){
+                                      th5s14l++;
+                                  }else if(rs2.getString("jk").equals("P")){
+                                      th5s14p++;
+                                  }
+                                  th5s14++;
+                              }else if((rs2.getInt("umurdaftar")>=15)&&(rs2.getInt("umurdaftar")<=24)){
+                                  if(rs2.getString("jk").equals("L")){
+                                      th15s24l++;
+                                  }else if(rs2.getString("jk").equals("P")){
+                                      th15s24p++;
+                                  }
+                                  th15s24++;
+                              }else if((rs2.getInt("umurdaftar")>=25)&&(rs2.getInt("umurdaftar")<=44)){
+                                  if(rs2.getString("jk").equals("L")){
+                                      th25s44l++;
+                                  }else if(rs2.getString("jk").equals("P")){
+                                      th25s44p++;
+                                  }
+                                  th25s44++;
+                              }else if((rs2.getInt("umurdaftar")>=45)&&(rs2.getInt("umurdaftar")<=64)){
+                                  if(rs2.getString("jk").equals("L")){
+                                      th45s64l++;
+                                  }else if(rs2.getString("jk").equals("P")){
+                                      th45s64p++;
+                                  }
+                                  th45s64++;
+                              }else if(rs2.getInt("umurdaftar")>=65){
+                                  if(rs2.getString("jk").equals("L")){
+                                      lbth65l++;
+                                  }else if(rs2.getString("jk").equals("P")){
+                                      lbth65p++;
+                                  }
+                                  lbth65++;
+                              }
+                          }
+                      }
+//                        while(rs2.next()){
+//                            if(rs2.getString("sttsumur").equals("Hr")){
+//                                if((rs2.getInt("umurdaftar")>=0)&&(rs2.getInt("umurdaftar")<=6)){
+//                                    if(rs2.getString("jk").equals("L")){
+//                                        hr0s7l++;
+//                                    }else if(rs2.getString("jk").equals("P")){
+//                                        hr0s7p++;
+//                                    }
+//                                    hr0s7++;
+//                                }else if((rs2.getInt("umurdaftar")>=7)&&(rs2.getInt("umurdaftar")<=28)){
+//                                    if(rs2.getString("jk").equals("L")){
+//                                        hr8s28l++;
+//                                    }else if(rs2.getString("jk").equals("P")){
+//                                        hr8s28p++;
+//                                    }
+//                                    hr8s28++;
+//                                }else if(rs2.getInt("umurdaftar")>28){
+//                                    if(rs2.getString("jk").equals("L")){
+//                                        hr0s1thl++;
+//                                    }else if(rs2.getString("jk").equals("P")){
+//                                        hr0s1thp++;
+//                                    }
+//                                    hr0s1th++;
+//                                }
+//                            }else if(rs2.getString("sttsumur").equals("Bl")){
+//                                if(rs2.getString("jk").equals("L")){
+//                                    hr0s1thl++;
+//                                }else if(rs2.getString("jk").equals("P")){
+//                                    hr0s1thp++;
+//                                }
+//                                hr0s1th++;
+//                            }else if(rs2.getString("sttsumur").equals("Th")){
+//                                if((rs2.getInt("umurdaftar")>=0)&&(rs2.getInt("umurdaftar")<=4)){
+//                                    if(rs2.getString("jk").equals("L")){
+//                                        th1s4l++;
+//                                    }else if(rs2.getString("jk").equals("P")){
+//                                        th1s4p++;
+//                                    }
+//                                    th1s4++;
+//                                }else if((rs2.getInt("umurdaftar")>=5)&&(rs2.getInt("umurdaftar")<=14)){
+//                                    if(rs2.getString("jk").equals("L")){
+//                                        th5s9l++;
+//                                    }else if(rs2.getString("jk").equals("P")){
+//                                        th5s9p++;
+//                                    }
+//                                    th5s9++;
+//                                }else if((rs2.getInt("umurdaftar")>=15)&&(rs2.getInt("umurdaftar")<=24)){
+//                                    if(rs2.getString("jk").equals("L")){
+//                                        th10s14l++;
+//                                    }else if(rs2.getString("jk").equals("P")){
+//                                        th10s14p++;
+//                                    }
+//                                    th10s14++;
+//                                }else if((rs2.getInt("umurdaftar")>=25)&&(rs2.getInt("umurdaftar")<=44)){
+//                                    if(rs2.getString("jk").equals("L")){
+//                                        th15s19l++;
+//                                    }else if(rs2.getString("jk").equals("P")){
+//                                        th15s19p++;
+//                                    }
+//                                    th15s19++;
+//                                }else if((rs2.getInt("umurdaftar")>=45)&&(rs2.getInt("umurdaftar")<=64)){
+//                                    if(rs2.getString("jk").equals("L")){
+//                                        th20s44l++;
+//                                    }else if(rs2.getString("jk").equals("P")){
+//                                        th20s44p++;
+//                                    }
+//                                    th20s44++;
+//                                }else if((rs2.getInt("umurdaftar")>=45)&&(rs2.getInt("umurdaftar")<=64)){
+//                                    if(rs2.getString("jk").equals("L")){
+//                                        th45s54l++;
+//                                    }else if(rs2.getString("jk").equals("P")){
+//                                        th45s54p++;
+//                                    }
+//                                    th45s54++;
+//                                }else if((rs2.getInt("umurdaftar")>=45)&&(rs2.getInt("umurdaftar")<=64)){
+//                                    if(rs2.getString("jk").equals("L")){
+//                                        th55s59l++;
+//                                    }else if(rs2.getString("jk").equals("P")){
+//                                        th55s59p++;
+//                                    }
+//                                    th55s59++;
+//                                }else if((rs2.getInt("umurdaftar")>=45)&&(rs2.getInt("umurdaftar")<=64)){
+//                                    if(rs2.getString("jk").equals("L")){
+//                                        th60s69l++;
+//                                    }else if(rs2.getString("jk").equals("P")){
+//                                        th60s69p++;
+//                                    }
+//                                    th60s69++;
+//                                }else if(rs2.getInt("umurdaftar")>=65){
+//                                    if(rs2.getString("jk").equals("L")){
+//                                        lbth70l++;
+//                                    }else if(rs2.getString("jk").equals("P")){
+//                                        lbth70p++;
+//                                    }
+//                                    lbth70++;
+//                                }
+//                            }
+//                        }
                     } catch (Exception e) {
                         System.out.println("laporan.DlgRL4B.prosesCari() 1 : "+e);
                     } finally{
@@ -1280,35 +1418,60 @@ private void btnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b
                             "<td valign='middle' align='center'>"+i+"</td>"+
                             "<td valign='middle' align='center'>"+rs.getString("kd_penyakit")+"</td>"+
                             "<td valign='middle' align='left'>"+rs.getString("nm_penyakit")+"</td>"+
-                            "<td valign='middle' align='center'>"+pasienTNI+"</td>"+
-                            "<td valign='middle' align='center'>"+(hr0s7l+hr0s1thl+hr8s28l+th1s4l+th5s9l+th10s14l+th15s19l+th20s44l+th45s54l+th55s59l+th60s69l+lbth70l+hr0s7p+hr8s28p+hr0s1thp+th1s4p+th5s9p+th10s14p+th15s19p+th20s44p+th45s54p+th55s59p+th60s69p+lbth70p-pasienTNI)+"</td>"+
-                            "<td valign='middle' align='center'>"+hr0s7+"</td>"+
-//                            "<td valign='middle' align='center'>"+hr0s7p+"</td>"+
-                            "<td valign='middle' align='center'>"+hr8s28+"</td>"+
-//                            "<td valign='middle' align='center'>"+hr8s28p+"</td>"+
-                            "<td valign='middle' align='center'>"+hr0s1th+"</td>"+
-//                            "<td valign='middle' align='center'>"+hr0s1thp+"</td>"+
+//                          "<td valign='middle' align='center'>"+pasienTNI+"</td>"+
+//                          "<td valign='middle' align='center'>"+pasienPNS+"</td>"+
+//                          "<td valign='middle' align='center'>"+(hr0s7l+hr0s1thl+hr8s28l+th1s4l+th5s9l+th10s14l+th15s19l+th20s44l+th45s54l+th55s59l+th60s69l+lbth70l+hr0s7p+hr8s28p+hr0s1thp+th1s4p+th5s9p+th10s14p+th15s19p+th20s44p+th45s54p+th55s59p+th60s69p+lbth70p-pasienTNI-pasienPNS)+"</td>"+
+                            
+                            "<td valign='middle' align='center'>"+tniAdMIL+"</td>"+
+                            "<td valign='middle' align='center'>"+tniAdPNS+"</td>"+
+                            "<td valign='middle' align='center'>"+tniAdKEL+"</td>"+
+                            "<td valign='middle' align='center'>"+angkatanlainMIL+"</td>"+
+                            "<td valign='middle' align='center'>"+angkatanlainPNS+"</td>"+
+                            "<td valign='middle' align='center'>"+angkatanlainKEL+"</td>"+
+                            "<td valign='middle' align='center'>"+purnawirawan+"</td>"+
+                            "<td valign='middle' align='center'>"+(tniAdMIL+tniAdPNS+tniAdKEL+angkatanlainMIL+angkatanlainPNS+angkatanlainKEL+purnawirawan)+"</td>"+                                                                                                                                                                                                                             
+                            "<td valign='middle' align='center'>"+(hr0s6+hr7s28+hr28s1th+th1s4+th5s14+th15s24+th25s44+th45s64+lbth65-(tniAdMIL+tniAdPNS+tniAdKEL+angkatanlainMIL+angkatanlainPNS+angkatanlainKEL+purnawirawan))+"</td>"+       
+                            
+                            "<td valign='middle' align='center'>"+hr0s6+"</td>"+
+                            "<td valign='middle' align='center'>"+hr7s28+"</td>"+
+                            "<td valign='middle' align='center'>"+hr28s1th+"</td>"+
                             "<td valign='middle' align='center'>"+th1s4+"</td>"+
-//                            "<td valign='middle' align='center'>"+th1s4p+"</td>"+
-                            "<td valign='middle' align='center'>"+th5s9+"</td>"+
-//                            "<td valign='middle' align='center'>"+th5s9p+"</td>"+
-                            "<td valign='middle' align='center'>"+th10s14+"</td>"+
-//                            "<td valign='middle' align='center'>"+th10s14p+"</td>"+
-                            "<td valign='middle' align='center'>"+th15s19+"</td>"+
-//                            "<td valign='middle' align='center'>"+th15s19p+"</td>"+
-                            "<td valign='middle' align='center'>"+th20s44+"</td>"+
-//                            "<td valign='middle' align='center'>"+th20s44p+"</td>"+
-                            "<td valign='middle' align='center'>"+th45s54+"</td>"+
-//                            "<td valign='middle' align='center'>"+th45s54p+"</td>"+
-                            "<td valign='middle' align='center'>"+th55s59+"</td>"+
-//                            "<td valign='middle' align='center'>"+th55s59p+"</td>"+
-                            "<td valign='middle' align='center'>"+th60s69+"</td>"+
-//                            "<td valign='middle' align='center'>"+th60s69p+"</td>"+
-                            "<td valign='middle' align='center'>"+lbth70+"</td>"+
+                            "<td valign='middle' align='center'>"+th5s14+"</td>"+
+                            "<td valign='middle' align='center'>"+th15s24+"</td>"+
+                            "<td valign='middle' align='center'>"+th25s44+"</td>"+
+                            "<td valign='middle' align='center'>"+th45s64+"</td>"+
+                            "<td valign='middle' align='center'>"+lbth65+"</td>"+
+                            "<td valign='middle' align='center'>"+(hr0s6l+hr7s28l+hr28s1thl+th1s4l+th5s14l+th15s24l+th25s44l+th45s64l+lbth65l)+"</td>"+
+                            "<td valign='middle' align='center'>"+(hr0s6p+hr7s28p+hr28s1thp+th1s4p+th5s14p+th15s24p+th25s44p+th45s64p+lbth65p)+"</td>"+
+                            "<td valign='middle' align='center'>"+(hr0s6l+hr7s28l+hr28s1thl+th1s4l+th5s14l+th15s24l+th25s44l+th45s64l+lbth65l+hr0s6p+hr7s28p+hr28s1thp+th1s4p+th5s14p+th15s24p+th25s44p+th45s64p+lbth65p-mati)+"</td>"+
+
+//                            "<td valign='middle' align='center'>"+hr0s7+"</td>"+
+////                            "<td valign='middle' align='center'>"+hr0s7p+"</td>"+
+//                            "<td valign='middle' align='center'>"+hr8s28+"</td>"+
+////                            "<td valign='middle' align='center'>"+hr8s28p+"</td>"+
+//                            "<td valign='middle' align='center'>"+hr0s1th+"</td>"+
+////                            "<td valign='middle' align='center'>"+hr0s1thp+"</td>"+
+//                            "<td valign='middle' align='center'>"+th1s4+"</td>"+
+////                            "<td valign='middle' align='center'>"+th1s4p+"</td>"+
+//                            "<td valign='middle' align='center'>"+th5s9+"</td>"+
+////                            "<td valign='middle' align='center'>"+th5s9p+"</td>"+
+//                            "<td valign='middle' align='center'>"+th10s14+"</td>"+
+////                            "<td valign='middle' align='center'>"+th10s14p+"</td>"+
+//                            "<td valign='middle' align='center'>"+th15s19+"</td>"+
+////                            "<td valign='middle' align='center'>"+th15s19p+"</td>"+
+//                            "<td valign='middle' align='center'>"+th20s44+"</td>"+
+////                            "<td valign='middle' align='center'>"+th20s44p+"</td>"+
+//                            "<td valign='middle' align='center'>"+th45s54+"</td>"+
+////                            "<td valign='middle' align='center'>"+th45s54p+"</td>"+
+//                            "<td valign='middle' align='center'>"+th55s59+"</td>"+
+////                            "<td valign='middle' align='center'>"+th55s59p+"</td>"+
+//                            "<td valign='middle' align='center'>"+th60s69+"</td>"+
+////                            "<td valign='middle' align='center'>"+th60s69p+"</td>"+
+//                            "<td valign='middle' align='center'>"+lbth70+"</td>"+
 //                            "<td valign='middle' align='center'>"+lbth70p+"</td>"+
-                            "<td valign='middle' align='center'>"+(hr0s7l+hr8s28+hr0s1thl+th1s4l+th5s9l+th10s14l+th15s19l+th20s44l+th45s54l+th55s59l+th60s69l+lbth70l)+"</td>"+
-                            "<td valign='middle' align='center'>"+(hr0s7p+hr8s28p+hr0s1thp+th1s4p+th5s9p+th10s14p+th15s19p+th20s44p+th45s54p+th55s59p+th60s69p+lbth70p)+"</td>"+
-                            "<td valign='middle' align='center'>"+(hr0s7l+hr0s1thl+hr8s28l+th1s4l+th5s9l+th10s14l+th15s19l+th20s44l+th45s54l+th55s59l+th60s69l+lbth70l+hr0s7p+hr8s28p+hr0s1thp+th1s4p+th5s9p+th10s14p+th15s19p+th20s44p+th45s54p+th55s59p+th60s69p+lbth70p-mati)+"</td>"+
+//                            "<td valign='middle' align='center'>"+(hr0s7l+hr8s28+hr0s1thl+th1s4l+th5s9l+th10s14l+th15s19l+th20s44l+th45s54l+th55s59l+th60s69l+lbth70l)+"</td>"+
+//                            "<td valign='middle' align='center'>"+(hr0s7p+hr8s28p+hr0s1thp+th1s4p+th5s9p+th10s14p+th15s19p+th20s44p+th45s54p+th55s59p+th60s69p+lbth70p)+"</td>"+
+//                            "<td valign='middle' align='center'>"+(hr0s7l+hr0s1thl+hr8s28l+th1s4l+th5s9l+th10s14l+th15s19l+th20s44l+th45s54l+th55s59l+th60s69l+lbth70l+hr0s7p+hr8s28p+hr0s1thp+th1s4p+th5s9p+th10s14p+th15s19p+th20s44p+th45s54p+th55s59p+th60s69p+lbth70p-mati)+"</td>"+
                             "<td valign='middle' align='center'>"+mati+"</td>"+
                         "</tr>"
                     );

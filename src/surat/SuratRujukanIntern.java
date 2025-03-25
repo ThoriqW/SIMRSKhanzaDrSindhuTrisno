@@ -1100,16 +1100,18 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         // TODO add your handling code here:
          if(tbObat.getSelectedRow()>-1){
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            String FileName = tbObat.getValueAt(tbObat.getSelectedRow(),0).toString().replaceAll("/","_")+".pdf";
-            if(Sequel.cariInteger("select count(no_rawat) from berkas_tte where no_dokumen='"+FileName+"' and kode='030'") > 0){
-                berkas.tampilPdf(FileName,"berkastte/rujukan_intern",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"030");
-                berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-                berkas.setLocationRelativeTo(internalFrame1);
-                berkas.setVisible(true);
-            }else{
-                createPdf(FileName);
-            }
-
+            Map<String, Object> param = new HashMap<>();
+            param.put("namars",akses.getnamars());
+            param.put("alamatrs",akses.getalamatrs());
+            param.put("kotars",akses.getkabupatenrs());
+            param.put("propinsirs",akses.getpropinsirs());
+            param.put("kontakrs",akses.getkontakrs());
+            param.put("emailrs",akses.getemailrs());
+            param.put("logobsre",Sequel.cariGambar("select setting.logo_bsre from setting"));
+            param.put("logo",Sequel.cariGambar("select setting.logo from setting"));
+            param.put("finger","Dikeluarkan di "+akses.getnamars()+", Kabupaten/Kota "+akses.getkabupatenrs()+"\nDitandatangani secara elektronik oleh " + tbObat.getValueAt(tbObat.getSelectedRow(),7).toString());
+            Valid.MyReportqry("rptSuratRujukIntern.jasper","report","::[ Surat Rujukan Internal ]::",
+            "select * from rujukan_internal_poli_report where no_surat='"+NoRawat.getText()+"'",param);
             this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_KonsulInternActionPerformed
